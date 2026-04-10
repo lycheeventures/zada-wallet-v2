@@ -1,5 +1,6 @@
 import { X509Certificate, X509ModuleConfig } from '@credo-ts/core'
 import type { OpenId4VciResolvedCredentialOffer, OpenId4VpResolvedAuthorizationRequest } from '@credo-ts/openid4vc'
+import { getTrustRegistryEntriesByIssuer } from '@easypid/services/api'
 import type {
   EitherAgent,
   TrustedDidEntity,
@@ -465,5 +466,56 @@ const getTrustedEntitiesForX509Certificate = async ({
       entityId,
     },
     trustedEntities,
+  }
+}
+
+
+export const getTrustedEntitiesForZADA = async ({
+  issuer,
+  walletTrustedEntity,
+}: {
+  issuer?: string
+  walletTrustedEntity?: TrustedEntity
+}): Promise<{
+  trustedEntities: TrustedEntity[]
+  trustMechanism: TrustMechanism
+}> => {
+  if (!issuer) {
+    return {
+      trustedEntities: [],
+      trustMechanism: 'none',
+    }
+  }
+
+  try {
+    const result = await getTrustRegistryEntriesByIssuer(issuer)
+
+    if (result?.trusted && result?.org) {
+      const trustedEntities: TrustedEntity[] = [
+        {
+          entityId: result.org.id ?? issuer,
+          organizationName: result.org.name ?? 'Unknown',
+          logoUri: result.org.logo_url ?? undefined,
+          uri: result.org.website ?? undefined,
+          demo: false,
+        },
+      ]
+
+      if (walletTrustedEntity) {
+        trustedEntities.push(walletTrustedEntity)
+      }
+
+      return {
+        trustedEntities,
+        trustMechanism: 'none',
+      }
+    }
+  } catch (error) {
+    console.error('Supabase trust check failed:', error)
+  }
+
+  return {
+    trustedEntities: [],
+    trustMechanism: 'none',
   }
 }

@@ -1,3 +1,5 @@
+
+
 import { JsonEncoder } from '@credo-ts/core'
 
 import { parseInvitationJson } from '@credo-ts/didcomm'
@@ -216,6 +218,55 @@ export async function parseInvitationUrl(invitationUrl: string): Promise<ParseIn
       },
     }
   }
+
+  if (invitationUrl.includes('data=')) {
+      try {
+        const url = new URL(invitationUrl)
+        const base64Data = url.searchParams.get('data')
+
+        if (base64Data) {
+          const decoded = Buffer.from(base64Data, 'base64').toString('utf-8')
+          const json = JSON.parse(decoded)
+
+          if (json?.uri) {
+            if (isOpenIdCredentialOffer(json.uri)) {
+              return {
+                success: true,
+                result: {
+                  format: 'url',
+                  type: 'openid-credential-offer',
+                  data: json.uri,
+                },
+              }
+            }
+
+            if (isOpenIdPresentationRequest(json.uri)) {
+              return {
+                success: true,
+                result: {
+                  format: 'url',
+                  type: 'openid-authorization-request',
+                  data: json.uri,
+                },
+              }
+            }
+
+            if (isDidCommInvitation(json.uri)) {
+              return {
+                success: true,
+                result: {
+                  format: 'url',
+                  type: 'didcomm',
+                  data: json.uri,
+                },
+              }
+            }
+          }
+        }
+      } catch (error) {
+        console.warn('Failed to parse Base64 data param:', error)
+      }
+    }
 
   // If we can't detect the type of invitation from the URL, we will try to fetch the data from the URL
   // and see if we can detect if based on the response
