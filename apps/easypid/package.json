@@ -38,6 +38,7 @@
 		"@react-native-picker/picker": "^2.11.4",
 		"@react-navigation/native": "catalog:",
 		"@shopify/react-native-skia": "catalog:",
+		"@supabase/supabase-js": "^2.101.0",
 		"babel-plugin-module-resolver": "catalog:",
 		"buffer": "catalog:",
 		"burnt": "catalog:",
