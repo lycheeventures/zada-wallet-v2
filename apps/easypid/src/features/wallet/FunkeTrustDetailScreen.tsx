@@ -52,7 +52,7 @@ export function FunkeTrustDetailScreen({
           : trustMechanism === 'x509'
             ? 'X.509 Certificate'
             : 'No signature'
-
+  
   return (
     <FlexPage gap="$0" paddingHorizontal="$0">
       <HeaderContainer
@@ -100,7 +100,7 @@ export function FunkeTrustDetailScreen({
             <YStack gap="$2">
               <Heading heading="sub2">
                 <Trans id="trust.trustedBy" comment="Subheading for list of organizations that trust the current one">
-                  Trusted by
+                  Verified By:
                 </Trans>{' '}
                 {isDevelopmentModeEnabled && <Paragraph>({trustMechanismName})</Paragraph>}
               </Heading>
@@ -122,7 +122,7 @@ export function FunkeTrustDetailScreen({
                     ? t({
                         id: 'trust.noApprovals',
                         comment: 'A message shown when there are no organizations that approved the current party',
-                        message: `There are no organizations that have approved ${name}.`,
+                        message: `The organisation has not been verified and is NOT part of the ZADA Trust Registry`,
                       })
                     : t({
                         id: 'trust.noApprovalsWithoutOrganizationName',

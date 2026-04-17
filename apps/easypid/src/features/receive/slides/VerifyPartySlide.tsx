@@ -80,12 +80,12 @@ export const VerifyPartySlide = ({
 
   const onPressVerifiedIssuer = withHaptics(() => {
     const searchParams = new URLSearchParams({
-      trustedEntities: JSON.stringify(trustedEntitiesWithoutSelf ?? []),
+      trustedEntities: JSON.stringify(trustedEntitiesWithoutSelf?.slice(1) ?? []),
       trustMechanism,
       isDemoTrustedEntity: `${isDemoTrustedEntity}`,
     })
 
-    if (logo?.url) searchParams.set('logo', logo.url)
+    if (logo?.url) searchParams.set('logo',  encodeURIComponent(logo.url))
     if (name) searchParams.set('name', name)
 
     router.push(`trust?${searchParams}`)
@@ -128,10 +128,10 @@ export const VerifyPartySlide = ({
             {type === 'offer' ? (
               <Paragraph center px="$4">
                 {name ? (
-                  <Trans id="verifyPartySlide.offerCardSubtitle">{name} wants to offer you a card.</Trans>
+                  <Trans id="verifyPartySlide.offerCardSubtitle">{name} wants to offer you a Credential.</Trans>
                 ) : (
                   <Trans id="verifyPartySlide.offerCardSubtitleUnknownOrganization">
-                    An unknown organization wants to offer you a card.
+                    An unknown organization wants to offer you a Credential.
                   </Trans>
                 )}
               </Paragraph>
@@ -179,19 +179,10 @@ export const VerifyPartySlide = ({
                 id: 'verifyPartySlide.recognizedOrganizationTitle',
                 message: 'Recognized organization',
               })}
-              description={
-                trustedEntitiesWithoutSelf.length > 1
-                  ? t({
+              description={t({
                       id: 'verifyPartySlide.approvedByMultipleOrganizations',
-                      message: `Approved by ${trustedEntitiesWithoutSelf.length} organizations`,
-                    })
-                  : trustedEntitiesWithoutSelf.length === 1
-                    ? t({
-                        id: 'verifyPartySlide.approvedByOneOrganization',
-                        message: 'Approved by one organization',
-                      })
-                    : undefined
-              }
+                      message: `Approved by ${trustedEntitiesWithoutSelf[0].organizationName} organizations`,
+             })}
               onPress={onPressVerifiedIssuer}
             />
           ) : (

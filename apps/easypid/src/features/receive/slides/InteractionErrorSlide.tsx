@@ -24,20 +24,20 @@ export const InteractionErrorSlide = ({ reason, onCancel, flowType }: Interactio
         ? t({
             id: 'interactionError.message.issue',
             message:
-              'An error occurred while fetching the card information. Ask the issuer to generate a new QR-code or try again later.',
-            comment: 'Error message when credential issuance fails to fetch card info',
+              'An error occurred while fetching the Credential information. Ask the issuer to generate a new QR-code or try again later.',
+            comment: 'Error message when credential issuance fails to fetch Credential info',
           })
         : flowType === 'verify'
           ? t({
               id: 'interactionError.message.verify',
               message:
-                'An error occurred while sharing the card information. Ask the verifier to generate a new QR-code or try again later.',
+                'An error occurred while sharing the Credential information. Ask the verifier to generate a new QR-code or try again later.',
               comment: 'Error message when sharing a credential for verification fails',
             })
           : t({
               id: 'interactionError.message.sign',
               message:
-                'An error occurred while signing with your card information. Ask the verifier to generate a new QR-code or try again later.',
+                'An error occurred while signing with your Credential information. Ask the verifier to generate a new QR-code or try again later.',
               comment: 'Error message when signing fails with selected credentials',
             })
 

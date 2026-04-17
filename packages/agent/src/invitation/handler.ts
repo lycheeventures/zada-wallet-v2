@@ -136,7 +136,7 @@ export async function resolveOpenId4VciOffer({
     const issuerTrust = await getTrustedEntitiesForZADA({
       issuer: resolvedCredentialOffer.metadata.credentialIssuer.credential_issuer,
       walletTrustedEntity: {
-        organizationName: isParadymWallet() ? 'ZADA Wallet' : 'Funke Wallet',
+        organizationName: isParadymWallet() ? 'ZADA Network' : 'Funke Wallet',
         entityId: '__',
         logoUri: require('../../../../apps/easypid/assets/paradym/icon.png'),
         uri: isParadymWallet() ? 'https://zada.network' : 'https://funke.animo.id',

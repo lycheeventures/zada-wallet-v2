@@ -108,7 +108,7 @@
     "translation": "{disclosedAttributeLength} kortista {0}"
   },
   "credentialCardSlide.subtitle.default": {
-    "message": "{issuerName} wants to issue you the following card:",
+    "message": "{issuerName} wants to issue you the following Credential:",
     "placeholders": {
       "issuerName": [
         "issuerName"
@@ -158,7 +158,7 @@
     "translation": "{name} haluaa luoda digitaalisen allekirjoituksen asiakirjalle."
   },
   "verifyPartySlide.offerCardSubtitle": {
-    "message": "{name} wants to offer you a card.",
+    "message": "{name} wants to offer you a Credential.",
     "placeholders": {
       "name": [
         "name"
@@ -550,10 +550,10 @@
     "translation": "Yhdistämisessä tapahtui virhe. Luo uusi QR-koodi tai yritä myöhemmin uudelleen."
   },
   "interactionError.message.issue": {
-    "message": "An error occurred while fetching the card information. Ask the issuer to generate a new QR-code or try again later.",
+    "message": "An error occurred while fetching the Credential information. Ask the issuer to generate a new QR-code or try again later.",
     "placeholders": {},
     "comments": [
-      "Error message when credential issuance fails to fetch card info"
+      "Error message when credential issuance fails to fetch Credential info"
     ],
     "origin": [
       [
@@ -578,7 +578,7 @@
     "translation": "Kortin noutaminen myöntäjältä epäonnistui."
   },
   "interactionError.message.verify": {
-    "message": "An error occurred while sharing the card information. Ask the verifier to generate a new QR-code or try again later.",
+    "message": "An error occurred while sharing the Credential information. Ask the verifier to generate a new QR-code or try again later.",
     "placeholders": {},
     "comments": [
       "Error message when sharing a credential for verification fails"
@@ -592,7 +592,7 @@
     "translation": "Kortin tietojen jakamisessa tapahtui virhe. Pyydä tarkastajaa luomaan uusi QR-koodi tai yritä myöhemmin uudelleen."
   },
   "interactionError.message.sign": {
-    "message": "An error occurred while signing with your card information. Ask the verifier to generate a new QR-code or try again later.",
+    "message": "An error occurred while signing with your Credential information. Ask the verifier to generate a new QR-code or try again later.",
     "placeholders": {},
     "comments": [
       "Error message when signing fails with selected credentials"
@@ -654,7 +654,7 @@
     "translation": "Tuntematon toimija ehdottaa asiakirjan allekirjoittamista."
   },
   "verifyPartySlide.offerCardSubtitleUnknownOrganization": {
-    "message": "An unknown organization wants to offer you a card.",
+    "message": "An unknown organization wants to offer you a Credential.",
     "placeholders": {},
     "comments": [],
     "origin": [
@@ -695,14 +695,14 @@
     "message": "Approved by {0} organizations",
     "placeholders": {
       "0": [
-        "trustedEntitiesWithoutSelf.length"
+        "trustedEntitiesWithoutSelf[0].organizationName"
       ]
     },
     "comments": [],
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        184
+        182
       ]
     ],
     "translation": "{0} luottavaa organisaatiota"
@@ -717,7 +717,8 @@
         189
       ]
     ],
-    "translation": "1 luottava organisaatio"
+    "translation": "1 luottava organisaatio",
+    "obsolete": true
   },
   "common.archiveCardTitle": {
     "message": "Archive card?",
@@ -1098,7 +1099,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        90
+        94
       ]
     ],
     "translation": "Kortin tiedot"
@@ -1126,18 +1127,6 @@
       ]
     ],
     "translation": "Kortti on voimassa"
-  },
-  "receiveCredential.deferredCredentialHeader": {
-    "message": "Card is not ready yet",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/receive/slides/CredentialRetrievalSlide.tsx",
-        172
-      ]
-    ],
-    "translation": "Kortti ei ole vielä valmis"
   },
   "cardLifecycle.limitedByDate.notYetActive.title": {
     "message": "Card not active",
@@ -1201,20 +1190,6 @@
     ],
     "translation": "Kortti ei ole enää käytettävissä"
   },
-  "credentialCardSlide.cardOfferedTitle": {
-    "message": "Card offered",
-    "placeholders": {},
-    "comments": [
-      "Title shown when a credential card is offered to the user"
-    ],
-    "origin": [
-      [
-        "src/features/receive/slides/CredentialCardSlide.tsx",
-        13
-      ]
-    ],
-    "translation": "Korttia tarjotaan"
-  },
   "common.cardPending": {
     "message": "Card pending",
     "placeholders": {},
@@ -1254,18 +1229,6 @@
       ]
     ],
     "translation": "Kortti peruutettu"
-  },
-  "retrieveCredential.cardSuccessfully added": {
-    "message": "Card successfully added to your wallet!",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/receive/slides/CredentialRetrievalSlide.tsx",
-        190
-      ]
-    ],
-    "translation": "Kortti lisättiin lompakkoosi!"
   },
   "common.toastCardArchived": {
     "message": "Card successfully archived",
@@ -1517,17 +1480,16 @@
     "message": "Credential Details",
     "placeholders": {},
     "comments": [
-      "Label for button that shows detailed card attributes",
-      "Title shown in header for the credential detail attributes screen"
+      "Label for button that shows detailed card attributes"
     ],
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx",
-        81
+        104
       ],
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        108
+        112
       ]
     ],
     "translation": "Kortin tiedot"
@@ -1560,6 +1522,18 @@
     ],
     "translation": "Todisteen tietoja ei voitu lukea"
   },
+  "receiveCredential.deferredCredentialHeader": {
+    "message": "Credential is not ready yet",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/CredentialRetrievalSlide.tsx",
+        172
+      ]
+    ],
+    "translation": "Kortti ei ole vielä valmis"
+  },
   "credentials.notFound": {
     "message": "Credential not found",
     "placeholders": {},
@@ -1569,7 +1543,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        42
+        46
       ]
     ],
     "translation": "Todistetta ei löytynyt"
@@ -1587,6 +1561,32 @@
       ]
     ],
     "translation": "Todistetta ei löytynyt"
+  },
+  "credentialCardSlide.cardOfferedTitle": {
+    "message": "Credential offered",
+    "placeholders": {},
+    "comments": [
+      "Title shown when a credential card is offered to the user"
+    ],
+    "origin": [
+      [
+        "src/features/receive/slides/CredentialCardSlide.tsx",
+        13
+      ]
+    ],
+    "translation": "Korttia tarjotaan"
+  },
+  "retrieveCredential.cardSuccessfully added": {
+    "message": "Credential successfully added to your wallet!",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/CredentialRetrievalSlide.tsx",
+        190
+      ]
+    ],
+    "translation": "Kortti lisättiin lompakkoosi!"
   },
   "common.fields.credentialType": {
     "message": "Credential type",
@@ -1731,7 +1731,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        211
+        202
       ]
     ],
     "translation": "Demo-organisaatio"
@@ -1772,7 +1772,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        215
+        206
       ]
     ],
     "translation": "Älä jaa oikeita tietoja"
@@ -1794,7 +1794,7 @@
     "translation": "Luotatko {name}?"
   },
   "receiveCredential.checkInformationHeader": {
-    "message": "Do you want to store this card?",
+    "message": "Do you want to store this Credential?",
     "placeholders": {},
     "comments": [],
     "origin": [
@@ -2254,7 +2254,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        229
+        220
       ]
     ],
     "translation": "Ensimmäinen yhteys"
@@ -2800,7 +2800,7 @@
       ],
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        95
+        99
       ]
     ],
     "translation": "Myöntäjä: {0}."
@@ -2920,7 +2920,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        236
+        227
       ]
     ],
     "translation": "Viimeisin yhteys: {0}"
@@ -3156,13 +3156,11 @@
   "credentials.noAttributes": {
     "message": "No attributes found",
     "placeholders": {},
-    "comments": [
-      "Error toast when a credential has no displayable attributes"
-    ],
+    "comments": [],
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx",
-        57
+        81
       ]
     ],
     "translation": "Tietoja ei löytynyt"
@@ -3316,7 +3314,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        240
+        231
       ]
     ],
     "translation": "Aiempia yhteyksiä ei löytynyt"
@@ -3400,7 +3398,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        201
+        192
       ]
     ],
     "translation": "Organisaatiota ei ole vahvistettu"
@@ -3727,7 +3725,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        225
+        216
       ]
     ],
     "translation": "Aiemmat yhteydet"
@@ -4294,20 +4292,6 @@
     ],
     "translation": "Valmistele myöhemmin"
   },
-  "menu.item.settings": {
-    "message": "Settings",
-    "placeholders": {},
-    "comments": [
-      "Label for settings menu item"
-    ],
-    "origin": [
-      [
-        "src/features/menu/FunkeMenuScreen.tsx",
-        124
-      ]
-    ],
-    "translation": "Asetukset"
-  },
   "settings.title": {
     "message": "Settings",
     "placeholders": {},
@@ -4318,6 +4302,20 @@
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
         149
+      ]
+    ],
+    "translation": "Asetukset"
+  },
+  "menu.item.settings": {
+    "message": "Settings",
+    "placeholders": {},
+    "comments": [
+      "Label for settings menu item"
+    ],
+    "origin": [
+      [
+        "src/features/menu/FunkeMenuScreen.tsx",
+        124
       ]
     ],
     "translation": "Asetukset"
@@ -4353,13 +4351,11 @@
   "credentials.shareableAttributes": {
     "message": "Shareable attributes",
     "placeholders": {},
-    "comments": [
-      "Header for attributes that can be shared with a verifier"
-    ],
+    "comments": [],
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx",
-        106
+        128
       ]
     ],
     "translation": "Jaettavat tiedot"
@@ -4932,18 +4928,6 @@
     ],
     "translation": "Napauta nähdäksesi"
   },
-  "retrieveCredential.cardPending": {
-    "message": "The card will be fetched once available.",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/receive/slides/CredentialRetrievalSlide.tsx",
-        196
-      ]
-    ],
-    "translation": "Kortti noudetaan, kun se on saatavilla."
-  },
   "activity.receivedPending": {
     "message": "The cards from {0} is are not ready yet and will be fetched at a later date.",
     "placeholders": {
@@ -4961,6 +4945,18 @@
       ]
     ],
     "translation": "Kortit kohteesta {0} eivät ole vielä valmiita ja noudetaan myöhemmin."
+  },
+  "retrieveCredential.cardPending": {
+    "message": "The credential will be fetched once available.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/CredentialRetrievalSlide.tsx",
+        196
+      ]
+    ],
+    "translation": "Kortti noudetaan, kun se on saatavilla."
   },
   "onboardingWalletExplanation.slide2.subtitle": {
     "message": "The digital wallet stores your important information all in one place on your phone. It’s a secure and easy way to carry everything you need without using a physical wallet.",
@@ -5150,6 +5146,20 @@
     ],
     "translation": "Myöntäjä antoi seuraavat tiedot:"
   },
+  "trust.noApprovals": {
+    "message": "The organisation has not been verified and is NOT part of the ZADA Trust Registry",
+    "placeholders": {},
+    "comments": [
+      "A message shown when there are no organizations that approved the current party"
+    ],
+    "origin": [
+      [
+        "src/features/wallet/FunkeTrustDetailScreen.tsx",
+        122
+      ]
+    ],
+    "translation": "Mikään organisaatio ei luota toimijaan {name}."
+  },
   "requestPurpose.overaskingWarning": {
     "message": "The purpose given does not match the data requested.",
     "placeholders": {},
@@ -5182,24 +5192,6 @@
       ]
     ],
     "translation": "Tämä kortti on voimassa {0} - {1}."
-  },
-  "trust.noApprovals": {
-    "message": "There are no organizations that have approved {name}.",
-    "placeholders": {
-      "name": [
-        "name"
-      ]
-    },
-    "comments": [
-      "A message shown when there are no organizations that approved the current party"
-    ],
-    "origin": [
-      [
-        "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        122
-      ]
-    ],
-    "translation": "Mikään organisaatio ei luota toimijaan {name}."
   },
   "trust.noApprovalsWithoutOrganizationName": {
     "message": "There are no organizations that have approved this unknown organization.",
@@ -5489,42 +5481,6 @@
     ],
     "translation": "Jatkaaksesi varmista, että laitteessasi on biometrinen suojaus käytössä ja että Paradym Wallet saa käyttää biometriikkaa."
   },
-  "credentialCardSlide.subtitle.pin": {
-    "message": "To receive this card from {issuerName}, you need to enter a PIN.",
-    "placeholders": {
-      "issuerName": [
-        "issuerName"
-      ]
-    },
-    "comments": [
-      "Subtitle shown when entering a PIN is required to receive the credential"
-    ],
-    "origin": [
-      [
-        "src/features/receive/slides/CredentialCardSlide.tsx",
-        35
-      ]
-    ],
-    "translation": "Vastaanottaaksesi tämän kortin taholta {issuerName} sinun tulee syöttää PIN-koodi."
-  },
-  "credentialCardSlide.subtitle.presentation": {
-    "message": "To receive this card from {issuerName}, you need to share cards from your wallet.",
-    "placeholders": {
-      "issuerName": [
-        "issuerName"
-      ]
-    },
-    "comments": [
-      "Subtitle shown when presentation of other credentials is required"
-    ],
-    "origin": [
-      [
-        "src/features/receive/slides/CredentialCardSlide.tsx",
-        26
-      ]
-    ],
-    "translation": "Vastaanottaaksesi tämän kortin taholta {issuerName} sinun tulee jakaa kortteja lompakostasi."
-  },
   "txCodeSlide.instructions": {
     "message": "To receive this card you need to enter a transaction code. This code has been provided to you by the issuer.",
     "placeholders": {},
@@ -5552,6 +5508,42 @@
       ]
     ],
     "translation": "Vastaanottaaksesi tämän kortin sinun tulee krjautua. Sinut ohjataan nyt myöntäjän verkkosivulle."
+  },
+  "credentialCardSlide.subtitle.pin": {
+    "message": "To receive this credential from {issuerName}, you need to enter a PIN.",
+    "placeholders": {
+      "issuerName": [
+        "issuerName"
+      ]
+    },
+    "comments": [
+      "Subtitle shown when entering a PIN is required to receive the credential"
+    ],
+    "origin": [
+      [
+        "src/features/receive/slides/CredentialCardSlide.tsx",
+        35
+      ]
+    ],
+    "translation": "Vastaanottaaksesi tämän kortin taholta {issuerName} sinun tulee syöttää PIN-koodi."
+  },
+  "credentialCardSlide.subtitle.presentation": {
+    "message": "To receive this credential from {issuerName}, you need to share credentials from your wallet.",
+    "placeholders": {
+      "issuerName": [
+        "issuerName"
+      ]
+    },
+    "comments": [
+      "Subtitle shown when presentation of other credentials is required"
+    ],
+    "origin": [
+      [
+        "src/features/receive/slides/CredentialCardSlide.tsx",
+        26
+      ]
+    ],
+    "translation": "Vastaanottaaksesi tämän kortin taholta {issuerName} sinun tulee jakaa kortteja lompakostasi."
   },
   "dateFormatting.today": {
     "message": "Today",
@@ -5608,20 +5600,6 @@
       ]
     ],
     "translation": "Tapahtumakoodi"
-  },
-  "trust.trustedBy": {
-    "message": "Trusted by",
-    "placeholders": {},
-    "comments": [
-      "Subheading for list of organizations that trust the current one"
-    ],
-    "origin": [
-      [
-        "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        102
-      ]
-    ],
-    "translation": "Luottamuksen osoittajat"
   },
   "common.credentials.mdl.unDistinguishingSign": {
     "message": "UN sign",
@@ -5827,6 +5805,20 @@
     ],
     "translation": "tarkastusta jäljellä"
   },
+  "trust.trustedBy": {
+    "message": "Verified By:",
+    "placeholders": {},
+    "comments": [
+      "Subheading for list of organizations that trust the current one"
+    ],
+    "origin": [
+      [
+        "src/features/wallet/FunkeTrustDetailScreen.tsx",
+        102
+      ]
+    ],
+    "translation": "Luottamuksen osoittajat"
+  },
   "authCodeFlowSlide.heading": {
     "message": "Verify your account",
     "placeholders": {},
@@ -5850,7 +5842,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        113
+        117
       ]
     ],
     "translation": "Näytä kortin tiedot"
@@ -6350,7 +6342,7 @@
     "translation": "Olet ajan tasalla"
   },
   "receiveCredential.deferredCredentialParagraph": {
-    "message": "Your cards are not yet ready. We will check once in a while in the background and fetch the cards once they're ready.",
+    "message": "Your credentials are not yet ready. We will check once in a while in the background and fetch the credentials once they're ready.",
     "placeholders": {},
     "comments": [],
     "origin": [

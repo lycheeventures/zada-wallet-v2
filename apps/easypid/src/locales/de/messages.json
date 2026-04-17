@@ -108,7 +108,7 @@
     "translation": "{disclosedAttributeLength} von {0}"
   },
   "credentialCardSlide.subtitle.default": {
-    "message": "{issuerName} wants to issue you the following card:",
+    "message": "{issuerName} wants to issue you the following Credential:",
     "placeholders": {
       "issuerName": [
         "issuerName"
@@ -158,7 +158,7 @@
     "translation": "{name} möchte mit dir eine digitale Signatur für ein Dokument erstellen."
   },
   "verifyPartySlide.offerCardSubtitle": {
-    "message": "{name} wants to offer you a card.",
+    "message": "{name} wants to offer you a Credential.",
     "placeholders": {
       "name": [
         "name"
@@ -550,10 +550,10 @@
     "translation": "Ein Fehler ist beim Verbinden aufgetreten. Erstelle einen neuen QR-Code oder versuche es später erneut."
   },
   "interactionError.message.issue": {
-    "message": "An error occurred while fetching the card information. Ask the issuer to generate a new QR-code or try again later.",
+    "message": "An error occurred while fetching the Credential information. Ask the issuer to generate a new QR-code or try again later.",
     "placeholders": {},
     "comments": [
-      "Error message when credential issuance fails to fetch card info"
+      "Error message when credential issuance fails to fetch Credential info"
     ],
     "origin": [
       [
@@ -578,7 +578,7 @@
     "translation": "Beim Abrufen der Karte vom Aussteller ist ein Fehler aufgetreten."
   },
   "interactionError.message.verify": {
-    "message": "An error occurred while sharing the card information. Ask the verifier to generate a new QR-code or try again later.",
+    "message": "An error occurred while sharing the Credential information. Ask the verifier to generate a new QR-code or try again later.",
     "placeholders": {},
     "comments": [
       "Error message when sharing a credential for verification fails"
@@ -592,7 +592,7 @@
     "translation": "Ein Fehler ist beim Teilen der Karteninformationen aufgetreten. Bitte den Prüfer, einen neuen QR-Code zu erstellen oder versuche es später erneut."
   },
   "interactionError.message.sign": {
-    "message": "An error occurred while signing with your card information. Ask the verifier to generate a new QR-code or try again later.",
+    "message": "An error occurred while signing with your Credential information. Ask the verifier to generate a new QR-code or try again later.",
     "placeholders": {},
     "comments": [
       "Error message when signing fails with selected credentials"
@@ -654,7 +654,7 @@
     "translation": "Eine unbekannte Organisation möchte mit dir eine digitale Signatur für ein Dokument erstellen."
   },
   "verifyPartySlide.offerCardSubtitleUnknownOrganization": {
-    "message": "An unknown organization wants to offer you a card.",
+    "message": "An unknown organization wants to offer you a Credential.",
     "placeholders": {},
     "comments": [],
     "origin": [
@@ -695,14 +695,14 @@
     "message": "Approved by {0} organizations",
     "placeholders": {
       "0": [
-        "trustedEntitiesWithoutSelf.length"
+        "trustedEntitiesWithoutSelf[0].organizationName"
       ]
     },
     "comments": [],
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        184
+        182
       ]
     ],
     "translation": "Vertraut von {0} Organisationen"
@@ -717,7 +717,8 @@
         189
       ]
     ],
-    "translation": "Vertraut von einer Organisation"
+    "translation": "Vertraut von einer Organisation",
+    "obsolete": true
   },
   "common.archiveCardTitle": {
     "message": "Archive card?",
@@ -1098,7 +1099,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        90
+        94
       ]
     ],
     "translation": "Kartendetails"
@@ -1126,18 +1127,6 @@
       ]
     ],
     "translation": "Karte ist aktiv"
-  },
-  "receiveCredential.deferredCredentialHeader": {
-    "message": "Card is not ready yet",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/receive/slides/CredentialRetrievalSlide.tsx",
-        172
-      ]
-    ],
-    "translation": "Karte ist noch nicht bereit"
   },
   "cardLifecycle.limitedByDate.notYetActive.title": {
     "message": "Card not active",
@@ -1201,20 +1190,6 @@
     ],
     "translation": "Karte nicht mehr verwendbar"
   },
-  "credentialCardSlide.cardOfferedTitle": {
-    "message": "Card offered",
-    "placeholders": {},
-    "comments": [
-      "Title shown when a credential card is offered to the user"
-    ],
-    "origin": [
-      [
-        "src/features/receive/slides/CredentialCardSlide.tsx",
-        13
-      ]
-    ],
-    "translation": "Karte angeboten"
-  },
   "common.cardPending": {
     "message": "Card pending",
     "placeholders": {},
@@ -1254,18 +1229,6 @@
       ]
     ],
     "translation": "Karte widerrufen"
-  },
-  "retrieveCredential.cardSuccessfully added": {
-    "message": "Card successfully added to your wallet!",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/receive/slides/CredentialRetrievalSlide.tsx",
-        190
-      ]
-    ],
-    "translation": "Karte erfolgreich zu deiner Wallet hinzugefügt!"
   },
   "common.toastCardArchived": {
     "message": "Card successfully archived",
@@ -1517,17 +1480,16 @@
     "message": "Credential Details",
     "placeholders": {},
     "comments": [
-      "Label for button that shows detailed card attributes",
-      "Title shown in header for the credential detail attributes screen"
+      "Label for button that shows detailed card attributes"
     ],
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx",
-        81
+        104
       ],
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        108
+        112
       ]
     ],
     "translation": "Karteneigenschaften"
@@ -1560,6 +1522,18 @@
     ],
     "translation": "Nachweis-Informationen konnten nicht extrahiert werden"
   },
+  "receiveCredential.deferredCredentialHeader": {
+    "message": "Credential is not ready yet",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/CredentialRetrievalSlide.tsx",
+        172
+      ]
+    ],
+    "translation": "Karte ist noch nicht bereit"
+  },
   "credentials.notFound": {
     "message": "Credential not found",
     "placeholders": {},
@@ -1569,7 +1543,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        42
+        46
       ]
     ],
     "translation": "Nachweis nicht gefunden"
@@ -1587,6 +1561,32 @@
       ]
     ],
     "translation": "Nachweis nicht gefunden"
+  },
+  "credentialCardSlide.cardOfferedTitle": {
+    "message": "Credential offered",
+    "placeholders": {},
+    "comments": [
+      "Title shown when a credential card is offered to the user"
+    ],
+    "origin": [
+      [
+        "src/features/receive/slides/CredentialCardSlide.tsx",
+        13
+      ]
+    ],
+    "translation": "Karte angeboten"
+  },
+  "retrieveCredential.cardSuccessfully added": {
+    "message": "Credential successfully added to your wallet!",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/CredentialRetrievalSlide.tsx",
+        190
+      ]
+    ],
+    "translation": "Karte erfolgreich zu deiner Wallet hinzugefügt!"
   },
   "common.fields.credentialType": {
     "message": "Credential type",
@@ -1731,7 +1731,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        211
+        202
       ]
     ],
     "translation": "Demo-Organisation"
@@ -1772,7 +1772,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        215
+        206
       ]
     ],
     "translation": "Teile keine echten Daten"
@@ -1794,7 +1794,7 @@
     "translation": "Vertrauen Sie {name}?"
   },
   "receiveCredential.checkInformationHeader": {
-    "message": "Do you want to store this card?",
+    "message": "Do you want to store this Credential?",
     "placeholders": {},
     "comments": [],
     "origin": [
@@ -2254,7 +2254,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        229
+        220
       ]
     ],
     "translation": "Erste Interaktion"
@@ -2800,7 +2800,7 @@
       ],
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        95
+        99
       ]
     ],
     "translation": "Ausgestellt von {0}."
@@ -2920,7 +2920,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        236
+        227
       ]
     ],
     "translation": "Letzte Interaktion: {0}"
@@ -3156,13 +3156,11 @@
   "credentials.noAttributes": {
     "message": "No attributes found",
     "placeholders": {},
-    "comments": [
-      "Error toast when a credential has no displayable attributes"
-    ],
+    "comments": [],
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx",
-        57
+        81
       ]
     ],
     "translation": "Keine Eigenschaften gefunden"
@@ -3316,7 +3314,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        240
+        231
       ]
     ],
     "translation": "Keine vorherigen Interaktionen gefunden"
@@ -3400,7 +3398,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        201
+        192
       ]
     ],
     "translation": "Organisation ist nicht verifiziert"
@@ -3727,7 +3725,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        225
+        216
       ]
     ],
     "translation": "Vorherige Interaktionen"
@@ -4294,20 +4292,6 @@
     ],
     "translation": "Später einrichten"
   },
-  "menu.item.settings": {
-    "message": "Settings",
-    "placeholders": {},
-    "comments": [
-      "Label for settings menu item"
-    ],
-    "origin": [
-      [
-        "src/features/menu/FunkeMenuScreen.tsx",
-        124
-      ]
-    ],
-    "translation": "Einstellungen"
-  },
   "settings.title": {
     "message": "Settings",
     "placeholders": {},
@@ -4318,6 +4302,20 @@
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
         149
+      ]
+    ],
+    "translation": "Einstellungen"
+  },
+  "menu.item.settings": {
+    "message": "Settings",
+    "placeholders": {},
+    "comments": [
+      "Label for settings menu item"
+    ],
+    "origin": [
+      [
+        "src/features/menu/FunkeMenuScreen.tsx",
+        124
       ]
     ],
     "translation": "Einstellungen"
@@ -4353,13 +4351,11 @@
   "credentials.shareableAttributes": {
     "message": "Shareable attributes",
     "placeholders": {},
-    "comments": [
-      "Header for attributes that can be shared with a verifier"
-    ],
+    "comments": [],
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx",
-        106
+        128
       ]
     ],
     "translation": "Teilbare Eigenschaften"
@@ -4932,18 +4928,6 @@
     ],
     "translation": "Antippen zum Anzeigen"
   },
-  "retrieveCredential.cardPending": {
-    "message": "The card will be fetched once available.",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/receive/slides/CredentialRetrievalSlide.tsx",
-        196
-      ]
-    ],
-    "translation": "Die Karte wird abgerufen, sobald sie verfügbar ist."
-  },
   "activity.receivedPending": {
     "message": "The cards from {0} is are not ready yet and will be fetched at a later date.",
     "placeholders": {
@@ -4961,6 +4945,18 @@
       ]
     ],
     "translation": "Die Karten von {0} sind noch nicht bereit und werden zu einem späteren Zeitpunkt abgerufen."
+  },
+  "retrieveCredential.cardPending": {
+    "message": "The credential will be fetched once available.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/CredentialRetrievalSlide.tsx",
+        196
+      ]
+    ],
+    "translation": "Die Karte wird abgerufen, sobald sie verfügbar ist."
   },
   "onboardingWalletExplanation.slide2.subtitle": {
     "message": "The digital wallet stores your important information all in one place on your phone. It’s a secure and easy way to carry everything you need without using a physical wallet.",
@@ -5150,6 +5146,20 @@
     ],
     "translation": "Der Aussteller hat folgendes bereitgestellt:"
   },
+  "trust.noApprovals": {
+    "message": "The organisation has not been verified and is NOT part of the ZADA Trust Registry",
+    "placeholders": {},
+    "comments": [
+      "A message shown when there are no organizations that approved the current party"
+    ],
+    "origin": [
+      [
+        "src/features/wallet/FunkeTrustDetailScreen.tsx",
+        122
+      ]
+    ],
+    "translation": "Es gibt keine Organisationen, die {name} vertrauen."
+  },
   "requestPurpose.overaskingWarning": {
     "message": "The purpose given does not match the data requested.",
     "placeholders": {},
@@ -5182,24 +5192,6 @@
       ]
     ],
     "translation": "Die Gültigkeitsdauer dieser Karte ist vom {0} bis zum {1}."
-  },
-  "trust.noApprovals": {
-    "message": "There are no organizations that have approved {name}.",
-    "placeholders": {
-      "name": [
-        "name"
-      ]
-    },
-    "comments": [
-      "A message shown when there are no organizations that approved the current party"
-    ],
-    "origin": [
-      [
-        "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        122
-      ]
-    ],
-    "translation": "Es gibt keine Organisationen, die {name} vertrauen."
   },
   "trust.noApprovalsWithoutOrganizationName": {
     "message": "There are no organizations that have approved this unknown organization.",
@@ -5489,42 +5481,6 @@
     ],
     "translation": "Um fortzufahren, stelle sicher, dass dein Gerät biometrischen Schutz aktiviert hat und dass Paradym Wallet Biometrie verwenden darf."
   },
-  "credentialCardSlide.subtitle.pin": {
-    "message": "To receive this card from {issuerName}, you need to enter a PIN.",
-    "placeholders": {
-      "issuerName": [
-        "issuerName"
-      ]
-    },
-    "comments": [
-      "Subtitle shown when entering a PIN is required to receive the credential"
-    ],
-    "origin": [
-      [
-        "src/features/receive/slides/CredentialCardSlide.tsx",
-        35
-      ]
-    ],
-    "translation": "Um diese Karte von {issuerName} zu erhalten, musst du eine PIN eingeben."
-  },
-  "credentialCardSlide.subtitle.presentation": {
-    "message": "To receive this card from {issuerName}, you need to share cards from your wallet.",
-    "placeholders": {
-      "issuerName": [
-        "issuerName"
-      ]
-    },
-    "comments": [
-      "Subtitle shown when presentation of other credentials is required"
-    ],
-    "origin": [
-      [
-        "src/features/receive/slides/CredentialCardSlide.tsx",
-        26
-      ]
-    ],
-    "translation": "Um diese Karte von {issuerName} zu erhalten, musst du Karten aus deiner Wallet teilen."
-  },
   "txCodeSlide.instructions": {
     "message": "To receive this card you need to enter a transaction code. This code has been provided to you by the issuer.",
     "placeholders": {},
@@ -5552,6 +5508,42 @@
       ]
     ],
     "translation": "Um diese Karte zu erhalten, musst du dich mit deinem Konto autorisieren. Du wirst jetzt zur Website des Ausstellers weitergeleitet."
+  },
+  "credentialCardSlide.subtitle.pin": {
+    "message": "To receive this credential from {issuerName}, you need to enter a PIN.",
+    "placeholders": {
+      "issuerName": [
+        "issuerName"
+      ]
+    },
+    "comments": [
+      "Subtitle shown when entering a PIN is required to receive the credential"
+    ],
+    "origin": [
+      [
+        "src/features/receive/slides/CredentialCardSlide.tsx",
+        35
+      ]
+    ],
+    "translation": "Um diese Karte von {issuerName} zu erhalten, musst du eine PIN eingeben."
+  },
+  "credentialCardSlide.subtitle.presentation": {
+    "message": "To receive this credential from {issuerName}, you need to share credentials from your wallet.",
+    "placeholders": {
+      "issuerName": [
+        "issuerName"
+      ]
+    },
+    "comments": [
+      "Subtitle shown when presentation of other credentials is required"
+    ],
+    "origin": [
+      [
+        "src/features/receive/slides/CredentialCardSlide.tsx",
+        26
+      ]
+    ],
+    "translation": "Um diese Karte von {issuerName} zu erhalten, musst du Karten aus deiner Wallet teilen."
   },
   "dateFormatting.today": {
     "message": "Today",
@@ -5608,20 +5600,6 @@
       ]
     ],
     "translation": "Transaktionscode"
-  },
-  "trust.trustedBy": {
-    "message": "Trusted by",
-    "placeholders": {},
-    "comments": [
-      "Subheading for list of organizations that trust the current one"
-    ],
-    "origin": [
-      [
-        "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        102
-      ]
-    ],
-    "translation": "Vertraut von"
   },
   "common.credentials.mdl.unDistinguishingSign": {
     "message": "UN sign",
@@ -5827,6 +5805,20 @@
     ],
     "translation": "Verifikationen verbleibend"
   },
+  "trust.trustedBy": {
+    "message": "Verified By:",
+    "placeholders": {},
+    "comments": [
+      "Subheading for list of organizations that trust the current one"
+    ],
+    "origin": [
+      [
+        "src/features/wallet/FunkeTrustDetailScreen.tsx",
+        102
+      ]
+    ],
+    "translation": "Vertraut von"
+  },
   "authCodeFlowSlide.heading": {
     "message": "Verify your account",
     "placeholders": {},
@@ -5850,7 +5842,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        113
+        117
       ]
     ],
     "translation": "Eigenschaften der Karte anzeigen"
@@ -6350,7 +6342,7 @@
     "translation": "Du bist auf dem neuesten Stand"
   },
   "receiveCredential.deferredCredentialParagraph": {
-    "message": "Your cards are not yet ready. We will check once in a while in the background and fetch the cards once they're ready.",
+    "message": "Your credentials are not yet ready. We will check once in a while in the background and fetch the credentials once they're ready.",
     "placeholders": {},
     "comments": [],
     "origin": [
