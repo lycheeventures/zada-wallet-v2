@@ -1,44 +1,4 @@
 {
-  "migration.failedToOpen": {
-    "message": "Die Nachweis-Migration konnte nicht geöffnet werden. Bitte versuche es erneut.",
-    "placeholders": {},
-    "origin": []
-  },
-  "migration.notConfigured": {
-    "message": "Die Nachweis-Migration ist in dieser Version nicht verfügbar.",
-    "placeholders": {},
-    "origin": []
-  },
-  "migrationWelcome.body": {
-    "message": "Das ist deine neue ZADA-ID-App zur Verwaltung digitaler Nachweise von verschiedenen Ausstellern. Verifiziere zunächst deine Telefonnummer, um deine vorhandenen Nachweise zu übertragen – oder überspringe diesen Schritt, wenn du ZADA zum ersten Mal nutzt.",
-    "placeholders": {},
-    "origin": []
-  },
-  "migrationWelcome.skip": {
-    "message": "Überspringen",
-    "placeholders": {},
-    "origin": []
-  },
-  "migrationWelcome.title": {
-    "message": "Willkommen bei ZADA ID",
-    "placeholders": {},
-    "origin": []
-  },
-  "migrationWelcome.verify": {
-    "message": "Telefonnummer verifizieren",
-    "placeholders": {},
-    "origin": []
-  },
-  "settings.migrateCredentials": {
-    "message": "Nachweise migrieren",
-    "placeholders": {},
-    "origin": []
-  },
-  "settings.migrateCredentialsDescription": {
-    "message": "Übertrage Nachweise aus deiner vorherigen ZADA-Wallet in diese.",
-    "placeholders": {},
-    "origin": []
-  },
   "trust.demo": {
     "message": "(Demo)",
     "placeholders": {},
@@ -971,7 +931,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        174
+        176
       ]
     ],
     "translation": "Biometrische Authentifizierung ist deaktiviert oder wird auf diesem Gerät nicht unterstützt."
@@ -1009,7 +969,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        165
+        167
       ]
     ],
     "translation": "Biometrisches Entsperren"
@@ -1023,7 +983,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        129
+        130
       ]
     ],
     "translation": "Biometrie deaktiviert"
@@ -1037,7 +997,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        97
+        98
       ]
     ],
     "translation": "Biometrie aktiviert"
@@ -1069,6 +1029,19 @@
       ]
     ],
     "translation": "Geboren"
+  },
+  "settings.migrateCredentialsDescription": {
+    "message": "Bring credentials from your previous ZADA wallet into this one.",
+    "placeholders": {},
+    "comments": [
+      "Description for the migrate credentials button"
+    ],
+    "origin": [
+      [
+        "src/features/menu/FunkeSettingsScreen.tsx",
+        194
+      ]
+    ]
   },
   "common.deleteDeferredCredentialDescription": {
     "message": "By deleting {name}, you will no longer be able to retrieve your card from the issuer.",
@@ -1139,7 +1112,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        94
+        95
       ]
     ],
     "translation": "Kartendetails"
@@ -1462,6 +1435,19 @@
     ],
     "translation": "Weiter"
   },
+  "migration.failedToOpen": {
+    "message": "Could not open credential migration. Please try again.",
+    "placeholders": {},
+    "comments": [
+      "Shown when the in-app browser for migration fails to open."
+    ],
+    "origin": [
+      [
+        "src/features/migration/useCredentialMigration.tsx",
+        38
+      ]
+    ]
+  },
   "funkeMdoc.error.sharing": {
     "message": "Could not share device response",
     "placeholders": {},
@@ -1529,7 +1515,7 @@
       ],
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        112
+        125
       ]
     ],
     "translation": "Karteneigenschaften"
@@ -1574,6 +1560,19 @@
     ],
     "translation": "Karte ist noch nicht bereit"
   },
+  "migration.notConfigured": {
+    "message": "Credential migration is not available in this build.",
+    "placeholders": {},
+    "comments": [
+      "Shown when the migration URL is not configured for the current build."
+    ],
+    "origin": [
+      [
+        "src/features/migration/useCredentialMigration.tsx",
+        22
+      ]
+    ]
+  },
   "credentials.notFound": {
     "message": "Credential not found",
     "placeholders": {},
@@ -1583,7 +1582,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        46
+        47
       ]
     ],
     "translation": "Nachweis nicht gefunden"
@@ -2325,20 +2324,6 @@
     ],
     "translation": "Deutsch"
   },
-  "onboardingWelcome.getStarted": {
-    "message": "Get Started",
-    "placeholders": {},
-    "comments": [
-      "Button label to begin onboarding from the welcome screen"
-    ],
-    "origin": [
-      [
-        "src/features/onboarding/screens/welcome.tsx",
-        17
-      ]
-    ],
-    "translation": "Loslegen"
-  },
   "onboardingWalletExplanation.getStarted": {
     "message": "Get Started",
     "placeholders": {},
@@ -2352,6 +2337,20 @@
       ]
     ],
     "translation": "Los geht's"
+  },
+  "onboardingWelcome.getStarted": {
+    "message": "Get Started",
+    "placeholders": {},
+    "comments": [
+      "Button label to begin onboarding from the welcome screen"
+    ],
+    "origin": [
+      [
+        "src/features/onboarding/screens/welcome.tsx",
+        17
+      ]
+    ],
+    "translation": "Loslegen"
   },
   "pidSetup.idCardRequestedAttributes.title": {
     "message": "Get your national identity card",
@@ -2840,7 +2839,7 @@
       ],
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        99
+        100
       ]
     ],
     "translation": "Ausgestellt von {0}."
@@ -2944,7 +2943,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        62
+        63
       ]
     ],
     "translation": "Sprache"
@@ -3089,6 +3088,19 @@
     ],
     "translation": "Metadaten",
     "obsolete": true
+  },
+  "settings.migrateCredentials": {
+    "message": "Migrate credentials",
+    "placeholders": {},
+    "comments": [
+      "Label for the button that starts migrating legacy ZADA credentials"
+    ],
+    "origin": [
+      [
+        "src/features/menu/FunkeSettingsScreen.tsx",
+        189
+      ]
+    ]
   },
   "home.myQrButton": {
     "translation": "",
@@ -3244,7 +3256,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        166
+        168
       ]
     ],
     "translation": ""
@@ -4142,7 +4154,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        194
+        196
       ]
     ],
     "translation": ""
@@ -4273,7 +4285,7 @@
       ],
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        108
+        110
       ]
     ],
     "translation": "Karten suchen"
@@ -4332,20 +4344,6 @@
     ],
     "translation": "Später einrichten"
   },
-  "settings.title": {
-    "message": "Settings",
-    "placeholders": {},
-    "comments": [
-      "Header title for the settings screen"
-    ],
-    "origin": [
-      [
-        "src/features/menu/FunkeSettingsScreen.tsx",
-        149
-      ]
-    ],
-    "translation": "Einstellungen"
-  },
   "menu.item.settings": {
     "message": "Settings",
     "placeholders": {},
@@ -4356,6 +4354,20 @@
       [
         "src/features/menu/FunkeMenuScreen.tsx",
         124
+      ]
+    ],
+    "translation": "Einstellungen"
+  },
+  "settings.title": {
+    "message": "Settings",
+    "placeholders": {},
+    "comments": [
+      "Header title for the settings screen"
+    ],
+    "origin": [
+      [
+        "src/features/menu/FunkeSettingsScreen.tsx",
+        151
       ]
     ],
     "translation": "Einstellungen"
@@ -4725,6 +4737,19 @@
       ]
     ],
     "translation": "Simulator eID-Karte aktiviert"
+  },
+  "migrationWelcome.skip": {
+    "message": "Skip",
+    "placeholders": {},
+    "comments": [
+      "Secondary action: skip migration (first-time ZADA user)"
+    ],
+    "origin": [
+      [
+        "src/features/migration/MigrationWelcomeSheet.tsx",
+        69
+      ]
+    ]
   },
   "onboardingWalletExplanation.skip": {
     "message": "Skip explanation",
@@ -5435,6 +5460,19 @@
     ],
     "translation": "Das ist deine digitale Wallet. Damit kannst du Informationen über dich speichern und teilen."
   },
+  "migrationWelcome.body": {
+    "message": "This is your new ZADA ID app for managing digital credentials from different issuers. To get started, verify your phone number to bring over your existing credentials — or skip if this is your first time with ZADA.",
+    "placeholders": {},
+    "comments": [
+      "Body text of the first-launch welcome sheet"
+    ],
+    "origin": [
+      [
+        "src/features/migration/MigrationWelcomeSheet.tsx",
+        53
+      ]
+    ]
+  },
   "onboardingWalletExplanation.slide1.title": {
     "message": "This is your wallet",
     "placeholders": {},
@@ -5845,6 +5883,20 @@
     ],
     "translation": "Verifikationen verbleibend"
   },
+  "credentials.verifiedByZada": {
+    "translation": "",
+    "message": "Verified by ZADA Network",
+    "placeholders": {},
+    "comments": [
+      "Badge shown when the credential issuer was cryptographically verified against the ZADA trust registry"
+    ],
+    "origin": [
+      [
+        "src/features/wallet/FunkeCredentialDetailScreen.tsx",
+        108
+      ]
+    ]
+  },
   "trust.trustedBy": {
     "message": "Verified By:",
     "placeholders": {},
@@ -5858,6 +5910,19 @@
       ]
     ],
     "translation": "Vertraut von"
+  },
+  "migrationWelcome.verify": {
+    "message": "Verify phone number",
+    "placeholders": {},
+    "comments": [
+      "Primary action: start credential migration by verifying a phone number"
+    ],
+    "origin": [
+      [
+        "src/features/migration/MigrationWelcomeSheet.tsx",
+        62
+      ]
+    ]
   },
   "authCodeFlowSlide.heading": {
     "message": "Verify your account",
@@ -5882,7 +5947,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        117
+        130
       ]
     ],
     "translation": "Eigenschaften der Karte anzeigen"
@@ -5926,6 +5991,19 @@
       ]
     ],
     "translation": "Willkommen zu deiner Wallet"
+  },
+  "migrationWelcome.title": {
+    "message": "Welcome to ZADA ID",
+    "placeholders": {},
+    "comments": [
+      "Title of the first-launch welcome sheet"
+    ],
+    "origin": [
+      [
+        "src/features/migration/MigrationWelcomeSheet.tsx",
+        46
+      ]
+    ]
   },
   "onboardingWalletExplanation.slide2.title": {
     "message": "What is it for?",
@@ -6189,7 +6267,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        81
+        83
       ]
     ],
     "translation": ""

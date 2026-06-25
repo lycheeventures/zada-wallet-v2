@@ -79,7 +79,7 @@ const createBaseConfig = (appSpecific) => {
     name: `${name}${variant.name}`,
     scheme,
     slug,
-    owner: 'animo-id',
+    owner: 'zada-solutions',
     version: appSpecific.version,
     orientation: 'portrait',
     icon,

@@ -1,44 +1,4 @@
 {
-  "migration.failedToOpen": {
-    "message": "Todisteiden siirtoa ei voitu avata. Yritä uudelleen.",
-    "placeholders": {},
-    "origin": []
-  },
-  "migration.notConfigured": {
-    "message": "Todisteiden siirto ei ole käytettävissä tässä versiossa.",
-    "placeholders": {},
-    "origin": []
-  },
-  "migrationWelcome.body": {
-    "message": "Tämä on uusi ZADA ID -sovelluksesi eri myöntäjien digitaalisten todisteiden hallintaan. Aloita vahvistamalla puhelinnumerosi, niin saat olemassa olevat todisteesi käyttöön — tai ohita, jos käytät ZADAa ensimmäistä kertaa.",
-    "placeholders": {},
-    "origin": []
-  },
-  "migrationWelcome.skip": {
-    "message": "Ohita",
-    "placeholders": {},
-    "origin": []
-  },
-  "migrationWelcome.title": {
-    "message": "Tervetuloa ZADA ID:hen",
-    "placeholders": {},
-    "origin": []
-  },
-  "migrationWelcome.verify": {
-    "message": "Vahvista puhelinnumero",
-    "placeholders": {},
-    "origin": []
-  },
-  "settings.migrateCredentials": {
-    "message": "Siirrä todisteet",
-    "placeholders": {},
-    "origin": []
-  },
-  "settings.migrateCredentialsDescription": {
-    "message": "Tuo todisteet edellisestä ZADA-lompakostasi tähän.",
-    "placeholders": {},
-    "origin": []
-  },
   "trust.demo": {
     "message": "(Demo)",
     "placeholders": {},
@@ -971,7 +931,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        174
+        176
       ]
     ],
     "translation": "Biometrinen tunnistus on poistettu käytöstä tai sitä ei tueta tällä laitteella."
@@ -1009,7 +969,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        165
+        167
       ]
     ],
     "translation": "Biometrinen lukituksen avaus"
@@ -1023,7 +983,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        129
+        130
       ]
     ],
     "translation": "Biometriikka poistettu käytöstä"
@@ -1037,7 +997,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        97
+        98
       ]
     ],
     "translation": "Biometriikka otettu käyttöön"
@@ -1069,6 +1029,19 @@
       ]
     ],
     "translation": "Syntynyt"
+  },
+  "settings.migrateCredentialsDescription": {
+    "message": "Bring credentials from your previous ZADA wallet into this one.",
+    "placeholders": {},
+    "comments": [
+      "Description for the migrate credentials button"
+    ],
+    "origin": [
+      [
+        "src/features/menu/FunkeSettingsScreen.tsx",
+        194
+      ]
+    ]
   },
   "common.deleteDeferredCredentialDescription": {
     "message": "By deleting {name}, you will no longer be able to retrieve your card from the issuer.",
@@ -1139,7 +1112,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        94
+        95
       ]
     ],
     "translation": "Kortin tiedot"
@@ -1462,6 +1435,19 @@
     ],
     "translation": "Jatka"
   },
+  "migration.failedToOpen": {
+    "message": "Could not open credential migration. Please try again.",
+    "placeholders": {},
+    "comments": [
+      "Shown when the in-app browser for migration fails to open."
+    ],
+    "origin": [
+      [
+        "src/features/migration/useCredentialMigration.tsx",
+        38
+      ]
+    ]
+  },
   "funkeMdoc.error.sharing": {
     "message": "Could not share device response",
     "placeholders": {},
@@ -1529,7 +1515,7 @@
       ],
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        112
+        125
       ]
     ],
     "translation": "Kortin tiedot"
@@ -1574,6 +1560,19 @@
     ],
     "translation": "Kortti ei ole vielä valmis"
   },
+  "migration.notConfigured": {
+    "message": "Credential migration is not available in this build.",
+    "placeholders": {},
+    "comments": [
+      "Shown when the migration URL is not configured for the current build."
+    ],
+    "origin": [
+      [
+        "src/features/migration/useCredentialMigration.tsx",
+        22
+      ]
+    ]
+  },
   "credentials.notFound": {
     "message": "Credential not found",
     "placeholders": {},
@@ -1583,7 +1582,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        46
+        47
       ]
     ],
     "translation": "Todistetta ei löytynyt"
@@ -2325,20 +2324,6 @@
     ],
     "translation": "Saksa"
   },
-  "onboardingWelcome.getStarted": {
-    "message": "Get Started",
-    "placeholders": {},
-    "comments": [
-      "Button label to begin onboarding from the welcome screen"
-    ],
-    "origin": [
-      [
-        "src/features/onboarding/screens/welcome.tsx",
-        17
-      ]
-    ],
-    "translation": "Aloita"
-  },
   "onboardingWalletExplanation.getStarted": {
     "message": "Get Started",
     "placeholders": {},
@@ -2349,6 +2334,20 @@
       [
         "src/features/onboarding/screens/wallet-explanation.tsx",
         71
+      ]
+    ],
+    "translation": "Aloita"
+  },
+  "onboardingWelcome.getStarted": {
+    "message": "Get Started",
+    "placeholders": {},
+    "comments": [
+      "Button label to begin onboarding from the welcome screen"
+    ],
+    "origin": [
+      [
+        "src/features/onboarding/screens/welcome.tsx",
+        17
       ]
     ],
     "translation": "Aloita"
@@ -2840,7 +2839,7 @@
       ],
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        99
+        100
       ]
     ],
     "translation": "Myöntäjä: {0}."
@@ -2944,7 +2943,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        62
+        63
       ]
     ],
     "translation": "Kieli"
@@ -3089,6 +3088,19 @@
     ],
     "translation": "Metatiedot",
     "obsolete": true
+  },
+  "settings.migrateCredentials": {
+    "message": "Migrate credentials",
+    "placeholders": {},
+    "comments": [
+      "Label for the button that starts migrating legacy ZADA credentials"
+    ],
+    "origin": [
+      [
+        "src/features/menu/FunkeSettingsScreen.tsx",
+        189
+      ]
+    ]
   },
   "home.myQrButton": {
     "translation": "",
@@ -3244,7 +3256,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        166
+        168
       ]
     ],
     "translation": ""
@@ -4142,7 +4154,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        194
+        196
       ]
     ],
     "translation": ""
@@ -4273,7 +4285,7 @@
       ],
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        108
+        110
       ]
     ],
     "translation": "Hae kortteja"
@@ -4332,20 +4344,6 @@
     ],
     "translation": "Valmistele myöhemmin"
   },
-  "settings.title": {
-    "message": "Settings",
-    "placeholders": {},
-    "comments": [
-      "Header title for the settings screen"
-    ],
-    "origin": [
-      [
-        "src/features/menu/FunkeSettingsScreen.tsx",
-        149
-      ]
-    ],
-    "translation": "Asetukset"
-  },
   "menu.item.settings": {
     "message": "Settings",
     "placeholders": {},
@@ -4356,6 +4354,20 @@
       [
         "src/features/menu/FunkeMenuScreen.tsx",
         124
+      ]
+    ],
+    "translation": "Asetukset"
+  },
+  "settings.title": {
+    "message": "Settings",
+    "placeholders": {},
+    "comments": [
+      "Header title for the settings screen"
+    ],
+    "origin": [
+      [
+        "src/features/menu/FunkeSettingsScreen.tsx",
+        151
       ]
     ],
     "translation": "Asetukset"
@@ -4725,6 +4737,19 @@
       ]
     ],
     "translation": "Simuloitu henkilökortti aktivoitu"
+  },
+  "migrationWelcome.skip": {
+    "message": "Skip",
+    "placeholders": {},
+    "comments": [
+      "Secondary action: skip migration (first-time ZADA user)"
+    ],
+    "origin": [
+      [
+        "src/features/migration/MigrationWelcomeSheet.tsx",
+        69
+      ]
+    ]
   },
   "onboardingWalletExplanation.skip": {
     "message": "Skip explanation",
@@ -5435,6 +5460,19 @@
     ],
     "translation": "Tämä on digitaalinen lompakkosi. Sen avulla voit tallentaa ja jakaa tietoja itsestäsi."
   },
+  "migrationWelcome.body": {
+    "message": "This is your new ZADA ID app for managing digital credentials from different issuers. To get started, verify your phone number to bring over your existing credentials — or skip if this is your first time with ZADA.",
+    "placeholders": {},
+    "comments": [
+      "Body text of the first-launch welcome sheet"
+    ],
+    "origin": [
+      [
+        "src/features/migration/MigrationWelcomeSheet.tsx",
+        53
+      ]
+    ]
+  },
   "onboardingWalletExplanation.slide1.title": {
     "message": "This is your wallet",
     "placeholders": {},
@@ -5845,6 +5883,20 @@
     ],
     "translation": "tarkastusta jäljellä"
   },
+  "credentials.verifiedByZada": {
+    "translation": "",
+    "message": "Verified by ZADA Network",
+    "placeholders": {},
+    "comments": [
+      "Badge shown when the credential issuer was cryptographically verified against the ZADA trust registry"
+    ],
+    "origin": [
+      [
+        "src/features/wallet/FunkeCredentialDetailScreen.tsx",
+        108
+      ]
+    ]
+  },
   "trust.trustedBy": {
     "message": "Verified By:",
     "placeholders": {},
@@ -5858,6 +5910,19 @@
       ]
     ],
     "translation": "Luottamuksen osoittajat"
+  },
+  "migrationWelcome.verify": {
+    "message": "Verify phone number",
+    "placeholders": {},
+    "comments": [
+      "Primary action: start credential migration by verifying a phone number"
+    ],
+    "origin": [
+      [
+        "src/features/migration/MigrationWelcomeSheet.tsx",
+        62
+      ]
+    ]
   },
   "authCodeFlowSlide.heading": {
     "message": "Verify your account",
@@ -5882,7 +5947,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        117
+        130
       ]
     ],
     "translation": "Näytä kortin tiedot"
@@ -5926,6 +5991,19 @@
       ]
     ],
     "translation": "Tervetuloa lompakkoosi"
+  },
+  "migrationWelcome.title": {
+    "message": "Welcome to ZADA ID",
+    "placeholders": {},
+    "comments": [
+      "Title of the first-launch welcome sheet"
+    ],
+    "origin": [
+      [
+        "src/features/migration/MigrationWelcomeSheet.tsx",
+        46
+      ]
+    ]
   },
   "onboardingWalletExplanation.slide2.title": {
     "message": "What is it for?",
@@ -6189,7 +6267,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        81
+        83
       ]
     ],
     "translation": ""

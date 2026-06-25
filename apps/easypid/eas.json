@@ -62,8 +62,7 @@
 			"extends": "base",
 			"distribution": "internal",
 			"android": {
-				"buildType": "apk",
-				"resourceClass": "large"
+				"buildType": "apk"
 			},
 			"env": {
 				"APP_VARIANT": "preview",
