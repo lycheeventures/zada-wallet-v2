@@ -52,7 +52,7 @@ import {
 } from '../format/formatPresentation'
 import { getCredentialBindingResolver } from '../openid4vc/credentialBindingResolver'
 import { extractOpenId4VcCredentialMetadata, setOpenId4VcCredentialMetadata } from '../openid4vc/displayMetadata'
-import { getTrustedEntities, getTrustedEntitiesForOid4vci, getTrustedEntitiesForZADA } from '../utils/trust'
+import { getTrustedEntities, getTrustedEntitiesForZADA } from '../utils/trust'
 import { BiometricAuthenticationError } from './error'
 import { fetchInvitationDataUrl } from './fetchInvitation'
 
@@ -134,7 +134,11 @@ export async function resolveOpenId4VciOffer({
     }
 
     const issuerTrust = await getTrustedEntitiesForZADA({
+      agent,
       issuer: resolvedCredentialOffer.metadata.credentialIssuer.credential_issuer,
+      // Signed issuer metadata (x5c) — required to cryptographically anchor trust to the
+      // certificate ZADA published in the trust registry. See ADR-0002.
+      signedCredentialIssuer: resolvedCredentialOffer.metadata.signedCredentialIssuer,
       walletTrustedEntity: {
         organizationName: isParadymWallet() ? 'ZADA Network' : 'Funke Wallet',
         entityId: '__',
