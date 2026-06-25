@@ -52,7 +52,8 @@ import {
 } from '../format/formatPresentation'
 import { getCredentialBindingResolver } from '../openid4vc/credentialBindingResolver'
 import { extractOpenId4VcCredentialMetadata, setOpenId4VcCredentialMetadata } from '../openid4vc/displayMetadata'
-import { getTrustedEntities, getTrustedEntitiesForOid4vci, getTrustedEntitiesForZADA } from '../utils/trust'
+import { getTrustedEntities, getTrustedEntitiesForZADA, resolveZadaTrustFromX5c } from '../utils/trust'
+import { extractIssuerX5c, setZadaIssuerTrust } from '../openid4vc/zadaTrust'
 import { BiometricAuthenticationError } from './error'
 import { fetchInvitationDataUrl } from './fetchInvitation'
 
@@ -134,7 +135,11 @@ export async function resolveOpenId4VciOffer({
     }
 
     const issuerTrust = await getTrustedEntitiesForZADA({
+      agent,
       issuer: resolvedCredentialOffer.metadata.credentialIssuer.credential_issuer,
+      // Signed issuer metadata (x5c) — required to cryptographically anchor trust to the
+      // certificate ZADA published in the trust registry. See ADR-0002.
+      signedCredentialIssuer: resolvedCredentialOffer.metadata.signedCredentialIssuer,
       walletTrustedEntity: {
         organizationName: isParadymWallet() ? 'ZADA Network' : 'Funke Wallet',
         entityId: '__',
@@ -282,20 +287,50 @@ export async function acquireAuthorizationCodeAccessToken({
   })
 }
 
-const parseCredentialResponses = (credentials: OpenId4VciCredentialResponse[], issuerMetadata: OpenId4VciMetadata) =>
-  credentials.map(({ record, ...credentialResponse }) => {
-    // OpenID4VC metadata
-    const openId4VcMetadata = extractOpenId4VcCredentialMetadata(credentialResponse.credentialConfiguration, {
-      id: issuerMetadata.credentialIssuer.credential_issuer,
-      display: issuerMetadata.credentialIssuer.display,
-    })
-    setOpenId4VcCredentialMetadata(record, openId4VcMetadata)
+const parseCredentialResponses = (
+  agent: EitherAgent,
+  credentials: OpenId4VciCredentialResponse[],
+  issuerMetadata: OpenId4VciMetadata
+) =>
+  Promise.all(
+    credentials.map(async ({ record, ...credentialResponse }) => {
+      // OpenID4VC metadata
+      const openId4VcMetadata = extractOpenId4VcCredentialMetadata(credentialResponse.credentialConfiguration, {
+        id: issuerMetadata.credentialIssuer.credential_issuer,
+        display: issuerMetadata.credentialIssuer.display,
+      })
+      setOpenId4VcCredentialMetadata(record, openId4VcMetadata)
 
-    return {
-      ...credentialResponse,
-      credential: record,
-    }
-  })
+      // ADR-0002 (Path B): cryptographically verify the issuer via the credential's OWN x5c chain
+      // against the ZADA trust registry, and persist the result for display. Works today, before
+      // signed issuer metadata is enabled. A trust check failure must never block receiving.
+      try {
+        const x5c = extractIssuerX5c(record)
+        if (x5c) {
+          const { trustedEntities } = await resolveZadaTrustFromX5c({
+            agent,
+            issuer: issuerMetadata.credentialIssuer.credential_issuer,
+            x5c,
+          })
+          const org = trustedEntities[0]
+          setZadaIssuerTrust(record, {
+            verified: Boolean(org),
+            organizationName: org?.organizationName,
+            logoUri: org?.logoUri,
+            uri: org?.uri,
+            entityId: org?.entityId,
+          })
+        }
+      } catch (error) {
+        agent.config.logger.warn('ZADA credential trust check failed', { error })
+      }
+
+      return {
+        ...credentialResponse,
+        credential: record,
+      }
+    })
+  )
 
 export const receiveCredentialFromOpenId4VciOffer = async ({
   agent,
@@ -348,7 +383,7 @@ export const receiveCredentialFromOpenId4VciOffer = async ({
 
     return {
       deferredCredentials,
-      credentials: parseCredentialResponses(credentials, resolvedCredentialOffer.metadata),
+      credentials: await parseCredentialResponses(agent, credentials, resolvedCredentialOffer.metadata),
     }
   } catch (error) {
     // TODO: if one biometric operation fails it will fail the whole credential receiving. We should have more control so we
@@ -380,7 +415,7 @@ export const receiveDeferredCredentialFromOpenId4VciOffer = async ({
 
     return {
       deferredCredentials,
-      credentials: parseCredentialResponses(credentials, issuerMetadata),
+      credentials: await parseCredentialResponses(agent, credentials, issuerMetadata),
     }
   } catch (error) {
     // TODO: if one biometric operation fails it will fail the whole credential receiving. We should have more control so we
