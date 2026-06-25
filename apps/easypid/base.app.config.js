@@ -228,6 +228,8 @@ const createBaseConfig = (appSpecific) => {
       eas: {
         projectId,
       },
+      // credential-key-usher web flow for migrating legacy ZADA credentials (per-build via env).
+      credentialMigrationUrl: process.env.CREDENTIAL_MIGRATION_URL ?? 'https://migrate.zada.network',
       ...extraConfig,
     },
   }
