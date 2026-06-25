@@ -6,6 +6,11 @@ export const mediatorDid = ExpoConstants.expoConfig?.extra?.mediatorDid
 export const appScheme = ExpoConstants.expoConfig?.scheme as string
 export const allowedRedirectBaseUrls = ExpoConstants.expoConfig?.extra?.allowedRedirectBaseUrls as string[] | undefined
 
+// URL of the credential-key-usher web flow used to migrate legacy ZADA credentials.
+// The user verifies their phone there; each claimed credential is handed back to the wallet
+// as an openid-credential-offer:// deep link (already handled by the invitation router).
+export const credentialMigrationUrl = ExpoConstants.expoConfig?.extra?.credentialMigrationUrl as string | undefined
+
 export const EASYPID_WALLET_PID_PIN_KEY_ID = 'EASYPID_WALLET_PID_PIN_KEY_ID_NO_BIOMETRICS'
 export const EASYPID_WALLET_INSTANCE_LONG_TERM_AES_KEY_ID = 'EASYPID_WALLET_INSTANCE_LONG_TERM_AES_KEY_ID'
 
