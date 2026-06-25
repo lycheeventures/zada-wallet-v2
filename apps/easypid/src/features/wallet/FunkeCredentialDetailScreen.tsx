@@ -1,5 +1,5 @@
 import { Trans, useLingui } from '@lingui/react/macro'
-import { type CredentialForDisplayId, useCredentialForDisplayById } from '@package/agent'
+import { type CredentialForDisplayId, getZadaIssuerTrust, useCredentialForDisplayById } from '@package/agent'
 import { DeleteCredentialSheet, TextBackButton, useHaptics } from '@package/app'
 import { CardInfoLifecycle, FunkeCredentialCard } from '@package/app/components'
 import { useHeaderRightAction, useScrollViewPosition } from '@package/app/hooks'
@@ -13,6 +13,7 @@ import {
   ScrollView,
   Stack,
   useToastController,
+  XStack,
   YStack,
 } from '@package/ui'
 import { useLocalSearchParams, useRouter } from 'expo-router'
@@ -100,6 +101,18 @@ export function FunkeCredentialDetailScreen() {
                   Issued by {credential.display.issuer.name}.
                 </Trans>
               </Paragraph>
+              {getZadaIssuerTrust(credential.record)?.verified && (
+                <XStack ai="center" jc="center" gap="$1.5">
+                  <HeroIcons.ShieldCheckFilled size={16} color="$positive-500" />
+                  <Paragraph color="$positive-500" fontWeight="$semiBold" fontSize={14}>
+                    {t({
+                      id: 'credentials.verifiedByZada',
+                      message: 'Verified by ZADA Network',
+                      comment: 'Badge shown when the credential issuer was cryptographically verified against the ZADA trust registry',
+                    })}
+                  </Paragraph>
+                </XStack>
+              )}
             </Stack>
             <YStack w="100%" gap="$2">
               <CardInfoLifecycle
