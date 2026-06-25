@@ -1,4 +1,44 @@
 {
+  "migration.failedToOpen": {
+    "message": "Migrimi i kredencialeve nuk u hap. Ju lutemi provoni përsëri.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migration.notConfigured": {
+    "message": "Migrimi i kredencialeve nuk është i disponueshëm në këtë version.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.body": {
+    "message": "Ky është aplikacioni juaj i ri ZADA ID për menaxhimin e kredencialeve dixhitale nga lëshues të ndryshëm. Për të filluar, verifikoni numrin tuaj të telefonit për të sjellë kredencialet ekzistuese — ose kaloni nëse kjo është hera juaj e parë me ZADA.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.skip": {
+    "message": "Kalo",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.title": {
+    "message": "Mirë se vini në ZADA ID",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.verify": {
+    "message": "Verifiko numrin e telefonit",
+    "placeholders": {},
+    "origin": []
+  },
+  "settings.migrateCredentials": {
+    "message": "Migro kredencialet",
+    "placeholders": {},
+    "origin": []
+  },
+  "settings.migrateCredentialsDescription": {
+    "message": "Sill kredencialet nga kuleta jote e mëparshme ZADA në këtë.",
+    "placeholders": {},
+    "origin": []
+  },
   "trust.demo": {
     "message": "(Demo)",
     "placeholders": {},

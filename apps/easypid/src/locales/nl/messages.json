@@ -1,4 +1,44 @@
 {
+  "migration.failedToOpen": {
+    "message": "Kon referentiemigratie niet openen. Probeer het opnieuw.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migration.notConfigured": {
+    "message": "Referentiemigratie is niet beschikbaar in deze versie.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.body": {
+    "message": "Dit is je nieuwe ZADA ID-app voor het beheren van digitale referenties van verschillende uitgevers. Verifieer om te beginnen je telefoonnummer om je bestaande referenties over te zetten — of sla dit over als dit je eerste keer met ZADA is.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.skip": {
+    "message": "Overslaan",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.title": {
+    "message": "Welkom bij ZADA ID",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.verify": {
+    "message": "Telefoonnummer verifiëren",
+    "placeholders": {},
+    "origin": []
+  },
+  "settings.migrateCredentials": {
+    "message": "Referenties migreren",
+    "placeholders": {},
+    "origin": []
+  },
+  "settings.migrateCredentialsDescription": {
+    "message": "Breng referenties van je vorige ZADA-wallet over naar deze.",
+    "placeholders": {},
+    "origin": []
+  },
   "trust.demo": {
     "message": "(Demo)",
     "placeholders": {},

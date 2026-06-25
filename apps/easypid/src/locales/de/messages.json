@@ -1,4 +1,44 @@
 {
+  "migration.failedToOpen": {
+    "message": "Die Nachweis-Migration konnte nicht geöffnet werden. Bitte versuche es erneut.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migration.notConfigured": {
+    "message": "Die Nachweis-Migration ist in dieser Version nicht verfügbar.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.body": {
+    "message": "Das ist deine neue ZADA-ID-App zur Verwaltung digitaler Nachweise von verschiedenen Ausstellern. Verifiziere zunächst deine Telefonnummer, um deine vorhandenen Nachweise zu übertragen – oder überspringe diesen Schritt, wenn du ZADA zum ersten Mal nutzt.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.skip": {
+    "message": "Überspringen",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.title": {
+    "message": "Willkommen bei ZADA ID",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.verify": {
+    "message": "Telefonnummer verifizieren",
+    "placeholders": {},
+    "origin": []
+  },
+  "settings.migrateCredentials": {
+    "message": "Nachweise migrieren",
+    "placeholders": {},
+    "origin": []
+  },
+  "settings.migrateCredentialsDescription": {
+    "message": "Übertrage Nachweise aus deiner vorherigen ZADA-Wallet in diese.",
+    "placeholders": {},
+    "origin": []
+  },
   "trust.demo": {
     "message": "(Demo)",
     "placeholders": {},

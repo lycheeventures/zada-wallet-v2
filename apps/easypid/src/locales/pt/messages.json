@@ -1,4 +1,44 @@
 {
+  "migration.failedToOpen": {
+    "message": "Não foi possível abrir a migração de credenciais. Tente novamente.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migration.notConfigured": {
+    "message": "A migração de credenciais não está disponível nesta versão.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.body": {
+    "message": "Este é o seu novo app ZADA ID para gerir credenciais digitais de diferentes emissores. Para começar, verifique o seu número de telefone para trazer as suas credenciais existentes — ou ignore se esta for a sua primeira vez com a ZADA.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.skip": {
+    "message": "Ignorar",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.title": {
+    "message": "Bem-vindo ao ZADA ID",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.verify": {
+    "message": "Verificar número de telefone",
+    "placeholders": {},
+    "origin": []
+  },
+  "settings.migrateCredentials": {
+    "message": "Migrar credenciais",
+    "placeholders": {},
+    "origin": []
+  },
+  "settings.migrateCredentialsDescription": {
+    "message": "Traga as credenciais da sua carteira ZADA anterior para esta.",
+    "placeholders": {},
+    "origin": []
+  },
   "trust.demo": {
     "message": "(Demo)",
     "placeholders": {},

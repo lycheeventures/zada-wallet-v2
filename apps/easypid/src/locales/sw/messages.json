@@ -1,4 +1,44 @@
 {
+  "migration.failedToOpen": {
+    "message": "Imeshindwa kufungua uhamishaji wa vyeti. Tafadhali jaribu tena.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migration.notConfigured": {
+    "message": "Uhamishaji wa vyeti haupatikani katika toleo hili.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.body": {
+    "message": "Hii ni programu yako mpya ya ZADA ID ya kudhibiti vyeti vya kidijitali kutoka kwa watoaji mbalimbali. Ili kuanza, thibitisha nambari yako ya simu ili kuleta vyeti vyako vilivyopo — au ruka ikiwa hii ni mara yako ya kwanza na ZADA.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.skip": {
+    "message": "Ruka",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.title": {
+    "message": "Karibu kwenye ZADA ID",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.verify": {
+    "message": "Thibitisha nambari ya simu",
+    "placeholders": {},
+    "origin": []
+  },
+  "settings.migrateCredentials": {
+    "message": "Hamisha vyeti",
+    "placeholders": {},
+    "origin": []
+  },
+  "settings.migrateCredentialsDescription": {
+    "message": "Leta vyeti kutoka pochi yako ya awali ya ZADA hadi hii.",
+    "placeholders": {},
+    "origin": []
+  },
   "trust.demo": {
     "message": "(Demo)",
     "placeholders": {},

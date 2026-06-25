@@ -1,4 +1,44 @@
 {
+  "migration.failedToOpen": {
+    "message": "Todisteiden siirtoa ei voitu avata. Yritä uudelleen.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migration.notConfigured": {
+    "message": "Todisteiden siirto ei ole käytettävissä tässä versiossa.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.body": {
+    "message": "Tämä on uusi ZADA ID -sovelluksesi eri myöntäjien digitaalisten todisteiden hallintaan. Aloita vahvistamalla puhelinnumerosi, niin saat olemassa olevat todisteesi käyttöön — tai ohita, jos käytät ZADAa ensimmäistä kertaa.",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.skip": {
+    "message": "Ohita",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.title": {
+    "message": "Tervetuloa ZADA ID:hen",
+    "placeholders": {},
+    "origin": []
+  },
+  "migrationWelcome.verify": {
+    "message": "Vahvista puhelinnumero",
+    "placeholders": {},
+    "origin": []
+  },
+  "settings.migrateCredentials": {
+    "message": "Siirrä todisteet",
+    "placeholders": {},
+    "origin": []
+  },
+  "settings.migrateCredentialsDescription": {
+    "message": "Tuo todisteet edellisestä ZADA-lompakostasi tähän.",
+    "placeholders": {},
+    "origin": []
+  },
   "trust.demo": {
     "message": "(Demo)",
     "placeholders": {},
