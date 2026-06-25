@@ -1,4 +1,9 @@
 {
+  "credentials.verifiedByZada": {
+    "message": "Verificado pela ZADA Network",
+    "placeholders": {},
+    "origin": []
+  },
   "trust.demo": {
     "message": "(Demo)",
     "placeholders": {},

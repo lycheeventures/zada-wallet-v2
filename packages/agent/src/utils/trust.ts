@@ -481,15 +481,21 @@ const getTrustedEntitiesForX509Certificate = async ({
  * data (name / logo / website). A registry hit alone is NOT sufficient and a self-asserted
  * `credential_issuer` URL grants no trust.
  */
-export const getTrustedEntitiesForZADA = async ({
+/**
+ * Core ZADA trust check: validate an x5c certificate chain against the certificate(s) ZADA
+ * published for `issuer` in the trust registry, and (only if it chains) return the registry's
+ * display data. Shared by the offer-time path (x5c from signed issuer metadata) and the
+ * credential-time path (x5c from the issued credential's header — see ADR-0002 / Path B).
+ */
+export const resolveZadaTrustFromX5c = async ({
   agent,
   issuer,
-  signedCredentialIssuer,
+  x5c,
   walletTrustedEntity,
 }: {
   agent: EitherAgent
   issuer?: string
-  signedCredentialIssuer?: SignedCredentialIssuer
+  x5c?: string[]
   walletTrustedEntity?: TrustedEntity
 }): Promise<{
   trustedEntities: TrustedEntity[]
@@ -497,11 +503,8 @@ export const getTrustedEntitiesForZADA = async ({
 }> => {
   const untrusted = { trustedEntities: [] as TrustedEntity[], trustMechanism: 'none' as TrustMechanism }
 
-  // The issuer must have cryptographically signed its metadata with an x509 chain.
-  // No signed metadata / no x5c → no trust (the issuer URL alone proves nothing).
-  if (!issuer || signedCredentialIssuer?.signer.method !== 'x5c' || !signedCredentialIssuer.signer.x5c?.length) {
-    return untrusted
-  }
+  // No issuer or no x5c chain → no trust (a self-asserted issuer URL alone proves nothing).
+  if (!issuer || !x5c?.length) return untrusted
 
   // 1. Look up the registry entry — including the certificate(s) ZADA published for this issuer.
   let result: Awaited<ReturnType<typeof getTrustRegistryEntriesByIssuer>>
@@ -516,11 +519,11 @@ export const getTrustedEntitiesForZADA = async ({
   const anchors = (org?.certificates ?? (org?.certificate ? [org.certificate] : [])).filter(Boolean) as string[]
   if (!org || anchors.length === 0) return untrusted
 
-  // 2. THE GATE: validate the offer's x5c chain against the certificate(s) from the registry.
+  // 2. THE GATE: validate the presented x5c chain against the certificate(s) from the registry.
   const chain = await agent.x509
     .validateCertificateChain({
-      certificateChain: signedCredentialIssuer.signer.x5c,
-      certificate: signedCredentialIssuer.signer.x5c[0],
+      certificateChain: x5c,
+      certificate: x5c[0],
       trustedCertificates: anchors as [string, ...string[]],
     })
     .catch(() => null)
@@ -544,4 +547,25 @@ export const getTrustedEntitiesForZADA = async ({
   }
 
   return { trustedEntities, trustMechanism: 'x509' }
+}
+
+export const getTrustedEntitiesForZADA = async ({
+  agent,
+  issuer,
+  signedCredentialIssuer,
+  walletTrustedEntity,
+}: {
+  agent: EitherAgent
+  issuer?: string
+  signedCredentialIssuer?: SignedCredentialIssuer
+  walletTrustedEntity?: TrustedEntity
+}): Promise<{
+  trustedEntities: TrustedEntity[]
+  trustMechanism: TrustMechanism
+}> => {
+  // Offer-time: the issuer must have signed its metadata with an x5c chain.
+  if (signedCredentialIssuer?.signer.method !== 'x5c' || !signedCredentialIssuer.signer.x5c?.length) {
+    return { trustedEntities: [], trustMechanism: 'none' }
+  }
+  return resolveZadaTrustFromX5c({ agent, issuer, x5c: signedCredentialIssuer.signer.x5c, walletTrustedEntity })
 }
