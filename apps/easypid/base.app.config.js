@@ -84,7 +84,7 @@ const createBaseConfig = (appSpecific) => {
     orientation: 'portrait',
     icon,
     userInterfaceStyle: 'light',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#1B3760',
     updates: {
       fallbackToCacheTimeout: 0,
     },
@@ -102,14 +102,19 @@ const createBaseConfig = (appSpecific) => {
       [
         'expo-splash-screen',
         {
-          backgroundColor: '#F2F4F6',
-          image: adaptiveIcon ?? splashIcon,
+          backgroundColor: '#1B3760',
+          image: splashIcon,
+          resizeMode: 'contain',
           imageWidth: 200,
+          android: {
+            backgroundColor: '#1B3760',
+            image: splashIcon
+          },
           ios: {
             image: splash,
             resizeMode: 'cover',
             enableFullScreenImage_legacy: true,
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#1B3760',
           },
         },
       ],

@@ -26,7 +26,7 @@ const APP_CONFIGS = {
   }),
 
   PARADYM_WALLET: createBaseConfig({
-    name: 'Paradym Wallet',
+    name: 'ZADA',
     scheme: 'id.animo.paradym',
     icon: './assets/paradym/icon.png',
     adaptiveIcon: './assets/paradym/adaptive_icon.png',
@@ -34,7 +34,7 @@ const APP_CONFIGS = {
     splashIcon: './assets/paradym/splash_icon.png',
     slug: 'paradym-wallet',
     version,
-    bundleId: 'id.paradym.wallet',
+    bundleId: 'com.zadanetwork.wallet',
     additionalInvitationSchemes: ['didcomm'],
     associatedDomains: ['paradym.id', 'dev.paradym.id', 'paradymwallet.app'],
     projectId: 'b5f457fa-bcab-4c6e-8092-8cdf1239027a',

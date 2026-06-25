@@ -3,25 +3,36 @@ import { useNavigation } from 'expo-router'
 import { useEffect } from 'react'
 import { Pressable } from 'react-native-gesture-handler'
 
-interface UseHeaderRightActionProps {
+interface HeaderAction {
   icon: IconContainerProps['icon']
   onPress: () => void
   renderCondition?: boolean
 }
 
-export function useHeaderRightAction({ icon, onPress, renderCondition = true }: UseHeaderRightActionProps) {
+interface UseHeaderRightActionProps {
+  actions: HeaderAction[]
+}
+
+export function useHeaderRightAction({ actions }: UseHeaderRightActionProps) {
   const navigation = useNavigation()
+
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () =>
-        renderCondition ? (
-          // FIXME: should remove pressable and pass it to IconContainer once
-          // the following issue is resolved:
-          // https://github.com/react-navigation/react-navigation/issues/12667
-          <Pressable onPress={onPress} style={{ padding: 2 }}>
-            <IconContainer icon={icon} />
-          </Pressable>
-        ) : undefined,
+      headerRight: () => (
+        <>
+          {actions.map((action, index) =>
+            action.renderCondition === false ? null : (
+              <Pressable
+                key={index}
+                onPress={action.onPress}
+                style={{ padding: 6 }}
+              >
+                <IconContainer icon={action.icon} />
+              </Pressable>
+            )
+          )}
+        </>
+      ),
     })
-  }, [navigation, icon, onPress, renderCondition])
+  }, [navigation, actions])
 }

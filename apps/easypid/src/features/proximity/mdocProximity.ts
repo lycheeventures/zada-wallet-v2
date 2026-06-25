@@ -1,9 +1,21 @@
-import { mdocDataTransfer } from '@animo-id/expo-mdoc-data-transfer'
+import { Platform, PermissionsAndroid } from 'react-native'
 import { cborDecode, cborEncode, DataItem, DeviceRequest } from '@animo-id/mdoc'
-import { CredentialMultiInstanceUseMode, type Mdoc, MdocService, useInstanceFromCredentialRecord } from '@credo-ts/core'
+import {
+  CredentialMultiInstanceUseMode,
+  type Mdoc,
+  MdocService,
+  useInstanceFromCredentialRecord,
+} from '@credo-ts/core'
 import type { AppAgent } from '@easypid/agent'
 import type { FormattedSubmission, MdocRecord } from '@package/agent'
-import { PermissionsAndroid, Platform } from 'react-native'
+
+// ✅ SAFE import (Android only)
+let mdocDataTransfer: any
+
+if (Platform.OS === 'android') {
+  mdocDataTransfer =
+    require('@animo-id/expo-mdoc-data-transfer').mdocDataTransfer
+}
 
 type ShareDeviceResponseOptions = {
   sessionTranscript: Uint8Array
@@ -22,6 +34,7 @@ export const requestMdocPermissions = async () => {
       PermissionsAndroid.PERMISSIONS.BLUETOOTH_ADVERTISE,
     ])
   }
+
   return await PermissionsAndroid.requestMultiple([
     PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
     PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
@@ -32,12 +45,21 @@ export const checkMdocPermissions = async () => {
   if (Platform.OS !== 'android') return true
 
   if (Platform.Version >= 31) {
-    return await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN)
+    return await PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN
+    )
   }
-  return await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
+
+  return await PermissionsAndroid.check(
+    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+  )
 }
 
 export const getMdocQrCode = async () => {
+  if (!mdocDataTransfer) {
+    throw new Error('Mdoc not supported on this platform')
+  }
+
   const mdt = mdocDataTransfer.instance()
   const qrData = await mdt.startQrEngagement()
   mdt.enableNfc()
@@ -45,75 +67,92 @@ export const getMdocQrCode = async () => {
 }
 
 /**
- *
  * Wait for the device request
- *
- * Returns the device request and session transcript
  */
 export const waitForDeviceRequest = async () => {
-  const mdt = mdocDataTransfer.instance()
-  const { deviceRequest, sessionTranscript } = await mdt.waitForDeviceRequest()
+  if (!mdocDataTransfer) {
+    throw new Error('Mdoc not supported on this platform')
+  }
 
-  // current bug on android required re-encapsulation
+  const mdt = mdocDataTransfer.instance()
+  const { deviceRequest, sessionTranscript } =
+    await mdt.waitForDeviceRequest()
+
   const encodedSessionTranscript =
-    Platform.OS === 'android' ? cborEncode(DataItem.fromData(cborDecode(sessionTranscript))) : sessionTranscript
+    Platform.OS === 'android'
+      ? cborEncode(DataItem.fromData(cborDecode(sessionTranscript)))
+      : sessionTranscript
 
   return { deviceRequest, sessionTranscript: encodedSessionTranscript }
 }
 
 /**
- * Send a device response based on the device request
- * Optimalisations:
- * 1. Allow the user to pick which specific mdoc is being used
+ * Send a device response
  */
-export const shareDeviceResponse = async (options: ShareDeviceResponseOptions) => {
-  // if (!options.submission.areAllSatisfied) {
-  //   throw new Error('Not all requirements are satisfied')
-  // }
+export const shareDeviceResponse = async (
+  options: ShareDeviceResponseOptions
+) => {
+  if (!mdocDataTransfer) {
+    throw new Error('Mdoc not supported on this platform')
+  }
 
   const mdocs = await Promise.all(
     options.submission.entries.map(async (e) => {
-      if (!e.isSatisfied) throw new Error(`Requirement for doctype ${e.inputDescriptorId} not satisfied`)
+      if (!e.isSatisfied) {
+        throw new Error(
+          `Requirement for doctype ${e.inputDescriptorId} not satisfied`
+        )
+      }
 
-      const credentialRecord = e.credentials[0].credential.record as MdocRecord
+      const credentialRecord =
+        e.credentials[0].credential.record as MdocRecord
 
-      // Optionally handle batch issuance
-      const { credentialInstance } = await useInstanceFromCredentialRecord({
-        credentialRecord,
-        agentContext: options.agent.context,
-        // FIXME: we currently allow re-sharing if we don't have new instances anymore
-        // we should make this configurable maybe? Or dependant on credential type?
-        useMode: CredentialMultiInstanceUseMode.NewOrFirst,
-      })
+      const { credentialInstance } =
+        await useInstanceFromCredentialRecord({
+          credentialRecord,
+          agentContext: options.agent.context,
+          useMode: CredentialMultiInstanceUseMode.NewOrFirst,
+        })
 
       return credentialInstance
     })
   )
 
-  const mdocService = options.agent.dependencyManager.resolve(MdocService)
+  const mdocService =
+    options.agent.dependencyManager.resolve(MdocService)
 
-  const deviceResponse = await mdocService.createDeviceResponse(options.agent.context, {
-    documentRequests: DeviceRequest.parse(options.deviceRequest).docRequests.map((d) => ({
-      docType: d.itemsRequest.data.docType,
-      nameSpaces: Object.fromEntries(
-        Array.from(d.itemsRequest.data.nameSpaces.entries()).map(([namespace, entry]) => [
-          namespace,
-          Object.fromEntries(Array.from(entry.entries())),
-        ])
-      ),
-    })),
-    mdocs: mdocs as [Mdoc, ...Mdoc[]],
-    sessionTranscriptOptions: {
-      type: 'sesionTranscriptBytes',
-      sessionTranscriptBytes: options.sessionTranscript,
-    },
-  })
+  const deviceResponse =
+    await mdocService.createDeviceResponse(
+      options.agent.context,
+      {
+        documentRequests: DeviceRequest.parse(
+          options.deviceRequest
+        ).docRequests.map((d) => ({
+          docType: d.itemsRequest.data.docType,
+          nameSpaces: Object.fromEntries(
+            Array.from(
+              d.itemsRequest.data.nameSpaces.entries()
+            ).map(([namespace, entry]) => [
+              namespace,
+              Object.fromEntries(Array.from(entry.entries())),
+            ])
+          ),
+        })),
+        mdocs: mdocs as [Mdoc, ...Mdoc[]],
+        sessionTranscriptOptions: {
+          type: 'sesionTranscriptBytes',
+          sessionTranscriptBytes: options.sessionTranscript,
+        },
+      }
+    )
 
   const mdt = mdocDataTransfer.instance()
   await mdt.sendDeviceResponse(deviceResponse)
 }
 
 export const shutdownDataTransfer = () => {
+  if (!mdocDataTransfer) return
+
   if (isDataTransferInitialized()) {
     const mdt = mdocDataTransfer.instance()
     mdt.shutdown()
@@ -121,5 +160,6 @@ export const shutdownDataTransfer = () => {
 }
 
 export const isDataTransferInitialized = () => {
+  if (!mdocDataTransfer) return false
   return mdocDataTransfer.isInitialized()
 }

@@ -1,105 +1,202 @@
-import { useFirstNameFromPidCredential } from '@easypid/hooks'
+import { useMemo, useState } from 'react'
 import { Trans, useLingui } from '@lingui/react/macro'
-import { useRefreshedDeferredCredentials } from '@package/agent'
+import { useCredentialsForDisplay } from '@package/agent'
 import { useHaptics } from '@package/app/hooks'
 import {
-  AnimatedStack,
-  Blob,
   CustomIcons,
   FlexPage,
-  Heading,
   HeroIcons,
   IconContainer,
+  Loader,
   Paragraph,
-  ScrollView,
-  Spacer,
-  Stack,
-  useSpringify,
   XStack,
   YStack,
+  ScrollView,
+  Stack,
+  Input,
 } from '@package/ui'
 import { useRouter } from 'expo-router'
-import { FadeIn } from 'react-native-reanimated'
-import { ActionCard } from './components/ActionCard'
-import { AllCardsCard } from './components/AllCardsCard'
 import { InboxIcon } from './components/InboxIcon'
-import { LatestActivityCard } from './components/LatestActivityCard'
+import { useScrollViewPosition } from '@package/app/hooks'
+import { FunkeCredentialCard } from '@package/app/components'
 
 export function FunkeWalletScreen() {
   const { push } = useRouter()
   const { withHaptics } = useHaptics()
-  const { userName, isLoading } = useFirstNameFromPidCredential()
+  const { handleScroll, scrollEventThrottle } =
+    useScrollViewPosition()
+  const {
+    credentials,
+    isLoading: isLoadingCredentials,
+  } = useCredentialsForDisplay()
+  const [searchQuery, setSearchQuery] = useState('')
+  const filteredCredentials = useMemo(() => {
+    return credentials.filter((credential) =>
+      credential.display.name
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
+    )
+  }, [credentials, searchQuery])
 
   const pushToMenu = withHaptics(() => push('/menu'))
   const pushToScanner = withHaptics(() => push('/scan'))
-  const pushToOffline = () => {
-    withHaptics(() => push('/offline'))()
-  }
   const { t } = useLingui()
 
-  useRefreshedDeferredCredentials()
-
   return (
-    <YStack pos="relative" fg={1} bg="$background">
-      <YStack pos="absolute" h="50%" w="100%">
-        <Blob />
-      </YStack>
-
+    <YStack fg={1} bg="$background">
       <FlexPage fg={1} flex-1={false} bg="transparent">
-        <XStack pt="$2" jc="space-between">
-          <IconContainer bg="white" aria-label="Menu" icon={<HeroIcons.Menu />} onPress={pushToMenu} />
+        <XStack pt="$6" px="$2" jc="space-between" ai="center">
+          <IconContainer
+            bg="white"
+            aria-label="Menu"
+            icon={<HeroIcons.Menu />}
+            onPress={pushToMenu}
+          />
+          <Paragraph
+            fontSize={18}
+            fontWeight="$bold"
+            color="$grey-500"
+            numberOfLines={1}
+            >
+            {credentials.length === 0 ? 'ZADA' : 'Credential List'}
+          </Paragraph>
           <InboxIcon />
         </XStack>
-
-        <AnimatedStack fg={1} entering={useSpringify(FadeIn, 200)}>
-          <ScrollView scrollEnabled={false} contentContainerStyle={{ fg: 1 }}>
-            <YStack fg={1} f={1} gap="$4">
-              <YStack ai="center" jc="center" gap="$2">
-                <Heading
-                  heading="h1"
-                  fontSize={!userName || userName.length < 14 ? 38 : 26}
-                  lineHeight={!userName || userName.length < 14 ? 40 : 32}
-                  opacity={isLoading ? 0 : 1}
-                  ta="center"
-                  numberOfLines={2}
-                >
-                  {userName ? (
-                    <Trans id="home.helloWithName">Hello, {userName}!</Trans>
-                  ) : (
-                    <Trans id="home.helloWithoutName">Hello!</Trans>
-                  )}
-                </Heading>
-                <Paragraph>
-                  <Trans id="home.receiveOrShare">Receive or share from your wallet</Trans>{' '}
+        {isLoadingCredentials ? (
+          <YStack ai="center" jc="center" mt="$6">
+            <Loader />
+          </YStack>
+        ) : credentials.length === 0 ? (
+          <YStack ai="center" jc="center" mt="$10" px="$6">
+            <HeroIcons.Folder
+              size={64}
+              strokeWidth={1.5}
+              color="$grey-400"
+            />
+            <Paragraph
+              mt="$2"
+              color="$grey-500"
+              ta="center"
+            >
+              <Trans id="wallet.emptyCredentials">
+               You don’t have any credentials yet. Scan a QR code to add your first credential.
+              </Trans>
+            </Paragraph>
+          </YStack>
+        ) : (
+          <ScrollView
+            onScroll={handleScroll}
+            scrollEventThrottle={scrollEventThrottle}
+            contentContainerStyle={{ paddingBottom: 140 }}
+            showsVerticalScrollIndicator={false}
+          >
+            <Stack position="relative" px="$2">
+              <Input
+                value={searchQuery}
+                onChangeText={(e) =>
+                  setSearchQuery(
+                    typeof e === 'string'
+                      ? e
+                      : e.nativeEvent.text
+                  )
+                }
+                pl="$7"
+                mb="$6"
+                bg="$grey-50"
+                placeholderTextColor="$grey-500"
+                borderColor="$borderTranslucent"
+                placeholder={t({
+                  id: 'common.search',
+                  message: 'Search cards',
+                })}
+              />
+              <HeroIcons.MagnifyingGlass
+                size={20}
+                strokeWidth={2.5}
+                color="$grey-400"
+                position="absolute"
+                top={12}
+                left="$4"
+              />
+            </Stack>
+            {filteredCredentials.length > 0 ? (
+              <YStack px="$2" pb="$12">
+                {filteredCredentials.map((credential, index) => (
+                  <YStack
+                    key={credential.id}
+                    mt={index === 0 ? 0 : -120}
+                    zIndex={index}
+                  >
+                    <FunkeCredentialCard
+                      issuerImage={{
+                        url: credential.display.issuer.logo?.url,
+                        altText:
+                          credential.display.issuer.logo?.altText,
+                      }}
+                      textColor={credential.display.textColor}
+                      name={credential.display.name}
+                      backgroundImage={{
+                        url:
+                          credential.display.backgroundImage?.url,
+                        altText:
+                          credential.display.backgroundImage
+                            ?.altText,
+                      }}
+                      bgColor={
+                        credential.display.backgroundColor ??
+                        '$grey-900'
+                      }
+                      onPress={() =>
+                        push(
+                          `/credentials/${credential.id}/attributes`
+                        )
+                      }
+                    />
+                  </YStack>
+                ))}
+              </YStack>
+            ) : (
+              <YStack ai="center" mt="$10" px="$6">
+                <HeroIcons.MagnifyingGlass
+                  size={48}
+                  strokeWidth={1.5}
+                  color="$grey-400"
+                />
+                <Paragraph mt="$2" color="$grey-500" ta="center">
+                  <Trans id="search.noResults">
+                      No credentials found
+                   </Trans>
                 </Paragraph>
               </YStack>
-              <XStack gap="$4" jc="center" py="$2" w="95%" mx="auto">
-                <ActionCard
-                  variant="primary"
-                  icon={<CustomIcons.Qr color="white" />}
-                  title={t({ id: 'home.scanQrButton', message: 'Scan QR-code' })}
-                  onPress={pushToScanner}
-                />
-                <ActionCard
-                  variant="secondary"
-                  icon={<CustomIcons.People size={26} />}
-                  title={t({ id: 'home.presentInPersonButton', message: 'Present In-person' })}
-                  onPress={pushToOffline}
-                />
-              </XStack>
-
-              <Stack h="$4" />
-            </YStack>
-            <YStack gap="$4" jc="space-around" fg={1} f={1}>
-              <YStack gap="$4">
-                <LatestActivityCard />
-                <AllCardsCard />
-              </YStack>
-              <Spacer />
-            </YStack>
+            )}
           </ScrollView>
-        </AnimatedStack>
+        )}
       </FlexPage>
+      <XStack
+        position="absolute"
+        bottom="$10"
+        left={0}
+        right={0}
+        jc="center"
+      >
+        <XStack
+          ai="center"
+          gap="$2"
+          px="$5"
+          py="$3"
+          br="$10"
+          bg="$primary-500"
+          onPress={pushToScanner}
+          pressStyle={{ opacity: 0.8 }}
+        >
+          <CustomIcons.Qr size={28} color="$white" />
+          <Paragraph color="$white" fontWeight="$bold">
+             <Trans id="home.scanButton">
+              Scan
+             </Trans>
+          </Paragraph>
+        </XStack>
+      </XStack>
     </YStack>
   )
 }

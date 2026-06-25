@@ -1,5 +1,5 @@
 import { Trans, useLingui } from '@lingui/react/macro'
-import { BiometricAuthenticationCancelledError, BiometricAuthenticationNotEnabledError, logger } from '@package/agent'
+import { BiometricAuthenticationCancelledError, BiometricAuthenticationNotEnabledError } from '@package/agent'
 import { TextBackButton } from '@package/app'
 import { useScrollViewPosition } from '@package/app/hooks'
 import { useCanUseBiometryBackedWalletKey, useIsBiometricsEnabled } from '@package/secure-store/secureUnlock'
@@ -29,7 +29,6 @@ import { Share } from 'react-native'
 import { Label } from 'tamagui'
 import { useSecureUnlock } from '../../agent'
 import { useBiometricsType } from '../../hooks/useBiometricsType'
-import { useDevelopmentMode } from '../../hooks/useDevelopmentMode'
 import { useStoredLocale } from '../../hooks/useStoredLocale'
 
 export function LocaleSelect() {
@@ -84,7 +83,6 @@ export function FunkeSettingsScreen() {
   const { t } = useLingui()
   const toast = useToastController()
   const { handleScroll, isScrolledByOffset, scrollEventThrottle } = useScrollViewPosition()
-  const [isDevelopmentModeEnabled, setIsDevelopmentModeEnabled] = useDevelopmentMode()
   const secureUnlock = useSecureUnlock()
   if (secureUnlock.state !== 'unlocked') return
 
@@ -117,8 +115,6 @@ export function FunkeSettingsScreen() {
       } else {
         toast.show(t(commonMessages.errorChangingBiometrics), {
           customData: { preset: 'danger' },
-          message:
-            error instanceof Error && isDevelopmentModeEnabled ? `Development mode error: ${error.message}` : undefined,
         })
       }
     }
@@ -140,8 +136,6 @@ export function FunkeSettingsScreen() {
     } catch (error) {
       toast.show(t(commonMessages.errorChangingBiometrics), {
         customData: { preset: 'danger' },
-        message:
-          error instanceof Error && isDevelopmentModeEnabled ? `Development mode error: ${error.message}` : undefined,
       })
     }
   }
@@ -187,36 +181,7 @@ export function FunkeSettingsScreen() {
               value={isBiometricsEnabled}
               onChange={isBiometricsEnabled ? disableBiometrics : enableBiometrics}
             />
-            <Switch
-              id="development-mode"
-              label={t({
-                id: 'settings.developmentMode',
-                message: 'Development Mode',
-                comment: 'Label for the toggle to enable developer mode',
-              })}
-              icon={<HeroIcons.CommandLineFilled />}
-              value={isDevelopmentModeEnabled ?? false}
-              onChange={setIsDevelopmentModeEnabled}
-            />
             <LocaleSelect />
-            {isDevelopmentModeEnabled && (
-              <SettingsButton
-                label={t({
-                  id: 'settings.exportDebugLogs',
-                  message: 'Export debug logs',
-                  comment: 'Label for the button to export debug logs',
-                })}
-                beta
-                onPress={() => Share.share({ message: logger.loggedMessageContents })}
-                description={t({
-                  id: 'settings.exportDebugLogsDescription',
-                  message:
-                    'Export the last 1000 debug logs from the wallet. Note that this can contain sensitive information.',
-                  comment: 'Description for the feature to export debug logs',
-                })}
-                icon={<HeroIcons.QueueListFilled />}
-              />
-            )}
           </YStack>
           <YStack btw="$0.5" borderColor="$grey-200" pt="$4" mx="$-4" px="$4" bg="$background">
             <TextBackButton />

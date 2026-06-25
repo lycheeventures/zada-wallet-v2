@@ -63,7 +63,7 @@ export function FunkeCredentialsScreen() {
         >
           <Heading ta="center" heading="h3" fontWeight="$semiBold">
             <Trans id="credentials.emptyTitle" comment="Shown when the user has no credentials">
-              There's nothing here, yet
+              You don’t have any credentials yet
             </Trans>
           </Heading>
           <Paragraph ta="center" px="$2">

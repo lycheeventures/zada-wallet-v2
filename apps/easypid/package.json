@@ -38,6 +38,7 @@
 		"@react-native-picker/picker": "^2.11.4",
 		"@react-navigation/native": "catalog:",
 		"@shopify/react-native-skia": "catalog:",
+		"@supabase/supabase-js": "^2.101.0",
 		"babel-plugin-module-resolver": "catalog:",
 		"buffer": "catalog:",
 		"burnt": "catalog:",
@@ -45,6 +46,7 @@
 		"expo-application": "catalog:",
 		"expo-asset": "catalog:",
 		"expo-blur": "catalog:",
+		"expo-camera": "catalog:",
 		"expo-constants": "catalog:",
 		"expo-crypto": "catalog:",
 		"expo-dev-client": "catalog:",
@@ -57,8 +59,10 @@
 		"expo-linking": "catalog:",
 		"expo-localization": "catalog:",
 		"expo-network": "catalog:",
+		"expo-print": "~15.0.8",
 		"expo-router": "catalog:",
 		"expo-secure-store": "catalog:",
+		"expo-sharing": "~14.0.8",
 		"expo-splash-screen": "catalog:",
 		"expo-system-ui": "catalog:",
 		"expo-updates": "catalog:",
@@ -78,8 +82,7 @@
 		"react-native-reanimated-carousel": "catalog:",
 		"react-native-safe-area-context": "catalog:",
 		"react-native-screens": "catalog:",
-		"react-native-svg": "catalog:",
-		"expo-camera": "catalog:"
+		"react-native-svg": "catalog:"
 	},
 	"devDependencies": {
 		"@babel/core": "catalog:",

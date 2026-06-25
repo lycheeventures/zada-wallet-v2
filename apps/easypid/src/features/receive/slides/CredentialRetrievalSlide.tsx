@@ -169,11 +169,11 @@ export const CredentialRetrievalSlide = ({
               <Heading></Heading>
             ) : deferred ? (
               <Heading>
-                <Trans id="receiveCredential.deferredCredentialHeader">Card is not ready yet</Trans>
+                <Trans id="receiveCredential.deferredCredentialHeader">Credential is not ready yet</Trans>
               </Heading>
             ) : (
               <Heading>
-                <Trans id="receiveCredential.checkInformationHeader">Do you want to store this card?</Trans>
+                <Trans id="receiveCredential.checkInformationHeader">Do you want to store this Credential?</Trans>
               </Heading>
             )}
           </AnimatedStack>
@@ -187,13 +187,13 @@ export const CredentialRetrievalSlide = ({
           >
             {isCompleted ? (
               <Paragraph ta="center" mt="$-2" mb="$6">
-                <Trans id="retrieveCredential.cardSuccessfully added">Card successfully added to your wallet!</Trans>
+                <Trans id="retrieveCredential.cardSuccessfully added">Credential successfully added to your wallet!</Trans>
               </Paragraph>
             ) : isStoring ? (
               <Paragraph ta="center" mt="$-2" mb="$6"></Paragraph>
             ) : deferred ? (
               <Paragraph ta="center" mt="$-2" mb="$6">
-                <Trans id="retrieveCredential.cardPending">The card will be fetched once available.</Trans>
+                <Trans id="retrieveCredential.cardPending">The credential will be fetched once available.</Trans>
               </Paragraph>
             ) : null}
           </AnimatedStack>
@@ -244,8 +244,8 @@ export const CredentialRetrievalSlide = ({
                     ) : (
                       <Paragraph>
                         <Trans id="receiveCredential.deferredCredentialParagraph">
-                          Your cards are not yet ready. We will check once in a while in the background and fetch the
-                          cards once they're ready.
+                          Your credentials are not yet ready. We will check once in a while in the background and fetch the
+                          credentials once they're ready.
                         </Trans>
                       </Paragraph>
                     )}

@@ -52,7 +52,7 @@ import {
 } from '../format/formatPresentation'
 import { getCredentialBindingResolver } from '../openid4vc/credentialBindingResolver'
 import { extractOpenId4VcCredentialMetadata, setOpenId4VcCredentialMetadata } from '../openid4vc/displayMetadata'
-import { getTrustedEntities, getTrustedEntitiesForOid4vci } from '../utils/trust'
+import { getTrustedEntities, getTrustedEntitiesForOid4vci, getTrustedEntitiesForZADA } from '../utils/trust'
 import { BiometricAuthenticationError } from './error'
 import { fetchInvitationDataUrl } from './fetchInvitation'
 
@@ -133,18 +133,13 @@ export async function resolveOpenId4VciOffer({
       }
     }
 
-    const issuerTrust = await getTrustedEntitiesForOid4vci({
-      signedCredentialIssuer: resolvedCredentialOffer.metadata.signedCredentialIssuer,
+    const issuerTrust = await getTrustedEntitiesForZADA({
       issuer: resolvedCredentialOffer.metadata.credentialIssuer.credential_issuer,
-      agent,
-      trustedX509Entities,
-      trustedDidEntities,
-      trustedOpenId4VciIssuerEntities,
       walletTrustedEntity: {
-        organizationName: isParadymWallet() ? 'Paradym Wallet' : 'Funke Wallet',
+        organizationName: isParadymWallet() ? 'ZADA Network' : 'Funke Wallet',
         entityId: '__',
         logoUri: require('../../../../apps/easypid/assets/paradym/icon.png'),
-        uri: isParadymWallet() ? 'https://paradym.id' : 'https://funke.animo.id',
+        uri: isParadymWallet() ? 'https://zada.network' : 'https://funke.animo.id',
       },
     })
 

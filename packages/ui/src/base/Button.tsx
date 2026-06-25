@@ -30,7 +30,7 @@ const Btn = styled(TButton, {
 
 export const SolidButton = styled(Btn, {
   name: 'SolidButton',
-  backgroundColor: '$grey-900',
+  backgroundColor: '$primary-500',
   color: '$white',
   fontWeight: '$semiBold',
   variants: {

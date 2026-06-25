@@ -12,7 +12,7 @@ interface CredentialCardSlideProps {
 
 const cardOfferedTitleMessage = defineMessage({
   id: 'credentialCardSlide.cardOfferedTitle',
-  message: 'Card offered',
+  message: 'Credential offered',
   comment: 'Title shown when a credential card is offered to the user',
 })
 
@@ -25,7 +25,7 @@ const useContentType = (type: 'presentation' | 'pin' | 'noAuth', issuerName: str
         title: t(cardOfferedTitleMessage),
         subtitle: t({
           id: 'credentialCardSlide.subtitle.presentation',
-          message: `To receive this card from ${issuerName}, you need to share cards from your wallet.`,
+          message: `To receive this credential from ${issuerName}, you need to share credentials from your wallet.`,
           comment: 'Subtitle shown when presentation of other credentials is required',
         }),
       }
@@ -34,7 +34,7 @@ const useContentType = (type: 'presentation' | 'pin' | 'noAuth', issuerName: str
         title: t(cardOfferedTitleMessage),
         subtitle: t({
           id: 'credentialCardSlide.subtitle.pin',
-          message: `To receive this card from ${issuerName}, you need to enter a PIN.`,
+          message: `To receive this credential from ${issuerName}, you need to enter a PIN.`,
           comment: 'Subtitle shown when entering a PIN is required to receive the credential',
         }),
       }
@@ -43,7 +43,7 @@ const useContentType = (type: 'presentation' | 'pin' | 'noAuth', issuerName: str
         title: t(cardOfferedTitleMessage),
         subtitle: t({
           id: 'credentialCardSlide.subtitle.default',
-          message: `${issuerName} wants to issue you the following card:`,
+          message: `${issuerName} wants to issue you the following Credential:`,
           comment: 'Subtitle shown when the issuer wants to give the user a card with no auth required',
         }),
       }

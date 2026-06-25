@@ -32,9 +32,13 @@ export function FunkeCredentialDetailScreen() {
   const [isSheetOpen, setIsSheetOpen] = useState(false)
 
   useHeaderRightAction({
-    icon: <HeroIcons.Trash />,
-    onPress: withHaptics(() => setIsSheetOpen(true)),
-    renderCondition: credential?.category?.canDeleteCredential ?? true,
+    actions: [
+      {
+        icon: <HeroIcons.Trash />,
+        onPress: withHaptics(() => setIsSheetOpen(true)),
+        renderCondition: credential?.category?.canDeleteCredential ?? true,
+      }
+    ]
   })
 
   if (!credential) {
@@ -107,7 +111,7 @@ export function FunkeCredentialDetailScreen() {
                 variant="view"
                 title={t({
                   id: 'credentials.cardAttributes',
-                  message: 'Card attributes',
+                  message: 'Credential Details',
                   comment: 'Label for button that shows detailed card attributes',
                 })}
                 description={t({

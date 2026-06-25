@@ -17,7 +17,6 @@ import {
   ArrowPathIcon,
   ArrowRightIcon,
   ArrowsRightLeftIcon,
-  ArrowUpOnSquareStackIcon,
   BackspaceIcon,
   Bars3Icon,
   BellIcon,
@@ -58,6 +57,8 @@ import {
   UserIcon,
   XCircleIcon,
   XMarkIcon,
+  FolderIcon,
+  ShareIcon
 } from 'react-native-heroicons/outline'
 import {
   ArchiveBoxXMarkIcon as ArchiveBoxXMarkFilledIcon,
@@ -132,7 +133,7 @@ export const HeroIcons = {
   Langugae: wrapHeroIcon(LanguageIcon),
   BellFilled: wrapHeroIcon(BellFilledIcon),
   Plus: wrapHeroIcon(PlusIcon),
-  Share: wrapHeroIcon(ArrowUpOnSquareStackIcon),
+  Share: wrapHeroIcon(ShareIcon),
   Trash: wrapHeroIcon(TrashIcon),
   TrashFilled: wrapHeroIcon(TrashFilledIcon),
   ArchiveBoxXMarkFilled: wrapHeroIcon(ArchiveBoxXMarkFilledIcon),
@@ -202,6 +203,7 @@ export const HeroIcons = {
   ArrowUpRightFilled: wrapHeroIcon(ArrowUpRightFilledIcon),
   PenFilled: wrapHeroIcon(PencilFilledIcon),
   Pen: wrapHeroIcon(PencilIcon),
+  Folder: wrapHeroIcon(FolderIcon),
 } as const
 
 export const CustomIcons = {

@@ -63,7 +63,7 @@ export function OnboardingDataProtection({ goToNextStep }: OnboardingDataProtect
   }
 
   const onPressPrivacy = () => {
-    Linking.openURL('https://paradym.id/wallet-privacy-policy')
+    Linking.openURL('https://zada.io/privacy-policy/')
   }
 
   return (
