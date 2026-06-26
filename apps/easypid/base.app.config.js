@@ -149,6 +149,10 @@ const createBaseConfig = (appSpecific) => {
             compileSdkVersion: 36,
             useLegacyPackaging: true,
             extraMavenRepos: ['https://s01.oss.sonatype.org/content/repositories/snapshots/'],
+            // Build only arm64-v8a for free-tier EAS test builds: compiling all four ABIs
+            // OOM-kills the Gradle daemon on the medium resource class. Every modern Android
+            // phone is arm64-v8a. Add 'armeabi-v7a' (32-bit) / x86 ABIs back for store builds.
+            buildArchs: ['arm64-v8a'],
           },
           ios: {
             deploymentTarget: '16.0',
