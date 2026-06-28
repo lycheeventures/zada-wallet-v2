@@ -104,3 +104,6 @@ dist/
 packages/ui/types
 
 apps/easypid/.maestro/.maestro/screenshots
+# passport-nfc native module: the broad `android` rule above would ignore these — keep them tracked.
+!packages/passport-nfc/android/
+!packages/passport-nfc/android/**

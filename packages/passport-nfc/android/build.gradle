@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+
+group = 'io.zada.passportnfc'
+version = '0.1.0'
+
+def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
+apply from: expoModulesCorePlugin
+applyKotlinExpoModulesCorePlugin()
+useCoreDependencies()
+useExpoPublishing()
+
+buildscript {
+  ext.safeExtGet = { prop, fallback ->
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+  }
+}
+
+project.android {
+  compileSdkVersion safeExtGet("compileSdkVersion", 36)
+  defaultConfig {
+    minSdkVersion safeExtGet("minSdkVersion", 26)
+    targetSdkVersion safeExtGet("targetSdkVersion", 36)
+  }
+}
+
+android {
+  namespace "io.zada.passportnfc"
+  defaultConfig {
+    versionCode 1
+    versionName "0.1.0"
+  }
+  lintOptions {
+    abortOnError false
+  }
+  // jMRTD/scuba pull duplicate license/notice meta files from their jars.
+  packagingOptions {
+    resources {
+      excludes += ["META-INF/DEPENDENCIES", "META-INF/LICENSE*", "META-INF/NOTICE*", "META-INF/*.kotlin_module"]
+    }
+  }
+}
+
+dependencies {
+  implementation("androidx.appcompat:appcompat:1.7.1")
+  // eMRTD/passport reading: jMRTD + scuba (smartcard I/O for Android) + SpongyCastle (BC repackaged
+  // for Android, the crypto provider jMRTD expects). These versions are the known-good Android set.
+  implementation("org.jmrtd:jmrtd:0.7.42")
+  implementation("net.sf.scuba:scuba-sc-android:0.0.23")
+  implementation("com.madgag.spongycastle:prov:1.58.0.0")
+}
