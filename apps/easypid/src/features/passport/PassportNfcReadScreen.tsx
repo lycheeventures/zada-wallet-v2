@@ -1,6 +1,5 @@
-import { Trans } from '@lingui/react/macro'
+import { Trans, useLingui } from '@lingui/react/macro'
 import { Button, Heading, HeroIcons, Page, Paragraph, Spinner, YStack } from '@package/ui'
-import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   addPassportStatusListener,
   cancelPassportRead,
@@ -9,7 +8,8 @@ import {
   type PassportNfcStatus,
   type PassportReadResult,
   readPassport,
-} from '../../../modules/passport-nfc'
+} from 'passport-nfc'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import type { MrzData } from './mrz'
 
 interface PassportNfcReadScreenProps {
@@ -29,6 +29,7 @@ const statusCopy: Record<PassportNfcStatus, string> = {
 }
 
 export function PassportNfcReadScreen({ mrz, onComplete, onCancel }: PassportNfcReadScreenProps) {
+  const { t } = useLingui()
   const [status, setStatus] = useState<PassportNfcStatus>('waiting_for_tag')
   const [error, setError] = useState<string | null>(null)
   const [reading, setReading] = useState(false)
@@ -94,15 +95,9 @@ export function PassportNfcReadScreen({ mrz, onComplete, onCancel }: PassportNfc
           </Paragraph>
           <YStack gap="$2" w="100%">
             <Button.Solid onPress={() => void start()}>
-              <Trans id="passportNfc.retry" comment="Retry the chip read">
-                Try again
-              </Trans>
+              {t({ id: 'passportNfc.retry', message: 'Try again' })}
             </Button.Solid>
-            <Button.Text onPress={onCancel}>
-              <Trans id="passportNfc.back" comment="Go back to the MRZ step">
-                Back
-              </Trans>
-            </Button.Text>
+            <Button.Text onPress={onCancel}>{t({ id: 'passportNfc.back', message: 'Back' })}</Button.Text>
           </YStack>
         </>
       ) : (
@@ -111,11 +106,7 @@ export function PassportNfcReadScreen({ mrz, onComplete, onCancel }: PassportNfc
           <Paragraph ta="center" color="$grey-600">
             {statusCopy[status]}
           </Paragraph>
-          <Button.Text onPress={onCancel}>
-            <Trans id="passportNfc.cancel" comment="Cancel the chip read">
-              Cancel
-            </Trans>
-          </Button.Text>
+          <Button.Text onPress={onCancel}>{t({ id: 'passportNfc.cancel', message: 'Cancel' })}</Button.Text>
         </>
       )}
     </Page>

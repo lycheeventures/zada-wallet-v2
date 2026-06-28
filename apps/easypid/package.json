@@ -70,6 +70,7 @@
 		"expo-web-browser": "catalog:",
 		"fast-text-encoding": "catalog:",
 		"mrz": "^3.1.0",
+		"passport-nfc": "workspace:*",
 		"react": "catalog:",
 		"react-native": "catalog:",
 		"react-native-edge-to-edge": "catalog:",

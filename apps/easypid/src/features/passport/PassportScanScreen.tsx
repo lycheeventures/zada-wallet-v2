@@ -130,15 +130,11 @@ export function PassportScanScreen({ onMrzScanned }: PassportScanScreenProps) {
           <Spinner variant="dark" />
         ) : (
           <Button.Solid bg="$grey-100" color="$grey-900" br="$12" px="$6" onPress={() => void onCapture()} scaleOnPress>
-            <Trans id="passportScan.captureButton" comment="Button to capture the MRZ">
-              Capture
-            </Trans>
+            {t({ id: 'passportScan.captureButton', message: 'Capture' })}
           </Button.Solid>
         )}
         <Button.Text color="$white" onPress={() => setMode('manual')}>
-          <Trans id="passportScan.enterManually" comment="Fallback to type the passport details">
-            Enter details manually
-          </Trans>
+          {t({ id: 'passportScan.enterManually', message: 'Enter details manually' })}
         </Button.Text>
         <Button.Text color="$grey-400" onPress={() => back()}>
           {t(commonMessages.cancel)}
@@ -234,21 +230,13 @@ function PassportMrzReview({ mode, mrz, onRescan, onConfirm }: ReviewProps) {
 
         <YStack gap="$2" pt="$2">
           <Button.Solid onPress={handleContinue} disabled={!canContinue} opacity={canContinue ? 1 : 0.5}>
-            <Trans id="passportScan.continueToChip" comment="Continue to NFC chip read">
-              Continue — read chip
-            </Trans>
+            {t({ id: 'passportScan.continueToChip', message: 'Continue — read chip' })}
           </Button.Solid>
           {!isManual ? (
-            <Button.Text onPress={onRescan}>
-              <Trans id="passportScan.rescan" comment="Rescan the MRZ">
-                Scan again
-              </Trans>
-            </Button.Text>
+            <Button.Text onPress={onRescan}>{t({ id: 'passportScan.rescan', message: 'Scan again' })}</Button.Text>
           ) : (
             <Button.Text onPress={onRescan}>
-              <Trans id="passportScan.useCamera" comment="Switch from manual entry back to camera">
-                Use the camera instead
-              </Trans>
+              {t({ id: 'passportScan.useCamera', message: 'Use the camera instead' })}
             </Button.Text>
           )}
         </YStack>

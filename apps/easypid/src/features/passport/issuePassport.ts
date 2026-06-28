@@ -1,5 +1,5 @@
 import { supabase } from '@easypid/services/supabase'
-import type { PassportReadResult } from '../../../modules/passport-nfc'
+import type { PassportReadResult } from 'passport-nfc'
 import type { MrzData } from './mrz'
 
 // P4 — turn the chip read into a Passport SD-JWT VC via the hub's hovi-issue-passport edge function,

@@ -1,8 +1,8 @@
-import { Trans } from '@lingui/react/macro'
+import { Trans, useLingui } from '@lingui/react/macro'
 import { type CredentialDataHandlerOptions, useCredentialDataHandler } from '@package/app'
 import { Button, Heading, Page, Paragraph, Spinner, YStack } from '@package/ui'
+import type { PassportReadResult } from 'passport-nfc'
 import { useState } from 'react'
-import type { PassportReadResult } from '../../../modules/passport-nfc'
 import { issuePassportCredential } from './issuePassport'
 import type { MrzData } from './mrz'
 import { PassportNfcReadScreen } from './PassportNfcReadScreen'
@@ -18,6 +18,7 @@ export function PassportFlow({
 }: {
   credentialDataHandlerOptions?: CredentialDataHandlerOptions
 }) {
+  const { t } = useLingui()
   const [step, setStep] = useState<Step>('mrz')
   const [mrz, setMrz] = useState<MrzData | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -64,9 +65,7 @@ export function PassportFlow({
             {error}
           </Paragraph>
           <Button.Solid onPress={() => mrz && setStep('nfc')}>
-            <Trans id="passportIssue.retry" comment="Retry the passport read/issue">
-              Try again
-            </Trans>
+            {t({ id: 'passportIssue.retry', message: 'Try again' })}
           </Button.Solid>
         </YStack>
       ) : (
