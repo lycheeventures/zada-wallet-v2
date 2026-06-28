@@ -324,7 +324,7 @@
     "origin": [
       [
         "src/features/menu/FunkeMenuScreen.tsx",
-        143
+        152
       ]
     ],
     "translation": "Über diese Wallet"
@@ -376,7 +376,7 @@
     "origin": [
       [
         "src/features/menu/FunkeMenuScreen.tsx",
-        103
+        112
       ]
     ],
     "translation": "Aktivitäten"
@@ -454,6 +454,20 @@
       ]
     ],
     "translation": "{name} hinzugefügt"
+  },
+  "passportIssue.heading": {
+    "translation": "",
+    "message": "Adding your passport",
+    "placeholders": {},
+    "comments": [
+      "Heading while issuing the passport credential"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportFlow.tsx",
+        57
+      ]
+    ]
   },
   "common.fields.address": {
     "message": "Address",
@@ -686,7 +700,7 @@
     "origin": [
       [
         "src/features/menu/FunkeMenuScreen.tsx",
-        114
+        123
       ]
     ],
     "translation": "APP"
@@ -853,6 +867,20 @@
       ]
     ],
     "translation": "Autorisierung fehlgeschlagen"
+  },
+  "passportNfc.back": {
+    "translation": "",
+    "message": "Back",
+    "placeholders": {},
+    "comments": [
+      "Go back to the MRZ step"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportNfcReadScreen.tsx",
+        102
+      ]
+    ]
   },
   "common.backButton": {
     "message": "Back",
@@ -1061,6 +1089,20 @@
     ],
     "translation": "Wenn du {name} löschst, kannst du die Karte nicht mehr vom Aussteller abrufen."
   },
+  "passportNfc.cancel": {
+    "translation": "",
+    "message": "Cancel",
+    "placeholders": {},
+    "comments": [
+      "Cancel the chip read"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportNfcReadScreen.tsx",
+        115
+      ]
+    ]
+  },
   "common.cancel": {
     "message": "Cancel",
     "placeholders": {},
@@ -1074,6 +1116,32 @@
       ]
     ],
     "translation": "Abbrechen"
+  },
+  "passportScan.captureButton": {
+    "translation": "",
+    "message": "Capture",
+    "placeholders": {},
+    "comments": [
+      "Button to capture the MRZ"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        133
+      ]
+    ]
+  },
+  "passportScan.captureError": {
+    "translation": "",
+    "message": "Capture failed. Try again or enter the details manually.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        60
+      ]
+    ]
   },
   "inbox.notificationType.card": {
     "message": "Card",
@@ -1407,6 +1475,20 @@
     ],
     "translation": "Bestätige, dass du es bist"
   },
+  "passportScan.confirmHeading": {
+    "translation": "",
+    "message": "Confirm passport details",
+    "placeholders": {},
+    "comments": [
+      "Confirm scanned passport heading"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        183
+      ]
+    ]
+  },
   "connection.successTitle": {
     "message": "Connection established",
     "placeholders": {},
@@ -1435,6 +1517,20 @@
     ],
     "translation": "Weiter"
   },
+  "passportScan.continueToChip": {
+    "translation": "",
+    "message": "Continue — read chip",
+    "placeholders": {},
+    "comments": [
+      "Continue to NFC chip read"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        237
+      ]
+    ]
+  },
   "migration.failedToOpen": {
     "message": "Could not open credential migration. Please try again.",
     "placeholders": {},
@@ -1445,6 +1541,18 @@
       [
         "src/features/migration/useCredentialMigration.tsx",
         38
+      ]
+    ]
+  },
+  "passportScan.notFound": {
+    "translation": "",
+    "message": "Could not read the MRZ. Align the two bottom lines and try again.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        48
       ]
     ]
   },
@@ -1475,6 +1583,20 @@
       ]
     ],
     "translation": "Land"
+  },
+  "passportIssue.inProgress": {
+    "translation": "",
+    "message": "Creating your passport credential…",
+    "placeholders": {},
+    "comments": [
+      "Shown while issuing the passport credential"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportFlow.tsx",
+        76
+      ]
+    ]
   },
   "requestedAttributes.fallbackCardLabel": {
     "message": "Credential",
@@ -1694,6 +1816,18 @@
       ]
     ],
     "translation": "Geburtsdatum"
+  },
+  "passportScan.dateOfBirth": {
+    "translation": "",
+    "message": "Date of birth (YYMMDD)",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        214
+      ]
+    ]
   },
   "common.declineButton": {
     "message": "Decline",
@@ -1966,6 +2100,34 @@
     ],
     "translation": "Englisch"
   },
+  "passportScan.enterManually": {
+    "translation": "",
+    "message": "Enter details manually",
+    "placeholders": {},
+    "comments": [
+      "Fallback to type the passport details"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        139
+      ]
+    ]
+  },
+  "passportScan.manualHeading": {
+    "translation": "",
+    "message": "Enter passport details",
+    "placeholders": {},
+    "comments": [
+      "Manual passport entry heading"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        179
+      ]
+    ]
+  },
   "common.enterPinToShareData": {
     "message": "Enter PIN to share data",
     "placeholders": {},
@@ -2158,6 +2320,18 @@
     ],
     "translation": "Läuft in {expiryDaysString} ab"
   },
+  "passportScan.dateOfExpiry": {
+    "translation": "",
+    "message": "Expiry date (YYMMDD)",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        221
+      ]
+    ]
+  },
   "settings.exportDebugLogs": {
     "message": "Export debug logs",
     "placeholders": {},
@@ -2255,7 +2429,7 @@
     "origin": [
       [
         "src/features/menu/FunkeMenuScreen.tsx",
-        133
+        142
       ]
     ],
     "translation": "Feedback"
@@ -2324,20 +2498,6 @@
     ],
     "translation": "Deutsch"
   },
-  "onboardingWalletExplanation.getStarted": {
-    "message": "Get Started",
-    "placeholders": {},
-    "comments": [
-      "Button label to finish onboarding explanation"
-    ],
-    "origin": [
-      [
-        "src/features/onboarding/screens/wallet-explanation.tsx",
-        71
-      ]
-    ],
-    "translation": "Los geht's"
-  },
   "onboardingWelcome.getStarted": {
     "message": "Get Started",
     "placeholders": {},
@@ -2351,6 +2511,20 @@
       ]
     ],
     "translation": "Loslegen"
+  },
+  "onboardingWalletExplanation.getStarted": {
+    "message": "Get Started",
+    "placeholders": {},
+    "comments": [
+      "Button label to finish onboarding explanation"
+    ],
+    "origin": [
+      [
+        "src/features/onboarding/screens/wallet-explanation.tsx",
+        71
+      ]
+    ],
+    "translation": "Los geht's"
   },
   "pidSetup.idCardRequestedAttributes.title": {
     "message": "Get your national identity card",
@@ -3481,6 +3655,18 @@
     ],
     "translation": "Übermäßige Datenanfrage erkannt"
   },
+  "passportScan.documentNumber": {
+    "translation": "",
+    "message": "Passport number",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        208
+      ]
+    ]
+  },
   "inbox.notificationType.pending": {
     "message": "Pending",
     "placeholders": {},
@@ -3591,6 +3777,20 @@
     ],
     "translation": "Geburtsort"
   },
+  "passportScan.instructionBody": {
+    "translation": "",
+    "message": "Place the two lines of code at the bottom of the photo page inside the frame.",
+    "placeholders": {},
+    "comments": [
+      "Help text for aligning the MRZ"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        111
+      ]
+    ]
+  },
   "pidSetup.idCardScan.subtitle": {
     "message": "Place your device on top of your eID card to scan it.",
     "placeholders": {},
@@ -3632,6 +3832,20 @@
       ]
     ],
     "translation": "Bitte erlaube Bluetooth-Zugriff"
+  },
+  "passportScan.permissionHeading": {
+    "translation": "",
+    "message": "Please allow camera access",
+    "placeholders": {},
+    "comments": [
+      "Camera permission heading for passport scan"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        70
+      ]
+    ]
   },
   "qrScanner.permissionHeading": {
     "message": "Please allow camera access",
@@ -3863,6 +4077,20 @@
       ]
     ],
     "translation": "Nachricht aus Paradym Wallet"
+  },
+  "passportNfc.heading": {
+    "translation": "",
+    "message": "Read passport chip",
+    "placeholders": {},
+    "comments": [
+      "Heading for the passport NFC read step"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportNfcReadScreen.tsx",
+        85
+      ]
+    ]
   },
   "onboardingDataProtection.privacy": {
     "message": "Read the Privacy Policy",
@@ -4187,6 +4415,20 @@
     ],
     "translation": "Scanne einen QR-Code, um eine Interaktion zu starten."
   },
+  "passportScan.rescan": {
+    "translation": "",
+    "message": "Scan again",
+    "placeholders": {},
+    "comments": [
+      "Rescan the MRZ"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        243
+      ]
+    ]
+  },
   "nfcScanner.error.title": {
     "message": "Scan failed",
     "placeholders": {},
@@ -4200,6 +4442,20 @@
       ]
     ],
     "translation": "Scan fehlgeschlagen"
+  },
+  "menu.item.scanPassport": {
+    "translation": "",
+    "message": "Scan passport",
+    "placeholders": {},
+    "comments": [
+      "Label for the passport scan menu item"
+    ],
+    "origin": [
+      [
+        "src/features/menu/FunkeMenuScreen.tsx",
+        103
+      ]
+    ]
   },
   "home.scanQrButton": {
     "message": "Scan QR",
@@ -4227,6 +4483,20 @@
       ]
     ],
     "translation": "Scan erfolgreich!"
+  },
+  "passportScan.instructionHeading": {
+    "translation": "",
+    "message": "Scan the bottom of your passport",
+    "placeholders": {},
+    "comments": [
+      "Instruction to scan passport MRZ"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        106
+      ]
+    ]
   },
   "pidSetup.idCardScan.title": {
     "message": "Scan your eID card",
@@ -4353,7 +4623,7 @@
     "origin": [
       [
         "src/features/menu/FunkeMenuScreen.tsx",
-        124
+        133
       ]
     ],
     "translation": "Einstellungen"
@@ -4764,6 +5034,20 @@
       ]
     ],
     "translation": "Erklärung überspringen"
+  },
+  "passportScan.checkDigitWarning": {
+    "translation": "",
+    "message": "Some characters may be misread. Please check the fields below before continuing.",
+    "placeholders": {},
+    "comments": [
+      "Warn that MRZ check digits failed"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        193
+      ]
+    ]
   },
   "cardLifecycle.limitedByDate.active.sheetDescription": {
     "message": "Some credentials may expire or require an active internet connection to validate",
@@ -5304,6 +5588,20 @@
     ],
     "translation": "Diese {0} Attribute werden von deiner eID-Karte gelesen."
   },
+  "passportScan.keyFieldsLabel": {
+    "translation": "",
+    "message": "These three fields unlock the passport chip.",
+    "placeholders": {},
+    "comments": [
+      "Label explaining these three fields unlock the chip"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        201
+      ]
+    ]
+  },
   "confirmationSheet.description": {
     "message": "This action cannot be undone.",
     "placeholders": {},
@@ -5501,6 +5799,20 @@
     ],
     "translation": "Das ist deine Wallet"
   },
+  "passportScan.permissionDescription": {
+    "translation": "",
+    "message": "This lets the app read the printed code at the bottom of your passport.",
+    "placeholders": {},
+    "comments": [
+      "Why camera is needed for passport scan"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        75
+      ]
+    ]
+  },
   "requestPurpose.infoSheet.description": {
     "message": "This organization seems to be asking for different or more data than their purpose suggests. Read the request carefully. You can deny the request if you do not agree with the data asked.",
     "placeholders": {},
@@ -5679,6 +5991,34 @@
     ],
     "translation": "Transaktionscode"
   },
+  "passportIssue.retry": {
+    "translation": "",
+    "message": "Try again",
+    "placeholders": {},
+    "comments": [
+      "Retry the passport read/issue"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportFlow.tsx",
+        67
+      ]
+    ]
+  },
+  "passportNfc.retry": {
+    "translation": "",
+    "message": "Try again",
+    "placeholders": {},
+    "comments": [
+      "Retry the chip read"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportNfcReadScreen.tsx",
+        97
+      ]
+    ]
+  },
   "common.credentials.mdl.unDistinguishingSign": {
     "message": "UN sign",
     "placeholders": {},
@@ -5787,6 +6127,20 @@
     ],
     "translation": "Nicht unterstützter QR-Code. Versuche einen anderen."
   },
+  "passportScan.useCamera": {
+    "translation": "",
+    "message": "Use the camera instead",
+    "placeholders": {},
+    "comments": [
+      "Switch from manual entry back to camera"
+    ],
+    "origin": [
+      [
+        "src/features/passport/PassportScanScreen.tsx",
+        249
+      ]
+    ]
+  },
   "qrScanner.instructionHeading": {
     "message": "Use the camera to scan a QR code",
     "placeholders": {},
@@ -5884,7 +6238,6 @@
     "translation": "Verifikationen verbleibend"
   },
   "credentials.verifiedByZada": {
-    "translation": "",
     "message": "Verified by ZADA Network",
     "placeholders": {},
     "comments": [
@@ -5895,7 +6248,8 @@
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
         108
       ]
-    ]
+    ],
+    "translation": ""
   },
   "trust.trustedBy": {
     "message": "Verified By:",

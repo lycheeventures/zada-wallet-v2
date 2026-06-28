@@ -99,7 +99,7 @@ export function PassportScanScreen({ onMrzScanned }: PassportScanScreenProps) {
   return (
     <Page f={1} fd="column" jc="space-between" bg="$black">
       <SystemBars style="light" />
-      {hasPermission && <CameraView ref={cameraRef} style={StyleSheet.absoluteFill} />}
+      {hasPermission && <CameraView ref={cameraRef} style={StyleSheet.absoluteFill} autofocus="on" />}
 
       <YStack zi="$5" ai="center" py="$8" gap="$2">
         <Heading heading="h2" dark ta="center" maxWidth="80%">

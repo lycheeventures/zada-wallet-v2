@@ -5,6 +5,7 @@ import {
   addPassportStatusListener,
   cancelPassportRead,
   isNfcAvailable,
+  isPassportReaderAvailable,
   type PassportNfcStatus,
   type PassportReadResult,
   readPassport,
@@ -38,6 +39,11 @@ export function PassportNfcReadScreen({ mrz, onComplete, onCancel }: PassportNfc
     setStatus('waiting_for_tag')
     setReading(true)
     try {
+      if (!isPassportReaderAvailable()) {
+        setError("Passport reader isn't included in this build (native module not linked). Rebuild required.")
+        setReading(false)
+        return
+      }
       if (!(await isNfcAvailable())) {
         setError('NFC is turned off or not supported on this device.')
         setReading(false)

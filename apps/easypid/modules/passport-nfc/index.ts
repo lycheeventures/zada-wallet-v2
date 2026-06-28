@@ -9,22 +9,19 @@ export interface PassportReadRequest {
 
 /** Result of a successful eMRTD chip read (DG1 + DG2 + passive-auth verdict). */
 export interface PassportReadResult {
-  // DG1 (MRZ data groups)
   documentCode: string
   documentNumber: string
-  issuingState: string // ISO 3166-1 alpha-3
-  nationality: string // ISO 3166-1 alpha-3
-  primaryIdentifier: string // surname
-  secondaryIdentifier: string // given names
-  dateOfBirth: string // YYMMDD
-  dateOfExpiry: string // YYMMDD
-  gender: string // 'MALE' | 'FEMALE' | 'UNSPECIFIED' | 'UNKNOWN' (jMRTD Gender enum name)
+  issuingState: string
+  nationality: string
+  primaryIdentifier: string
+  secondaryIdentifier: string
+  dateOfBirth: string
+  dateOfExpiry: string
+  gender: string
   personalNumber?: string
-  mrz: string // the raw MRZ as stored in DG1
-  // DG2 (portrait)
-  faceImageBase64?: string // base64 of the encoded face image
-  faceImageMimeType?: string // 'image/jpeg' or 'image/jp2'
-  // Passive authentication (MVP: DG-hash integrity + SOD/DSC signature; NOT CSCA-anchored yet)
+  mrz: string
+  faceImageBase64?: string
+  faceImageMimeType?: string
   chipAuthenticated: boolean
   passiveAuthDetail?: string
 }
@@ -45,26 +42,59 @@ interface PassportNfcNativeModule {
   addListener(event: 'onStatus', listener: (payload: { status: PassportNfcStatus }) => void): EventSubscription
 }
 
-const PassportNfc = requireNativeModule<PassportNfcNativeModule>('PassportNfc')
+// LAZY + GUARDED: never call requireNativeModule at import time. If the native module isn't in the
+// build (e.g. autolinking missed the local module), importing this file must NOT throw — otherwise
+// it takes down the whole passport flow (incl. the MRZ camera step) before it can render.
+let _mod: PassportNfcNativeModule | null = null
+let _loadFailed = false
+function getModule(): PassportNfcNativeModule | null {
+  if (_mod) return _mod
+  if (_loadFailed) return null
+  try {
+    _mod = requireNativeModule<PassportNfcNativeModule>('PassportNfc')
+    return _mod
+  } catch {
+    _loadFailed = true
+    return null
+  }
+}
+
+/** Whether the native passport-reader module is present in this build (false ⇒ autolinking missed it). */
+export function isPassportReaderAvailable(): boolean {
+  return getModule() !== null
+}
 
 export async function isNfcAvailable(): Promise<boolean> {
-  return PassportNfc.isNfcAvailable()
+  const m = getModule()
+  if (!m) return false
+  try {
+    return await m.isNfcAvailable()
+  } catch {
+    return false
+  }
 }
 
 /**
- * Read the passport chip. Enables NFC reader mode; resolves once the user holds the passport to the
- * phone and DG1/DG2 are read + passive-auth checked. Reject reasons: NFC_UNAVAILABLE, NO_ACTIVITY,
- * TAG_LOST, AUTH_FAILED (wrong MRZ key), PASSPORT_READ_ERROR.
+ * Read the passport chip. Rejects with READER_UNAVAILABLE if the native module isn't in the build,
+ * NFC_UNAVAILABLE / NO_ACTIVITY / TAG_LOST / AUTH_FAILED / PASSPORT_READ_ERROR otherwise.
  */
 export async function readPassport(req: PassportReadRequest): Promise<PassportReadResult> {
-  return PassportNfc.readPassport(req.documentNumber, req.dateOfBirth, req.dateOfExpiry)
+  const m = getModule()
+  if (!m) throw new Error('READER_UNAVAILABLE')
+  return m.readPassport(req.documentNumber, req.dateOfBirth, req.dateOfExpiry)
 }
 
-/** Cancel an in-flight read (disables reader mode). */
 export async function cancelPassportRead(): Promise<void> {
-  return PassportNfc.cancel()
+  const m = getModule()
+  if (m) {
+    try {
+      await m.cancel()
+    } catch {}
+  }
 }
 
 export function addPassportStatusListener(listener: (status: PassportNfcStatus) => void): EventSubscription {
-  return PassportNfc.addListener('onStatus', ({ status }) => listener(status))
+  const m = getModule()
+  if (!m) return { remove() {} } as EventSubscription
+  return m.addListener('onStatus', ({ status }) => listener(status))
 }
