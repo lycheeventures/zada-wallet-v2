@@ -141,6 +141,12 @@ export default function AppLayout() {
             options={{
               presentation: 'modal',
             }}
+            name="(home)/passport"
+          />
+          <Stack.Screen
+            options={{
+              presentation: 'modal',
+            }}
             name="(home)/offline"
           />
           <Stack.Screen
