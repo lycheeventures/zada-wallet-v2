@@ -1,3 +1,4 @@
+import { useShareCredential } from '@easypid/hooks/useShareCredential'
 import { useLingui } from '@lingui/react/macro'
 import { type CredentialForDisplayId, useCredentialForDisplayById } from '@package/agent'
 import {
@@ -6,24 +7,19 @@ import {
   FunkeCredentialCard,
   TextBackButton,
 } from '@package/app/components'
-import {
-  useHaptics,
-  useHeaderRightAction,
-  useScrollViewPosition,
-} from '@package/app/hooks'
-import * as Sharing from 'expo-sharing'
-import { useShareCredential } from '@easypid/hooks/useShareCredential'
+import { useHaptics, useHeaderRightAction, useScrollViewPosition } from '@package/app/hooks'
 import {
   FlexPage,
   HeaderContainer,
   HeroIcons,
+  Loader,
   ScrollView,
   type ScrollViewRefType,
   useToastController,
   YStack,
-  Loader,
 } from '@package/ui'
 import { useLocalSearchParams, useRouter } from 'expo-router'
+import * as Sharing from 'expo-sharing'
 import { useRef, useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
@@ -34,8 +30,7 @@ export function FunkeCredentialDetailAttributesScreen() {
   const toast = useToastController()
   const router = useRouter()
 
-  const { handleScroll, isScrolledByOffset, scrollEventThrottle } =
-    useScrollViewPosition()
+  const { handleScroll, isScrolledByOffset, scrollEventThrottle } = useScrollViewPosition()
 
   const { bottom } = useSafeAreaInsets()
   const { withHaptics } = useHaptics()
@@ -55,9 +50,9 @@ export function FunkeCredentialDetailAttributesScreen() {
       setIsSharing(false)
 
       if (!uri) return
-      await new Promise(resolve => setTimeout(resolve, 100))
+      await new Promise((resolve) => setTimeout(resolve, 100))
       await Sharing.shareAsync(uri)
-    } catch (e) {
+    } catch (_e) {
       setIsSharing(false)
     }
   }
@@ -93,11 +88,7 @@ export function FunkeCredentialDetailAttributesScreen() {
   return (
     <YStack fg={1} bg="$background">
       <FlexPage gap="$0" paddingHorizontal="$0">
-        <ScrollView
-          ref={scrollViewRef}
-          onScroll={handleScroll}
-          scrollEventThrottle={scrollEventThrottle}
-        >
+        <ScrollView ref={scrollViewRef} onScroll={handleScroll} scrollEventThrottle={scrollEventThrottle}>
           <YStack pt="$2" px="$2" jc="center" ai="center">
             <HeaderContainer
               isScrolledByOffset={isScrolledByOffset}
@@ -120,7 +111,7 @@ export function FunkeCredentialDetailAttributesScreen() {
                 url: credential.display.backgroundImage?.url,
                 altText: credential.display.backgroundImage?.altText,
               }}
-              bgColor={credential.display.backgroundColor ?? '$grey-900'}
+              bgColor={credential.display.backgroundColor}
             />
 
             <CredentialAttributes
@@ -135,14 +126,7 @@ export function FunkeCredentialDetailAttributesScreen() {
           </YStack>
         </ScrollView>
 
-        <YStack
-          btw="$0.5"
-          borderColor="$grey-200"
-          pt="$4"
-          mx="$-4"
-          px="$4"
-          bg="$background"
-        >
+        <YStack btw="$0.5" borderColor="$grey-200" pt="$4" mx="$-4" px="$4" bg="$background">
           <TextBackButton />
         </YStack>
       </FlexPage>
@@ -155,16 +139,7 @@ export function FunkeCredentialDetailAttributesScreen() {
       />
 
       {isSharing && (
-        <YStack
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          bg="rgba(0,0,0,0.3)"
-          jc="center"
-          ai="center"
-        >
+        <YStack position="absolute" top={0} left={0} right={0} bottom={0} bg="rgba(0,0,0,0.3)" jc="center" ai="center">
           <Loader size="large" />
         </YStack>
       )}

@@ -38,8 +38,8 @@ export function FunkeCredentialDetailScreen() {
         icon: <HeroIcons.Trash />,
         onPress: withHaptics(() => setIsSheetOpen(true)),
         renderCondition: credential?.category?.canDeleteCredential ?? true,
-      }
-    ]
+      },
+    ],
   })
 
   if (!credential) {
@@ -87,7 +87,7 @@ export function FunkeCredentialDetailScreen() {
                   url: credential.display.backgroundImage?.url,
                   altText: credential.display.backgroundImage?.altText,
                 }}
-                bgColor={credential.display.backgroundColor ?? '$grey-900'}
+                bgColor={credential.display.backgroundColor}
               />
             </AnimatedStack>
             <Stack gap="$2">
@@ -108,7 +108,8 @@ export function FunkeCredentialDetailScreen() {
                     {t({
                       id: 'credentials.verifiedByZada',
                       message: 'Verified by ZADA Network',
-                      comment: 'Badge shown when the credential issuer was cryptographically verified against the ZADA trust registry',
+                      comment:
+                        'Badge shown when the credential issuer was cryptographically verified against the ZADA trust registry',
                     })}
                   </Paragraph>
                 </XStack>
