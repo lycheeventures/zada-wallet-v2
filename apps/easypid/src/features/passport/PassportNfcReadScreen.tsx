@@ -1,5 +1,6 @@
 import { Trans, useLingui } from '@lingui/react/macro'
 import { Button, Heading, HeroIcons, Page, Paragraph, Spinner, YStack } from '@package/ui'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   addPassportStatusListener,
   cancelPassportRead,
@@ -8,8 +9,7 @@ import {
   type PassportNfcStatus,
   type PassportReadResult,
   readPassport,
-} from 'passport-nfc'
-import { useCallback, useEffect, useRef, useState } from 'react'
+} from '../../../modules/passport-nfc'
 import type { MrzData } from './mrz'
 
 interface PassportNfcReadScreenProps {

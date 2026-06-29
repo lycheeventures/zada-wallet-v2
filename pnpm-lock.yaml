@@ -454,9 +454,6 @@ importers:
       mrz:
         specifier: ^3.1.0
         version: 3.5.0
-      passport-nfc:
-        specifier: workspace:*
-        version: link:../../packages/passport-nfc
       react:
         specifier: 'catalog:'
         version: 19.1.0
@@ -667,8 +664,6 @@ importers:
       '@types/fast-text-encoding':
         specifier: 'catalog:'
         version: 1.0.3
-
-  packages/passport-nfc: {}
 
   packages/scanner:
     dependencies:
