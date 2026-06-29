@@ -1,0 +1,7 @@
+{
+  "name": "passport-nfc",
+  "version": "0.1.0",
+  "description": "ZADA eMRTD/passport NFC reader (Android, jMRTD) — app-local Expo module",
+  "main": "index.ts",
+  "private": true
+}
