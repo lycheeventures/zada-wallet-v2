@@ -93,7 +93,7 @@ export function DeferredCredentialNotificationScreen() {
                   altText: credentialDisplay.backgroundImage?.altText,
                 }}
                 isLoading={true}
-                bgColor={credentialDisplay.backgroundColor ?? '$grey-900'}
+                bgColor={credentialDisplay.backgroundColor}
               />
             </AnimatedStack>
             <Stack gap="$2">

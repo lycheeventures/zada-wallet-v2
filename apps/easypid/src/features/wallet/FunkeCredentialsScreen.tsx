@@ -5,6 +5,7 @@ import { useHaptics, useScrollViewPosition } from '@package/app/hooks'
 import {
   AnimatedStack,
   FlexPage,
+  getTextColorBasedOnBg,
   HeaderContainer,
   Heading,
   HeroIcons,
@@ -14,6 +15,7 @@ import {
   Loader,
   LucideIcons,
   Paragraph,
+  pickCredentialBackgroundColor,
   ScrollView,
   Spacer,
   Stack,
@@ -109,8 +111,8 @@ export function FunkeCredentialsScreen() {
                 <FunkeCredentialRowCard
                   key={credential.id}
                   name={credential.display.name}
-                  textColor={credential.display.textColor ?? '$grey-100'}
-                  backgroundColor={credential.display.backgroundColor ?? '$grey-900'}
+                  textColor={credential.display.textColor}
+                  backgroundColor={credential.display.backgroundColor}
                   issuer={credential.display.issuer.name}
                   logo={credential.display.issuer.logo}
                   // TODO: we should have RAW metadata (date instance) and human metadata (string)
@@ -140,8 +142,8 @@ export function FunkeCredentialsScreen() {
 
 interface FunkeCredentialRowCardProps {
   name: string
-  backgroundColor: string
-  textColor: string
+  backgroundColor?: string
+  textColor?: string
   issuer: string
   logo?: DisplayImage
   issuedAt?: Date
@@ -158,6 +160,11 @@ export function FunkeCredentialRowCard({
 }: FunkeCredentialRowCardProps) {
   const { pressStyle, handlePressIn, handlePressOut } = useScaleAnimation({ scaleInValue: 0.99 })
 
+  // Match FunkeCredentialCard: fall back to a deterministic palette colour (seeded by name) when
+  // the issuer provides no background colour, then derive readable text from the resolved colour.
+  const bg = backgroundColor ?? pickCredentialBackgroundColor(name)
+  const resolvedTextColor = textColor ?? getTextColorBasedOnBg(bg)
+
   const icon = logo?.url ? (
     <Image src={logo.url} width={36} height={36} />
   ) : (
@@ -169,7 +176,7 @@ export function FunkeCredentialRowCard({
   return (
     <AnimatedStack
       flexDirection="row"
-      bg={backgroundColor}
+      bg={bg}
       gap="$4"
       ai="center"
       borderWidth="$0.5"
@@ -184,18 +191,20 @@ export function FunkeCredentialRowCard({
     >
       {icon}
       <YStack gap="$1" jc="center" fg={1} f={1}>
-        <Paragraph mt="$-1.5" fontSize={14} fontWeight="$bold" color={textColor} numberOfLines={1}>
+        <Paragraph mt="$-1.5" fontSize={14} fontWeight="$bold" color={resolvedTextColor} numberOfLines={1}>
           {name.toLocaleUpperCase()}
         </Paragraph>
         {issuedAt && (
-          <Paragraph variant="sub" opacity={0.9} color={textColor}>
+          <Paragraph variant="sub" opacity={0.9} color={resolvedTextColor}>
             <Trans id="common.issuedOn" comment="Label before the date a credential was issued">
               Issued on {formatDate(issuedAt, { includeTime: false })}
             </Trans>
           </Paragraph>
         )}
       </YStack>
-      {onPress && <IconContainer bg="transparent" icon={<HeroIcons.ArrowRight color={textColor} size={20} />} />}
+      {onPress && (
+        <IconContainer bg="transparent" icon={<HeroIcons.ArrowRight color={resolvedTextColor} size={20} />} />
+      )}
     </AnimatedStack>
   )
 }

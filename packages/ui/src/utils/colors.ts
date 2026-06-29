@@ -9,6 +9,38 @@ export function getTextColorBasedOnBg(bgColor: string) {
 }
 
 /**
+ * Curated ZADA card palette. Used as a deterministic fallback background when an issuer does not
+ * supply its own `background_color`, so cards from different issuers/types look distinct instead of
+ * all rendering in the same grey. Issuer-provided colors always take precedence. Colours are kept
+ * dark enough that {@link getTextColorBasedOnBg} resolves to light text on all of them.
+ */
+export const zadaCardPalette = [
+  '#1B2A4A', // navy
+  '#0E5A4F', // emerald
+  '#5B2B82', // purple
+  '#8A2D3B', // wine
+  '#1F6F8B', // ocean
+  '#9C5A1D', // ochre
+  '#2E5339', // forest
+  '#7A3E9D', // violet
+  '#34495E', // slate
+  '#9C3848', // rose
+] as const
+
+/**
+ * Deterministically pick a card background color from {@link zadaCardPalette} based on a stable
+ * seed (e.g. the credential name / type). The same seed always yields the same color, so a given
+ * credential keeps one consistent colour across the list, detail and share screens.
+ */
+export function pickCredentialBackgroundColor(seed: string): string {
+  let hash = 0
+  for (let i = 0; i < seed.length; i++) {
+    hash = (hash * 31 + seed.charCodeAt(i)) | 0
+  }
+  return zadaCardPalette[Math.abs(hash) % zadaCardPalette.length]
+}
+
+/**
  * Darken the shade of a custom color based on the hex color and a percentage
  * used to dynamically create onPress styling for custom colors
  */

@@ -11,7 +11,16 @@ import type {
 
 type SignedCredentialIssuer = NonNullable<OpenId4VciResolvedCredentialOffer['metadata']['signedCredentialIssuer']>
 
-export type TrustMechanism = 'eudi_rp_authentication' | 'openid_federation' | 'x509' | 'did' | 'none'
+export type TrustMechanism =
+  | 'eudi_rp_authentication'
+  | 'openid_federation'
+  | 'x509'
+  | 'did'
+  // ZADA: issuer is listed in the ZADA trust registry by its issuer URL, but the credential-issuer
+  // metadata was NOT cryptographically signed (no x5c to chain to a registered certificate). This is
+  // a weaker, registry-listing-only trust signal and MUST be surfaced distinctly from 'x509'/'did'.
+  | 'zada_registry'
+  | 'none'
 
 export type TrustList = TrustedEntity & {
   trustList: Array<TrustedEntity & { trustedRelyingPartyRegistrars: Array<TrustedEntity> }>
@@ -469,7 +478,6 @@ const getTrustedEntitiesForX509Certificate = async ({
   }
 }
 
-
 /**
  * Establish issuer trust for an OID4VCI offer against the ZADA trust registry.
  *
@@ -549,6 +557,52 @@ export const resolveZadaTrustFromX5c = async ({
   return { trustedEntities, trustMechanism: 'x509' }
 }
 
+/**
+ * Resolve trust for an issuer from the ZADA trust registry by its issuer URL ALONE, WITHOUT a
+ * cryptographic check. This is the weaker fallback used at offer time when the issuer has not (yet)
+ * signed its credential-issuer metadata with an x5c chain. A match means "this issuer URL is
+ * registered in the ZADA trust registry" — it does NOT prove the party speaking is that issuer.
+ * The UI surfaces this as a distinct "In ZADA Trust Registry" state (trustMechanism
+ * 'zada_registry'), never as the same badge as a cryptographically verified issuer. Fails closed.
+ */
+export const resolveZadaRegistryListing = async ({
+  issuer,
+  walletTrustedEntity,
+}: {
+  issuer?: string
+  walletTrustedEntity?: TrustedEntity
+}): Promise<{
+  trustedEntities: TrustedEntity[]
+  trustMechanism: TrustMechanism
+}> => {
+  const untrusted = { trustedEntities: [] as TrustedEntity[], trustMechanism: 'none' as TrustMechanism }
+  if (!issuer) return untrusted
+
+  let result: Awaited<ReturnType<typeof getTrustRegistryEntriesByIssuer>>
+  try {
+    result = await getTrustRegistryEntriesByIssuer(issuer)
+  } catch (error) {
+    console.error('ZADA trust registry lookup failed:', error)
+    return untrusted // fail closed
+  }
+
+  const org = result?.trusted ? result.org : null
+  if (!org) return untrusted
+
+  const trustedEntities: TrustedEntity[] = [
+    {
+      entityId: org.id ?? issuer,
+      organizationName: org.name ?? 'Unknown',
+      logoUri: org.logo_uri || org.primary_logo_url || undefined,
+      uri: org.website || undefined,
+      demo: org.demo ?? false,
+    },
+  ]
+  if (walletTrustedEntity) trustedEntities.push(walletTrustedEntity)
+
+  return { trustedEntities, trustMechanism: 'zada_registry' }
+}
+
 export const getTrustedEntitiesForZADA = async ({
   agent,
   issuer,
@@ -563,9 +617,15 @@ export const getTrustedEntitiesForZADA = async ({
   trustedEntities: TrustedEntity[]
   trustMechanism: TrustMechanism
 }> => {
-  // Offer-time: the issuer must have signed its metadata with an x5c chain.
-  if (signedCredentialIssuer?.signer.method !== 'x5c' || !signedCredentialIssuer.signer.x5c?.length) {
-    return { trustedEntities: [], trustMechanism: 'none' }
+  // Strong path: the issuer signed its metadata with an x5c chain. If it chains to a registered
+  // ZADA certificate we return cryptographic ('x509'/'did') trust; if a signature is present but
+  // does NOT chain we return untrusted — a *failed* signature must never be silently downgraded to
+  // the weaker registry-listing state.
+  if (signedCredentialIssuer?.signer.method === 'x5c' && signedCredentialIssuer.signer.x5c?.length) {
+    return resolveZadaTrustFromX5c({ agent, issuer, x5c: signedCredentialIssuer.signer.x5c, walletTrustedEntity })
   }
-  return resolveZadaTrustFromX5c({ agent, issuer, x5c: signedCredentialIssuer.signer.x5c, walletTrustedEntity })
+
+  // Weaker fallback: no signed metadata at all (the common case today). Recognise the issuer if it
+  // is listed in the ZADA trust registry by its issuer URL, surfaced distinctly in the UI.
+  return resolveZadaRegistryListing({ issuer, walletTrustedEntity })
 }

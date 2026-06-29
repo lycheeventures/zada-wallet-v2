@@ -2,6 +2,15 @@ import { useLingui } from '@lingui/react/macro'
 import { useToastController } from '@package/ui'
 import * as WebBrowser from 'expo-web-browser'
 import { credentialMigrationUrl } from '../../constants'
+import { mmkv } from '../../storage/mmkv'
+
+/**
+ * MMKV flag set once the user has begun ZADA ID onboarding / credential migration. Both the
+ * "Migrate credentials" and "Create ZADA ID" home actions run this same flow, so starting either
+ * one hides both getting-started buttons (you only set up your ZADA ID once). Read on the home
+ * screen via `useMMKVBoolean('hasZadaIdOnboarded', mmkv)`.
+ */
+export const HAS_ZADA_ID_ONBOARDED_KEY = 'hasZadaIdOnboarded'
 
 /**
  * Migrate legacy ZADA credentials via the credential-key-usher web flow.
@@ -30,6 +39,9 @@ export function useCredentialMigration() {
     }
 
     try {
+      // The user has committed to ZADA ID onboarding — hide the getting-started buttons for both
+      // "Migrate" and "Create ZADA ID" from now on.
+      mmkv.set(HAS_ZADA_ID_ONBOARDED_KEY, true)
       // Opens an in-app browser; the claim hand-back uses the openid-credential-offer:// scheme,
       // which the OS routes to the wallet's deep-link handler.
       await WebBrowser.openBrowserAsync(credentialMigrationUrl)

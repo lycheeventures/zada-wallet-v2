@@ -8,7 +8,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        92
+        98
       ]
     ],
     "translation": "(Demo)"
@@ -30,6 +30,24 @@
       ]
     ],
     "translation": "{0} Karten insgesamt"
+  },
+  "trust.zadaRegistryListing": {
+    "translation": "",
+    "message": "{0} is listed in the ZADA Trust Registry. Its identity has not been cryptographically verified.",
+    "placeholders": {
+      "0": [
+        "name ?? 'This organization'"
+      ]
+    },
+    "comments": [
+      "Shown when an organization is listed in the ZADA trust registry but not cryptographically verified"
+    ],
+    "origin": [
+      [
+        "src/features/wallet/FunkeTrustDetailScreen.tsx",
+        115
+      ]
+    ]
   },
   "activity.sharedSummaryPlural": {
     "message": "{amountShared} credentials were shared.",
@@ -242,7 +260,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        110
+        123
       ]
     ],
     "translation": "Eine Liste von Organisationen, die {name} vertrauen."
@@ -256,7 +274,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        115
+        128
       ]
     ],
     "translation": "Eine Liste von Organisationen, die dieser unbekannten Organisation vertrauen."
@@ -310,7 +328,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        59
+        65
       ]
     ],
     "translation": "Über diese Partei"
@@ -422,6 +440,18 @@
       ]
     ],
     "translation": "Füge digitale Karten mit deinen Informationen hinzu und teile sie einfach mit anderen. Es ist, als hättest du deine Brieftasche auf dem Handy."
+  },
+  "home.addPassport": {
+    "translation": "",
+    "message": "Add passport",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        178
+      ]
+    ]
   },
   "onboardingWalletExplanation.slide3.subtitle": {
     "message": "Add your cards and documents by scanning QR codes. When organizations request your data, you can review and share with a tap in the app. Your information is always secure with your PIN or fingerprint.",
@@ -544,7 +574,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        71
+        77
       ]
     ],
     "translation": "Überlege immer, ob das Teilen mit einer Partei sinnvoll ist."
@@ -716,7 +746,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        182
+        198
       ]
     ],
     "translation": "Vertraut von {0} Organisationen"
@@ -1069,6 +1099,18 @@
       ]
     ]
   },
+  "home.migrateSubtitle": {
+    "translation": "",
+    "message": "Bring over credentials from the old app",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        167
+      ]
+    ]
+  },
   "common.deleteDeferredCredentialDescription": {
     "message": "By deleting {name}, you will no longer be able to retrieve your card from the issuer.",
     "placeholders": {
@@ -1340,7 +1382,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        47
+        49
       ]
     ],
     "translation": "Karten"
@@ -1532,7 +1574,7 @@
     "origin": [
       [
         "src/features/migration/useCredentialMigration.tsx",
-        38
+        50
       ]
     ]
   },
@@ -1575,6 +1617,18 @@
       ]
     ],
     "translation": "Land"
+  },
+  "home.createZadaId": {
+    "translation": "",
+    "message": "Create ZADA ID",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        157
+      ]
+    ]
   },
   "passportIssue.inProgress": {
     "message": "Creating your passport credential…",
@@ -1625,11 +1679,11 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx",
-        104
+        95
       ],
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        125
+        126
       ]
     ],
     "translation": "Karteneigenschaften"
@@ -1683,7 +1737,7 @@
     "origin": [
       [
         "src/features/migration/useCredentialMigration.tsx",
-        22
+        31
       ]
     ]
   },
@@ -1764,7 +1818,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        70
+        72
       ]
     ],
     "translation": "Nachweise werden hier angezeigt, sobald du sie erhältst."
@@ -1884,7 +1938,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        151
+        164
       ]
     ],
     "translation": "Demo-Organisation"
@@ -1896,7 +1950,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        202
+        218
       ]
     ],
     "translation": "Demo-Organisation"
@@ -1937,7 +1991,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        206
+        222
       ]
     ],
     "translation": "Teile keine echten Daten"
@@ -2457,7 +2511,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        220
+        236
       ]
     ],
     "translation": "Erste Interaktion"
@@ -2487,6 +2541,18 @@
       ]
     ],
     "translation": "Deutsch"
+  },
+  "home.getStarted": {
+    "translation": "",
+    "message": "Get started",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        150
+      ]
+    ]
   },
   "onboardingWelcome.getStarted": {
     "message": "Get Started",
@@ -2662,11 +2728,10 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        69
+        125
       ]
     ],
-    "translation": "Hallo!",
-    "obsolete": true
+    "translation": "Hallo!"
   },
   "optionSheet.hideMetadata": {
     "message": "Hide metadata attributes",
@@ -2807,6 +2872,18 @@
       ]
     ],
     "translation": "Wenn du aufhörst, wird das Kartenangebot abgebrochen."
+  },
+  "verifyPartySlide.zadaRegistryTitle": {
+    "translation": "",
+    "message": "In ZADA Trust Registry",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/VerifyPartySlide.tsx",
+        181
+      ]
+    ]
   },
   "inbox.header": {
     "message": "Inbox",
@@ -3055,7 +3132,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        192
+        199
       ]
     ],
     "translation": "Ausgestellt am {0}"
@@ -3139,7 +3216,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        227
+        243
       ]
     ],
     "translation": "Letzte Interaktion: {0}"
@@ -3183,6 +3260,18 @@
       ]
     ],
     "translation": "Begrenzte Kartennutzung"
+  },
+  "verifyPartySlide.zadaRegistryDescription": {
+    "translation": "",
+    "message": "Listed in the registry, identity not cryptographically verified",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/VerifyPartySlide.tsx",
+        185
+      ]
+    ]
   },
   "qrScanScreen.loadingInvitation": {
     "message": "Loading invitation",
@@ -3269,6 +3358,18 @@
     "translation": "Metadaten",
     "obsolete": true
   },
+  "home.migrate": {
+    "translation": "",
+    "message": "Migrate credentials",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        166
+      ]
+    ]
+  },
   "settings.migrateCredentials": {
     "message": "Migrate credentials",
     "placeholders": {},
@@ -3333,6 +3434,18 @@
     ],
     "translation": "neue Karte"
   },
+  "home.createZadaIdSubtitle": {
+    "translation": "",
+    "message": "New to ZADA? Set up your ZADA ID",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        158
+      ]
+    ]
+  },
   "common.no": {
     "message": "No",
     "placeholders": {},
@@ -3392,7 +3505,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx",
-        81
+        76
       ]
     ],
     "translation": "Keine Eigenschaften gefunden"
@@ -3410,7 +3523,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        125
+        127
       ]
     ],
     "translation": "Keine Karten gefunden für \"{searchQuery}\""
@@ -3439,7 +3552,8 @@
         168
       ]
     ],
-    "translation": ""
+    "translation": "",
+    "obsolete": true
   },
   "presentation.noCredentialsSelected": {
     "message": "No credentials selected",
@@ -3546,7 +3660,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        231
+        247
       ]
     ],
     "translation": "Keine vorherigen Interaktionen gefunden"
@@ -3630,7 +3744,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        192
+        208
       ]
     ],
     "translation": "Organisation ist nicht verifiziert"
@@ -3956,11 +4070,10 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        86
+        142
       ]
     ],
-    "translation": "Persönlich vorzeigen",
-    "obsolete": true
+    "translation": "Persönlich vorzeigen"
   },
   "common.presentationCouldNotBeShared": {
     "message": "Presentation could not be shared.",
@@ -3997,7 +4110,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        216
+        232
       ]
     ],
     "translation": "Vorherige Interaktionen"
@@ -4147,11 +4260,10 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        73
+        128
       ]
     ],
-    "translation": "Empfange oder teile aus deiner Wallet",
-    "obsolete": true
+    "translation": "Empfange oder teile aus deiner Wallet"
   },
   "activity.receivedFailed": {
     "message": "Receiving the cards from {0} failed.",
@@ -4210,7 +4322,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        178
+        194
       ]
     ],
     "translation": "Vertrauenswürdige Organisation"
@@ -4339,20 +4451,6 @@
     ],
     "translation": "Wallet zurücksetzen"
   },
-  "signShare.title": {
-    "message": "Review the request",
-    "placeholders": {},
-    "comments": [
-      "Main heading in the sign & share screen"
-    ],
-    "origin": [
-      [
-        "src/features/share/slides/SignAndShareSlide.tsx",
-        72
-      ]
-    ],
-    "translation": "Anfrage überprüfen"
-  },
   "submission.reviewTitle": {
     "message": "Review the request",
     "placeholders": {},
@@ -4363,6 +4461,20 @@
       [
         "src/features/share/slides/ShareCredentialsSlide.tsx",
         61
+      ]
+    ],
+    "translation": "Anfrage überprüfen"
+  },
+  "signShare.title": {
+    "message": "Review the request",
+    "placeholders": {},
+    "comments": [
+      "Main heading in the sign & share screen"
+    ],
+    "origin": [
+      [
+        "src/features/share/slides/SignAndShareSlide.tsx",
+        72
       ]
     ],
     "translation": "Anfrage überprüfen"
@@ -4391,7 +4503,8 @@
         196
       ]
     ],
-    "translation": ""
+    "translation": "",
+    "obsolete": true
   },
   "noContentWallet.scanButton": {
     "message": "Scan a QR code",
@@ -4462,17 +4575,16 @@
     "translation": ""
   },
   "home.scanQrButton": {
-    "message": "Scan QR",
+    "message": "Scan QR-code",
     "placeholders": {},
     "comments": [],
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        66
+        136
       ]
     ],
-    "translation": "QR-Code scannen",
-    "obsolete": true
+    "translation": "QR-Code scannen"
   },
   "nfcScanner.complete.title": {
     "message": "Scan successful!",
@@ -4518,6 +4630,18 @@
     ],
     "translation": "Scanne deine eID-Karte"
   },
+  "home.addPassportSubtitle": {
+    "translation": "",
+    "message": "Scan your passport chip to add it",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        179
+      ]
+    ]
+  },
   "onboardingIntroduction.step2.title": {
     "message": "Scan your physical ID card",
     "placeholders": {},
@@ -4555,11 +4679,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        91
-      ],
-      [
-        "src/features/wallet/FunkeWalletScreen.tsx",
-        110
+        93
       ]
     ],
     "translation": "Karten suchen"
@@ -4618,20 +4738,6 @@
     ],
     "translation": "Später einrichten"
   },
-  "menu.item.settings": {
-    "message": "Settings",
-    "placeholders": {},
-    "comments": [
-      "Label for settings menu item"
-    ],
-    "origin": [
-      [
-        "src/features/menu/FunkeMenuScreen.tsx",
-        133
-      ]
-    ],
-    "translation": "Einstellungen"
-  },
   "settings.title": {
     "message": "Settings",
     "placeholders": {},
@@ -4642,6 +4748,20 @@
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
         151
+      ]
+    ],
+    "translation": "Einstellungen"
+  },
+  "menu.item.settings": {
+    "message": "Settings",
+    "placeholders": {},
+    "comments": [
+      "Label for settings menu item"
+    ],
+    "origin": [
+      [
+        "src/features/menu/FunkeMenuScreen.tsx",
+        133
       ]
     ],
     "translation": "Einstellungen"
@@ -4681,7 +4801,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx",
-        128
+        119
       ]
     ],
     "translation": "Teilbare Eigenschaften"
@@ -5508,7 +5628,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        122
+        135
       ]
     ],
     "translation": "Es gibt keine Organisationen, die {name} vertrauen."
@@ -5555,7 +5675,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        127
+        140
       ]
     ],
     "translation": "Es gibt keine Organisationen, die dieser unbekannten Organisation vertrauen."
@@ -6258,7 +6378,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        102
+        108
       ]
     ],
     "translation": "Vertraut von"
@@ -6299,7 +6419,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialDetailScreen.tsx",
-        130
+        131
       ]
     ],
     "translation": "Eigenschaften der Karte anzeigen"
@@ -6594,7 +6714,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        65
+        67
       ]
     ],
     "translation": "Hier ist noch nichts"
@@ -6622,7 +6742,8 @@
         83
       ]
     ],
-    "translation": ""
+    "translation": "",
+    "obsolete": true
   },
   "wallet.emptySubtitle": {
     "message": "You don’t have any credentials yet. Scan a QR code to add your first credential.",
@@ -6679,20 +6800,6 @@
     ],
     "translation": "Du hast die angeforderte(n) Karte(n) nicht."
   },
-  "signShare.missingCards": {
-    "message": "You don't have the required cards",
-    "placeholders": {},
-    "comments": [
-      "Shown when the user lacks the required credentials"
-    ],
-    "origin": [
-      [
-        "src/features/share/slides/SignAndShareSlide.tsx",
-        180
-      ]
-    ],
-    "translation": "Du hast nicht die erforderlichen Karten"
-  },
   "submission.missingCardsWarning": {
     "message": "You don't have the required cards",
     "placeholders": {},
@@ -6703,6 +6810,20 @@
       [
         "src/features/share/slides/ShareCredentialsSlide.tsx",
         130
+      ]
+    ],
+    "translation": "Du hast nicht die erforderlichen Karten"
+  },
+  "signShare.missingCards": {
+    "message": "You don't have the required cards",
+    "placeholders": {},
+    "comments": [
+      "Shown when the user lacks the required credentials"
+    ],
+    "origin": [
+      [
+        "src/features/share/slides/SignAndShareSlide.tsx",
+        180
       ]
     ],
     "translation": "Du hast nicht die erforderlichen Karten"
