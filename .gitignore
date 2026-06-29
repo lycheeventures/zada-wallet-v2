@@ -95,15 +95,13 @@ buck-out/
 .expo/*
 web-build/
 
-# We don't want the output of prebuild to be committed
-ios
-android
+# We don't want the output of prebuild to be committed (anchored to the app dir so it doesn't
+# also ignore the android/ sources of app-local native modules in apps/easypid/modules/*)
+/apps/easypid/ios
+/apps/easypid/android
 
 # build output
 dist/
 packages/ui/types
 
 apps/easypid/.maestro/.maestro/screenshots
-# passport-nfc native module: the broad `android` rule above would ignore these — keep them tracked.
-!apps/easypid/modules/passport-nfc/android/
-!apps/easypid/modules/passport-nfc/android/**

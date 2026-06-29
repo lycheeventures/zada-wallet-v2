@@ -9,7 +9,7 @@
 		"android": "APP_VARIANT=development expo run:android",
 		"ios": "APP_VARIANT=development expo run:ios",
 		"prebuild": "APP_VARIANT=development expo prebuild --no-install",
-		"eas-build-pre-install": "corepack enable",
+		"eas-build-pre-install": "corepack enable; echo '=== passport-nfc on builder ==='; ls -laR modules/passport-nfc 2>/dev/null || ls -laR apps/easypid/modules/passport-nfc 2>/dev/null || echo 'MODULE DIR MISSING ON BUILDER'",
 		"translations:extract": "lingui extract",
 		"translations:compile": "lingui compile --typescript"
 	},
