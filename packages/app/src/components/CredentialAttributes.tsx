@@ -25,7 +25,7 @@ import {
 import { sanitizeString } from '@package/utils'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { useRef, useState } from 'react'
-import type { View } from 'react-native'
+import { Linking, type View } from 'react-native'
 import { useHaptics } from '../hooks/useHaptics'
 
 export type CredentialAttributesProps = {
@@ -385,8 +385,10 @@ const ValueRow = ({
   description?: string
   scrollRef?: React.RefObject<ScrollViewRefType | null>
 }) => {
+  // Linkify http(s) values (e.g. the issuer's trust-registry URL) so they open in the browser.
+  const isUrl = /^https?:\/\//i.test(value.trim())
   const { rowRef, onPress, collapsibleButton, isExpanded, truncate } = useTruncatedValue({
-    truncate: value.length > 100,
+    truncate: !isUrl && value.length > 100,
     scrollRef,
   })
 
@@ -399,15 +401,26 @@ const ValueRow = ({
       py="$2"
       borderBottomWidth={1}
       borderBottomColor="$tableBorderColor"
-      onPress={onPress}
-      pressStyle={onPress ? { backgroundColor: '$grey-100' } : undefined}
+      onPress={isUrl ? undefined : onPress}
+      pressStyle={!isUrl && onPress ? { backgroundColor: '$grey-100' } : undefined}
     >
       <Paragraph variant="annotation" color="$grey-600" fontWeight="$medium">
         {label}
       </Paragraph>
-      <Paragraph color="$grey-900" numberOfLines={truncate && !isExpanded ? 2 : undefined}>
-        {value}
-      </Paragraph>
+      {isUrl ? (
+        <Paragraph
+          color="$primary-500"
+          textDecorationLine="underline"
+          onPress={() => void Linking.openURL(value.trim())}
+          pressStyle={{ opacity: 0.7 }}
+        >
+          {value}
+        </Paragraph>
+      ) : (
+        <Paragraph color="$grey-900" numberOfLines={truncate && !isExpanded ? 2 : undefined}>
+          {value}
+        </Paragraph>
+      )}
       {collapsibleButton}
     </YStack>
   )

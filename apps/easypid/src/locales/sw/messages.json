@@ -464,7 +464,7 @@
     "origin": [
       [
         "src/features/passport/PassportFlow.tsx",
-        69
+        70
       ]
     ],
     "translation": ""
@@ -1478,7 +1478,7 @@
     "origin": [
       [
         "src/features/passport/PassportScanScreen.tsx",
-        179
+        192
       ]
     ],
     "translation": ""
@@ -1518,7 +1518,7 @@
     "origin": [
       [
         "src/features/passport/PassportScanScreen.tsx",
-        233
+        246
       ]
     ],
     "translation": ""
@@ -1585,7 +1585,7 @@
     "origin": [
       [
         "src/features/passport/PassportFlow.tsx",
-        86
+        87
       ]
     ],
     "translation": ""
@@ -1816,7 +1816,7 @@
     "origin": [
       [
         "src/features/passport/PassportScanScreen.tsx",
-        210
+        223
       ]
     ],
     "translation": ""
@@ -2099,7 +2099,7 @@
     "origin": [
       [
         "src/features/passport/PassportScanScreen.tsx",
-        137
+        149
       ]
     ],
     "translation": ""
@@ -2113,7 +2113,7 @@
     "origin": [
       [
         "src/features/passport/PassportScanScreen.tsx",
-        175
+        188
       ]
     ],
     "translation": ""
@@ -2317,7 +2317,7 @@
     "origin": [
       [
         "src/features/passport/PassportScanScreen.tsx",
-        217
+        230
       ]
     ],
     "translation": ""
@@ -2488,20 +2488,6 @@
     ],
     "translation": "Tyska"
   },
-  "onboardingWelcome.getStarted": {
-    "message": "Get Started",
-    "placeholders": {},
-    "comments": [
-      "Button label to begin onboarding from the welcome screen"
-    ],
-    "origin": [
-      [
-        "src/features/onboarding/screens/welcome.tsx",
-        17
-      ]
-    ],
-    "translation": "Kom igång"
-  },
   "onboardingWalletExplanation.getStarted": {
     "message": "Get Started",
     "placeholders": {},
@@ -2512,6 +2498,20 @@
       [
         "src/features/onboarding/screens/wallet-explanation.tsx",
         71
+      ]
+    ],
+    "translation": "Kom igång"
+  },
+  "onboardingWelcome.getStarted": {
+    "message": "Get Started",
+    "placeholders": {},
+    "comments": [
+      "Button label to begin onboarding from the welcome screen"
+    ],
+    "origin": [
+      [
+        "src/features/onboarding/screens/welcome.tsx",
+        17
       ]
     ],
     "translation": "Kom igång"
@@ -2971,7 +2971,6 @@
     "translation": "Inbjudningstyp inte tillåten."
   },
   "passportNfc.skipChip": {
-    "translation": "",
     "message": "Issue without chip (test)",
     "placeholders": {},
     "comments": [],
@@ -2984,7 +2983,8 @@
         "src/features/passport/PassportNfcReadScreen.tsx",
         117
       ]
-    ]
+    ],
+    "translation": ""
   },
   "common.fields.issuedAt": {
     "message": "Issued at",
@@ -3668,7 +3668,7 @@
     "origin": [
       [
         "src/features/passport/PassportScanScreen.tsx",
-        204
+        217
       ]
     ],
     "translation": ""
@@ -4428,7 +4428,7 @@
     "origin": [
       [
         "src/features/passport/PassportScanScreen.tsx",
-        236
+        249
       ]
     ],
     "translation": ""
@@ -4618,20 +4618,6 @@
     ],
     "translation": "Ställ in senare"
   },
-  "settings.title": {
-    "message": "Settings",
-    "placeholders": {},
-    "comments": [
-      "Header title for the settings screen"
-    ],
-    "origin": [
-      [
-        "src/features/menu/FunkeSettingsScreen.tsx",
-        151
-      ]
-    ],
-    "translation": "Inställningar"
-  },
   "menu.item.settings": {
     "message": "Settings",
     "placeholders": {},
@@ -4642,6 +4628,20 @@
       [
         "src/features/menu/FunkeMenuScreen.tsx",
         133
+      ]
+    ],
+    "translation": "Inställningar"
+  },
+  "settings.title": {
+    "message": "Settings",
+    "placeholders": {},
+    "comments": [
+      "Header title for the settings screen"
+    ],
+    "origin": [
+      [
+        "src/features/menu/FunkeSettingsScreen.tsx",
+        151
       ]
     ],
     "translation": "Inställningar"
@@ -5048,7 +5048,7 @@
     "origin": [
       [
         "src/features/passport/PassportScanScreen.tsx",
-        189
+        202
       ]
     ],
     "translation": ""
@@ -5601,7 +5601,7 @@
     "origin": [
       [
         "src/features/passport/PassportScanScreen.tsx",
-        197
+        210
       ]
     ],
     "translation": ""
@@ -6002,7 +6002,7 @@
     "origin": [
       [
         "src/features/passport/PassportFlow.tsx",
-        79
+        80
       ]
     ],
     "translation": ""
@@ -6134,7 +6134,7 @@
     "origin": [
       [
         "src/features/passport/PassportScanScreen.tsx",
-        239
+        252
       ]
     ],
     "translation": ""

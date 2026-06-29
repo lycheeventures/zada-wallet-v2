@@ -133,9 +133,22 @@ export function PassportScanScreen({ onMrzScanned }: PassportScanScreenProps) {
             {t({ id: 'passportScan.captureButton', message: 'Capture' })}
           </Button.Solid>
         )}
-        <Button.Text color="$white" onPress={() => setMode('manual')}>
-          {t({ id: 'passportScan.enterManually', message: 'Enter details manually' })}
-        </Button.Text>
+        {/* Outlined pill so it clearly reads as a button on the black camera (not floating white text). */}
+        <XStack
+          br="$12"
+          px="$6"
+          py="$2.5"
+          borderWidth={1.5}
+          borderColor="$white"
+          ai="center"
+          jc="center"
+          onPress={() => setMode('manual')}
+          pressStyle={{ opacity: 0.7 }}
+        >
+          <Paragraph color="$white" fontWeight="$semiBold">
+            {t({ id: 'passportScan.enterManually', message: 'Enter details manually' })}
+          </Paragraph>
+        </XStack>
         <Button.Text color="$grey-400" onPress={() => back()}>
           {t(commonMessages.cancel)}
         </Button.Text>
