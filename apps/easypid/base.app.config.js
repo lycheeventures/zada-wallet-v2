@@ -108,7 +108,7 @@ const createBaseConfig = (appSpecific) => {
           imageWidth: 200,
           android: {
             backgroundColor: '#1B3760',
-            image: splashIcon
+            image: splashIcon,
           },
           ios: {
             image: splash,
@@ -190,6 +190,10 @@ const createBaseConfig = (appSpecific) => {
         NSCameraUsageDescription: `${name} uses the camera to initiate receiving and sharing of credentials.`,
         NSFaceIDUsageDescription: `${name} uses FaceID to securely unlock the wallet and share credentials.`,
         NSPhotoLibraryUsageDescription: `${name} requires photo library access for credential sharing functionality.`,
+        NFCReaderUsageDescription: `${name} reads the NFC chip in your passport to verify and import it.`,
+        // iOS requires pre-declaring the ISO7816 application identifiers we will SELECT. The eMRTD
+        // (passport) application AID is A0000002471001. Consumed by the passport-nfc iOS module.
+        'com.apple.developer.nfc.readersession.iso7816.select-identifiers': ['A0000002471001'],
         ITSAppUsesNonExemptEncryption: false,
         CFBundleURLTypes: [
           {

@@ -1,6 +1,9 @@
 {
-  "platforms": ["android"],
+  "platforms": ["android", "ios"],
   "android": {
     "modules": ["io.zada.passportnfc.PassportNfcModule"]
+  },
+  "ios": {
+    "modules": ["PassportNfcModule"]
   }
 }

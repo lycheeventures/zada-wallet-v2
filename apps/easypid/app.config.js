@@ -54,6 +54,14 @@ APP_CONFIGS.FUNKE_WALLET.android.config = {
   largeHeap: true,
 }
 
+// ZADA: NFC tag reading entitlement for the passport-nfc module (iOS CoreNFC). Requires the
+// "Near Field Communication Tag Reading" capability enabled on the App ID in the Apple Developer
+// portal, otherwise the build's provisioning profile won't carry it. The eMRTD AID we select and the
+// usage string live in base.app.config.js infoPlist.
+APP_CONFIGS.PARADYM_WALLET.ios.entitlements = {
+  'com.apple.developer.nfc.readersession.formats': ['TAG'],
+}
+
 export default () => {
   const appType = process.env.EXPO_PUBLIC_APP_TYPE ?? 'PARADYM_WALLET'
   if (!appType || !APP_CONFIGS[appType]) {
