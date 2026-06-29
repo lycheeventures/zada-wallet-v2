@@ -1,5 +1,6 @@
 import { createBaseConfig } from './base.app.config'
 import { version } from './package.json'
+import withNfcPassportReader from './plugins/withNfcPassportReader.js'
 
 const mediatorDids = {
   development: 'did:web:mediator.dev.paradym.id',
@@ -61,6 +62,8 @@ APP_CONFIGS.FUNKE_WALLET.android.config = {
 APP_CONFIGS.PARADYM_WALLET.ios.entitlements = {
   'com.apple.developer.nfc.readersession.formats': ['TAG'],
 }
+// Pull NFCPassportReader into the iOS build (it's git/SPM-only, so it can't be a podspec dep).
+APP_CONFIGS.PARADYM_WALLET.plugins = [...APP_CONFIGS.PARADYM_WALLET.plugins, withNfcPassportReader]
 
 export default () => {
   const appType = process.env.EXPO_PUBLIC_APP_TYPE ?? 'PARADYM_WALLET'

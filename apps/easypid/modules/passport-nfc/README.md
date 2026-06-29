@@ -68,21 +68,20 @@ transcoded to JPEG and renders fine (sidesteps the Android JP2 gap).
 - `base.app.config.js` infoPlist → `NFCReaderUsageDescription` + `com.apple.developer.nfc.readersession.iso7816.select-identifiers: ['A0000002471001']` (eMRTD AID).
 - `expo-module.config.json` → `platforms: ["android","ios"]`, `ios.modules: ["PassportNfcModule"]`.
 
-**iOS dependency wiring — the one OPEN step (do at the first iOS build):**
-NFCPassportReader is SPM-recommended and **not in the CocoaPods trunk**, so it can't be a transitive
-`s.dependency` in our podspec. Add it at the app level via ONE of:
-- **SPM (recommended):** add package `https://github.com/AndyQ/NFCPassportReader.git` to the easypid
-  iOS target. Under CNG/prebuild this needs a small Expo config plugin (`withXcodeProject`) registered
-  in `app.config.js` `plugins`.
-- **CocoaPods git (deprecated, simpler):** a config plugin that appends to the Podfile
-  `pod 'NFCPassportReader', :git => 'https://github.com/AndyQ/NFCPassportReader.git', :tag => '<ver>'`.
-  This is the easier path here because `base.app.config.js` already sets
-  `expo-build-properties` → `ios.useFrameworks: 'dynamic'` (deployment target 16.0), which is exactly
-  what a pure-Swift pod needs — no extra `use_frameworks!` wrangling.
+**iOS dependency wiring — DONE via config plugin (validate on first build).**
+NFCPassportReader is git/SPM-only (not in the CocoaPods trunk), so it can't be a transitive
+`s.dependency` in our podspec. Instead `apps/easypid/plugins/withNfcPassportReader.js` (registered in
+`app.config.js` for `PARADYM_WALLET`) injects the git pod into the CNG-generated Podfile during EAS
+prebuild — so `eas build --platform ios` pulls it in automatically (no manual Xcode). The git-pod path
+works cleanly because `expo-build-properties` already sets `ios.useFrameworks: 'dynamic'`.
 
-Until this is wired, the iOS build fails to resolve `import NFCPassportReader`. Also verify the
-property/enum names used in `map(_:)` against the resolved NFCPassportReader version — they couldn't
-be compiled in the dev workspace (no Apple toolchain).
+Pinned to tag **2.3.1** (MIT, iOS 15). Two things to **validate on the first iOS build** (couldn't be
+compiled here — no Apple toolchain):
+- **OpenSSL-Universal coexistence:** NFCPassportReader's podspec depends on `OpenSSL-Universal`. Confirm
+  it doesn't clash with any OpenSSL pulled by Credo/Askar/other pods. If it does, pin/exclude in the
+  plugin.
+- **API names:** verify the `NFCPassportModel` property/enum names used in `map(_:)` and the
+  display-message switch against the resolved 2.3.1 API.
 
 **Build & test:** NFC does **not** work in the iOS Simulator — needs a real device (iPhone 7+, iOS 15+)
 on a device/internal-distribution profile (not `paradym-preview-simulator`).
