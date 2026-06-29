@@ -115,8 +115,7 @@
 		},
 		"paradym-production": {
 			"ios": {
-				"companyName": "Animo Solutions",
-				"ascAppId": "6449846111"
+				"ascAppId": "1578666669"
 			},
 			"android": {
 				"track": "alpha"
