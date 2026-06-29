@@ -75,12 +75,50 @@ export function buildPassportCredentialValues(passport: PassportReadResult, mrz:
   return values
 }
 
-/** Issue the passport credential and return the offer URI (or throw with a message). */
-export async function issuePassportCredential(passport: PassportReadResult, mrz: MrzData): Promise<string> {
-  const credentialValues = buildPassportCredentialValues(passport, mrz)
+/**
+ * Build credentialValues from the MRZ alone (no chip read). For the manual/OCR-only path —
+ * carries chip_authenticated:false (honest: not a verified chip read). Identity fields are only
+ * present when the MRZ was parsed by OCR; manual entry yields just the three key fields.
+ */
+export function buildCredentialValuesFromMrz(mrz: MrzData): Record<string, unknown> {
+  const birthdate = yymmddToIso(mrz.dateOfBirth, false)
+  const given = mrz.firstName?.trim()
+  const family = mrz.lastName?.trim()
+  const values: Record<string, unknown> = {
+    type: 'Passport',
+    document_type: mrz.documentCode || 'P',
+    document_number: mrz.documentNumber,
+    issuing_country: mrz.issuingState,
+    family_name: family,
+    given_name: given,
+    name: [given, family].filter(Boolean).join(' ') || undefined,
+    nationalities: mrz.nationality,
+    birthdate,
+    expiry_date: yymmddToIso(mrz.dateOfExpiry, true),
+    personal_administrative_number: mrz.personalNumber || undefined,
+    mrz: mrz.rawMrz || undefined,
+    age_over_18: ageOver18(birthdate),
+    chip_authenticated: false, // no chip read on this path
+  }
+  for (const k of Object.keys(values)) if (values[k] === undefined || values[k] === '') delete values[k]
+  return values
+}
+
+/** POST credentialValues to hovi-issue-passport and return the offer URI (or throw with a message). */
+async function requestOffer(credentialValues: Record<string, unknown>): Promise<string> {
   const { data, error } = await supabase.functions.invoke('hovi-issue-passport', { body: { credentialValues } })
   if (error) throw new Error(error.message ?? 'Issuance request failed')
   const uri = (data as { credentialOfferUri?: string })?.credentialOfferUri
   if (!uri) throw new Error((data as { error?: string })?.error ?? 'No credential offer returned')
   return uri
+}
+
+/** Issue the passport credential from a full chip read and return the offer URI. */
+export async function issuePassportCredential(passport: PassportReadResult, mrz: MrzData): Promise<string> {
+  return requestOffer(buildPassportCredentialValues(passport, mrz))
+}
+
+/** Issue from MRZ only (manual/OCR, no chip). chip_authenticated:false. */
+export async function issuePassportFromMrz(mrz: MrzData): Promise<string> {
+  return requestOffer(buildCredentialValuesFromMrz(mrz))
 }

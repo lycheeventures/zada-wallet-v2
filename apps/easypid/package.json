@@ -13,6 +13,11 @@
 		"translations:extract": "lingui extract",
 		"translations:compile": "lingui compile --typescript"
 	},
+	"expo": {
+		"autolinking": {
+			"nativeModulesDir": "./modules"
+		}
+	},
 	"dependencies": {
 		"@animo-id/eudi-wallet-functionality": "catalog:",
 		"@animo-id/expo-digital-credentials-api": "catalog:",

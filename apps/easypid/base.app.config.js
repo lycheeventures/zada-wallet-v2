@@ -79,7 +79,7 @@ const createBaseConfig = (appSpecific) => {
     name: `${name}${variant.name}`,
     scheme,
     slug,
-    owner: 'animo-id',
+    owner: 'zada-solutions',
     version: appSpecific.version,
     orientation: 'portrait',
     icon,
@@ -149,6 +149,10 @@ const createBaseConfig = (appSpecific) => {
             compileSdkVersion: 36,
             useLegacyPackaging: true,
             extraMavenRepos: ['https://s01.oss.sonatype.org/content/repositories/snapshots/'],
+            // Build only arm64-v8a for free-tier EAS test builds: compiling all four ABIs
+            // OOM-kills the Gradle daemon on the medium resource class. Every modern Android
+            // phone is arm64-v8a. Add 'armeabi-v7a' (32-bit) / x86 ABIs back for store builds.
+            buildArchs: ['arm64-v8a'],
           },
           ios: {
             deploymentTarget: '16.0',
@@ -229,7 +233,7 @@ const createBaseConfig = (appSpecific) => {
         projectId,
       },
       // credential-key-usher web flow for migrating legacy ZADA credentials (per-build via env).
-      credentialMigrationUrl: process.env.CREDENTIAL_MIGRATION_URL ?? 'https://migrate.zada.network',
+      credentialMigrationUrl: process.env.CREDENTIAL_MIGRATION_URL ?? 'https://migrate.zada.solutions',
       ...extraConfig,
     },
   }

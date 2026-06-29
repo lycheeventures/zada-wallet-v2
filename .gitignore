@@ -95,9 +95,10 @@ buck-out/
 .expo/*
 web-build/
 
-# We don't want the output of prebuild to be committed
-ios
-android
+# We don't want the output of prebuild to be committed (anchored to the app dir so it doesn't
+# also ignore the android/ sources of app-local native modules in apps/easypid/modules/*)
+/apps/easypid/ios
+/apps/easypid/android
 
 # build output
 dist/

@@ -30,6 +30,7 @@ export * from './mediation'
 export { migrateLegacyParadymWallet } from './migrateLegacyParadymWallet'
 export * from './openid4vc/deferredCredentialRecord'
 export * from './openid4vc/displayMetadata'
+export { getZadaIssuerTrust, type ZadaIssuerTrust } from './openid4vc/zadaTrust'
 export {
   getRefreshCredentialMetadata,
   RefreshCredentialMetadata,

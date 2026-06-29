@@ -19,6 +19,7 @@ import { useRouter } from 'expo-router'
 import { InboxIcon } from './components/InboxIcon'
 import { useScrollViewPosition } from '@package/app/hooks'
 import { FunkeCredentialCard } from '@package/app/components'
+import { MigrationWelcomeSheet } from '../migration/MigrationWelcomeSheet'
 
 export function FunkeWalletScreen() {
   const { push } = useRouter()
@@ -44,6 +45,7 @@ export function FunkeWalletScreen() {
 
   return (
     <YStack fg={1} bg="$background">
+      <MigrationWelcomeSheet />
       <FlexPage fg={1} flex-1={false} bg="transparent">
         <XStack pt="$6" px="$2" jc="space-between" ai="center">
           <IconContainer

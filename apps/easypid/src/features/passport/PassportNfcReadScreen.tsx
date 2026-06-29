@@ -1,10 +1,11 @@
-import { Trans } from '@lingui/react/macro'
+import { Trans, useLingui } from '@lingui/react/macro'
 import { Button, Heading, HeroIcons, Page, Paragraph, Spinner, YStack } from '@package/ui'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   addPassportStatusListener,
   cancelPassportRead,
   isNfcAvailable,
+  isPassportReaderAvailable,
   type PassportNfcStatus,
   type PassportReadResult,
   readPassport,
@@ -14,6 +15,7 @@ import type { MrzData } from './mrz'
 interface PassportNfcReadScreenProps {
   mrz: MrzData
   onComplete: (passport: PassportReadResult) => void
+  onSkipChip?: () => void
   onCancel: () => void
 }
 
@@ -27,7 +29,8 @@ const statusCopy: Record<PassportNfcStatus, string> = {
   done: 'Done',
 }
 
-export function PassportNfcReadScreen({ mrz, onComplete, onCancel }: PassportNfcReadScreenProps) {
+export function PassportNfcReadScreen({ mrz, onComplete, onSkipChip, onCancel }: PassportNfcReadScreenProps) {
+  const { t } = useLingui()
   const [status, setStatus] = useState<PassportNfcStatus>('waiting_for_tag')
   const [error, setError] = useState<string | null>(null)
   const [reading, setReading] = useState(false)
@@ -38,6 +41,11 @@ export function PassportNfcReadScreen({ mrz, onComplete, onCancel }: PassportNfc
     setStatus('waiting_for_tag')
     setReading(true)
     try {
+      if (!isPassportReaderAvailable()) {
+        setError("Passport reader isn't included in this build (native module not linked). Rebuild required.")
+        setReading(false)
+        return
+      }
       if (!(await isNfcAvailable())) {
         setError('NFC is turned off or not supported on this device.')
         setReading(false)
@@ -88,15 +96,14 @@ export function PassportNfcReadScreen({ mrz, onComplete, onCancel }: PassportNfc
           </Paragraph>
           <YStack gap="$2" w="100%">
             <Button.Solid onPress={() => void start()}>
-              <Trans id="passportNfc.retry" comment="Retry the chip read">
-                Try again
-              </Trans>
+              {t({ id: 'passportNfc.retry', message: 'Try again' })}
             </Button.Solid>
-            <Button.Text onPress={onCancel}>
-              <Trans id="passportNfc.back" comment="Go back to the MRZ step">
-                Back
-              </Trans>
-            </Button.Text>
+            {onSkipChip ? (
+              <Button.Text onPress={onSkipChip}>
+                {t({ id: 'passportNfc.skipChip', message: 'Issue without chip (test)' })}
+              </Button.Text>
+            ) : null}
+            <Button.Text onPress={onCancel}>{t({ id: 'passportNfc.back', message: 'Back' })}</Button.Text>
           </YStack>
         </>
       ) : (
@@ -105,11 +112,12 @@ export function PassportNfcReadScreen({ mrz, onComplete, onCancel }: PassportNfc
           <Paragraph ta="center" color="$grey-600">
             {statusCopy[status]}
           </Paragraph>
-          <Button.Text onPress={onCancel}>
-            <Trans id="passportNfc.cancel" comment="Cancel the chip read">
-              Cancel
-            </Trans>
-          </Button.Text>
+          {onSkipChip ? (
+            <Button.Text onPress={onSkipChip}>
+              {t({ id: 'passportNfc.skipChip', message: 'Issue without chip (test)' })}
+            </Button.Text>
+          ) : null}
+          <Button.Text onPress={onCancel}>{t({ id: 'passportNfc.cancel', message: 'Cancel' })}</Button.Text>
         </>
       )}
     </Page>
