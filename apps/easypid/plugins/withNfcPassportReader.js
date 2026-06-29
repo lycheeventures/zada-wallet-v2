@@ -1,6 +1,10 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import { withDangerousMod } from '@expo/config-plugins'
+// @expo/config-plugins is CommonJS; under this ESM package, named imports aren't exposed, so
+// default-import the module object and destructure.
+import configPlugins from '@expo/config-plugins'
+
+const { withDangerousMod } = configPlugins
 
 // Expo config plugin: pull AndyQ/NFCPassportReader (MIT) into the iOS build for the passport-nfc
 // native module. It's SPM/git-only (not in the CocoaPods trunk), so a podspec can't depend on it
