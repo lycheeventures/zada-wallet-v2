@@ -3,7 +3,7 @@ import { type CredentialDataHandlerOptions, useCredentialDataHandler } from '@pa
 import { Button, Heading, Page, Paragraph, Spinner, YStack } from '@package/ui'
 import { useState } from 'react'
 import type { PassportReadResult } from '../../../modules/passport-nfc'
-import { issuePassportCredential } from './issuePassport'
+import { issuePassportCredential, issuePassportFromMrz } from './issuePassport'
 import type { MrzData } from './mrz'
 import { PassportNfcReadScreen } from './PassportNfcReadScreen'
 import { PassportScanScreen } from './PassportScanScreen'
@@ -24,11 +24,11 @@ export function PassportFlow({
   const [error, setError] = useState<string | null>(null)
   const { handleCredentialData } = useCredentialDataHandler()
 
-  const issue = async (passport: PassportReadResult, mrzData: MrzData) => {
+  const deliver = async (getOfferUri: () => Promise<string>) => {
     setStep('issuing')
     setError(null)
     try {
-      const offerUri = await issuePassportCredential(passport, mrzData)
+      const offerUri = await getOfferUri()
       const result = await handleCredentialData(offerUri, credentialDataHandlerOptions)
       if (!result.success) setError(result.message ?? 'Could not load the credential offer.')
       // On success, handleCredentialData routes to the credential-receipt screen; this modal unwinds.
@@ -36,6 +36,11 @@ export function PassportFlow({
       setError((e as Error)?.message ?? 'Issuance failed.')
     }
   }
+
+  const issue = (passport: PassportReadResult, mrzData: MrzData) =>
+    deliver(() => issuePassportCredential(passport, mrzData))
+  // Fallback when the NFC reader isn't available: issue from the MRZ alone (chip_authenticated:false).
+  const issueWithoutChip = (mrzData: MrzData) => deliver(() => issuePassportFromMrz(mrzData))
 
   if (step === 'mrz') {
     return (
@@ -49,7 +54,14 @@ export function PassportFlow({
   }
 
   if (step === 'nfc' && mrz) {
-    return <PassportNfcReadScreen mrz={mrz} onComplete={(p) => void issue(p, mrz)} onCancel={() => setStep('mrz')} />
+    return (
+      <PassportNfcReadScreen
+        mrz={mrz}
+        onComplete={(p) => void issue(p, mrz)}
+        onSkipChip={() => void issueWithoutChip(mrz)}
+        onCancel={() => setStep('mrz')}
+      />
+    )
   }
 
   return (

@@ -15,6 +15,7 @@ import type { MrzData } from './mrz'
 interface PassportNfcReadScreenProps {
   mrz: MrzData
   onComplete: (passport: PassportReadResult) => void
+  onSkipChip?: () => void
   onCancel: () => void
 }
 
@@ -28,7 +29,7 @@ const statusCopy: Record<PassportNfcStatus, string> = {
   done: 'Done',
 }
 
-export function PassportNfcReadScreen({ mrz, onComplete, onCancel }: PassportNfcReadScreenProps) {
+export function PassportNfcReadScreen({ mrz, onComplete, onSkipChip, onCancel }: PassportNfcReadScreenProps) {
   const { t } = useLingui()
   const [status, setStatus] = useState<PassportNfcStatus>('waiting_for_tag')
   const [error, setError] = useState<string | null>(null)
@@ -97,6 +98,11 @@ export function PassportNfcReadScreen({ mrz, onComplete, onCancel }: PassportNfc
             <Button.Solid onPress={() => void start()}>
               {t({ id: 'passportNfc.retry', message: 'Try again' })}
             </Button.Solid>
+            {onSkipChip ? (
+              <Button.Text onPress={onSkipChip}>
+                {t({ id: 'passportNfc.skipChip', message: 'Issue without chip (test)' })}
+              </Button.Text>
+            ) : null}
             <Button.Text onPress={onCancel}>{t({ id: 'passportNfc.back', message: 'Back' })}</Button.Text>
           </YStack>
         </>
@@ -106,6 +112,11 @@ export function PassportNfcReadScreen({ mrz, onComplete, onCancel }: PassportNfc
           <Paragraph ta="center" color="$grey-600">
             {statusCopy[status]}
           </Paragraph>
+          {onSkipChip ? (
+            <Button.Text onPress={onSkipChip}>
+              {t({ id: 'passportNfc.skipChip', message: 'Issue without chip (test)' })}
+            </Button.Text>
+          ) : null}
           <Button.Text onPress={onCancel}>{t({ id: 'passportNfc.cancel', message: 'Cancel' })}</Button.Text>
         </>
       )}
