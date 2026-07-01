@@ -6,6 +6,11 @@ export const mediatorDid = ExpoConstants.expoConfig?.extra?.mediatorDid
 export const appScheme = ExpoConstants.expoConfig?.scheme as string
 export const allowedRedirectBaseUrls = ExpoConstants.expoConfig?.extra?.allowedRedirectBaseUrls as string[] | undefined
 
+// trust-bound-roots (cold credential service). The wallet presents a held SD-JWT VC to
+// /api/v1/request-cold and gets back filled HTML + a cold QR to render as an offline PDF on-device.
+export const coldCredentialUrl =
+  (ExpoConstants.expoConfig?.extra?.coldCredentialUrl as string | undefined) ?? 'https://trust-bound-roots.lovable.app'
+
 // URL of the credential-key-usher web flow used to migrate legacy ZADA credentials.
 // The user verifies their phone there; each claimed credential is handed back to the wallet
 // as an openid-credential-offer:// deep link (already handled by the invitation router).
