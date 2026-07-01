@@ -1,4 +1,4 @@
-import { getColdCredentialPdf } from '@easypid/hooks/useShareCredential'
+import { getColdCredential } from '@easypid/hooks/useShareCredential'
 import { useLingui } from '@lingui/react/macro'
 import { type CredentialForDisplayId, useCredentialForDisplayById } from '@package/agent'
 import {
@@ -48,7 +48,7 @@ export function FunkeCredentialDetailAttributesScreen() {
       setIsSharing(true)
       // Get (or create) the ZADA-signed offline PDF. Reuses the on-device copy if present;
       // otherwise trust-bound-roots verifies the credential and returns the cold copy to render.
-      const result = await getColdCredentialPdf(credential)
+      const result = await getColdCredential(credential)
       setIsSharing(false)
 
       if (result.error) {
