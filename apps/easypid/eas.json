@@ -69,7 +69,9 @@
 				"APP_VARIANT": "preview",
 				"EXPO_PUBLIC_APP_TYPE": "PARADYM_WALLET",
 				"EXPO_PUBLIC_SUPPORT_API_URL": "https://support.zada.solutions/wallet-api",
-				"EXPO_PUBLIC_SUPPORT_APP_KEY": "1ed0d4b675cfb1001dd8d29fa0d648ce5f7054db561c273e"
+				"EXPO_PUBLIC_SUPPORT_APP_KEY": "1ed0d4b675cfb1001dd8d29fa0d648ce5f7054db561c273e",
+				"EXPO_PUBLIC_DOCUMENT_ISSUER_URL": "https://verifiable-link-issuer.lovable.app",
+				"EXPO_PUBLIC_DOCUMENT_ISSUER_API_KEY": "vci_2BuxvKkhzsOn7cIB7Hpg5-hH8ke9sFYIPVAqpIdUkwA"
 			}
 		},
 		"paradym-preview-simulator": {
