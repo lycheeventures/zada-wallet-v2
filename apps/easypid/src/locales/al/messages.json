@@ -64,7 +64,7 @@
 		},
 		"comments": ["Subheading under attribute list: X from Y"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 140]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 144]
 		],
 		"translation": "{disclosedAttributeLength} nga {0}"
 	},
@@ -230,6 +230,13 @@
 		"origin": [["src/features/onboarding/steps.ts", 35]],
 		"translation": "Aktivizo funksionin biometrik të telefonit tënd për të siguruar që vetëm ti mund të hysh në portofol dhe të ndash të dhëna."
 	},
+	"menu.item.activity": {
+		"message": "Activity",
+		"placeholders": {},
+		"comments": ["Label for activity log"],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 122]],
+		"translation": "Aktiviteti"
+	},
 	"activity.title": {
 		"message": "Activity",
 		"placeholders": {},
@@ -237,13 +244,6 @@
 			"Title of the activity screen showing shared or received credentials"
 		],
 		"origin": [["src/features/activity/FunkeActivityScreen.tsx", 22]],
-		"translation": "Aktiviteti"
-	},
-	"menu.item.activity": {
-		"message": "Activity",
-		"placeholders": {},
-		"comments": ["Label for activity log"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 122]],
 		"translation": "Aktiviteti"
 	},
 	"activity.emptyDescription": {
@@ -254,6 +254,27 @@
 		],
 		"origin": [["src/features/activity/FunkeActivityScreen.tsx", 32]],
 		"translation": "Aktiviteti do të shfaqet këtu pasi të ndash ose marrësh kredenciale."
+	},
+	"menu.item.addDocument": {
+		"message": "Add a document",
+		"placeholders": {},
+		"comments": ["Label for the official-document catalog menu item"],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 104]],
+		"translation": "Shto dokument"
+	},
+	"documentCatalog.title": {
+		"message": "Add a document",
+		"placeholders": {},
+		"comments": ["Title of the official-document catalog screen"],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 76]],
+		"translation": "Shto dokument"
+	},
+	"home.addDocument": {
+		"message": "Add an official document",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 181]],
+		"translation": "Shto një dokument zyrtar"
 	},
 	"onboardingWalletExplanation.slide1.subtitle": {
 		"message": "Add digital cards with your information, and  share them easily with others. It’s like having your wallet on your phone.",
@@ -267,7 +288,8 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 181]],
-		"translation": "Shto pasaportë"
+		"translation": "Shto pasaportë",
+		"obsolete": true
 	},
 	"onboardingWalletExplanation.slide3.subtitle": {
 		"message": "Add your cards and documents by scanning QR codes. When organizations request your data, you can review and share with a tap in the app. Your information is always secure with your PIN or fingerprint.",
@@ -284,6 +306,13 @@
 		"comments": ["Shown when a new card has been added"],
 		"origin": [["src/features/wallet/components/LatestActivityCard.tsx", 114]],
 		"translation": "Shtoi {name}"
+	},
+	"mdlFlow.heading": {
+		"message": "Adding your driver license",
+		"placeholders": {},
+		"comments": ["Heading while issuing the Myanmar driver license credential"],
+		"origin": [["src/features/documents/MdlFlow.tsx", 98]],
+		"translation": "Duke shtuar patentën tënde"
 	},
 	"passportIssue.heading": {
 		"message": "Adding your passport",
@@ -361,7 +390,7 @@
 		"placeholders": {},
 		"comments": ["Description of the error box explaining pending credentials"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 120]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 124]
 		],
 		"translation": "Ndodhi një gabim gjatë marrjes së kartës nga lëshuesi."
 	},
@@ -663,6 +692,13 @@
 		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 120]],
 		"translation": "Anulo"
 	},
+	"mdlFlow.cancel": {
+		"message": "Cancel",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 116]],
+		"translation": "Anulo"
+	},
 	"common.cancel": {
 		"message": "Cancel",
 		"placeholders": {},
@@ -746,9 +782,9 @@
 			"Title of the info box explaining that the credential is not available yet"
 		],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 131],
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 148],
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 169]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 135],
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 152],
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 173]
 		],
 		"translation": "Karta ende nuk është e disponueshme"
 	},
@@ -907,6 +943,20 @@
 		"origin": [["src/features/onboarding/screens/intro.tsx", 91]],
 		"translation": "Vazhdo te konfigurimi"
 	},
+	"mdlFlow.issueFailed": {
+		"message": "Could not add your driver license. Try again.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 64]],
+		"translation": "Patenta nuk u shtua dot. Provo përsëri."
+	},
+	"mdlFlow.offerFailed": {
+		"message": "Could not load the credential offer.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 40]],
+		"translation": "Oferta e kredencialit nuk u ngarkua dot."
+	},
 	"migration.failedToOpen": {
 		"message": "Could not open credential migration. Please try again.",
 		"placeholders": {},
@@ -1033,7 +1083,7 @@
 		"placeholders": {},
 		"comments": ["Error message when a credential is missing"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 81]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 85]
 		],
 		"translation": "Kredenciali nuk u gjet"
 	},
@@ -1322,7 +1372,7 @@
 		"placeholders": {},
 		"comments": ["Title shown in toast when credential cannot be loaded"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 75]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 79]
 		],
 		"translation": "Gabim në marrjen e detajeve të kredencialit"
 	},
@@ -1420,7 +1470,7 @@
 		"placeholders": {},
 		"comments": ["Title of the error box explaining pending credentials"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 115]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 119]
 		],
 		"translation": "Dështoi marrja e kartës"
 	},
@@ -1603,7 +1653,7 @@
 		"placeholders": {},
 		"comments": ["Option to hide metadata in option sheet"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 181]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 185]
 		],
 		"translation": "Fshih atributet metadata"
 	},
@@ -1750,7 +1800,7 @@
 		"message": "Invalid QR code. Try another.",
 		"placeholders": {},
 		"comments": ["Shown when scanned QR code is invalid"],
-		"origin": [["../../packages/app/src/features/scan/ScanScreen.tsx", 22]],
+		"origin": [["../../packages/app/src/features/scan/ScanScreen.tsx", 28]],
 		"translation": "Kod QR i pavlefshëm. Provo një tjetër."
 	},
 	"common.invitationAlreadyScanned": {
@@ -1809,7 +1859,7 @@
 		},
 		"comments": ["Prefix before issuer name", "Prefix before issuer name"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 106],
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 110],
 			["src/features/wallet/FunkeCredentialDetailScreen.tsx", 102]
 		],
 		"translation": "Lëshuar nga {0}."
@@ -1918,7 +1968,7 @@
 		"message": "Loading invitation",
 		"placeholders": {},
 		"comments": ["Text shown while an invitation is loading"],
-		"origin": [["../../packages/app/src/features/scan/ScanScreen.tsx", 89]],
+		"origin": [["../../packages/app/src/features/scan/ScanScreen.tsx", 100]],
 		"translation": "Duke ngarkuar ftesën"
 	},
 	"common.fields.locality": {
@@ -1947,7 +1997,7 @@
 		"placeholders": {},
 		"comments": ["Section header title for metadata attributes"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 157]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 161]
 		],
 		"translation": "Metadata"
 	},
@@ -1977,6 +2027,13 @@
 		"origin": [["src/features/menu/FunkeSettingsScreen.tsx", 189]],
 		"translation": "Migro kredencialet"
 	},
+	"documentCatalog.moreSoon": {
+		"message": "More documents coming soon",
+		"placeholders": {},
+		"comments": ["Hint at the bottom of the document catalog"],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 112]],
+		"translation": "Së shpejti më shumë dokumente"
+	},
 	"home.myQrButton": {
 		"translation": "Kodi im QR",
 		"message": "My QR",
@@ -1984,6 +2041,13 @@
 		"comments": [],
 		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 88]],
 		"obsolete": true
+	},
+	"documentCatalog.mdl": {
+		"message": "Myanmar driver license",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 103]],
+		"translation": "Patentë shoferi e Mianmarit"
 	},
 	"common.fields.nationalities": {
 		"message": "Nationalities",
@@ -2244,12 +2308,26 @@
 		"origin": [["src/features/share/components/RequestPurposeSection.tsx", 50]],
 		"translation": "U zbulua kërkesë e tepërt"
 	},
+	"documentCatalog.passport": {
+		"message": "Passport",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 94]],
+		"translation": "Pasaportë"
+	},
 	"passportScan.documentNumber": {
 		"message": "Passport number",
 		"placeholders": {},
 		"comments": [],
 		"origin": [["src/features/passport/PassportScanScreen.tsx", 217]],
 		"translation": "Numri i pasaportës"
+	},
+	"home.addDocumentSubtitle": {
+		"message": "Passport, driver license and more",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 182]],
+		"translation": "Pasaportë, patentë shoferi e më shumë"
 	},
 	"inbox.notificationType.pending": {
 		"message": "Pending",
@@ -2272,7 +2350,7 @@
 		"placeholders": {},
 		"comments": ["Title of the pending credential notification screen"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 101]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 105]
 		],
 		"translation": "Kartë në pritje"
 	},
@@ -2497,6 +2575,13 @@
 		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 87]],
 		"translation": "Lexo chip-in e pasaportës"
 	},
+	"documentCatalog.passportSubtitle": {
+		"message": "Read the chip in your passport with your phone",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 95]],
+		"translation": "Lexo çipin e pasaportës me telefonin tënd"
+	},
 	"onboardingDataProtection.privacy": {
 		"message": "Read the Privacy Policy",
 		"placeholders": {},
@@ -2602,7 +2687,7 @@
 		"placeholders": {},
 		"comments": ["Heading above list of attributes shown to the user"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 133]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 137]
 		],
 		"translation": "Atribute të kërkuara"
 	},
@@ -2688,6 +2773,13 @@
 		"origin": [["src/features/passport/PassportScanScreen.tsx", 249]],
 		"translation": "Skano përsëri"
 	},
+	"mdlFlow.retry": {
+		"message": "Scan again",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 114]],
+		"translation": "Skano përsëri"
+	},
 	"nfcScanner.error.title": {
 		"message": "Scan failed",
 		"placeholders": {},
@@ -2702,7 +2794,8 @@
 		"placeholders": {},
 		"comments": ["Label for the passport scan menu item"],
 		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 104]],
-		"translation": "Skano pasaportën"
+		"translation": "Skano pasaportën",
+		"obsolete": true
 	},
 	"home.scanQrButton": {
 		"message": "Scan QR-code",
@@ -2727,6 +2820,13 @@
 		"origin": [["src/features/passport/PassportScanScreen.tsx", 106]],
 		"translation": "Skano fundin e pasaportës tënde"
 	},
+	"documentCatalog.mdlSubtitle": {
+		"message": "Scan the QR code on your license",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 104]],
+		"translation": "Skano kodin QR në patentën tënde"
+	},
 	"onboardingIntro.slide2.title": {
 		"message": "Scan to add",
 		"placeholders": {},
@@ -2749,7 +2849,8 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 182]],
-		"translation": "Skano chip-in e pasaportës për ta shtuar"
+		"translation": "Skano chip-in e pasaportës për ta shtuar",
+		"obsolete": true
 	},
 	"onboardingIntroduction.step2.title": {
 		"message": "Scan your physical ID card",
@@ -2829,18 +2930,18 @@
 		"origin": [["src/features/onboarding/steps.ts", 42]],
 		"translation": "Konfiguro ZADA ID-në tënde"
 	},
-	"settings.title": {
-		"message": "Settings",
-		"placeholders": {},
-		"comments": ["Header title for the settings screen"],
-		"origin": [["src/features/menu/FunkeSettingsScreen.tsx", 151]],
-		"translation": "Cilësimet"
-	},
 	"menu.item.settings": {
 		"message": "Settings",
 		"placeholders": {},
 		"comments": ["Label for settings menu item"],
 		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 143]],
+		"translation": "Cilësimet"
+	},
+	"settings.title": {
+		"message": "Settings",
+		"placeholders": {},
+		"comments": ["Header title for the settings screen"],
+		"origin": [["src/features/menu/FunkeSettingsScreen.tsx", 151]],
 		"translation": "Cilësimet"
 	},
 	"submission.share": {
@@ -2936,7 +3037,7 @@
 		"placeholders": {},
 		"comments": ["Option to show metadata in option sheet"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 186]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 190]
 		],
 		"translation": "Shfaq atributet metadata"
 	},
@@ -3316,7 +3417,7 @@
 		"placeholders": {},
 		"comments": ["Description of the info box explaining the card is pending"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 174]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 178]
 		],
 		"translation": "Lëshuesi ende nuk e ka bërë kartën të disponueshme. Provoje përsëri më vonë."
 	},
@@ -3338,7 +3439,7 @@
 			"Description of the info box explaining the card is pending with expected time"
 		],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 136]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 140]
 		],
 		"translation": "Lëshuesi i kartës të ka këshilluar të kontrollosh përsëri në orën {0}."
 	},
@@ -3353,7 +3454,7 @@
 			"Description of the info box explaining the card is pending with expected date"
 		],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 153]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 157]
 		],
 		"translation": "Lëshuesi i kartës të ka këshilluar të kontrollosh përsëri më {0}."
 	},
@@ -3363,6 +3464,13 @@
 		"comments": ["Label shown above optional extra description"],
 		"origin": [["src/features/receive/slides/TxCodeSlide.tsx", 56]],
 		"translation": "Lëshuesi ka dhënë këtë:"
+	},
+	"mdlFlow.sourceUnavailable": {
+		"message": "The license registry is not reachable right now. Try again later.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 59]],
+		"translation": "Regjistri i patentave nuk është i arritshëm tani. Provo më vonë."
 	},
 	"trust.noApprovals": {
 		"message": "The organisation has not been verified and is NOT part of the ZADA Trust Registry",
@@ -3548,6 +3656,13 @@
 		"origin": [["src/features/passport/PassportScanScreen.tsx", 75]],
 		"translation": "Kjo i lejon aplikacionit të lexojë kodin e printuar në fund të pasaportës tënde."
 	},
+	"mdlFlow.urlNotAllowed": {
+		"message": "This link is not recognized as an official license page.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 53]],
+		"translation": "Kjo lidhje nuk njihet si faqe zyrtare patente."
+	},
 	"requestPurpose.infoSheet.description": {
 		"message": "This organization seems to be asking for different or more data than their purpose suggests. Read the request carefully. You can deny the request if you do not agree with the data asked.",
 		"placeholders": {},
@@ -3561,6 +3676,13 @@
 		"comments": ["Explanation of the PIN purpose in onboarding"],
 		"origin": [["src/features/onboarding/steps.ts", 17]],
 		"translation": "Ky PIN siguron portofolin tënd të identitetit. E fut çdo herë që ndan të dhëna."
+	},
+	"mdlFlow.notAnMdlQr": {
+		"message": "This QR code is not a Myanmar driver license link.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 72]],
+		"translation": "Ky kod QR nuk është një lidhje patente shoferi e Mianmarit."
 	},
 	"common.archiveCardDescription": {
 		"message": "This will make {name} unusable and delete it from your wallet.",
@@ -3659,6 +3781,13 @@
 		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 74]],
 		"translation": "Provo përsëri"
 	},
+	"passportNfc.retry": {
+		"message": "Try again",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 99]],
+		"translation": "Provo përsëri"
+	},
 	"passportIssue.retry": {
 		"message": "Try again",
 		"placeholders": {},
@@ -3666,12 +3795,12 @@
 		"origin": [["src/features/passport/PassportFlow.tsx", 80]],
 		"translation": "Provo përsëri"
 	},
-	"passportNfc.retry": {
-		"message": "Try again",
+	"documentCatalog.subtitle": {
+		"message": "Turn a physical document into a verified credential in your wallet.",
 		"placeholders": {},
-		"comments": [],
-		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 99]],
-		"translation": "Provo përsëri"
+		"comments": ["Subtitle of the official-document catalog screen"],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 85]],
+		"translation": "Kthe një dokument fizik në një kredencial të verifikuar në portofolin tënd."
 	},
 	"common.credentials.mdl.unDistinguishingSign": {
 		"message": "UN sign",
@@ -3732,7 +3861,7 @@
 		"message": "Unsupported QR code. Try another.",
 		"placeholders": {},
 		"comments": ["Shown when scanned QR code has unsupported URL prefix"],
-		"origin": [["../../packages/app/src/features/scan/ScanScreen.tsx", 17]],
+		"origin": [["../../packages/app/src/features/scan/ScanScreen.tsx", 23]],
 		"translation": "Kod QR i pambështetur. Provo një tjetër."
 	},
 	"onboardingIntro.slide2.subtitle": {
@@ -3849,6 +3978,15 @@
 		"comments": ["Subtitle explaining what setting up the ZADA ID does"],
 		"origin": [["src/features/onboarding/steps.ts", 48]],
 		"translation": "Verifiko numrin e telefonit dhe email-in për të shkyçur identitetin tënd dixhital themelor. Nëse e ke përdorur ZADA-n më parë, kjo do të transferojë gjithashtu në mënyrë të sigurt kredencialet e tua ekzistuese në portofolin tënd të ri."
+	},
+	"mdlFlow.inProgress": {
+		"message": "Verifying your license with the road transport department…",
+		"placeholders": {},
+		"comments": [
+			"Shown while the license is verified against the RTAD registry and issued"
+		],
+		"origin": [["src/features/documents/MdlFlow.tsx", 122]],
+		"translation": "Duke verifikuar patentën tënde me autoritetin e transportit rrugor…"
 	},
 	"credentials.cardAttributesDescription": {
 		"message": "View attributes of the card",

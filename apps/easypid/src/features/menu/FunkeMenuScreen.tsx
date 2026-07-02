@@ -99,12 +99,12 @@ export function FunkeMenuScreen() {
                 })}
               />
               <MenuListItem
-                onPress={handlePush('/passport')}
+                onPress={handlePush('/documents')}
                 icon={<HeroIcons.IdentificationFilled />}
                 label={t({
-                  id: 'menu.item.scanPassport',
-                  message: 'Scan passport',
-                  comment: 'Label for the passport scan menu item',
+                  id: 'menu.item.addDocument',
+                  message: 'Add a document',
+                  comment: 'Label for the official-document catalog menu item',
                 })}
               />
               <MenuListItem
