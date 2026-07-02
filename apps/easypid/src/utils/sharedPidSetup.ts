@@ -25,7 +25,8 @@ export const pidSetupMessages = {
     title: defineMessage({ id: 'pidSetup.dataProtection.title', message: 'Protect your data' }),
     subtitle: defineMessage({
       id: 'pidSetup.dataProtection.subtitle',
-      message: 'Your data is secured with a PIN and biometrics. Each time you share data, we confirm your identity.',
+      message:
+        'Your data is protected by your PIN and biometrics, and is stored exclusively on this device — not in the cloud.\n\nNote: if you delete this app, your data will be permanently erased. (Optional backup coming soon.)',
     }),
   },
   idCardRequestedAttributes: {
