@@ -282,6 +282,9 @@ export function OnboardingContextProvider({
   let screen: React.JSX.Element
   if (currentStep.step === 'welcome') {
     screen = <currentStep.Screen goToNextStep={goToNextStep} />
+  } else if (currentStep.step === 'intro') {
+    // Both "Skip" and finishing the last slide advance to the next step (PIN).
+    screen = <currentStep.Screen onSkip={goToNextStep} goToNextStep={goToNextStep} />
   } else if (currentStep.step === 'pin' || currentStep.step === 'pin-reenter') {
     screen = (
       <currentStep.Screen

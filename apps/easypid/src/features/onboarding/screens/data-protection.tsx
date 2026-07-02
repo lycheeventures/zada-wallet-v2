@@ -40,7 +40,6 @@ export function OnboardingDataProtection({ goToNextStep }: OnboardingDataProtect
   })
 
   const continueLabel = t(commonMessages.continue)
-  const goToWalletLabel = t(commonMessages.goToWallet)
 
   const onContinue = () => {
     if (isLoading) return
@@ -90,7 +89,7 @@ export function OnboardingDataProtection({ goToNextStep }: OnboardingDataProtect
             </Button.Outline>
           )}
           <Button.Solid scaleOnPress flexGrow={1} disabled={isLoading} onPress={onContinue}>
-            {isLoading ? <Spinner variant="dark" /> : isCloudHsmFeatureEnabled ? continueLabel : goToWalletLabel}
+            {isLoading ? <Spinner variant="dark" /> : continueLabel}
           </Button.Solid>
         </XStack>
       </YStack>

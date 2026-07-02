@@ -10,13 +10,13 @@ export default function OnboardingWelcome({ goToNextStep }: OnboardingWelcomePro
 
   const introText = t({
     id: 'onboardingWelcome.description',
-    message: 'This is your digital wallet. With it, you can store and share information about yourself.',
+    message: 'Your identity, safely in your pocket. The secure way to hold and share your verified documents.',
     comment: 'Intro paragraph on the welcome screen',
   })
 
   const getStartedLabel = t({
     id: 'onboardingWelcome.getStarted',
-    message: 'Get Started',
+    message: 'Start',
     comment: 'Button label to begin onboarding from the welcome screen',
   })
 
@@ -30,14 +30,17 @@ export default function OnboardingWelcome({ goToNextStep }: OnboardingWelcomePro
           top="20%"
           left="50%"
           ai="center"
-          jc="center">
-          <Image height={300} width={300} src={require('assets/welcome.png')}/>
+          jc="center"
+        >
+          <Image height={300} width={300} src={require('assets/welcome.png')} />
         </YStack>
       </YStack>
       <FlexPage fg={1} jc="space-between" backgroundColor="$transparent">
         <Stack h="40%" />
         <YStack gap="$4" ai="center">
-          <Heading fontSize={32}>ZADA Wallet</Heading>
+          <Heading fontSize={32} ta="center">
+            Welcome to ZADA ID Wallet
+          </Heading>
           <Paragraph px="$2" ta="center">
             {introText}
           </Paragraph>

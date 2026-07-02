@@ -5,6 +5,7 @@ import { useHaptics, useScrollViewPosition } from '@package/app/hooks'
 import { commonMessages } from '@package/translations'
 import {
   AnimatedStack,
+  CustomIcons,
   FlexPage,
   HeaderContainer,
   Heading,
@@ -104,6 +105,15 @@ export function FunkeMenuScreen() {
                   id: 'menu.item.scanPassport',
                   message: 'Scan passport',
                   comment: 'Label for the passport scan menu item',
+                })}
+              />
+              <MenuListItem
+                onPress={handlePush('/offline')}
+                icon={<CustomIcons.People />}
+                label={t({
+                  id: 'menu.item.presentInPerson',
+                  message: 'Present in-person',
+                  comment: 'Label for the in-person (offline) presentation menu item',
                 })}
               />
               <MenuListItem
