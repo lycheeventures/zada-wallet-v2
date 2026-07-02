@@ -51,8 +51,12 @@ export function FunkeRequestedAttributesDetailScreen({
   const scrollViewRef = useRef<ScrollViewRefType>(null)
 
   useHeaderRightAction({
-    icon: <HeroIcons.EllipsisHorizontal />,
-    onPress: withHaptics(() => setIsSheetOpen(true)),
+    actions: [
+      {
+        icon: <HeroIcons.EllipsisHorizontal />,
+        onPress: withHaptics(() => setIsSheetOpen(true)),
+      },
+    ],
   })
 
   const {

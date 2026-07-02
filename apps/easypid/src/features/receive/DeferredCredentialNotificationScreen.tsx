@@ -52,9 +52,13 @@ export function DeferredCredentialNotificationScreen() {
   }, [router, isLoading, deferredCredential])
 
   useHeaderRightAction({
-    icon: <HeroIcons.Trash />,
-    onPress: withHaptics(() => setIsSheetOpen(true)),
-    renderCondition: true,
+    actions: [
+      {
+        icon: <HeroIcons.Trash />,
+        onPress: withHaptics(() => setIsSheetOpen(true)),
+        renderCondition: true,
+      },
+    ],
   })
 
   const credentialDisplay = deferredCredential

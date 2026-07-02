@@ -1,5 +1,16 @@
 import { TextBackButton } from '@package/app'
-import { Button, FlexPage, HeaderContainer, Input, Paragraph, ScrollView, Stack, XStack, YStack } from '@package/ui'
+import {
+  Button,
+  FlexPage,
+  HeaderContainer,
+  Input,
+  Paragraph,
+  ScrollView,
+  type ScrollViewRefType,
+  Stack,
+  XStack,
+  YStack,
+} from '@package/ui'
 import { useLocalSearchParams } from 'expo-router'
 import { useEffect, useRef, useState } from 'react'
 import { KeyboardAvoidingView, Platform } from 'react-native'
@@ -24,7 +35,7 @@ export function FunkeSupportChatScreen() {
 
   const [conversationId, setConversationId] = useState<number | undefined>(initialId)
   const [text, setText] = useState('')
-  const scrollRef = useRef<{ scrollToEnd?: (opts?: { animated?: boolean }) => void }>(null)
+  const scrollRef = useRef<ScrollViewRefType>(null)
 
   const { data, isLoading } = useMessages(conversationId)
   const send = useSendMessage()
