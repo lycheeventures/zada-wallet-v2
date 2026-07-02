@@ -3,7 +3,7 @@
  * and send a message (starting a new conversation when no id is given).
  */
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { getMessages, listConversations, sendMessage } from './supportApi'
+import { fetchGuides, getMessages, listConversations, sendMessage } from './supportApi'
 import { SUPPORT_POLL_INTERVAL_MS } from './supportConfig'
 import { getDeviceDiagnostics } from './supportDevice'
 import { getSupportProfile, getSupportUserId } from './supportIdentity'
@@ -19,6 +19,15 @@ export function useConversations() {
     queryKey: keys.conversations(userId),
     queryFn: () => listConversations(userId),
     refetchInterval: SUPPORT_POLL_INTERVAL_MS,
+  })
+}
+
+/** Help guides from the support knowledge base. Rarely change, so cache generously. */
+export function useGuides() {
+  return useQuery({
+    queryKey: ['support', 'guides'] as const,
+    queryFn: fetchGuides,
+    staleTime: 1000 * 60 * 60,
   })
 }
 

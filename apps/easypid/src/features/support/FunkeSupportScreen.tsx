@@ -53,6 +53,38 @@ function ConversationRow({ conversation, onPress }: { conversation: Conversation
   )
 }
 
+function GuidesEntry({ onPress }: { onPress: () => void }) {
+  const { pressStyle, handlePressIn, handlePressOut } = useScaleAnimation()
+
+  return (
+    <AnimatedStack
+      style={pressStyle}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}
+      onPress={onPress}
+      flexDirection="row"
+      ai="center"
+      jc="space-between"
+      br="$4"
+      bg="$grey-50"
+      p="$4"
+    >
+      <XStack ai="center" gap="$3">
+        <HeroIcons.QuestionMarkCircle color="$primary-500" />
+        <YStack>
+          <Paragraph color="$grey-900" fontWeight="$semiBold">
+            Help guides
+          </Paragraph>
+          <Paragraph variant="sub" color="$grey-600">
+            Step-by-step answers to common questions
+          </Paragraph>
+        </YStack>
+      </XStack>
+      <HeroIcons.ChevronRight color="$grey-500" />
+    </AnimatedStack>
+  )
+}
+
 export function FunkeSupportScreen() {
   const { data: conversations, isLoading } = useConversations()
   const hasConversations = !!conversations && conversations.length > 0
@@ -71,18 +103,8 @@ export function FunkeSupportScreen() {
             <Button.Solid onPress={() => router.push('/support/new')}>New conversation</Button.Solid>
           </YStack>
 
-          {/* Guides — stubbed for v1 (will be powered by the support knowledge base later). */}
-          <XStack ai="center" jc="space-between" br="$4" bg="$grey-50" p="$4" opacity={0.6}>
-            <XStack ai="center" gap="$3">
-              <HeroIcons.QuestionMarkCircle color="$grey-500" />
-              <Paragraph color="$grey-700" fontWeight="$semiBold">
-                Help guides
-              </Paragraph>
-            </XStack>
-            <Paragraph variant="sub" color="$grey-500">
-              Coming soon
-            </Paragraph>
-          </XStack>
+          {/* Guides — self-serve help, rendered from the support knowledge base. */}
+          <GuidesEntry onPress={() => router.push('/support/guides')} />
 
           {hasConversations && (
             <YStack gap="$2">
