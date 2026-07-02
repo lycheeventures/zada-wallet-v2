@@ -137,6 +137,15 @@ export function FunkeMenuScreen() {
                 })}
               />
               <MenuListItem
+                onPress={handlePush('/support')}
+                icon={<HeroIcons.QuestionMarkCircle />}
+                label={t({
+                  id: 'menu.item.support',
+                  message: 'Help & support',
+                  comment: 'Label for the help and support menu item',
+                })}
+              />
+              <MenuListItem
                 onPress={handleFeedback}
                 icon={<HeroIcons.ChatBubbleBottomCenterTextFilled />}
                 label={t({
