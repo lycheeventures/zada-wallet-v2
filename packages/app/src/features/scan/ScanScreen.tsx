@@ -11,6 +11,12 @@ const unsupportedUrlPrefixes = ['_oob=']
 
 interface QrScannerScreenProps {
   credentialDataHandlerOptions?: CredentialDataHandlerOptions
+  /**
+   * App-level hook to claim a scan before the generic invitation handling runs (e.g. a
+   * recognized document-source URL that routes to its own flow). Return true when the scan
+   * was handled — the screen then skips handleCredentialData for it.
+   */
+  interceptScan?: (data: string) => boolean
 }
 
 const qrMessages = {
@@ -26,7 +32,7 @@ const qrMessages = {
   }),
 }
 
-export function QrScannerScreen({ credentialDataHandlerOptions }: QrScannerScreenProps) {
+export function QrScannerScreen({ credentialDataHandlerOptions, interceptScan }: QrScannerScreenProps) {
   const isProcessing = useRef<boolean>(false)
   const { back } = useRouter()
   const { handleCredentialData } = useCredentialDataHandler()
@@ -39,6 +45,11 @@ export function QrScannerScreen({ credentialDataHandlerOptions }: QrScannerScree
     if (isProcessing.current || !isFocused) return
     isProcessing.current = true
     setIsLoading(true)
+
+    if (interceptScan?.(scannedData)) {
+      // Handled by the app (navigation away) — leave the guard set until the screen unmounts.
+      return
+    }
 
     const result = await handleCredentialData(scannedData, credentialDataHandlerOptions)
     if (!result.success) {

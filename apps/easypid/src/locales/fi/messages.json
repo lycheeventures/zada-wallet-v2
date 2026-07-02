@@ -64,7 +64,7 @@
 		},
 		"comments": ["Subheading under attribute list: X from Y"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 140]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 144]
 		],
 		"translation": "{disclosedAttributeLength} kortista {0}"
 	},
@@ -230,6 +230,13 @@
 		"origin": [["src/features/onboarding/steps.ts", 35]],
 		"translation": "Ota käyttöön puhelimesi biometriset toiminnot varmistaaksesi, että vain sinä pääset lompakkoosi ja voit jakaa tietoja."
 	},
+	"menu.item.activity": {
+		"message": "Activity",
+		"placeholders": {},
+		"comments": ["Label for activity log"],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 122]],
+		"translation": "Toiminta"
+	},
 	"activity.title": {
 		"message": "Activity",
 		"placeholders": {},
@@ -237,13 +244,6 @@
 			"Title of the activity screen showing shared or received credentials"
 		],
 		"origin": [["src/features/activity/FunkeActivityScreen.tsx", 22]],
-		"translation": "Toiminta"
-	},
-	"menu.item.activity": {
-		"message": "Activity",
-		"placeholders": {},
-		"comments": ["Label for activity log"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 122]],
 		"translation": "Toiminta"
 	},
 	"activity.emptyDescription": {
@@ -254,6 +254,27 @@
 		],
 		"origin": [["src/features/activity/FunkeActivityScreen.tsx", 32]],
 		"translation": "Toiminta näkyy täällä kun jaat tai vastaanotat todisteita."
+	},
+	"menu.item.addDocument": {
+		"message": "Add a document",
+		"placeholders": {},
+		"comments": ["Label for the official-document catalog menu item"],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 104]],
+		"translation": "Lisää asiakirja"
+	},
+	"documentCatalog.title": {
+		"message": "Add a document",
+		"placeholders": {},
+		"comments": ["Title of the official-document catalog screen"],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 76]],
+		"translation": "Lisää asiakirja"
+	},
+	"home.addDocument": {
+		"message": "Add an official document",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 181]],
+		"translation": "Lisää virallinen asiakirja"
 	},
 	"onboardingWalletExplanation.slide1.subtitle": {
 		"message": "Add digital cards with your information, and  share them easily with others. It’s like having your wallet on your phone.",
@@ -267,7 +288,8 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 181]],
-		"translation": "Lisää passi"
+		"translation": "Lisää passi",
+		"obsolete": true
 	},
 	"onboardingWalletExplanation.slide3.subtitle": {
 		"message": "Add your cards and documents by scanning QR codes. When organizations request your data, you can review and share with a tap in the app. Your information is always secure with your PIN or fingerprint.",
@@ -284,6 +306,13 @@
 		"comments": ["Shown when a new card has been added"],
 		"origin": [["src/features/wallet/components/LatestActivityCard.tsx", 114]],
 		"translation": "Lisättiin {name}"
+	},
+	"mdlFlow.heading": {
+		"message": "Adding your driver license",
+		"placeholders": {},
+		"comments": ["Heading while issuing the Myanmar driver license credential"],
+		"origin": [["src/features/documents/MdlFlow.tsx", 98]],
+		"translation": "Lisätään ajokorttiasi"
 	},
 	"passportIssue.heading": {
 		"message": "Adding your passport",
@@ -361,7 +390,7 @@
 		"placeholders": {},
 		"comments": ["Description of the error box explaining pending credentials"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 120]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 124]
 		],
 		"translation": "Kortin noutaminen myöntäjältä epäonnistui."
 	},
@@ -663,6 +692,13 @@
 		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 120]],
 		"translation": "Peru"
 	},
+	"mdlFlow.cancel": {
+		"message": "Cancel",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 116]],
+		"translation": "Peruuta"
+	},
 	"common.cancel": {
 		"message": "Cancel",
 		"placeholders": {},
@@ -746,9 +782,9 @@
 			"Title of the info box explaining that the credential is not available yet"
 		],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 131],
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 148],
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 169]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 135],
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 152],
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 173]
 		],
 		"translation": "Kortti ei vielä saatavilla"
 	},
@@ -907,6 +943,20 @@
 		"origin": [["src/features/onboarding/screens/intro.tsx", 91]],
 		"translation": "Jatka valmisteluun"
 	},
+	"mdlFlow.issueFailed": {
+		"message": "Could not add your driver license. Try again.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 64]],
+		"translation": "Ajokorttia ei voitu lisätä. Yritä uudelleen."
+	},
+	"mdlFlow.offerFailed": {
+		"message": "Could not load the credential offer.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 40]],
+		"translation": "Todistetta ei voitu ladata."
+	},
 	"migration.failedToOpen": {
 		"message": "Could not open credential migration. Please try again.",
 		"placeholders": {},
@@ -1033,7 +1083,7 @@
 		"placeholders": {},
 		"comments": ["Error message when a credential is missing"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 81]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 85]
 		],
 		"translation": "Todistetta ei löytynyt"
 	},
@@ -1322,7 +1372,7 @@
 		"placeholders": {},
 		"comments": ["Title shown in toast when credential cannot be loaded"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 75]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 79]
 		],
 		"translation": "Virhe todisteen tietojen hakemisessa"
 	},
@@ -1420,7 +1470,7 @@
 		"placeholders": {},
 		"comments": ["Title of the error box explaining pending credentials"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 115]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 119]
 		],
 		"translation": "Kortin noutaminen epäonnistui"
 	},
@@ -1603,7 +1653,7 @@
 		"placeholders": {},
 		"comments": ["Option to hide metadata in option sheet"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 181]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 185]
 		],
 		"translation": "Piilota metatiedot"
 	},
@@ -1750,7 +1800,7 @@
 		"message": "Invalid QR code. Try another.",
 		"placeholders": {},
 		"comments": ["Shown when scanned QR code is invalid"],
-		"origin": [["../../packages/app/src/features/scan/ScanScreen.tsx", 22]],
+		"origin": [["../../packages/app/src/features/scan/ScanScreen.tsx", 28]],
 		"translation": "Virheellinen QR-koodi. Kokeile toista."
 	},
 	"common.invitationAlreadyScanned": {
@@ -1809,7 +1859,7 @@
 		},
 		"comments": ["Prefix before issuer name", "Prefix before issuer name"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 106],
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 110],
 			["src/features/wallet/FunkeCredentialDetailScreen.tsx", 102]
 		],
 		"translation": "Myöntäjä: {0}."
@@ -1918,7 +1968,7 @@
 		"message": "Loading invitation",
 		"placeholders": {},
 		"comments": ["Text shown while an invitation is loading"],
-		"origin": [["../../packages/app/src/features/scan/ScanScreen.tsx", 89]],
+		"origin": [["../../packages/app/src/features/scan/ScanScreen.tsx", 100]],
 		"translation": "Ladataan kutsua"
 	},
 	"common.fields.locality": {
@@ -1947,7 +1997,7 @@
 		"placeholders": {},
 		"comments": ["Section header title for metadata attributes"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 157]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 161]
 		],
 		"translation": "Metatiedot"
 	},
@@ -1977,6 +2027,13 @@
 		"origin": [["src/features/menu/FunkeSettingsScreen.tsx", 189]],
 		"translation": "Siirrä todisteet"
 	},
+	"documentCatalog.moreSoon": {
+		"message": "More documents coming soon",
+		"placeholders": {},
+		"comments": ["Hint at the bottom of the document catalog"],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 112]],
+		"translation": "Lisää asiakirjoja tulossa pian"
+	},
 	"home.myQrButton": {
 		"translation": "QR-koodini",
 		"message": "My QR",
@@ -1984,6 +2041,13 @@
 		"comments": [],
 		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 88]],
 		"obsolete": true
+	},
+	"documentCatalog.mdl": {
+		"message": "Myanmar driver license",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 103]],
+		"translation": "Myanmarin ajokortti"
 	},
 	"common.fields.nationalities": {
 		"message": "Nationalities",
@@ -2244,12 +2308,26 @@
 		"origin": [["src/features/share/components/RequestPurposeSection.tsx", 50]],
 		"translation": "Liiallinen tiedonkeruu havaittu"
 	},
+	"documentCatalog.passport": {
+		"message": "Passport",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 94]],
+		"translation": "Passi"
+	},
 	"passportScan.documentNumber": {
 		"message": "Passport number",
 		"placeholders": {},
 		"comments": [],
 		"origin": [["src/features/passport/PassportScanScreen.tsx", 217]],
 		"translation": "Passin numero"
+	},
+	"home.addDocumentSubtitle": {
+		"message": "Passport, driver license and more",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 182]],
+		"translation": "Passi, ajokortti ja muita"
 	},
 	"inbox.notificationType.pending": {
 		"message": "Pending",
@@ -2272,7 +2350,7 @@
 		"placeholders": {},
 		"comments": ["Title of the pending credential notification screen"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 101]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 105]
 		],
 		"translation": "Odottava kortti"
 	},
@@ -2497,6 +2575,13 @@
 		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 87]],
 		"translation": "Lue passin siru"
 	},
+	"documentCatalog.passportSubtitle": {
+		"message": "Read the chip in your passport with your phone",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 95]],
+		"translation": "Lue passisi siru puhelimellasi"
+	},
 	"onboardingDataProtection.privacy": {
 		"message": "Read the Privacy Policy",
 		"placeholders": {},
@@ -2602,7 +2687,7 @@
 		"placeholders": {},
 		"comments": ["Heading above list of attributes shown to the user"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 133]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 137]
 		],
 		"translation": "Pyydetyt tiedot"
 	},
@@ -2688,6 +2773,13 @@
 		"origin": [["src/features/passport/PassportScanScreen.tsx", 249]],
 		"translation": "Skannaa uudelleen"
 	},
+	"mdlFlow.retry": {
+		"message": "Scan again",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 114]],
+		"translation": "Skannaa uudelleen"
+	},
 	"nfcScanner.error.title": {
 		"message": "Scan failed",
 		"placeholders": {},
@@ -2702,7 +2794,8 @@
 		"placeholders": {},
 		"comments": ["Label for the passport scan menu item"],
 		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 104]],
-		"translation": "Skannaa passi"
+		"translation": "Skannaa passi",
+		"obsolete": true
 	},
 	"home.scanQrButton": {
 		"message": "Scan QR-code",
@@ -2727,6 +2820,13 @@
 		"origin": [["src/features/passport/PassportScanScreen.tsx", 106]],
 		"translation": "Skannaa passisi alareuna"
 	},
+	"documentCatalog.mdlSubtitle": {
+		"message": "Scan the QR code on your license",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 104]],
+		"translation": "Skannaa ajokortissasi oleva QR-koodi"
+	},
 	"onboardingIntro.slide2.title": {
 		"message": "Scan to add",
 		"placeholders": {},
@@ -2749,7 +2849,8 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 182]],
-		"translation": "Skannaa passisi siru lisätäksesi sen"
+		"translation": "Skannaa passisi siru lisätäksesi sen",
+		"obsolete": true
 	},
 	"onboardingIntroduction.step2.title": {
 		"message": "Scan your physical ID card",
@@ -2829,18 +2930,18 @@
 		"origin": [["src/features/onboarding/steps.ts", 42]],
 		"translation": "Luo ZADA ID"
 	},
-	"settings.title": {
-		"message": "Settings",
-		"placeholders": {},
-		"comments": ["Header title for the settings screen"],
-		"origin": [["src/features/menu/FunkeSettingsScreen.tsx", 151]],
-		"translation": "Asetukset"
-	},
 	"menu.item.settings": {
 		"message": "Settings",
 		"placeholders": {},
 		"comments": ["Label for settings menu item"],
 		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 143]],
+		"translation": "Asetukset"
+	},
+	"settings.title": {
+		"message": "Settings",
+		"placeholders": {},
+		"comments": ["Header title for the settings screen"],
+		"origin": [["src/features/menu/FunkeSettingsScreen.tsx", 151]],
 		"translation": "Asetukset"
 	},
 	"submission.share": {
@@ -2936,7 +3037,7 @@
 		"placeholders": {},
 		"comments": ["Option to show metadata in option sheet"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 186]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 190]
 		],
 		"translation": "Näytä metatiedot"
 	},
@@ -3316,7 +3417,7 @@
 		"placeholders": {},
 		"comments": ["Description of the info box explaining the card is pending"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 174]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 178]
 		],
 		"translation": "Myöntäjä ei ole vielä tehnyt korttia saataville. Yritä myöhemmin uudelleen."
 	},
@@ -3338,7 +3439,7 @@
 			"Description of the info box explaining the card is pending with expected time"
 		],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 136]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 140]
 		],
 		"translation": "Kortin myöntäjä ehdottaa, että tarkistat uudelleen kello {0}."
 	},
@@ -3353,7 +3454,7 @@
 			"Description of the info box explaining the card is pending with expected date"
 		],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 153]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 157]
 		],
 		"translation": "Kortin myöntäjä ehdottaa, että tarkistat uudelleen {0}."
 	},
@@ -3363,6 +3464,13 @@
 		"comments": ["Label shown above optional extra description"],
 		"origin": [["src/features/receive/slides/TxCodeSlide.tsx", 56]],
 		"translation": "Myöntäjä antoi seuraavat tiedot:"
+	},
+	"mdlFlow.sourceUnavailable": {
+		"message": "The license registry is not reachable right now. Try again later.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 59]],
+		"translation": "Ajokorttirekisteri ei ole juuri nyt tavoitettavissa. Yritä myöhemmin uudelleen."
 	},
 	"trust.noApprovals": {
 		"message": "The organisation has not been verified and is NOT part of the ZADA Trust Registry",
@@ -3548,6 +3656,13 @@
 		"origin": [["src/features/passport/PassportScanScreen.tsx", 75]],
 		"translation": "Tämän avulla sovellus voi lukea passisi alareunaan painetun koodin."
 	},
+	"mdlFlow.urlNotAllowed": {
+		"message": "This link is not recognized as an official license page.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 53]],
+		"translation": "Linkkiä ei tunnistettu viralliseksi ajokorttisivuksi."
+	},
 	"requestPurpose.infoSheet.description": {
 		"message": "This organization seems to be asking for different or more data than their purpose suggests. Read the request carefully. You can deny the request if you do not agree with the data asked.",
 		"placeholders": {},
@@ -3561,6 +3676,13 @@
 		"comments": ["Explanation of the PIN purpose in onboarding"],
 		"origin": [["src/features/onboarding/steps.ts", 17]],
 		"translation": "Tämä PIN-koodi suojaa lompakkoasi. Syötät sen aina jakaessasi tietoja."
+	},
+	"mdlFlow.notAnMdlQr": {
+		"message": "This QR code is not a Myanmar driver license link.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/documents/MdlFlow.tsx", 72]],
+		"translation": "Tämä QR-koodi ei ole Myanmarin ajokortin linkki."
 	},
 	"common.archiveCardDescription": {
 		"message": "This will make {name} unusable and delete it from your wallet.",
@@ -3659,6 +3781,13 @@
 		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 74]],
 		"translation": "Yritä uudelleen"
 	},
+	"passportNfc.retry": {
+		"message": "Try again",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 99]],
+		"translation": "Yritä uudelleen"
+	},
 	"passportIssue.retry": {
 		"message": "Try again",
 		"placeholders": {},
@@ -3666,12 +3795,12 @@
 		"origin": [["src/features/passport/PassportFlow.tsx", 80]],
 		"translation": "Yritä uudelleen"
 	},
-	"passportNfc.retry": {
-		"message": "Try again",
+	"documentCatalog.subtitle": {
+		"message": "Turn a physical document into a verified credential in your wallet.",
 		"placeholders": {},
-		"comments": [],
-		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 99]],
-		"translation": "Yritä uudelleen"
+		"comments": ["Subtitle of the official-document catalog screen"],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 85]],
+		"translation": "Muunna fyysinen asiakirja vahvistetuksi todisteeksi lompakossasi."
 	},
 	"common.credentials.mdl.unDistinguishingSign": {
 		"message": "UN sign",
@@ -3732,7 +3861,7 @@
 		"message": "Unsupported QR code. Try another.",
 		"placeholders": {},
 		"comments": ["Shown when scanned QR code has unsupported URL prefix"],
-		"origin": [["../../packages/app/src/features/scan/ScanScreen.tsx", 17]],
+		"origin": [["../../packages/app/src/features/scan/ScanScreen.tsx", 23]],
 		"translation": "QR-koodia ei tueta. Kokeile toista."
 	},
 	"onboardingIntro.slide2.subtitle": {
@@ -3849,6 +3978,15 @@
 		"comments": ["Subtitle explaining what setting up the ZADA ID does"],
 		"origin": [["src/features/onboarding/steps.ts", 48]],
 		"translation": "Vahvista puhelinnumerosi ja sähköpostisi ottaaksesi käyttöön digitaalisen perusidentiteettisi. Jos olet käyttänyt ZADAa aiemmin, tämä myös siirtää olemassa olevat todisteesi turvallisesti uuteen lompakkoosi."
+	},
+	"mdlFlow.inProgress": {
+		"message": "Verifying your license with the road transport department…",
+		"placeholders": {},
+		"comments": [
+			"Shown while the license is verified against the RTAD registry and issued"
+		],
+		"origin": [["src/features/documents/MdlFlow.tsx", 122]],
+		"translation": "Ajokorttiasi tarkastetaan liikenneviranomaisen rekisteristä…"
 	},
 	"credentials.cardAttributesDescription": {
 		"message": "View attributes of the card",

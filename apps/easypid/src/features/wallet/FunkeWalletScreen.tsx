@@ -27,7 +27,7 @@ import { AllCardsCard } from './components/AllCardsCard'
 import { InboxIcon } from './components/InboxIcon'
 import { LatestActivityCard } from './components/LatestActivityCard'
 
-const HAS_ADDED_PASSPORT_KEY = 'hasAddedPassport'
+const HAS_ADDED_DOCUMENT_KEY = 'hasAddedDocument'
 
 /**
  * Full-width primary action across the top of the home screen. Opens the QR scanner — the main way
@@ -111,24 +111,24 @@ export function FunkeWalletScreen() {
   const { startMigration } = useCredentialMigration()
 
   // Getting-started buttons disappear after first use. Migrate + Create ZADA ID share one flag
-  // because they run the same onboarding flow; passport tracks its own.
-  const [hasAddedPassport] = useMMKVBoolean(HAS_ADDED_PASSPORT_KEY, mmkv)
+  // because they run the same onboarding flow; the document catalog tracks its own.
+  const [hasAddedDocument] = useMMKVBoolean(HAS_ADDED_DOCUMENT_KEY, mmkv)
   const [hasZadaIdOnboarded] = useMMKVBoolean(HAS_ZADA_ID_ONBOARDED_KEY, mmkv)
 
   const pushToMenu = withHaptics(() => push('/menu'))
   const pushToScanner = withHaptics(() => push('/scan'))
 
-  const onAddPassport = withHaptics(() => {
-    mmkv.set(HAS_ADDED_PASSPORT_KEY, true)
-    push('/passport')
+  const onAddDocument = withHaptics(() => {
+    mmkv.set(HAS_ADDED_DOCUMENT_KEY, true)
+    push('/documents')
   })
   // Both "Create ZADA ID" (new users) and "Migrate" (existing users) run the same flow;
   // startMigration persists HAS_ZADA_ID_ONBOARDED_KEY, which hides both buttons.
   const onZadaIdOnboard = withHaptics(() => startMigration())
 
-  const showPassport = !hasAddedPassport
+  const showAddDocument = !hasAddedDocument
   const showZadaId = !hasZadaIdOnboarded
-  const showGetStarted = showPassport || showZadaId
+  const showGetStarted = showAddDocument || showZadaId
 
   return (
     <YStack pos="relative" fg={1} bg="$background">
@@ -175,15 +175,15 @@ export function FunkeWalletScreen() {
                         />
                       </>
                     )}
-                    {showPassport && (
+                    {showAddDocument && (
                       <GetStartedItem
                         icon={<HeroIcons.IdentificationFilled color="$primary-500" />}
-                        title={t({ id: 'home.addPassport', message: 'Add passport' })}
+                        title={t({ id: 'home.addDocument', message: 'Add an official document' })}
                         subtitle={t({
-                          id: 'home.addPassportSubtitle',
-                          message: 'Scan your passport chip to add it',
+                          id: 'home.addDocumentSubtitle',
+                          message: 'Passport, driver license and more',
                         })}
-                        onPress={onAddPassport}
+                        onPress={onAddDocument}
                       />
                     )}
                   </YStack>

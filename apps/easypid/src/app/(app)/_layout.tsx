@@ -143,6 +143,13 @@ export default function AppLayout() {
             }}
             name="(home)/passport"
           />
+          <Stack.Screen name="(home)/documents/index" options={headerNormalOptions} />
+          <Stack.Screen
+            options={{
+              presentation: 'modal',
+            }}
+            name="(home)/documents/mdl"
+          />
           <Stack.Screen
             options={{
               presentation: 'modal',
