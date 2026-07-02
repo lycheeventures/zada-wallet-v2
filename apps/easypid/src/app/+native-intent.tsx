@@ -16,6 +16,27 @@ export function redirectSystemPath({ path, initial }: { path: string; initial: b
     initial,
   })
 
+  // Batch credential import from the migration web flow: a single app-scheme deep link
+  // (id.animo.paradym:///wallet/credential-offer-batch?offers=[...]) carrying multiple
+  // pre-authorized OID4VCI offer URIs. Handled here, before the invitation-scheme check,
+  // because it uses the app scheme rather than a standard invitation scheme.
+  if (path.startsWith(`${appScheme}:`) && path.includes('/wallet/credential-offer-batch')) {
+    try {
+      const offers = new URL(path).searchParams.get('offers')
+      if (offers) {
+        let redirectPath = `/notifications/credentialBatch?offers=${encodeURIComponent(offers)}`
+        if (!initial) {
+          const encodedRedirect = TypedArrayEncoder.toBase64URL(TypedArrayEncoder.fromString(redirectPath))
+          redirectPath = `/authenticate?redirectAfterUnlock=${encodedRedirect}`
+        }
+        logger.debug('Deeplink is a batch credential import. Routing to batch screen.')
+        return redirectPath
+      }
+    } catch (_error) {
+      // fall through to normal handling
+    }
+  }
+
   const isRecognizedDeeplink = deeplinkSchemes.some((scheme) => path.startsWith(scheme))
   if (!isRecognizedDeeplink) {
     logger.debug(
