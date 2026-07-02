@@ -13,7 +13,8 @@ import {
 } from '@package/ui'
 import { useLocalSearchParams } from 'expo-router'
 import { useEffect, useRef, useState } from 'react'
-import { KeyboardAvoidingView, Platform } from 'react-native'
+import Animated, { useAnimatedKeyboard, useAnimatedStyle } from 'react-native-reanimated'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import type { ChatMessage } from './supportApi'
 import { markConversationSeen } from './supportIdentity'
 import { useMessages, useSendMessage } from './useSupportChat'
@@ -41,6 +42,16 @@ export function FunkeSupportChatScreen() {
   const send = useSendMessage()
   const messages = data?.messages ?? []
 
+  // Lift the content above the on-screen keyboard. Android has `edgeToEdgeEnabled`, under which the
+  // window is not resized and KeyboardAvoidingView does nothing — so we track the keyboard height
+  // via reanimated and pad the bottom by however much of it sits above the safe-area inset.
+  const keyboard = useAnimatedKeyboard()
+  const insets = useSafeAreaInsets()
+  const keyboardAvoidStyle = useAnimatedStyle(() => ({
+    flex: 1,
+    paddingBottom: Math.max(keyboard.height.value - insets.bottom, 0),
+  }))
+
   // Mark the conversation as read whenever we see its latest message.
   useEffect(() => {
     const last = messages[messages.length - 1]
@@ -63,7 +74,7 @@ export function FunkeSupportChatScreen() {
     <FlexPage gap="$0" paddingHorizontal="$0">
       <HeaderContainer title="Support" />
       <TextBackButton />
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      <Animated.View style={keyboardAvoidStyle}>
         <ScrollView
           ref={scrollRef}
           flex={1}
@@ -101,7 +112,7 @@ export function FunkeSupportChatScreen() {
             Send
           </Button.Solid>
         </XStack>
-      </KeyboardAvoidingView>
+      </Animated.View>
     </FlexPage>
   )
 }

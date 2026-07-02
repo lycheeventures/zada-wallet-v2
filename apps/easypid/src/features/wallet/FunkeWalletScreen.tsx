@@ -9,6 +9,7 @@ import {
   HeroIcons,
   IconContainer,
   type IconContainerProps,
+  Image,
   Paragraph,
   ScrollView,
   Spacer,
@@ -21,6 +22,7 @@ import {
 import { useRouter } from 'expo-router'
 import { useMMKVBoolean } from 'react-native-mmkv'
 import { FadeIn } from 'react-native-reanimated'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { mmkv } from '../../storage/mmkv'
 import { HAS_ZADA_ID_ONBOARDED_KEY, useCredentialMigration } from '../migration/useCredentialMigration'
 import { AllCardsCard } from './components/AllCardsCard'
@@ -28,6 +30,9 @@ import { InboxIcon } from './components/InboxIcon'
 import { LatestActivityCard } from './components/LatestActivityCard'
 
 const HAS_ADDED_DOCUMENT_KEY = 'hasAddedDocument'
+
+// White ZADA wordmark shown over the dark blob at the top of the home screen for branding.
+const zadaLogoWhite = require('../../../assets/zada-logo-white.png')
 
 /**
  * Full-width primary action across the top of the home screen. Opens the QR scanner — the main way
@@ -109,6 +114,7 @@ export function FunkeWalletScreen() {
   const { withHaptics } = useHaptics()
   const { t } = useLingui()
   const { startMigration } = useCredentialMigration()
+  const insets = useSafeAreaInsets()
 
   // Getting-started buttons disappear after first use. Migrate + Create ZADA ID share one flag
   // because they run the same onboarding flow; the document catalog tracks its own.
@@ -137,16 +143,19 @@ export function FunkeWalletScreen() {
       </YStack>
 
       <FlexPage fg={1} flex-1={false} bg="transparent">
-        <XStack pt="$2" jc="space-between">
+        <XStack pt="$2" jc="space-between" ai="center">
           <IconContainer bg="white" aria-label="Menu" icon={<HeroIcons.Menu />} onPress={pushToMenu} />
           <InboxIcon />
         </XStack>
 
-        <AnimatedStack fg={1} entering={useSpringify(FadeIn, 200)}>
-          <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
-            <YStack fg={1} gap="$4">
-              <ScanButton label={t({ id: 'home.scanQrButton', message: 'Scan QR-code' })} onPress={pushToScanner} />
+        {/* White ZADA wordmark over the dark blob, for branding. */}
+        <XStack jc="center" ai="center" py="$5">
+          <Image src={zadaLogoWhite} width={150} height={37} backgroundColor="transparent" contentFit="contain" />
+        </XStack>
 
+        <AnimatedStack fg={1} entering={useSpringify(FadeIn, 200)}>
+          <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 112 }} showsVerticalScrollIndicator={false}>
+            <YStack fg={1} gap="$4">
               {showGetStarted && (
                 <YStack gap="$3">
                   <Heading heading="sub2" fontWeight="$semiBold" color="$grey-700">
@@ -201,6 +210,11 @@ export function FunkeWalletScreen() {
           </ScrollView>
         </AnimatedStack>
       </FlexPage>
+
+      {/* Scan pinned to the bottom for one-handed reach. */}
+      <YStack pos="absolute" b={0} l={0} r={0} px="$4" pt="$3" pb={insets.bottom + 12} bg="transparent">
+        <ScanButton label={t({ id: 'home.scanQrButton', message: 'Scan QR-code' })} onPress={pushToScanner} />
+      </YStack>
     </YStack>
   )
 }

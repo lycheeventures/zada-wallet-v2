@@ -20,6 +20,7 @@ import {
 } from '@package/ui'
 import { router } from 'expo-router'
 import { Linking } from 'react-native'
+import { useCredentialMigration } from '../migration/useCredentialMigration'
 
 type MenuListItemProps = {
   variant?: 'regular' | 'danger'
@@ -63,7 +64,11 @@ export function FunkeMenuScreen() {
   const { handleScroll, isScrolledByOffset, scrollEventThrottle } = useScrollViewPosition()
   const onResetWallet = useWalletReset()
   const { withHaptics } = useHaptics()
+  const { startMigration } = useCredentialMigration()
 
+  // Create ZADA ID (new users) and Migrate credentials (existing users) both open the same
+  // migrate.zada.solutions web flow; the difference is only framing.
+  const onZadaIdOnboard = withHaptics(() => startMigration())
   const handleFeedback = withHaptics(() => Linking.openURL('mailto:help@zada.io?subject=Feedback on the Wallet'))
   const handlePush = (path: string) => withHaptics(() => router.push(path))
 
@@ -137,6 +142,26 @@ export function FunkeMenuScreen() {
               })}
             </Heading>
             <YStack>
+              <MenuListItem
+                onPress={onZadaIdOnboard}
+                icon={<HeroIcons.Identification />}
+                label={t({
+                  id: 'menu.item.createZadaId',
+                  message: 'Create ZADA ID',
+                  comment: 'Label for the menu item that opens ZADA ID onboarding',
+                })}
+                action="outside"
+              />
+              <MenuListItem
+                onPress={onZadaIdOnboard}
+                icon={<HeroIcons.ArrowPath />}
+                label={t({
+                  id: 'menu.item.migrateCredentials',
+                  message: 'Migrate credentials',
+                  comment: 'Label for the menu item that opens credential migration',
+                })}
+                action="outside"
+              />
               <MenuListItem
                 onPress={handlePush('/menu/settings')}
                 icon={<HeroIcons.Cog8ToothFilled />}
