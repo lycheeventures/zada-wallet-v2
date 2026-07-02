@@ -24,13 +24,21 @@ routing all live server-side. Backend + proxy source and full spec:
 | `supportConfig.ts` | Proxy URL + app key from `EXPO_PUBLIC_SUPPORT_*` env |
 | `supportIdentity.ts` | Anonymous UUID (MMKV) + optional name/email + local unread tracking |
 | `supportDevice.ts` | Device diagnostics (`expo-device` / `expo-application`) |
-| `supportApi.ts` | Proxy client (list / messages / send) |
-| `useSupportChat.ts` | React-Query hooks (poll + send) |
-| `FunkeSupportScreen.tsx` | Home: "New conversation" + previous conversations (bold = unread) |
+| `supportApi.ts` | Proxy client (list / messages / send / guides) |
+| `useSupportChat.ts` | React-Query hooks (poll + send + `useGuides`) |
+| `FunkeSupportScreen.tsx` | Home: "New conversation" + Help guides entry + previous conversations (bold = unread) |
 | `FunkeSupportChatScreen.tsx` | Chat thread (iMessage-style bubbles, polling) |
+| `FunkeGuidesScreen.tsx` | Guides: accordion of help sections rendered from the KB |
 
-Routes: `app/(app)/support/index.tsx` + `support/[id].tsx` (registered in `(app)/_layout.tsx`).
+Routes: `app/(app)/support/{index,guides,[id]}.tsx` (registered in `(app)/_layout.tsx`).
 Entry point: **Menu → Help & support**.
+
+## Guides tab
+Self-serve help rendered from the support knowledge base. The proxy's `GET /wallet-api/guides`
+fetches configured Outline docs server-side (with the read-only Outline key) and returns them as
+`{ title, sections: [{ heading, body }] }`; the app renders an accordion. Same content the AI
+(Eir) grounds its chat answers on, so guides and chat never drift. Which docs are exposed is set
+by the proxy's `guides` config (doc ids) — currently the ZADA Wallet How-To Guide.
 
 ## Design
 

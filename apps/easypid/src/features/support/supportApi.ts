@@ -58,3 +58,19 @@ export async function sendMessage(params: {
 }): Promise<{ conversationId: number; newConversation: boolean }> {
   return request('POST', '/message', params)
 }
+
+export type GuideSection = { heading: string; body: string }
+
+export type Guide = {
+  id: string
+  title: string
+  url: string
+  updatedAt: string
+  sections: GuideSection[]
+}
+
+/** Help guides rendered from the support knowledge base (Outline), served by the proxy. */
+export async function fetchGuides(): Promise<Guide[]> {
+  const data = await request<{ guides: Guide[] }>('GET', '/guides')
+  return data.guides ?? []
+}
