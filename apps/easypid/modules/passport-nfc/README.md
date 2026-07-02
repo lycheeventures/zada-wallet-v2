@@ -49,6 +49,48 @@ For a definitive check of what reached the builder, add a temporary
 `eas-build-pre-install` step that runs `ls -laR modules/passport-nfc` and read it in the EAS
 **"Install dependencies"** log.
 
+## iOS (CoreNFC + NFCPassportReader) — scaffolded Jun 2026, not yet built/tested
+
+iOS reads the chip via **CoreNFC** using [`NFCPassportReader`](https://github.com/AndyQ/NFCPassportReader)
+(**MIT**). The Swift module `ios/PassportNfcModule.swift` mirrors the Android JS contract exactly —
+same `PassportNfc` native name, `onStatus` events, and result dict — so `index.ts` and the feature UI
+are unchanged across platforms. **iOS bonus:** `UIImage` decodes JPEG2000, so the DG2 portrait is
+transcoded to JPEG and renders fine (sidesteps the Android JP2 gap).
+
+**Apple prerequisites (one-time):**
+- Paid Apple Developer membership (ZADA already has one, from the existing app).
+- Enable the **"Near Field Communication Tag Reading"** capability on the App ID
+  (`com.zadanetwork.wallet`) in the Apple Developer portal — otherwise EAS's provisioning profile
+  won't carry the entitlement and the session fails at runtime.
+
+**Config (already committed):**
+- `app.config.js` → `PARADYM_WALLET.ios.entitlements['com.apple.developer.nfc.readersession.formats'] = ['TAG']`.
+- `base.app.config.js` infoPlist → `NFCReaderUsageDescription` + `com.apple.developer.nfc.readersession.iso7816.select-identifiers: ['A0000002471001']` (eMRTD AID).
+- `expo-module.config.json` → `platforms: ["android","ios"]`, `ios.modules: ["PassportNfcModule"]`.
+
+**iOS dependency wiring — DONE via config plugin (validate on first build).**
+NFCPassportReader is git/SPM-only (not in the CocoaPods trunk), so it can't be a transitive
+`s.dependency` in our podspec. Instead `apps/easypid/plugins/withNfcPassportReader.js` (registered in
+`app.config.js` for `PARADYM_WALLET`) injects the git pod into the CNG-generated Podfile during EAS
+prebuild — so `eas build --platform ios` pulls it in automatically (no manual Xcode). The git-pod path
+works cleanly because `expo-build-properties` already sets `ios.useFrameworks: 'dynamic'`.
+
+Pinned to tag **2.3.1** (MIT, iOS 15). Two things to **validate on the first iOS build** (couldn't be
+compiled here — no Apple toolchain):
+- **OpenSSL-Universal coexistence:** NFCPassportReader's podspec depends on `OpenSSL-Universal`. Confirm
+  it doesn't clash with any OpenSSL pulled by Credo/Askar/other pods. If it does, pin/exclude in the
+  plugin.
+- **API names:** verify the `NFCPassportModel` property/enum names used in `map(_:)` and the
+  display-message switch against the resolved 2.3.1 API.
+
+**Build & test:** NFC does **not** work in the iOS Simulator — needs a real device (iPhone 7+, iOS 15+)
+on a device/internal-distribution profile (not `paradym-preview-simulator`).
+
+**Replacing the live iOS app:** to ship as an *update* (not a new listing), the production bundle id
+must equal the existing app's (currently `com.zadanetwork.wallet`), same team, higher build/version.
+Existing users re-claim their old cloud-wallet credentials via the migration flow
+(`MigrationWelcomeSheet`).
+
 ## Known limitations / TODO
 
 - **DG2 portrait is JPEG2000.** It's captured and carried in the credential as

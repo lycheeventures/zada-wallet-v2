@@ -124,7 +124,7 @@ export function FunkeRequestedAttributesDetailScreen({
                     url: activeCredential.display.backgroundImage?.url,
                     altText: activeCredential.display.backgroundImage?.altText,
                   }}
-                  bgColor={activeCredential.display.backgroundColor ?? '$grey-900'}
+                  bgColor={activeCredential.display.backgroundColor}
                 />
               </Stack>
               <Stack gap="$4">

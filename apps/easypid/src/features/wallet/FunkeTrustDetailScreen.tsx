@@ -51,8 +51,14 @@ export function FunkeTrustDetailScreen({
           ? 'Decentralized Identifier'
           : trustMechanism === 'x509'
             ? 'X.509 Certificate'
-            : 'No signature'
-  
+            : trustMechanism === 'zada_registry'
+              ? 'ZADA Trust Registry (listing only)'
+              : 'No signature'
+
+  // Registry-listing-only trust (issuer URL is registered but metadata wasn't signed). Shown with
+  // its own honest copy so it isn't mistaken for a cryptographically verified organization.
+  const isZadaRegistryListing = trustMechanism === 'zada_registry'
+
   return (
     <FlexPage gap="$0" paddingHorizontal="$0">
       <HeaderContainer
@@ -105,31 +111,38 @@ export function FunkeTrustDetailScreen({
                 {isDevelopmentModeEnabled && <Paragraph>({trustMechanismName})</Paragraph>}
               </Heading>
               <Paragraph>
-                {trustedEntities.length > 0
-                  ? name
-                    ? t({
-                        id: 'trust.approvedList',
-                        comment: 'A sentence that introduces a list of organizations that approved the current party',
-                        message: `A list of organizations that have approved ${name}.`,
-                      })
-                    : t({
-                        id: 'trust.approvedListWithoutOrganizationName',
-                        comment:
-                          'A sentence that introduces a list of organizations that approved the current party, but the organization name is not known',
-                        message: 'A list of organizations that have approved this unknown organization.',
-                      })
-                  : name
-                    ? t({
-                        id: 'trust.noApprovals',
-                        comment: 'A message shown when there are no organizations that approved the current party',
-                        message: `The organisation has not been verified and is NOT part of the ZADA Trust Registry`,
-                      })
-                    : t({
-                        id: 'trust.noApprovalsWithoutOrganizationName',
-                        comment:
-                          'A message shown when there are no organizations that approved the current party, but the organization name is not known',
-                        message: 'There are no organizations that have approved this unknown organization.',
-                      })}
+                {isZadaRegistryListing
+                  ? t({
+                      id: 'trust.zadaRegistryListing',
+                      comment:
+                        'Shown when an organization is listed in the ZADA trust registry but not cryptographically verified',
+                      message: `${name ?? 'This organization'} is listed in the ZADA Trust Registry. Its identity has not been cryptographically verified.`,
+                    })
+                  : trustedEntities.length > 0
+                    ? name
+                      ? t({
+                          id: 'trust.approvedList',
+                          comment: 'A sentence that introduces a list of organizations that approved the current party',
+                          message: `A list of organizations that have approved ${name}.`,
+                        })
+                      : t({
+                          id: 'trust.approvedListWithoutOrganizationName',
+                          comment:
+                            'A sentence that introduces a list of organizations that approved the current party, but the organization name is not known',
+                          message: 'A list of organizations that have approved this unknown organization.',
+                        })
+                    : name
+                      ? t({
+                          id: 'trust.noApprovals',
+                          comment: 'A message shown when there are no organizations that approved the current party',
+                          message: `The organisation has not been verified and is NOT part of the ZADA Trust Registry`,
+                        })
+                      : t({
+                          id: 'trust.noApprovalsWithoutOrganizationName',
+                          comment:
+                            'A message shown when there are no organizations that approved the current party, but the organization name is not known',
+                          message: 'There are no organizations that have approved this unknown organization.',
+                        })}
               </Paragraph>
             </YStack>
 
@@ -161,6 +174,9 @@ export function FunkeTrustDetailScreen({
                       icon={
                         entity.demo ? (
                           <HeroIcons.ExclamationTriangleFilled size={30} color="$warning-500" />
+                        ) : isZadaRegistryListing ? (
+                          // Listing-only, not cryptographically verified: use a neutral info badge.
+                          <HeroIcons.InformationCircleFilled size={30} color="$primary-500" />
                         ) : (
                           <HeroIcons.CheckCircleFilled size={30} color="$positive-500" />
                         )

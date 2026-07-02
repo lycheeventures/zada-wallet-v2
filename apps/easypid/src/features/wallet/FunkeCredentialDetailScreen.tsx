@@ -19,6 +19,7 @@ import {
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { ColdCredentialSheet } from './ColdCredentialSheet'
 
 export function FunkeCredentialDetailScreen() {
   const toast = useToastController()
@@ -31,6 +32,7 @@ export function FunkeCredentialDetailScreen() {
 
   const { credential } = useCredentialForDisplayById(id)
   const [isSheetOpen, setIsSheetOpen] = useState(false)
+  const [isColdSheetOpen, setIsColdSheetOpen] = useState(false)
 
   useHeaderRightAction({
     actions: [
@@ -38,8 +40,8 @@ export function FunkeCredentialDetailScreen() {
         icon: <HeroIcons.Trash />,
         onPress: withHaptics(() => setIsSheetOpen(true)),
         renderCondition: credential?.category?.canDeleteCredential ?? true,
-      }
-    ]
+      },
+    ],
   })
 
   if (!credential) {
@@ -87,7 +89,7 @@ export function FunkeCredentialDetailScreen() {
                   url: credential.display.backgroundImage?.url,
                   altText: credential.display.backgroundImage?.altText,
                 }}
-                bgColor={credential.display.backgroundColor ?? '$grey-900'}
+                bgColor={credential.display.backgroundColor}
               />
             </AnimatedStack>
             <Stack gap="$2">
@@ -108,7 +110,8 @@ export function FunkeCredentialDetailScreen() {
                     {t({
                       id: 'credentials.verifiedByZada',
                       message: 'Verified by ZADA Network',
-                      comment: 'Badge shown when the credential issuer was cryptographically verified against the ZADA trust registry',
+                      comment:
+                        'Badge shown when the credential issuer was cryptographically verified against the ZADA trust registry',
                     })}
                   </Paragraph>
                 </XStack>
@@ -134,6 +137,20 @@ export function FunkeCredentialDetailScreen() {
                 })}
                 onPress={onCardAttributesPress}
               />
+              <InfoButton
+                variant="view"
+                title={t({
+                  id: 'credentials.offlineCopyTitle',
+                  message: 'Offline PDF & QR code',
+                  comment: 'Label for the button that opens the offline cold-credential copy (PDF + scannable QR)',
+                })}
+                description={t({
+                  id: 'credentials.offlineCopyDescription',
+                  message: 'Get a verifiable QR and PDF that work offline',
+                  comment: 'Description for the offline copy button',
+                })}
+                onPress={withHaptics(() => setIsColdSheetOpen(true))}
+              />
             </YStack>
           </YStack>
         </ScrollView>
@@ -147,6 +164,7 @@ export function FunkeCredentialDetailScreen() {
         id={credential.id}
         name={credential.display.name}
       />
+      <ColdCredentialSheet isOpen={isColdSheetOpen} setIsOpen={setIsColdSheetOpen} credential={credential} />
     </>
   )
 }

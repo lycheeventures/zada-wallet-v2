@@ -85,7 +85,7 @@ export const VerifyPartySlide = ({
       isDemoTrustedEntity: `${isDemoTrustedEntity}`,
     })
 
-    if (logo?.url) searchParams.set('logo',  encodeURIComponent(logo.url))
+    if (logo?.url) searchParams.set('logo', encodeURIComponent(logo.url))
     if (name) searchParams.set('name', name)
 
     router.push(`trust?${searchParams}`)
@@ -172,7 +172,23 @@ export const VerifyPartySlide = ({
         </YStack>
 
         <YStack gap="$4">
-          {trustedEntitiesWithoutSelf && (trustedEntitiesWithoutSelf.length > 0 || entityIsTrustAnchor) ? (
+          {trustMechanism === 'zada_registry' && trustedEntitiesWithoutSelf && trustedEntitiesWithoutSelf.length > 0 ? (
+            // Registry-listing-only trust: the issuer URL is in the ZADA trust registry, but its
+            // metadata was not cryptographically signed. Surfaced distinctly (not the green
+            // "verified" badge) and honestly labelled.
+            <InfoButton
+              variant="info"
+              title={t({
+                id: 'verifyPartySlide.zadaRegistryTitle',
+                message: 'In ZADA Trust Registry',
+              })}
+              description={t({
+                id: 'verifyPartySlide.zadaRegistryDescription',
+                message: 'Listed in the registry, identity not cryptographically verified',
+              })}
+              onPress={onPressVerifiedIssuer}
+            />
+          ) : trustedEntitiesWithoutSelf && (trustedEntitiesWithoutSelf.length > 0 || entityIsTrustAnchor) ? (
             <InfoButton
               variant={entityIsTrustAnchor ? 'positive' : 'info'}
               title={t({
@@ -180,9 +196,9 @@ export const VerifyPartySlide = ({
                 message: 'Recognized organization',
               })}
               description={t({
-                      id: 'verifyPartySlide.approvedByMultipleOrganizations',
-                      message: `Approved by ${trustedEntitiesWithoutSelf[0].organizationName} organizations`,
-             })}
+                id: 'verifyPartySlide.approvedByMultipleOrganizations',
+                message: `Approved by ${trustedEntitiesWithoutSelf[0].organizationName} organizations`,
+              })}
               onPress={onPressVerifiedIssuer}
             />
           ) : (

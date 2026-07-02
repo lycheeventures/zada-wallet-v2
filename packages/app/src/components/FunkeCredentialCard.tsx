@@ -11,6 +11,7 @@ import {
   Loader,
   LucideIcons,
   Paragraph,
+  pickCredentialBackgroundColor,
   Spacer,
   Stack,
   useScaleAnimation,
@@ -48,7 +49,10 @@ export function FunkeCredentialCard({
 }: FunkeCredentialCardProps) {
   const { pressStyle, handlePressIn, handlePressOut } = useScaleAnimation({ scaleInValue: 0.99 })
 
-  textColor = textColor ? textColor : bgColor ? getTextColorBasedOnBg(bgColor) : '$grey-100'
+  // Fall back to a deterministic ZADA palette colour (seeded by the credential name) when the
+  // issuer didn't provide its own background colour, so cards don't all render in the same grey.
+  const bgColorValue = bgColor ?? pickCredentialBackgroundColor(name)
+  textColor = textColor ? textColor : getTextColorBasedOnBg(bgColorValue)
 
   const icon = issuerImage?.url ? (
     <Image src={issuerImage.url} width={36} height={36} />
@@ -58,7 +62,6 @@ export function FunkeCredentialCard({
     </XStack>
   )
 
-  const bgColorValue = bgColor ?? '$grey-900'
   const { t } = useLingui()
   return (
     <AnimatedStack

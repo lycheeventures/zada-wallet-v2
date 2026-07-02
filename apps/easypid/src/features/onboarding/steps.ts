@@ -2,7 +2,9 @@ import { type OnboardingStep, pidSetupMessages } from '@easypid/utils/sharedPidS
 import { defineMessage } from '@lingui/core/macro'
 import { OnboardingBiometrics } from './screens/biometrics'
 import { OnboardingDataProtection } from './screens/data-protection'
+import { OnboardingIntro } from './screens/intro'
 import OnboardingPinEnter from './screens/pin'
+import { OnboardingSetupZadaId } from './screens/setup-zada-id'
 import OnboardingWelcome from './screens/welcome'
 
 // Shared messages
@@ -14,7 +16,7 @@ const pinTitle = defineMessage({
 
 const pinSubtitle = defineMessage({
   id: 'onboarding.pin.subtitle',
-  message: 'This PIN secures your identity wallet. You enter it every time you share data.',
+  message: 'This PIN secures your wallet. You enter it every time you open the app or share data.',
   comment: 'Explanation of the PIN purpose in onboarding',
 })
 
@@ -37,6 +39,19 @@ const biometricsSubtitle = defineMessage({
   comment: 'Subtitle explaining purpose of biometrics',
 })
 
+const setupZadaIdTitle = defineMessage({
+  id: 'onboarding.setupZadaId.title',
+  message: 'Set up your ZADA ID',
+  comment: 'Heading for the ZADA ID setup step',
+})
+
+const setupZadaIdSubtitle = defineMessage({
+  id: 'onboarding.setupZadaId.subtitle',
+  message:
+    'Verify your phone number and email to unlock your foundational digital identity. If you have used ZADA before, this will also safely transfer your existing credentials to your new wallet.',
+  comment: 'Subtitle explaining what setting up the ZADA ID does',
+})
+
 export const onboardingSteps = [
   {
     step: 'welcome',
@@ -46,6 +61,15 @@ export const onboardingSteps = [
       type: 'fullscreen',
     },
     Screen: OnboardingWelcome,
+  },
+  {
+    step: 'intro',
+    alternativeFlow: false,
+    progress: 10,
+    page: {
+      type: 'content',
+    },
+    Screen: OnboardingIntro,
   },
   {
     step: 'pin',
@@ -75,7 +99,7 @@ export const onboardingSteps = [
   {
     step: 'biometrics',
     alternativeFlow: false,
-    progress: 50,
+    progress: 45,
     page: {
       type: 'content',
       title: biometricsTitle,
@@ -85,7 +109,7 @@ export const onboardingSteps = [
   },
   {
     step: 'biometrics-disabled',
-    progress: 50,
+    progress: 45,
     alternativeFlow: true,
     page: {
       type: 'content',
@@ -97,11 +121,22 @@ export const onboardingSteps = [
   {
     step: 'data-protection',
     alternativeFlow: false,
-    progress: 75,
+    progress: 65,
     page: {
       type: 'content',
       ...pidSetupMessages.dataProtection,
     },
     Screen: OnboardingDataProtection,
+  },
+  {
+    step: 'setup-zada-id',
+    alternativeFlow: false,
+    progress: 85,
+    page: {
+      type: 'content',
+      title: setupZadaIdTitle,
+      subtitle: setupZadaIdSubtitle,
+    },
+    Screen: OnboardingSetupZadaId,
   },
 ] as const satisfies Array<OnboardingStep>

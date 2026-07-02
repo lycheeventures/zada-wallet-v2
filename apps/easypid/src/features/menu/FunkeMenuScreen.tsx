@@ -5,6 +5,7 @@ import { useHaptics, useScrollViewPosition } from '@package/app/hooks'
 import { commonMessages } from '@package/translations'
 import {
   AnimatedStack,
+  CustomIcons,
   FlexPage,
   HeaderContainer,
   Heading,
@@ -107,6 +108,15 @@ export function FunkeMenuScreen() {
                 })}
               />
               <MenuListItem
+                onPress={handlePush('/offline')}
+                icon={<CustomIcons.People />}
+                label={t({
+                  id: 'menu.item.presentInPerson',
+                  message: 'Present in-person',
+                  comment: 'Label for the in-person (offline) presentation menu item',
+                })}
+              />
+              <MenuListItem
                 onPress={handlePush('/activity')}
                 icon={<HeroIcons.QueueListFilled />}
                 label={t({
@@ -134,6 +144,15 @@ export function FunkeMenuScreen() {
                   id: 'menu.item.settings',
                   message: 'Settings',
                   comment: 'Label for settings menu item',
+                })}
+              />
+              <MenuListItem
+                onPress={handlePush('/support')}
+                icon={<HeroIcons.QuestionMarkCircle />}
+                label={t({
+                  id: 'menu.item.support',
+                  message: 'Help & support',
+                  comment: 'Label for the help and support menu item',
                 })}
               />
               <MenuListItem

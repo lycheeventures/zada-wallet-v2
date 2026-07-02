@@ -1,3 +1,4 @@
+import { getColdCredential } from '@easypid/hooks/useShareCredential'
 import { useLingui } from '@lingui/react/macro'
 import { type CredentialForDisplayId, useCredentialForDisplayById } from '@package/agent'
 import {
@@ -6,24 +7,19 @@ import {
   FunkeCredentialCard,
   TextBackButton,
 } from '@package/app/components'
-import {
-  useHaptics,
-  useHeaderRightAction,
-  useScrollViewPosition,
-} from '@package/app/hooks'
-import * as Sharing from 'expo-sharing'
-import { useShareCredential } from '@easypid/hooks/useShareCredential'
+import { useHaptics, useHeaderRightAction, useScrollViewPosition } from '@package/app/hooks'
 import {
   FlexPage,
   HeaderContainer,
   HeroIcons,
+  Loader,
   ScrollView,
   type ScrollViewRefType,
   useToastController,
   YStack,
-  Loader,
 } from '@package/ui'
 import { useLocalSearchParams, useRouter } from 'expo-router'
+import * as Sharing from 'expo-sharing'
 import { useRef, useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
@@ -34,8 +30,7 @@ export function FunkeCredentialDetailAttributesScreen() {
   const toast = useToastController()
   const router = useRouter()
 
-  const { handleScroll, isScrolledByOffset, scrollEventThrottle } =
-    useScrollViewPosition()
+  const { handleScroll, isScrolledByOffset, scrollEventThrottle } = useScrollViewPosition()
 
   const { bottom } = useSafeAreaInsets()
   const { withHaptics } = useHaptics()
@@ -51,13 +46,28 @@ export function FunkeCredentialDetailAttributesScreen() {
 
     try {
       setIsSharing(true)
-      const uri = await useShareCredential(credential)
+      // Get (or create) the ZADA-signed offline PDF. Reuses the on-device copy if present;
+      // otherwise trust-bound-roots verifies the credential and returns the cold copy to render.
+      const result = await getColdCredential(credential)
       setIsSharing(false)
 
-      if (!uri) return
-      await new Promise(resolve => setTimeout(resolve, 100))
-      await Sharing.shareAsync(uri)
-    } catch (e) {
+      if (result.error) {
+        const message =
+          result.error === 'offline'
+            ? t({ id: 'credentials.cold.offline', message: 'You’re offline. Connect once to create your offline copy.' })
+            : result.error === 'untrusted'
+              ? t({ id: 'credentials.cold.untrusted', message: 'This issuer isn’t recognised for offline copies yet.' })
+              : t({ id: 'credentials.cold.failed', message: 'Couldn’t create the offline copy. Please try again.' })
+        toast.show(message, { customData: { preset: 'danger' } })
+        return
+      }
+
+      if (result.created) {
+        toast.show(t({ id: 'credentials.cold.ready', message: 'Offline copy ready' }), { customData: { preset: 'success' } })
+      }
+      await new Promise((resolve) => setTimeout(resolve, 100))
+      await Sharing.shareAsync(result.path)
+    } catch (_e) {
       setIsSharing(false)
     }
   }
@@ -93,11 +103,7 @@ export function FunkeCredentialDetailAttributesScreen() {
   return (
     <YStack fg={1} bg="$background">
       <FlexPage gap="$0" paddingHorizontal="$0">
-        <ScrollView
-          ref={scrollViewRef}
-          onScroll={handleScroll}
-          scrollEventThrottle={scrollEventThrottle}
-        >
+        <ScrollView ref={scrollViewRef} onScroll={handleScroll} scrollEventThrottle={scrollEventThrottle}>
           <YStack pt="$2" px="$2" jc="center" ai="center">
             <HeaderContainer
               isScrolledByOffset={isScrolledByOffset}
@@ -120,7 +126,7 @@ export function FunkeCredentialDetailAttributesScreen() {
                 url: credential.display.backgroundImage?.url,
                 altText: credential.display.backgroundImage?.altText,
               }}
-              bgColor={credential.display.backgroundColor ?? '$grey-900'}
+              bgColor={credential.display.backgroundColor}
             />
 
             <CredentialAttributes
@@ -135,14 +141,7 @@ export function FunkeCredentialDetailAttributesScreen() {
           </YStack>
         </ScrollView>
 
-        <YStack
-          btw="$0.5"
-          borderColor="$grey-200"
-          pt="$4"
-          mx="$-4"
-          px="$4"
-          bg="$background"
-        >
+        <YStack btw="$0.5" borderColor="$grey-200" pt="$4" mx="$-4" px="$4" bg="$background">
           <TextBackButton />
         </YStack>
       </FlexPage>
@@ -155,16 +154,7 @@ export function FunkeCredentialDetailAttributesScreen() {
       />
 
       {isSharing && (
-        <YStack
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          bg="rgba(0,0,0,0.3)"
-          jc="center"
-          ai="center"
-        >
+        <YStack position="absolute" top={0} left={0} right={0} bottom={0} bg="rgba(0,0,0,0.3)" jc="center" ai="center">
           <Loader size="large" />
         </YStack>
       )}

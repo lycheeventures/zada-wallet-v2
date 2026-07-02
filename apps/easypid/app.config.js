@@ -1,5 +1,6 @@
 import { createBaseConfig } from './base.app.config'
 import { version } from './package.json'
+import withNfcPassportReader from './plugins/withNfcPassportReader.js'
 
 const mediatorDids = {
   development: 'did:web:mediator.dev.paradym.id',
@@ -53,6 +54,16 @@ APP_CONFIGS.FUNKE_WALLET.ios.entitlements = {
 APP_CONFIGS.FUNKE_WALLET.android.config = {
   largeHeap: true,
 }
+
+// ZADA: NFC tag reading entitlement for the passport-nfc module (iOS CoreNFC). Requires the
+// "Near Field Communication Tag Reading" capability enabled on the App ID in the Apple Developer
+// portal, otherwise the build's provisioning profile won't carry it. The eMRTD AID we select and the
+// usage string live in base.app.config.js infoPlist.
+APP_CONFIGS.PARADYM_WALLET.ios.entitlements = {
+  'com.apple.developer.nfc.readersession.formats': ['TAG'],
+}
+// Pull NFCPassportReader into the iOS build (it's git/SPM-only, so it can't be a podspec dep).
+APP_CONFIGS.PARADYM_WALLET.plugins = [...APP_CONFIGS.PARADYM_WALLET.plugins, withNfcPassportReader]
 
 export default () => {
   const appType = process.env.EXPO_PUBLIC_APP_TYPE ?? 'PARADYM_WALLET'
