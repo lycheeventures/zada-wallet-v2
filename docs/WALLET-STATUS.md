@@ -76,6 +76,19 @@ real work lives in local branches; this doc reflects the local clone.
 - "Offline PDF & QR code" — generates a verifiable QR + PDF (trust-bound-roots) that a verifier can
   scan offline, from the credential detail screen (`ColdCredentialSheet.tsx`, `useShareCredential`).
 
+**Official-document catalog + Myanmar driver license (2026-07-02, PR #14)**
+- Home "Add passport" generalized to **"Add an official document"** → `/documents` catalog screen
+  (Passport via NFC, Myanmar driver license via QR); menu entry "Add a document" keeps it reachable.
+- **MDL flow** (`apps/easypid/src/features/documents/`): scan the QR on the license/RTAD receipt →
+  POST the URL to the **verifiable-link-issuer** (`EXPO_PUBLIC_DOCUMENT_ISSUER_URL`, default
+  `https://vli.zada.solutions`; Bearer `EXPO_PUBLIC_DOCUMENT_ISSUER_API_KEY`) → the returned
+  OpenID4VCI offer is received in-session on the normal credential rail (no deeplink bounce).
+  Issued by ZADA Solutions via Hovi (credential template `88bc90cf…`, hub schema `eb03654e…`).
+- `documentSources.ts` mirrors the issuer's allow-list (mdl.rtad.gov.mm `/detail` + `id`,`nrc`) for
+  instant feedback; source URLs carry the holder's NRC so they travel via an in-memory stash, never
+  router params. The main scanner recognizes document QRs via a new `interceptScan` hook on
+  `QrScannerScreen`. Backend e2e verified by curl 2026-07-02 (offer minted end-to-end).
+
 **Home & onboarding (this session — see §5)**
 
 ---

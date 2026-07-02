@@ -10,7 +10,7 @@
  *   EXPO_PUBLIC_DOCUMENT_ISSUER_URL=https://<verifiable-link-issuer host>
  *   EXPO_PUBLIC_DOCUMENT_ISSUER_API_KEY=vci_...
  */
-export const DOCUMENT_ISSUER_URL = process.env.EXPO_PUBLIC_DOCUMENT_ISSUER_URL ?? ''
+export const DOCUMENT_ISSUER_URL = process.env.EXPO_PUBLIC_DOCUMENT_ISSUER_URL ?? 'https://vli.zada.solutions'
 export const DOCUMENT_ISSUER_API_KEY = process.env.EXPO_PUBLIC_DOCUMENT_ISSUER_API_KEY ?? ''
 
 export function isDocumentIssuerConfigured(): boolean {
