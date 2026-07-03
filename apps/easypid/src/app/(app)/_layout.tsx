@@ -169,6 +169,12 @@ export default function AppLayout() {
             }}
           />
           <Stack.Screen
+            name="notifications/credentialBatch"
+            options={{
+              gestureEnabled: false,
+            }}
+          />
+          <Stack.Screen
             name="notifications/offlinePresentation"
             options={{
               gestureEnabled: false,

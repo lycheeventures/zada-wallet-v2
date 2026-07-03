@@ -2,7 +2,7 @@ import { InvitationQrTypes } from '@package/agent'
 import { useToastController } from '@package/ui'
 import { CommonActions } from '@react-navigation/native'
 import * as Linking from 'expo-linking'
-import { useNavigation } from 'expo-router'
+import { router, useNavigation } from 'expo-router'
 import type { ReactNode } from 'react'
 import { useCallback, useEffect, useState } from 'react'
 import { type CredentialDataHandlerOptions, useCredentialDataHandler } from '../hooks'
@@ -25,6 +25,23 @@ export const DeeplinkHandler = ({ children, credentialDataHandlerOptions }: Deep
 
   const handleUrl = useCallback(
     (url: string) => {
+      // Batch credential import from the migration web flow. It uses the app scheme with a
+      // dedicated path (…/wallet/credential-offer-batch?offers=[...]) rather than a credential
+      // invitation scheme, so it isn't a "recognized" deeplink below — route it to the batch
+      // screen explicitly instead of falling through to the reset-to-home path.
+      if (url.includes('/wallet/credential-offer-batch')) {
+        try {
+          const offers = new URL(url).searchParams.get('offers')
+          if (offers) {
+            navigation.dispatch(CommonActions.reset({ routes: [{ key: 'index', name: 'index' }] }))
+            router.push({ pathname: '/notifications/credentialBatch', params: { offers } })
+            return
+          }
+        } catch {
+          // fall through to default handling
+        }
+      }
+
       const isRecognizedDeeplink = deeplinkSchemes.some((scheme) => url.startsWith(scheme))
 
       // Whenever a deeplink comes in, we reset the state. This is due to expo
