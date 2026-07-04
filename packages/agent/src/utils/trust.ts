@@ -1,6 +1,6 @@
 import { X509Certificate, X509ModuleConfig } from '@credo-ts/core'
 import type { OpenId4VciResolvedCredentialOffer, OpenId4VpResolvedAuthorizationRequest } from '@credo-ts/openid4vc'
-import { getTrustRegistryEntriesByIssuer } from '@easypid/services/api'
+import { getTrustRegistryEntriesByIssuer, getZadaTrustRegistryIssuers } from '@easypid/services/api'
 import type {
   EitherAgent,
   TrustedDidEntity,
@@ -601,6 +601,69 @@ export const resolveZadaRegistryListing = async ({
   if (walletTrustedEntity) trustedEntities.push(walletTrustedEntity)
 
   return { trustedEntities, trustMechanism: 'zada_registry' }
+}
+
+/**
+ * Establish trust for an OID4VP VERIFIER (relying party) against the ZADA trust registry.
+ *
+ * SECURITY: like the issuer path, trust is CRYPTOGRAPHIC, not a name/URL lookup. Hovi signs each
+ * org's proof requests with that org's ZADA leaf certificate — the same cert ZADA published for
+ * the org in the trust registry. So we validate the request's x5c chain against every registry-
+ * published certificate; the one it chains to identifies the verifying organization. We match by
+ * CERTIFICATE, not by client_id / response_uri origin, because all Hovi-brokered verifiers share
+ * a single origin and an origin match would recognise the wrong org (or any org). Fails closed:
+ * returns null (→ caller keeps the generic 'unknown organisation' result) on any miss or error.
+ */
+export const resolveZadaVerifierTrustFromX5c = async ({
+  agent,
+  x5c,
+  walletTrustedEntity,
+}: {
+  agent: EitherAgent
+  x5c?: string[]
+  walletTrustedEntity?: TrustedEntity
+}): Promise<{ trustedEntities: TrustedEntity[]; trustMechanism: TrustMechanism } | null> => {
+  // No x5c → nothing to verify cryptographically (a self-asserted client_id proves nothing).
+  if (!x5c?.length) return null
+
+  let issuers: Awaited<ReturnType<typeof getZadaTrustRegistryIssuers>>
+  try {
+    issuers = await getZadaTrustRegistryIssuers()
+  } catch (error) {
+    console.error('ZADA trust registry list lookup failed:', error)
+    return null // fail closed
+  }
+
+  for (const org of issuers) {
+    const anchor = org.x509_certificate
+    if (!anchor) continue
+
+    // THE GATE: the verifier's x5c must chain to this org's published certificate.
+    const chain = await agent.x509
+      .validateCertificateChain({
+        certificateChain: x5c,
+        certificate: x5c[0],
+        trustedCertificates: [anchor] as [string, ...string[]],
+      })
+      .catch(() => null)
+    if (!chain) continue
+
+    // Cryptographically verified: this proof request was signed by `org`.
+    const trustedEntities: TrustedEntity[] = [
+      {
+        entityId: org.org_id,
+        organizationName: org.name ?? 'Unknown',
+        logoUri: org.logo_url || undefined,
+        uri: org.credential_issuer_url || undefined,
+        demo: org.demo ?? false,
+      },
+    ]
+    if (walletTrustedEntity) trustedEntities.push(walletTrustedEntity)
+
+    return { trustedEntities, trustMechanism: 'x509' }
+  }
+
+  return null // no published certificate matched → not a recognised ZADA verifier
 }
 
 export const getTrustedEntitiesForZADA = async ({
