@@ -1,5 +1,6 @@
 import { createBaseConfig } from './base.app.config'
 import { version } from './package.json'
+import withMlkitStaticFrameworks from './plugins/withMlkitStaticFrameworks.js'
 import withNfcPassportReader from './plugins/withNfcPassportReader.js'
 
 const mediatorDids = {
@@ -62,8 +63,14 @@ APP_CONFIGS.FUNKE_WALLET.android.config = {
 APP_CONFIGS.PARADYM_WALLET.ios.entitlements = {
   'com.apple.developer.nfc.readersession.formats': ['TAG'],
 }
-// Pull NFCPassportReader into the iOS build (it's git/SPM-only, so it can't be a podspec dep).
-APP_CONFIGS.PARADYM_WALLET.plugins = [...APP_CONFIGS.PARADYM_WALLET.plugins, withNfcPassportReader]
+// Pull NFCPassportReader into the iOS build (it's git/SPM-only, so it can't be a podspec dep), and
+// mark the ML Kit / Google static-binary subtree as static frameworks so `pod install` succeeds
+// under the dynamic use_frameworks! setup (see withMlkitStaticFrameworks.js).
+APP_CONFIGS.PARADYM_WALLET.plugins = [
+  ...APP_CONFIGS.PARADYM_WALLET.plugins,
+  withNfcPassportReader,
+  withMlkitStaticFrameworks,
+]
 
 export default () => {
   const appType = process.env.EXPO_PUBLIC_APP_TYPE ?? 'PARADYM_WALLET'
