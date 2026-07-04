@@ -9,9 +9,10 @@ import UIKit
 // `PassportNfc` native name, `onStatus` events, and the same result dictionary keys — so index.ts and
 // the feature UI work unchanged across platforms.
 //
-// NOTE: property/enum names below target NFCPassportReader's current API but could not be compiled in
-// this workspace (no Apple toolchain). Verify against the resolved package version on the first iOS
-// build; they are isolated to `map(_:)` and the display-message switch.
+// NOTE: property/enum names below were validated against the resolved NFCPassportReader 2.3.1 public
+// API (2026-07-05) — see the fixes applied then: `getMRZKey` is inlined (the library ships it only in
+// its example app, not the importable module), `documentExpiryDate` replaces the non-existent
+// `dateOfExpiry`, and passive-auth reads `passportDataNotTampered`. Still compile once on a real build.
 public class PassportNfcModule: Module {
   private let reader = PassportReader()
 
@@ -31,7 +32,8 @@ public class PassportNfcModule: Module {
         return
       }
       // Build the MRZ key (docNo+check / DOB+check / expiry+check) the same way the Android BACKey does.
-      let mrzKey = PassportUtils.getMRZKey(
+      // getMRZKey is inlined below — NFCPassportReader ships it only in its example app, not the module.
+      let mrzKey = getMRZKey(
         passportNumber: documentNumber, dateOfBirth: dateOfBirth, dateOfExpiry: dateOfExpiry)
 
       self.sendEvent("onStatus", ["status": "waiting_for_tag"])
@@ -91,9 +93,10 @@ public class PassportNfcModule: Module {
       faceBase64 = jpeg.base64EncodedString()
     }
 
-    // MVP passive auth parity with Android (DG-hash integrity / signed-SOD). Production must also
-    // chain the DSC to a trusted CSCA masterlist (NFCPassportReader supports loading PEM masterlists).
-    let passed = p.passiveAuthenticationPassed
+    // MVP passive auth parity with Android (DG-hash integrity): `passportDataNotTampered` = the DG
+    // hashes match the signed EF.SOD. Production must also AND `passportCorrectlySigned` and chain the
+    // DSC to a trusted CSCA masterlist (NFCPassportReader supports loading PEM masterlists).
+    let passed = p.passportDataNotTampered
     return [
       "documentCode": p.documentType,
       "documentNumber": p.documentNumber,
@@ -102,7 +105,7 @@ public class PassportNfcModule: Module {
       "primaryIdentifier": p.lastName,
       "secondaryIdentifier": p.firstName,
       "dateOfBirth": p.dateOfBirth,
-      "dateOfExpiry": p.dateOfExpiry,
+      "dateOfExpiry": p.documentExpiryDate,
       "gender": normalizeGender(p.gender),
       "personalNumber": p.personalNumber,
       "mrz": p.passportMRZ,
@@ -123,4 +126,37 @@ public class PassportNfcModule: Module {
     default: return "UNSPECIFIED"
     }
   }
+}
+
+// ICAO 9303 MRZ-key derivation. NFCPassportReader provides this only in its example app
+// (`Examples/*/Model/PassportUtils.swift`), NOT in the importable `NFCPassportReader` module, so it is
+// inlined here verbatim. Builds the BAC/PACE key: padded docNo+checkdigit / DOB+checkdigit / expiry+checkdigit.
+private func getMRZKey(passportNumber: String, dateOfBirth: String, dateOfExpiry: String) -> String {
+  let pptNr = pad(passportNumber, fieldLength: 9)
+  let dob = pad(dateOfBirth, fieldLength: 6)
+  let exp = pad(dateOfExpiry, fieldLength: 6)
+  return "\(pptNr)\(calcCheckSum(pptNr))\(dob)\(calcCheckSum(dob))\(exp)\(calcCheckSum(exp))"
+}
+
+private func pad(_ value: String, fieldLength: Int) -> String {
+  return String((value + String(repeating: "<", count: fieldLength)).prefix(fieldLength))
+}
+
+private func calcCheckSum(_ checkString: String) -> Int {
+  let characterDict = [
+    "0": "0", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8", "9": "9",
+    "<": "0", " ": "0", "A": "10", "B": "11", "C": "12", "D": "13", "E": "14", "F": "15", "G": "16",
+    "H": "17", "I": "18", "J": "19", "K": "20", "L": "21", "M": "22", "N": "23", "O": "24", "P": "25",
+    "Q": "26", "R": "27", "S": "28", "T": "29", "U": "30", "V": "31", "W": "32", "X": "33", "Y": "34",
+    "Z": "35",
+  ]
+  var sum = 0
+  var m = 0
+  let multipliers = [7, 3, 1]
+  for c in checkString {
+    guard let lookup = characterDict["\(c)"], let number = Int(lookup) else { return 0 }
+    sum += number * multipliers[m]
+    m = (m + 1) % 3
+  }
+  return sum % 10
 }
