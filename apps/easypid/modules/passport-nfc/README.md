@@ -75,13 +75,22 @@ NFCPassportReader is git/SPM-only (not in the CocoaPods trunk), so it can't be a
 prebuild — so `eas build --platform ios` pulls it in automatically (no manual Xcode). The git-pod path
 works cleanly because `expo-build-properties` already sets `ios.useFrameworks: 'dynamic'`.
 
-Pinned to tag **2.3.1** (MIT, iOS 15). Two things to **validate on the first iOS build** (couldn't be
-compiled here — no Apple toolchain):
+Pinned to tag **2.3.1** (MIT, iOS 15).
+
+**API names — validated against the 2.3.1 source (2026-07-05).** Checked every symbol the Swift module
+uses against the resolved package; fixed four that would have broken the first build:
+- `PassportUtils.getMRZKey(...)` → **inlined** `getMRZKey`/`pad`/`calcCheckSum` (the library ships them
+  only in its *example app*, `Examples/*/Model/PassportUtils.swift`, not in the importable module).
+- `NFCPassportModel.dateOfExpiry` → **`documentExpiryDate`** (the former doesn't exist).
+- `NFCPassportModel.passiveAuthenticationPassed` → **`passportDataNotTampered`** (former doesn't exist;
+  `passportCorrectlySigned` is the complementary SOD-signature flag to AND in for production).
+- Confirmed OK as-is: `PassportReader()`, `readPassport(mrzKey:tags:customDisplayMessage:)`,
+  `DataGroupId.{COM,DG1,DG2,SOD}`, `NFCViewDisplayMessage` cases, `NFCPassportReaderError.ResponseError`.
+
+Still to **validate on the first iOS build** (needs the Apple toolchain, couldn't be compiled here):
 - **OpenSSL-Universal coexistence:** NFCPassportReader's podspec depends on `OpenSSL-Universal`. Confirm
   it doesn't clash with any OpenSSL pulled by Credo/Askar/other pods. If it does, pin/exclude in the
   plugin.
-- **API names:** verify the `NFCPassportModel` property/enum names used in `map(_:)` and the
-  display-message switch against the resolved 2.3.1 API.
 
 **Build & test:** NFC does **not** work in the iOS Simulator — needs a real device (iPhone 7+, iOS 15+)
 on a device/internal-distribution profile (not `paradym-preview-simulator`).
