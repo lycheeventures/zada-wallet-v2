@@ -52,8 +52,13 @@ import {
 } from '../format/formatPresentation'
 import { getCredentialBindingResolver } from '../openid4vc/credentialBindingResolver'
 import { extractOpenId4VcCredentialMetadata, setOpenId4VcCredentialMetadata } from '../openid4vc/displayMetadata'
-import { getTrustedEntities, getTrustedEntitiesForZADA, resolveZadaTrustFromX5c } from '../utils/trust'
 import { extractIssuerX5c, setZadaIssuerTrust } from '../openid4vc/zadaTrust'
+import {
+  getTrustedEntities,
+  getTrustedEntitiesForZADA,
+  resolveZadaTrustFromX5c,
+  resolveZadaVerifierTrustFromX5c,
+} from '../utils/trust'
 import { BiometricAuthenticationError } from './error'
 import { fetchInvitationDataUrl } from './fetchInvitation'
 
@@ -562,7 +567,8 @@ export const getCredentialsForProofRequest = async ({
     allowUntrustedSigned: allowUntrusted,
   })
 
-  const { trustMechanism, trustedEntities, relyingParty } = await getTrustedEntities({
+  // NOTE: `let` (not const) — the ZADA registry fallback below may reassign these.
+  let { trustMechanism, trustedEntities, relyingParty } = await getTrustedEntities({
     agent,
     trustedX509Entities,
     trustedDidEntities,
@@ -577,6 +583,30 @@ export const getCredentialsForProofRequest = async ({
     },
     trustList: eudiTrustList,
   })
+
+  // ZADA: the generic resolution above only recognises HARDCODED certs / DIDs / the EU trust list,
+  // so a ZADA network verifier (Hovi-brokered, signed with the org's registry-published x5c) comes
+  // back as 'unknown organisation'. When nothing matched, fall back to the ZADA trust registry,
+  // cryptographically matching the request's x5c to a published member certificate. See ADR-0002.
+  if (trustedEntities.length === 0 && resolved.signedAuthorizationRequest?.signer.method === 'x5c') {
+    try {
+      const zadaVerifier = await resolveZadaVerifierTrustFromX5c({
+        agent,
+        x5c: resolved.signedAuthorizationRequest.signer.x5c,
+      })
+      if (zadaVerifier && zadaVerifier.trustedEntities.length > 0) {
+        trustMechanism = zadaVerifier.trustMechanism
+        trustedEntities = zadaVerifier.trustedEntities
+        relyingParty = {
+          ...relyingParty,
+          organizationName: relyingParty.organizationName ?? zadaVerifier.trustedEntities[0].organizationName,
+          logoUri: relyingParty.logoUri ?? zadaVerifier.trustedEntities[0].logoUri,
+        }
+      }
+    } catch (error) {
+      agent.config.logger.warn('ZADA verifier trust check failed', { error })
+    }
+  }
 
   let formattedSubmission: FormattedSubmission
   if (resolved.presentationExchange) {
