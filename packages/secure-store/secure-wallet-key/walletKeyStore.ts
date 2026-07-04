@@ -52,10 +52,17 @@ async function canUseBiometryBackedWalletKey(): Promise<boolean> {
     }
 
     /**
-     * Android Only API. We only allow hardware secured key storage for unlocking with biometrics
+     * Android Only API. Allow both hardware- and software-backed secure key storage for unlocking
+     * with biometrics. Requiring SECURE_HARDWARE (StrongBox/TEE) only rejected every device whose
+     * keystore reports SECURE_SOFTWARE, which broke enabling biometrics during onboarding (it errored
+     * and fell back to PIN). Mirrors upstream paradym-wallet fix #535.
      */
     const securityLevel = await Keychain.getSecurityLevel(walletKeyStoreBaseOptions)
-    if (!securityLevel || securityLevel !== Keychain.SECURITY_LEVEL.SECURE_HARDWARE) {
+    if (
+      !securityLevel ||
+      (securityLevel !== Keychain.SECURITY_LEVEL.SECURE_SOFTWARE &&
+        securityLevel !== Keychain.SECURITY_LEVEL.SECURE_HARDWARE)
+    ) {
       return false
     }
   }

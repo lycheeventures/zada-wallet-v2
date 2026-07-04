@@ -16,6 +16,29 @@ export function redirectSystemPath({ path, initial }: { path: string; initial: b
     initial,
   })
 
+  // Batch credential import from the migration web flow: a single app-scheme deep link
+  // (id.animo.paradym:///wallet/credential-offer-batch?batch=<token>) whose short token the
+  // batch screen exchanges for the offer list. A legacy inline `?offers=[...]` param is still
+  // accepted. Handled here, before the invitation-scheme check, because it uses the app scheme
+  // rather than a standard invitation scheme. We forward the original query string verbatim so
+  // whichever param is present reaches the screen.
+  if (path.startsWith(`${appScheme}:`) && path.includes('/wallet/credential-offer-batch')) {
+    try {
+      const { search } = new URL(path)
+      if (search.includes('batch=') || search.includes('offers=')) {
+        let redirectPath = `/notifications/credentialBatch${search}`
+        if (!initial) {
+          const encodedRedirect = TypedArrayEncoder.toBase64URL(TypedArrayEncoder.fromString(redirectPath))
+          redirectPath = `/authenticate?redirectAfterUnlock=${encodedRedirect}`
+        }
+        logger.debug('Deeplink is a batch credential import. Routing to batch screen.')
+        return redirectPath
+      }
+    } catch (_error) {
+      // fall through to normal handling
+    }
+  }
+
   const isRecognizedDeeplink = deeplinkSchemes.some((scheme) => path.startsWith(scheme))
   if (!isRecognizedDeeplink) {
     logger.debug(

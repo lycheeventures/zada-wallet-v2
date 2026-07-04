@@ -1,6 +1,7 @@
 import { Trans, useLingui } from '@lingui/react/macro'
 import { type DisplayImage, useCredentialsForDisplay } from '@package/agent'
 import { TextBackButton } from '@package/app'
+import { FunkeCredentialCard } from '@package/app/components'
 import { useHaptics, useScrollViewPosition } from '@package/app/hooks'
 import {
   AnimatedStack,
@@ -105,31 +106,36 @@ export function FunkeCredentialsScreen() {
               left="$3"
             />
           </Stack>
-          <YStack fg={1} gap="$2">
-            {filteredCredentials.length > 0 ? (
-              filteredCredentials.map((credential) => (
-                <FunkeCredentialRowCard
-                  key={credential.id}
-                  name={credential.display.name}
-                  textColor={credential.display.textColor}
-                  backgroundColor={credential.display.backgroundColor}
-                  issuer={credential.display.issuer.name}
-                  logo={credential.display.issuer.logo}
-                  // TODO: we should have RAW metadata (date instance) and human metadata (string)
-                  issuedAt={credential.metadata.issuedAt ? new Date(credential.metadata.issuedAt) : undefined}
-                  onPress={() => {
-                    pushToCredential(credential.id)
-                  }}
-                />
-              ))
-            ) : (
-              <Paragraph mt="$8" ta="center">
-                <Trans id="common.noResultsSearch" comment="Shown when search yields no results; includes query string">
-                  No cards found for "{searchQuery}"
-                </Trans>
-              </Paragraph>
-            )}
-          </YStack>
+          {filteredCredentials.length > 0 ? (
+            // Larger cards fanned out and stacked in front of each other (each overlaps the previous),
+            // tap one to open it.
+            <YStack fg={1} pb="$12">
+              {filteredCredentials.map((credential, index) => (
+                <YStack key={credential.id} mt={index === 0 ? 0 : -120} zIndex={index}>
+                  <FunkeCredentialCard
+                    name={credential.display.name}
+                    textColor={credential.display.textColor}
+                    bgColor={credential.display.backgroundColor}
+                    issuerImage={{
+                      url: credential.display.issuer.logo?.url,
+                      altText: credential.display.issuer.logo?.altText,
+                    }}
+                    backgroundImage={{
+                      url: credential.display.backgroundImage?.url,
+                      altText: credential.display.backgroundImage?.altText,
+                    }}
+                    onPress={() => pushToCredential(credential.id)}
+                  />
+                </YStack>
+              ))}
+            </YStack>
+          ) : (
+            <Paragraph mt="$8" ta="center">
+              <Trans id="common.noResultsSearch" comment="Shown when search yields no results; includes query string">
+                No cards found for "{searchQuery}"
+              </Trans>
+            </Paragraph>
+          )}
         </ScrollView>
       )}
 
@@ -160,10 +166,11 @@ export function FunkeCredentialRowCard({
 }: FunkeCredentialRowCardProps) {
   const { pressStyle, handlePressIn, handlePressOut } = useScaleAnimation({ scaleInValue: 0.99 })
 
-  // Match FunkeCredentialCard: fall back to a deterministic palette colour (seeded by name) when
-  // the issuer provides no background colour, then derive readable text from the resolved colour.
+  // Match FunkeCredentialCard: fall back to a deterministic palette colour (seeded by name) when the
+  // issuer provides no background colour. Only honour an issuer text colour when we also use the
+  // issuer's background; otherwise derive a readable one from the palette colour.
   const bg = backgroundColor ?? pickCredentialBackgroundColor(name)
-  const resolvedTextColor = textColor ?? getTextColorBasedOnBg(bg)
+  const resolvedTextColor = backgroundColor && textColor ? textColor : getTextColorBasedOnBg(bg)
 
   const icon = logo?.url ? (
     <Image src={logo.url} width={36} height={36} />

@@ -17,7 +17,6 @@ import {
   HeaderContainer,
   HeroIcons,
   ScrollView,
-  SettingsButton,
   Switch,
   useToastController,
   XStack,
@@ -25,12 +24,10 @@ import {
 } from '@package/ui'
 import { Picker } from '@react-native-picker/picker'
 import { useState } from 'react'
-import { Share } from 'react-native'
 import { Label } from 'tamagui'
 import { useSecureUnlock } from '../../agent'
 import { useBiometricsType } from '../../hooks/useBiometricsType'
 import { useStoredLocale } from '../../hooks/useStoredLocale'
-import { useCredentialMigration } from '../migration/useCredentialMigration'
 
 export function LocaleSelect() {
   // We use a state value, to not make the ui flicker because it takes a bit to change the lang
@@ -134,7 +131,7 @@ export function FunkeSettingsScreen() {
         }),
         { customData: { preset: 'success' } }
       )
-    } catch (error) {
+    } catch (_error) {
       toast.show(t(commonMessages.errorChangingBiometrics), {
         customData: { preset: 'danger' },
       })
@@ -143,7 +140,6 @@ export function FunkeSettingsScreen() {
 
   const canUseBiometryBackedWalletKey = useCanUseBiometryBackedWalletKey()
   const biometricsType = useBiometricsType()
-  const { startMigration } = useCredentialMigration()
 
   return (
     <FlexPage gap="$0" paddingHorizontal="$0">
@@ -184,20 +180,6 @@ export function FunkeSettingsScreen() {
               onChange={isBiometricsEnabled ? disableBiometrics : enableBiometrics}
             />
             <LocaleSelect />
-            <SettingsButton
-              icon={<HeroIcons.ArrowPath />}
-              label={t({
-                id: 'settings.migrateCredentials',
-                message: 'Migrate credentials',
-                comment: 'Label for the button that starts migrating legacy ZADA credentials',
-              })}
-              description={t({
-                id: 'settings.migrateCredentialsDescription',
-                message: 'Bring credentials from your previous ZADA wallet into this one.',
-                comment: 'Description for the migrate credentials button',
-              })}
-              onPress={startMigration}
-            />
           </YStack>
           <YStack btw="$0.5" borderColor="$grey-200" pt="$4" mx="$-4" px="$4" bg="$background">
             <TextBackButton />

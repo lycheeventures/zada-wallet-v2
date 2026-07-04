@@ -1,24 +1,45 @@
 # ZADA Edge Wallet — status
 
-**As of:** 2026-07-01 · **App:** ZADA (`com.zadanetwork.wallet`), easypid `v1.20.1` ·
-**Integration branch:** `zada/wallet-ux-redesign` (HEAD `a73a7b5`)
+**As of:** 2026-07-04 · **App:** ZADA (`com.zadanetwork.wallet`), easypid `v1.20.1` ·
+**Single branch:** `main` (GitHub `origin` and local are in sync)
 
 This is the current, verified state of `zada-wallet-v2` (the `apps/easypid` Expo/Credo app).
-It is a fork of Animo's paradym-wallet with ZADA wiring on top. GitHub `origin` is stale — the
-real work lives in local branches; this doc reflects the local clone.
+It is a fork of Animo's paradym-wallet with ZADA wiring on top.
 
 ---
 
 ## 1. TL;DR
 
-- **`zada/wallet-ux-redesign` is the unified branch** — it now contains *every* ZADA feature line
-  (passport NFC, issuer trust, credential migration, home redesign, onboarding, and the
-  cold-credential offline share). Working tree is clean; typecheck has no new errors.
-- All other `zada/*` feature branches are **ancestors of it** except historically `zada/combined`
-  (superseded). There is nothing left un-merged.
+- **`main` is the single source of truth.** All ZADA feature lines (passport NFC, issuer trust,
+  credential migration, home redesign, onboarding, cold-credential offline share, support chat,
+  document catalog / Myanmar DL, batch import) plus the latest UX + bug fixes are squashed into
+  `main`. Every old `zada/*` and `feat/*` branch has been merged/superseded and **deleted** (local
+  and origin). Working tree clean; typecheck has no new errors.
+- **Latest fixes on `main`:** stacked card layout + always-readable card text, white ZADA logo +
+  bottom Scan button, keyboard-safe support chat, Create ZADA ID / Migrate in the menu, DL scan
+  (issuer pointed at `vli.zada.solutions`, not the auth-stripping lovable.app redirect;
+  case-insensitive RTAD URL match), and biometrics enable on software-backed keystores (upstream #535).
 - **i18n is complete** for `en, de, nl, fi, pt, sw, al` — only obsolete strings remain untranslated.
-- A **paradym-preview APK build** was kicked off from `6f10c09` (see §5); a follow-up build off
-  `a73a7b5` will also include the cold-credential feature.
+- Latest **paradym-preview APK** built from the pre-cleanup `wallet-ux-fixes` tip
+  (`908766e`, without the biometrics commit); rebuild from `main` to include biometrics.
+
+---
+
+## 1b. Planned: upstream paradym-wallet re-sync
+
+Our fork point is `fecdfbf` (easypid 1.20.1). Upstream (`animo/paradym-wallet`) is **~42 commits
+ahead**, including two structural changes we have **not** taken — **`#470` "wallet SDK"** (major
+refactor) and **`#549` Expo 56**. Consequences:
+
+- Most post-#470 fixes are entangled with that refactor, so per-commit cherry-picks are only
+  feasible for small isolated changes (e.g. we already took the keystore-gate part of **`#535`**
+  biometrics fix; the rest of #535 is SDK-bound).
+- A proper catch-up is a **deliberate re-sync project** (rebase/merge onto the wallet-SDK + Expo 56
+  base) with real conflicts expected in our heavily-customized **trust** and **onboarding** code —
+  not something to do mid-bugfix.
+- Candidates to evaluate individually when we do it: privacy `#558`, credential deletion `#534`,
+  reset `#537`, deeplink `#533`, reanimated warning `#547`. The **trust** PRs (`#540/#543/#531/#536`)
+  overlap our ZADA registry/x509 work and need manual reconciliation, not blind cherry-picks.
 
 ---
 
@@ -35,7 +56,11 @@ real work lives in local branches; this doc reflects the local clone.
 
 ---
 
-## 3. Branch topology (verified against git)
+## 3. Branch topology (historical — all consolidated into `main` on 2026-07-04)
+
+> These branches have since been **merged/superseded into `main` and deleted** (local + origin).
+> The table is kept only to record where each feature line originated.
+
 
 | Branch | HEAD | Role | Contained in `wallet-ux-redesign`? |
 |---|---|---|---|

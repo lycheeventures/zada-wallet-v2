@@ -31,11 +31,18 @@ export function matchDocumentSourceUrl(data: string): { source: DocumentSource; 
   }
   if (url.protocol !== 'https:') return null
 
+  // Match case-insensitively: the RTAD portal is an ASP.NET site whose real links vary in case
+  // (e.g. `/Detail.aspx`, `Id`, `NRC`), so a case-sensitive check would reject valid licenses.
+  // `url.hostname` is already lower-cased by the URL parser.
+  const hostname = url.hostname
+  const pathname = url.pathname.toLowerCase()
+  const paramNames = new Set(Array.from(url.searchParams.keys(), (k) => k.toLowerCase()))
+
   const source = documentSources.find(
     (s) =>
-      s.hosts.includes(url.hostname) &&
-      url.pathname.startsWith(s.pathPrefix) &&
-      s.requiredParams.every((p) => url.searchParams.has(p))
+      s.hosts.some((h) => h.toLowerCase() === hostname) &&
+      pathname.startsWith(s.pathPrefix.toLowerCase()) &&
+      s.requiredParams.every((p) => paramNames.has(p.toLowerCase()))
   )
   if (!source) return null
   return { source, sourceUrl: url.toString() }

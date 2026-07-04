@@ -52,7 +52,10 @@ export function FunkeCredentialCard({
   // Fall back to a deterministic ZADA palette colour (seeded by the credential name) when the
   // issuer didn't provide its own background colour, so cards don't all render in the same grey.
   const bgColorValue = bgColor ?? pickCredentialBackgroundColor(name)
-  textColor = textColor ? textColor : getTextColorBasedOnBg(bgColorValue)
+  // Only honour an issuer-supplied text colour when we're also using the issuer's background; when we
+  // invent a palette background, the issuer's text colour (picked for their own background) may be
+  // unreadable on ours, so we derive a contrasting one instead.
+  textColor = bgColor && textColor ? textColor : getTextColorBasedOnBg(bgColorValue)
 
   const icon = issuerImage?.url ? (
     <Image src={issuerImage.url} width={36} height={36} />
