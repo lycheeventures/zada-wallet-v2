@@ -68,12 +68,17 @@ transcoded to JPEG and renders fine (sidesteps the Android JP2 gap).
 - `base.app.config.js` infoPlist → `NFCReaderUsageDescription` + `com.apple.developer.nfc.readersession.iso7816.select-identifiers: ['A0000002471001']` (eMRTD AID).
 - `expo-module.config.json` → `platforms: ["android","ios"]`, `ios.modules: ["PassportNfcModule"]`.
 
-**iOS dependency wiring — DONE via config plugin (validate on first build).**
-NFCPassportReader is git/SPM-only (not in the CocoaPods trunk), so it can't be a transitive
-`s.dependency` in our podspec. Instead `apps/easypid/plugins/withNfcPassportReader.js` (registered in
-`app.config.js` for `PARADYM_WALLET`) injects the git pod into the CNG-generated Podfile during EAS
-prebuild — so `eas build --platform ios` pulls it in automatically (no manual Xcode). The git-pod path
-works cleanly because `expo-build-properties` already sets `ios.useFrameworks: 'dynamic'`.
+**iOS dependency wiring — needs BOTH halves (learned on the first build):**
+NFCPassportReader is git/SPM-only (not in the CocoaPods trunk), so its **source** can't be an
+`s.dependency` line. `apps/easypid/plugins/withNfcPassportReader.js` (registered in `app.config.js` for
+`PARADYM_WALLET`) injects the git pod into the CNG Podfile during EAS prebuild
+(`pod 'NFCPassportReader', :git => ..., :tag => '2.3.1'`) — that makes the pod build and links it into
+the **app** target. But the app-local `PassportNfc` module is its **own pod target**, so it also needs
+`s.dependency 'NFCPassportReader'` in `ios/PassportNfc.podspec` — otherwise `import NFCPassportReader`
+in `PassportNfcModule.swift` fails with **"no such module 'NFCPassportReader'"** even though the pod
+built fine. A Podfile-declared `:git` pod IS a valid target for a bare `s.dependency` by name; you just
+can't put the `:git` source in the podspec. The git-pod path works cleanly because
+`expo-build-properties` already sets `ios.useFrameworks: 'dynamic'`.
 
 Pinned to tag **2.3.1** (MIT, iOS 15).
 

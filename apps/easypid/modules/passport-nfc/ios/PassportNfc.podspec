@@ -17,10 +17,13 @@ Pod::Spec.new do |s|
 
   s.dependency 'ExpoModulesCore'
 
-  # NFCPassportReader (MIT) is NOT in the CocoaPods trunk — it is SPM-recommended. It is therefore
-  # wired at the APP level, not as an s.dependency here (a git pod can't be a transitive podspec dep).
-  # See ../README.md → "iOS dependency wiring". Until that is in place, the iOS build will fail to
-  # resolve `import NFCPassportReader`.
+  # NFCPassportReader (MIT) is NOT in the CocoaPods trunk. Its SOURCE is declared in the CNG Podfile as
+  # a git pod by plugins/withNfcPassportReader.js (`pod 'NFCPassportReader', :git => ..., :tag => ...`).
+  # We STILL need this s.dependency: it wires that pod's module into THIS pod's target so
+  # `import NFCPassportReader` in PassportNfcModule.swift resolves. (A Podfile-declared :git pod is a
+  # valid target for a bare `s.dependency` by name — you just can't put the :git source here.) Without
+  # it the app target links NFCPassportReader but the PassportNfc Swift target can't see the module.
+  s.dependency 'NFCPassportReader'
 
   s.source_files = "**/*.{h,m,mm,swift,hpp,cpp}"
 end
