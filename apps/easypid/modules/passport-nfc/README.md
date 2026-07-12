@@ -68,17 +68,29 @@ transcoded to JPEG and renders fine (sidesteps the Android JP2 gap).
 - `base.app.config.js` infoPlist → `NFCReaderUsageDescription` + `com.apple.developer.nfc.readersession.iso7816.select-identifiers: ['A0000002471001']` (eMRTD AID).
 - `expo-module.config.json` → `platforms: ["android","ios"]`, `ios.modules: ["PassportNfcModule"]`.
 
-**iOS dependency wiring — needs BOTH halves (learned on the first build):**
-NFCPassportReader is git/SPM-only (not in the CocoaPods trunk), so its **source** can't be an
-`s.dependency` line. `apps/easypid/plugins/withNfcPassportReader.js` (registered in `app.config.js` for
-`PARADYM_WALLET`) injects the git pod into the CNG Podfile during EAS prebuild
-(`pod 'NFCPassportReader', :git => ..., :tag => '2.3.1'`) — that makes the pod build and links it into
-the **app** target. But the app-local `PassportNfc` module is its **own pod target**, so it also needs
-`s.dependency 'NFCPassportReader'` in `ios/PassportNfc.podspec` — otherwise `import NFCPassportReader`
-in `PassportNfcModule.swift` fails with **"no such module 'NFCPassportReader'"** even though the pod
-built fine. A Podfile-declared `:git` pod IS a valid target for a bare `s.dependency` by name; you just
-can't put the `:git` source in the podspec. The git-pod path works cleanly because
-`expo-build-properties` already sets `ios.useFrameworks: 'dynamic'`.
+**iOS dependency wiring — two pieces, and one trap (hard-won across builds #5–#9):**
+NFCPassportReader is git/SPM-only (not in the CocoaPods trunk). Wiring it to the app-local `PassportNfc`
+Expo module (which is its **own** pod target) takes two pieces:
+
+1. **Source** — `apps/easypid/plugins/withNfcPassportReader.js` (registered in `app.config.js` for
+   `PARADYM_WALLET`) injects the git pod into the CNG Podfile during EAS prebuild
+   (`pod 'NFCPassportReader', :git => ..., :tag => '2.3.1'`). It builds as `NFCPassportReader.framework`
+   and links into the **app** target. Works cleanly because `expo-build-properties` sets
+   `ios.useFrameworks: 'dynamic'`.
+2. **Visibility to the PassportNfc target** — so `import NFCPassportReader` in `PassportNfcModule.swift`
+   resolves, `ios/PassportNfc.podspec` adds a **build setting only**:
+   `s.pod_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/NFCPassportReader"' }`.
+
+> ⚠️ **Do NOT use `s.dependency 'NFCPassportReader'` for piece 2.** It *seems* right (standard CocoaPods
+> way to expose a pod to a target), and it does fix the import — but adding that dependency **edge** made
+> CocoaPods re-serialize `Pods.xcodeproj` and rewrite the unrelated eudi mdoc **SPM** references
+> (`XCRemoteSwiftPackageReference`) into a form `xcodebuild` rejects at archive time:
+> `-[XCRemoteSwiftPackageReference _setSavedArchiveVersion:]: unrecognized selector` → *"The project
+> 'Pods' is damaged"* → `import Expo` "no such module 'Expo'". It is **not** an Xcode-version bug
+> (reproduced on both Xcode 26.0 and 16.4; the build before the edge was clean on Xcode 26). The
+> `FRAMEWORK_SEARCH_PATHS` approach exposes the module without changing the pod graph, so the SPM refs
+> serialize untouched. Symptom to watch for: build time *dropping* (e.g. 6m→3m) while "getting further"
+> means you're failing **earlier**, not later.
 
 Pinned to tag **2.3.1** (MIT, iOS 15).
 
