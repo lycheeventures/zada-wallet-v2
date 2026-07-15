@@ -8,7 +8,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        98
+        103
       ]
     ],
     "translation": "(Demo)"
@@ -31,6 +31,24 @@
     ],
     "translation": "{0} karta gjithsej"
   },
+  "trust.zadaVerified": {
+    "message": "{0} is in the ZADA Trust Registry, and its signing key was cryptographically verified against the certificate ZADA published for it.",
+    "placeholders": {
+      "0": [
+        "name ?? 'This organization'"
+      ]
+    },
+    "comments": [
+      "Shown when an organization signing key was cryptographically verified against its ZADA trust registry certificate"
+    ],
+    "origin": [
+      [
+        "src/features/wallet/FunkeTrustDetailScreen.tsx",
+        120
+      ]
+    ],
+    "translation": "{0} është në ZADA Trust Registry dhe çelësi i saj i nënshkrimit u verifikua në mënyrë kriptografike kundrejt certifikatës që ZADA publikoi për të."
+  },
   "trust.zadaRegistryListing": {
     "message": "{0} is listed in the ZADA Trust Registry. Its identity has not been cryptographically verified.",
     "placeholders": {
@@ -44,7 +62,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        115
+        127
       ]
     ],
     "translation": "{0} është e listuar në ZADA Trust Registry. Identiteti i saj nuk është verifikuar në mënyrë kriptografike."
@@ -260,7 +278,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        123
+        135
       ]
     ],
     "translation": "Një listë organizatash që besojnë në {name}."
@@ -274,7 +292,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        128
+        141
       ]
     ],
     "translation": "Një listë organizatash që besojnë në këtë organizatë të panjohur."
@@ -352,7 +370,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        65
+        70
       ]
     ],
     "translation": "Rreth këtij subjekti"
@@ -451,20 +469,6 @@
     ],
     "translation": "Aktiviteti do të shfaqet këtu pasi të ndash ose marrësh kredenciale."
   },
-  "documentCatalog.title": {
-    "message": "Add a document",
-    "placeholders": {},
-    "comments": [
-      "Title of the official-document catalog screen"
-    ],
-    "origin": [
-      [
-        "src/features/documents/DocumentCatalogScreen.tsx",
-        76
-      ]
-    ],
-    "translation": "Shto dokument"
-  },
   "menu.item.addDocument": {
     "message": "Add a document",
     "placeholders": {},
@@ -479,6 +483,20 @@
     ],
     "translation": "Shto dokument"
   },
+  "documentCatalog.title": {
+    "message": "Add a document",
+    "placeholders": {},
+    "comments": [
+      "Title of the official-document catalog screen"
+    ],
+    "origin": [
+      [
+        "src/features/documents/DocumentCatalogScreen.tsx",
+        76
+      ]
+    ],
+    "translation": "Shto dokument"
+  },
   "home.addDocument": {
     "message": "Add an official document",
     "placeholders": {},
@@ -486,7 +504,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        193
+        190
       ]
     ],
     "translation": "Shto një dokument zyrtar"
@@ -653,7 +671,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        77
+        82
       ]
     ],
     "translation": "Gjithmonë mendo nëse është e mençur të ndash me një subjekt."
@@ -825,7 +843,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        198
+        216
       ]
     ],
     "translation": "I aprovuar nga {0} organizata"
@@ -1066,7 +1084,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        173
+        172
       ]
     ],
     "translation": "Autentikimi biometrik është i çaktivizuar ose nuk mbështetet në këtë pajisje."
@@ -1104,7 +1122,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        164
+        163
       ]
     ],
     "translation": "Shkyçje biometrike"
@@ -1118,7 +1136,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        128
+        127
       ]
     ],
     "translation": "Biometrika u çaktivizua"
@@ -1132,7 +1150,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        96
+        95
       ]
     ],
     "translation": "Biometrika u aktivizua"
@@ -1187,7 +1205,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        182
+        179
       ]
     ],
     "translation": "Sill kredencialet nga aplikacioni i vjetër"
@@ -1475,7 +1493,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        49
+        50
       ]
     ],
     "translation": "Kartat"
@@ -1766,8 +1784,19 @@
     ],
     "translation": "Shteti"
   },
+  "home.createZadaId": {
+    "message": "Create ZADA ID",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        169
+      ]
+    ],
+    "translation": "Krijo ZADA ID"
+  },
   "menu.item.createZadaId": {
-    "translation": "",
     "message": "Create ZADA ID",
     "placeholders": {},
     "comments": [
@@ -1778,19 +1807,8 @@
         "src/features/menu/FunkeMenuScreen.tsx",
         148
       ]
-    ]
-  },
-  "home.createZadaId": {
-    "message": "Create ZADA ID",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/wallet/FunkeWalletScreen.tsx",
-        172
-      ]
     ],
-    "translation": "Krijo ZADA ID"
+    "translation": ""
   },
   "passportIssue.inProgress": {
     "message": "Creating your passport credential…",
@@ -1981,7 +1999,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        72
+        73
       ]
     ],
     "translation": "Kredencialet do të shfaqen këtu pasi t'i marrësh."
@@ -2101,7 +2119,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        164
+        177
       ]
     ],
     "translation": "Organizatë demo"
@@ -2113,7 +2131,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        218
+        236
       ]
     ],
     "translation": "Organizatë demo"
@@ -2154,7 +2172,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        222
+        240
       ]
     ],
     "translation": "Mos nda të dhëna të vërteta"
@@ -2674,7 +2692,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        236
+        254
       ]
     ],
     "translation": "Bashkëveprimi i parë"
@@ -2998,6 +3016,18 @@
     ],
     "translation": "Si funksionon?"
   },
+  "verifyPartySlide.zadaVerifiedDescription": {
+    "message": "Identity cryptographically verified against the ZADA Trust Registry",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/VerifyPartySlide.tsx",
+        185
+      ]
+    ],
+    "translation": "Identiteti i verifikuar në mënyrë kriptografike kundrejt ZADA Trust Registry"
+  },
   "didcommCancelFlow.issuance.description": {
     "message": "If you decline, you will not receive the card.",
     "placeholders": {},
@@ -3073,7 +3103,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        181
+        199
       ]
     ],
     "translation": "Në ZADA Trust Registry"
@@ -3325,7 +3355,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        199
+        206
       ]
     ],
     "translation": "Lëshuar më {0}"
@@ -3393,7 +3423,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        61
+        60
       ]
     ],
     "translation": "Gjuha"
@@ -3409,7 +3439,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        243
+        261
       ]
     ],
     "translation": "Bashkëveprimi i fundit: {0}"
@@ -3461,7 +3491,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        185
+        203
       ]
     ],
     "translation": "E listuar në regjistër, identiteti nuk është verifikuar në mënyrë kriptografike"
@@ -3551,8 +3581,19 @@
     "translation": "Metadata",
     "obsolete": true
   },
+  "home.migrate": {
+    "message": "Migrate credentials",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        178
+      ]
+    ],
+    "translation": "Migro kredencialet"
+  },
   "menu.item.migrateCredentials": {
-    "translation": "",
     "message": "Migrate credentials",
     "placeholders": {},
     "comments": [
@@ -3563,19 +3604,8 @@
         "src/features/menu/FunkeMenuScreen.tsx",
         158
       ]
-    ]
-  },
-  "home.migrate": {
-    "message": "Migrate credentials",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/wallet/FunkeWalletScreen.tsx",
-        181
-      ]
     ],
-    "translation": "Migro kredencialet"
+    "translation": ""
   },
   "settings.migrateCredentials": {
     "message": "Migrate credentials",
@@ -3690,7 +3720,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        173
+        170
       ]
     ],
     "translation": "I ri në ZADA? Konfiguro ZADA ID-në tënde"
@@ -3772,7 +3802,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        127
+        134
       ]
     ],
     "translation": "Nuk u gjetën karta për \"{searchQuery}\""
@@ -3909,7 +3939,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        247
+        265
       ]
     ],
     "translation": "Nuk u gjetën bashkëveprime të mëparshme"
@@ -4031,7 +4061,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        208
+        226
       ]
     ],
     "translation": "Organizata nuk është e verifikuar"
@@ -4093,7 +4123,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        194
+        191
       ]
     ],
     "translation": "Pasaportë, patentë shoferi e më shumë"
@@ -4436,7 +4466,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        232
+        250
       ]
     ],
     "translation": "Bashkëveprime të mëparshme"
@@ -4661,7 +4691,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        194
+        212
       ]
     ],
     "translation": "Organizatë e njohur"
@@ -4945,7 +4975,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        219
+        216
       ]
     ],
     "translation": "Skano kodin QR"
@@ -5070,7 +5100,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        93
+        94
       ]
     ],
     "translation": "Kërko karta"
@@ -5150,7 +5180,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        165
+        162
       ]
     ],
     "translation": "Konfiguro portofolin tënd"
@@ -5178,7 +5208,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        148
+        147
       ]
     ],
     "translation": "Cilësimet"
@@ -6126,7 +6156,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        135
+        148
       ]
     ],
     "translation": "Nuk ka organizata që besojnë në {name}."
@@ -6173,7 +6203,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        140
+        153
       ]
     ],
     "translation": "Nuk ka organizata që besojnë në këtë organizatë të panjohur."
@@ -6652,18 +6682,6 @@
     ],
     "translation": "Provo përsëri"
   },
-  "passportNfc.retry": {
-    "message": "Try again",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/passport/PassportNfcReadScreen.tsx",
-        99
-      ]
-    ],
-    "translation": "Provo përsëri"
-  },
   "passportIssue.retry": {
     "message": "Try again",
     "placeholders": {},
@@ -6672,6 +6690,18 @@
       [
         "src/features/passport/PassportFlow.tsx",
         80
+      ]
+    ],
+    "translation": "Provo përsëri"
+  },
+  "passportNfc.retry": {
+    "message": "Try again",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/passport/PassportNfcReadScreen.tsx",
+        99
       ]
     ],
     "translation": "Provo përsëri"
@@ -6934,6 +6964,18 @@
     ],
     "translation": "Verifikuar nga ZADA Network"
   },
+  "verifyPartySlide.zadaVerifiedTitle": {
+    "message": "Verified by ZADA Network",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/VerifyPartySlide.tsx",
+        181
+      ]
+    ],
+    "translation": "Verifikuar nga ZADA Network"
+  },
   "trust.trustedBy": {
     "message": "Verified By:",
     "placeholders": {},
@@ -6943,7 +6985,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        108
+        113
       ]
     ],
     "translation": "I besuar nga"
@@ -7337,7 +7379,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        67
+        68
       ]
     ],
     "translation": "Nuk ka asgjë këtu, ende"

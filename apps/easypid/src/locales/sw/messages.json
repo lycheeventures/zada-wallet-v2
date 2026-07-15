@@ -8,7 +8,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        98
+        103
       ]
     ],
     "translation": "(Demo)"
@@ -31,6 +31,24 @@
     ],
     "translation": "{0} kort totalt"
   },
+  "trust.zadaVerified": {
+    "message": "{0} is in the ZADA Trust Registry, and its signing key was cryptographically verified against the certificate ZADA published for it.",
+    "placeholders": {
+      "0": [
+        "name ?? 'This organization'"
+      ]
+    },
+    "comments": [
+      "Shown when an organization signing key was cryptographically verified against its ZADA trust registry certificate"
+    ],
+    "origin": [
+      [
+        "src/features/wallet/FunkeTrustDetailScreen.tsx",
+        120
+      ]
+    ],
+    "translation": "{0} finns i ZADA Trust Registry och dess signeringsnyckel har verifierats kryptografiskt mot det certifikat som ZADA publicerat för den."
+  },
   "trust.zadaRegistryListing": {
     "message": "{0} is listed in the ZADA Trust Registry. Its identity has not been cryptographically verified.",
     "placeholders": {
@@ -44,7 +62,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        115
+        127
       ]
     ],
     "translation": "{0} imeorodheshwa katika ZADA Trust Registry. Utambulisho wake haujathibitishwa kwa njia ya kriptografia."
@@ -260,7 +278,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        123
+        135
       ]
     ],
     "translation": "En lista över organisationer som litar på {name}."
@@ -274,7 +292,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        128
+        141
       ]
     ],
     "translation": "En lista över organisationer som litar på denna okända organisation."
@@ -352,7 +370,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        65
+        70
       ]
     ],
     "translation": "Om denna part"
@@ -451,20 +469,6 @@
     ],
     "translation": "Aktivitet visas här när du delar eller tar emot kort."
   },
-  "documentCatalog.title": {
-    "message": "Add a document",
-    "placeholders": {},
-    "comments": [
-      "Title of the official-document catalog screen"
-    ],
-    "origin": [
-      [
-        "src/features/documents/DocumentCatalogScreen.tsx",
-        76
-      ]
-    ],
-    "translation": "Lägg till dokument"
-  },
   "menu.item.addDocument": {
     "message": "Add a document",
     "placeholders": {},
@@ -479,6 +483,20 @@
     ],
     "translation": "Lägg till dokument"
   },
+  "documentCatalog.title": {
+    "message": "Add a document",
+    "placeholders": {},
+    "comments": [
+      "Title of the official-document catalog screen"
+    ],
+    "origin": [
+      [
+        "src/features/documents/DocumentCatalogScreen.tsx",
+        76
+      ]
+    ],
+    "translation": "Lägg till dokument"
+  },
   "home.addDocument": {
     "message": "Add an official document",
     "placeholders": {},
@@ -486,7 +504,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        193
+        190
       ]
     ],
     "translation": "Lägg till ett officiellt dokument"
@@ -653,7 +671,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        77
+        82
       ]
     ],
     "translation": "Överväg alltid om det är klokt att dela med en part."
@@ -825,7 +843,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        198
+        216
       ]
     ],
     "translation": "Betrodd av {0} organisationer"
@@ -1066,7 +1084,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        173
+        172
       ]
     ],
     "translation": "Biometrisk autentisering är inaktiverad eller stöds inte på den här enheten."
@@ -1104,7 +1122,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        164
+        163
       ]
     ],
     "translation": "Biometrisk upplåsning"
@@ -1118,7 +1136,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        128
+        127
       ]
     ],
     "translation": "Biometri inaktiverad"
@@ -1132,7 +1150,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        96
+        95
       ]
     ],
     "translation": "Biometri aktiverad"
@@ -1187,7 +1205,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        182
+        179
       ]
     ],
     "translation": "Hamisha kadi kutoka programu ya zamani"
@@ -1475,7 +1493,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        49
+        50
       ]
     ],
     "translation": "Kort"
@@ -1766,8 +1784,19 @@
     ],
     "translation": "Land"
   },
+  "home.createZadaId": {
+    "message": "Create ZADA ID",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        169
+      ]
+    ],
+    "translation": "Tengeneza ZADA ID"
+  },
   "menu.item.createZadaId": {
-    "translation": "",
     "message": "Create ZADA ID",
     "placeholders": {},
     "comments": [
@@ -1778,19 +1807,8 @@
         "src/features/menu/FunkeMenuScreen.tsx",
         148
       ]
-    ]
-  },
-  "home.createZadaId": {
-    "message": "Create ZADA ID",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/wallet/FunkeWalletScreen.tsx",
-        172
-      ]
     ],
-    "translation": "Tengeneza ZADA ID"
+    "translation": ""
   },
   "passportIssue.inProgress": {
     "message": "Creating your passport credential…",
@@ -1981,7 +1999,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        72
+        73
       ]
     ],
     "translation": "Kort kommer att visas här när du tar emot dem."
@@ -2101,7 +2119,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        164
+        177
       ]
     ],
     "translation": "Demoorganisation"
@@ -2113,7 +2131,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        218
+        236
       ]
     ],
     "translation": "Demoorganisation"
@@ -2154,7 +2172,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        222
+        240
       ]
     ],
     "translation": "Dela inte riktig data"
@@ -2674,7 +2692,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        236
+        254
       ]
     ],
     "translation": "Första interaktionen"
@@ -2998,6 +3016,18 @@
     ],
     "translation": "Hur fungerar det?"
   },
+  "verifyPartySlide.zadaVerifiedDescription": {
+    "message": "Identity cryptographically verified against the ZADA Trust Registry",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/VerifyPartySlide.tsx",
+        185
+      ]
+    ],
+    "translation": "Identiteten kryptografiskt verifierad mot ZADA Trust Registry"
+  },
   "didcommCancelFlow.issuance.description": {
     "message": "If you decline, you will not receive the card.",
     "placeholders": {},
@@ -3073,7 +3103,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        181
+        199
       ]
     ],
     "translation": "Katika ZADA Trust Registry"
@@ -3325,7 +3355,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        199
+        206
       ]
     ],
     "translation": "Utfärdat den {0}"
@@ -3393,7 +3423,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        61
+        60
       ]
     ],
     "translation": "Språk"
@@ -3409,7 +3439,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        243
+        261
       ]
     ],
     "translation": "Senaste interaktion: {0}"
@@ -3461,7 +3491,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        185
+        203
       ]
     ],
     "translation": "Imeorodheshwa kwenye rejista, utambulisho haujathibitishwa kwa njia ya kriptografia"
@@ -3551,8 +3581,19 @@
     "translation": "Metadata",
     "obsolete": true
   },
+  "home.migrate": {
+    "message": "Migrate credentials",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        178
+      ]
+    ],
+    "translation": "Hamisha kadi"
+  },
   "menu.item.migrateCredentials": {
-    "translation": "",
     "message": "Migrate credentials",
     "placeholders": {},
     "comments": [
@@ -3563,19 +3604,8 @@
         "src/features/menu/FunkeMenuScreen.tsx",
         158
       ]
-    ]
-  },
-  "home.migrate": {
-    "message": "Migrate credentials",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/wallet/FunkeWalletScreen.tsx",
-        181
-      ]
     ],
-    "translation": "Hamisha kadi"
+    "translation": ""
   },
   "settings.migrateCredentials": {
     "message": "Migrate credentials",
@@ -3690,7 +3720,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        173
+        170
       ]
     ],
     "translation": "Ni mgeni kwenye ZADA? Sanidi ZADA ID yako"
@@ -3772,7 +3802,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        127
+        134
       ]
     ],
     "translation": "Inga kort hittades för \"{searchQuery}\""
@@ -3909,7 +3939,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        247
+        265
       ]
     ],
     "translation": "Inga tidigare interaktioner hittades"
@@ -4031,7 +4061,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        208
+        226
       ]
     ],
     "translation": "Organisationen är inte verifierad"
@@ -4093,7 +4123,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        194
+        191
       ]
     ],
     "translation": "Pass, körkort med mera"
@@ -4436,7 +4466,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        232
+        250
       ]
     ],
     "translation": "Tidigare interaktioner"
@@ -4661,7 +4691,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        194
+        212
       ]
     ],
     "translation": "Betrodd organisation"
@@ -4945,7 +4975,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        219
+        216
       ]
     ],
     "translation": "Skanna QR-kod"
@@ -5070,7 +5100,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        93
+        94
       ]
     ],
     "translation": "Sök kort"
@@ -5150,7 +5180,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        165
+        162
       ]
     ],
     "translation": "Sanidi pochi yako"
@@ -5178,7 +5208,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        148
+        147
       ]
     ],
     "translation": "Inställningar"
@@ -6126,7 +6156,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        135
+        148
       ]
     ],
     "translation": "Det finns inga organisationer som litar på {name}."
@@ -6173,7 +6203,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        140
+        153
       ]
     ],
     "translation": "Det finns inga organisationer som litar på denna okända organisation."
@@ -6652,18 +6682,6 @@
     ],
     "translation": "Jaribu tena"
   },
-  "passportNfc.retry": {
-    "message": "Try again",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/passport/PassportNfcReadScreen.tsx",
-        99
-      ]
-    ],
-    "translation": "Jaribu tena"
-  },
   "passportIssue.retry": {
     "message": "Try again",
     "placeholders": {},
@@ -6672,6 +6690,18 @@
       [
         "src/features/passport/PassportFlow.tsx",
         80
+      ]
+    ],
+    "translation": "Jaribu tena"
+  },
+  "passportNfc.retry": {
+    "message": "Try again",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/passport/PassportNfcReadScreen.tsx",
+        99
       ]
     ],
     "translation": "Jaribu tena"
@@ -6934,6 +6964,18 @@
     ],
     "translation": "Imethibitishwa na ZADA Network"
   },
+  "verifyPartySlide.zadaVerifiedTitle": {
+    "message": "Verified by ZADA Network",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/VerifyPartySlide.tsx",
+        181
+      ]
+    ],
+    "translation": "Verifierad av ZADA Network"
+  },
   "trust.trustedBy": {
     "message": "Verified By:",
     "placeholders": {},
@@ -6943,7 +6985,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        108
+        113
       ]
     ],
     "translation": "Betrodd av"
@@ -7337,7 +7379,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        67
+        68
       ]
     ],
     "translation": "Inget här ännu"

@@ -172,7 +172,25 @@ export const VerifyPartySlide = ({
         </YStack>
 
         <YStack gap="$4">
-          {trustMechanism === 'zada_registry' && trustedEntitiesWithoutSelf && trustedEntitiesWithoutSelf.length > 0 ? (
+          {trustMechanism === 'zada_x509' && trustedEntitiesWithoutSelf && trustedEntitiesWithoutSelf.length > 0 ? (
+            // Cryptographic ZADA trust: the party's x5c chain validated against the certificate ZADA
+            // published for it in the trust registry, so its signing key is bound to that entry.
+            // This is the only state that may claim ZADA verified the organisation.
+            <InfoButton
+              variant="positive"
+              title={t({
+                id: 'verifyPartySlide.zadaVerifiedTitle',
+                message: 'Verified by ZADA Network',
+              })}
+              description={t({
+                id: 'verifyPartySlide.zadaVerifiedDescription',
+                message: 'Identity cryptographically verified against the ZADA Trust Registry',
+              })}
+              onPress={onPressVerifiedIssuer}
+            />
+          ) : trustMechanism === 'zada_registry' &&
+            trustedEntitiesWithoutSelf &&
+            trustedEntitiesWithoutSelf.length > 0 ? (
             // Registry-listing-only trust: the issuer URL is in the ZADA trust registry, but its
             // metadata was not cryptographically signed. Surfaced distinctly (not the green
             // "verified" badge) and honestly labelled.

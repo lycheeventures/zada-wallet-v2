@@ -1,5 +1,11 @@
 ## Updating AI Translations
 
+> ⚠️ **The `sw` locale is SWEDISH, not Swahili.** `sw` is the ISO code for Swahili, but this app
+> ships **Swedish** in that folder (the correct code would be `sv`; the name is a historical
+> mistake). Never infer a locale's language from its folder name — read its `AI_INSTRUCTIONS.MD`
+> first. Some existing `sw` strings ARE Swahili; those are bugs from a pass that keyed off the
+> code, not precedent to follow.
+
 When updating AI translations, make sure to use the `apps/easypid/src/locales/<locale>/AI_INSTRUCTIONS.MD` file for the locale you're updating.
 
 Also make sure to update the AI_INSTRUCTIONS file for the locale if it needs updates based on new context.

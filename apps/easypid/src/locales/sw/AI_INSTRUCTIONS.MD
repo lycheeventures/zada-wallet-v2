@@ -1,3 +1,22 @@
+# ⚠️ THIS LOCALE IS **SWEDISH**, NOT SWAHILI. TRANSLATE INTO SWEDISH ONLY.
+
+> **Read this before writing a single string.**
+>
+> The directory is named `sw`, which is the ISO 639-1 code for **Swahili**. In this app it does
+> **not** mean Swahili — this locale ships **Swedish** (`svenska`). The folder name is a historical
+> mistake (the correct code for Swedish is `sv`), and it is the single most common cause of bad
+> translations here: anyone who infers the language from the folder name writes Swahili, which then
+> ships to Swedish users.
+>
+> - ✅ Correct: `"Verified by ZADA Network"` → `"Verifierad av ZADA Network"`
+> - ❌ Wrong: `"Verified by ZADA Network"` → `"Imethibitishwa na ZADA Network"` (Swahili)
+>
+> **Do not trust the folder name. Do not trust the language code. Write Swedish.**
+>
+> If you find existing Swahili strings in `sw/messages.json`, they are BUGS — a previous translation
+> pass keyed off the `sw` code. Do not copy their style or treat them as precedent; they are being
+> migrated to Swedish. Match the Swedish majority of the catalog instead.
+
 ## Swedish Translation Rules for Identity App
 
 ### **Tone and Style**

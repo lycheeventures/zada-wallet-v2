@@ -40,6 +40,66 @@ import { anoncreds } from '@hyperledger/anoncreds-react-native'
 import { askar } from '@openwallet-foundation/askar-react-native'
 import { DidWebAnonCredsRegistry } from 'credo-ts-didweb-anoncreds'
 import { logger } from './logger'
+import { getZadaRegistryAnchorsForIssuer } from './utils/trust'
+
+const WELL_KNOWN_CREDENTIAL_ISSUER = '.well-known/openid-credential-issuer'
+
+/**
+ * Ask issuers for *signed* credential-issuer metadata.
+ *
+ * OpenID4VCI lets an issuer return its credential-issuer metadata as a signed JWT
+ * (`typ: openidvci-issuer-metadata+jwt`, carrying an `x5c` chain) instead of plain JSON, selected by
+ * content negotiation. That signature is what binds the issuer's signing key to its trust-registry
+ * entry — without it, a `credential_issuer` URL is self-asserted and proves nothing.
+ *
+ * Hovi serves the signed form ONLY when `Accept: application/jwt` is sent; a plain GET (or the
+ * `Accept: * / *` React Native's fetch sends by default) returns unsigned JSON. credo validates the
+ * response content type but never sends an `Accept` header of its own, so it silently receives the
+ * unsigned form and issuer trust degrades to a registry URL lookup. We add the header here so the
+ * signed form is requested; `application/json` stays in the list so issuers that don't sign their
+ * metadata keep working.
+ *
+ * Paired with the `openId4VciCredentialIssuerMetadata` case in `getTrustedCertificatesForVerification`
+ * below: credo *throws* if it can't verify a signed metadata JWT, so requesting the signed form
+ * without also supplying the right trust anchor would break issuance. The two must stay together.
+ */
+const withSignedIssuerMetadataAccept = (fetch: typeof agentDependencies.fetch): typeof agentDependencies.fetch => {
+  return (async (input: unknown, init?: RequestInit) => {
+    const url = typeof input === 'string' ? input : ((input as { url?: string })?.url ?? '')
+
+    if (!url.includes(WELL_KNOWN_CREDENTIAL_ISSUER)) {
+      return (fetch as (input: unknown, init?: RequestInit) => Promise<Response>)(input, init)
+    }
+
+    const headers = new Headers(init?.headers)
+    headers.set('Accept', 'application/jwt, application/json')
+
+    return (fetch as (input: unknown, init?: RequestInit) => Promise<Response>)(input, { ...init, headers })
+  }) as typeof agentDependencies.fetch
+}
+
+const agentDependenciesWithSignedMetadata = {
+  ...agentDependencies,
+  fetch: withSignedIssuerMetadataAccept(agentDependencies.fetch),
+}
+
+/**
+ * Trust anchors for verifying an issuer's *signed* credential-issuer metadata JWT.
+ *
+ * THE GATE for offer-time issuer trust: the metadata JWT's x5c chain must validate against the
+ * certificate ZADA published for that issuer in the trust registry. Returning the registry
+ * certificate here is what binds the signing key to the registry entry — the difference between a
+ * real trust badge and a decorative one.
+ *
+ * Falls back to `undefined` when the issuer isn't in the ZADA registry, which makes credo use the
+ * agent's configured trusted certificates (the hardcoded EU / paradym anchors) — so non-ZADA
+ * issuers that sign their metadata keep working exactly as before. This widens no trust: an issuer
+ * that is in neither set still fails verification.
+ */
+const getTrustedCertificatesForSignedIssuerMetadata = async (credentialIssuer?: string) => {
+  const anchors = await getZadaRegistryAnchorsForIssuer(credentialIssuer)
+  return anchors.length > 0 ? (anchors as [string, ...string[]]) : undefined
+}
 
 export const initializeEasyPIDAgent = async ({
   walletId,
@@ -53,7 +113,7 @@ export const initializeEasyPIDAgent = async ({
   trustedX509Certificates: string[]
 }) => {
   const agent = new Agent({
-    dependencies: agentDependencies,
+    dependencies: agentDependenciesWithSignedMetadata,
     config: {
       autoUpdateStorageOnStartup: true,
       logger,
@@ -77,7 +137,13 @@ export const initializeEasyPIDAgent = async ({
       }),
       openid4vc: new OpenId4VcModule({}),
       x509: new X509Module({
-        getTrustedCertificatesForVerification: (_agentContext, { certificateChain, verification }) => {
+        getTrustedCertificatesForVerification: async (_agentContext, { certificateChain, verification }) => {
+          // Offer-time issuer trust: only the certificate ZADA published for this issuer may verify
+          // its signed metadata, so a valid signature proves the signer IS the registered issuer.
+          if (verification.type === 'openId4VciCredentialIssuerMetadata') {
+            return getTrustedCertificatesForSignedIssuerMetadata(verification.credentialIssuerMetadata.payload.sub)
+          }
+
           if (verification.type === 'credential') {
             // Temporarily allow any certificates, also for PID
             // Only allow BDR certificate for PID credentials for now
@@ -129,7 +195,7 @@ export const initializeParadymAgent = async ({
   trustedX509Certificates?: string[]
 }) => {
   const agent = new Agent({
-    dependencies: agentDependencies,
+    dependencies: agentDependenciesWithSignedMetadata,
     config: {
       autoUpdateStorageOnStartup: true,
       logger,
@@ -145,7 +211,13 @@ export const initializeParadymAgent = async ({
       }),
       openid4vc: new OpenId4VcModule({}),
       x509: new X509Module({
-        getTrustedCertificatesForVerification: (_, { certificateChain, verification }) => {
+        getTrustedCertificatesForVerification: async (_, { certificateChain, verification }) => {
+          // Offer-time issuer trust: only the certificate ZADA published for this issuer may verify
+          // its signed metadata, so a valid signature proves the signer IS the registered issuer.
+          if (verification.type === 'openId4VciCredentialIssuerMetadata') {
+            return getTrustedCertificatesForSignedIssuerMetadata(verification.credentialIssuerMetadata.payload.sub)
+          }
+
           if (verification.type === 'credential') {
             // If not PID, we allow any certificate for now
             return [certificateChain[certificateChain.length - 1].toString('pem')]

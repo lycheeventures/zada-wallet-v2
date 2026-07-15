@@ -8,7 +8,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        98
+        103
       ]
     ],
     "translation": "(Demo)"
@@ -31,6 +31,24 @@
     ],
     "translation": "Yhteensä {0} korttia"
   },
+  "trust.zadaVerified": {
+    "message": "{0} is in the ZADA Trust Registry, and its signing key was cryptographically verified against the certificate ZADA published for it.",
+    "placeholders": {
+      "0": [
+        "name ?? 'This organization'"
+      ]
+    },
+    "comments": [
+      "Shown when an organization signing key was cryptographically verified against its ZADA trust registry certificate"
+    ],
+    "origin": [
+      [
+        "src/features/wallet/FunkeTrustDetailScreen.tsx",
+        120
+      ]
+    ],
+    "translation": "{0} on ZADA Trust Registry -rekisterissä, ja sen allekirjoitusavain vahvistettiin kryptografisesti varmennetta vasten, jonka ZADA julkaisi sille."
+  },
   "trust.zadaRegistryListing": {
     "message": "{0} is listed in the ZADA Trust Registry. Its identity has not been cryptographically verified.",
     "placeholders": {
@@ -44,7 +62,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        115
+        127
       ]
     ],
     "translation": "{0} on listattu ZADA Trust Registry -rekisteriin. Sen identiteettiä ei ole vahvistettu kryptografisesti."
@@ -260,7 +278,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        123
+        135
       ]
     ],
     "translation": "Lista organisaatioista, jotka luottavat toimijaan {name}."
@@ -274,7 +292,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        128
+        141
       ]
     ],
     "translation": "Lista organisaatioista, jotka luottavat tähän toimijaan."
@@ -352,7 +370,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        65
+        70
       ]
     ],
     "translation": "Tietoja tästä toimijasta"
@@ -451,20 +469,6 @@
     ],
     "translation": "Toiminta näkyy täällä kun jaat tai vastaanotat todisteita."
   },
-  "documentCatalog.title": {
-    "message": "Add a document",
-    "placeholders": {},
-    "comments": [
-      "Title of the official-document catalog screen"
-    ],
-    "origin": [
-      [
-        "src/features/documents/DocumentCatalogScreen.tsx",
-        76
-      ]
-    ],
-    "translation": "Lisää asiakirja"
-  },
   "menu.item.addDocument": {
     "message": "Add a document",
     "placeholders": {},
@@ -479,6 +483,20 @@
     ],
     "translation": "Lisää asiakirja"
   },
+  "documentCatalog.title": {
+    "message": "Add a document",
+    "placeholders": {},
+    "comments": [
+      "Title of the official-document catalog screen"
+    ],
+    "origin": [
+      [
+        "src/features/documents/DocumentCatalogScreen.tsx",
+        76
+      ]
+    ],
+    "translation": "Lisää asiakirja"
+  },
   "home.addDocument": {
     "message": "Add an official document",
     "placeholders": {},
@@ -486,7 +504,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        193
+        190
       ]
     ],
     "translation": "Lisää virallinen asiakirja"
@@ -653,7 +671,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        77
+        82
       ]
     ],
     "translation": "Mieti aina tarkkaan, onko tietojen jakaminen järkevää."
@@ -825,7 +843,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        198
+        216
       ]
     ],
     "translation": "{0} luottavaa organisaatiota"
@@ -1066,7 +1084,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        173
+        172
       ]
     ],
     "translation": "Biometrinen tunnistus on poistettu käytöstä tai sitä ei tueta tällä laitteella."
@@ -1104,7 +1122,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        164
+        163
       ]
     ],
     "translation": "Biometrinen lukituksen avaus"
@@ -1118,7 +1136,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        128
+        127
       ]
     ],
     "translation": "Biometriikka poistettu käytöstä"
@@ -1132,7 +1150,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        96
+        95
       ]
     ],
     "translation": "Biometriikka otettu käyttöön"
@@ -1187,7 +1205,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        182
+        179
       ]
     ],
     "translation": "Tuo todisteet vanhasta sovelluksesta"
@@ -1475,7 +1493,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        49
+        50
       ]
     ],
     "translation": "Kortit"
@@ -1766,8 +1784,19 @@
     ],
     "translation": "Maa"
   },
+  "home.createZadaId": {
+    "message": "Create ZADA ID",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        169
+      ]
+    ],
+    "translation": "Luo ZADA ID"
+  },
   "menu.item.createZadaId": {
-    "translation": "",
     "message": "Create ZADA ID",
     "placeholders": {},
     "comments": [
@@ -1778,19 +1807,8 @@
         "src/features/menu/FunkeMenuScreen.tsx",
         148
       ]
-    ]
-  },
-  "home.createZadaId": {
-    "message": "Create ZADA ID",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/wallet/FunkeWalletScreen.tsx",
-        172
-      ]
     ],
-    "translation": "Luo ZADA ID"
+    "translation": ""
   },
   "passportIssue.inProgress": {
     "message": "Creating your passport credential…",
@@ -1981,7 +1999,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        72
+        73
       ]
     ],
     "translation": "Todisteet näkyvät täällä, kun vastaanotat niitä."
@@ -2101,7 +2119,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        164
+        177
       ]
     ],
     "translation": "Demo-organisaatio"
@@ -2113,7 +2131,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        218
+        236
       ]
     ],
     "translation": "Demo-organisaatio"
@@ -2154,7 +2172,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        222
+        240
       ]
     ],
     "translation": "Älä jaa oikeita tietoja"
@@ -2674,7 +2692,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        236
+        254
       ]
     ],
     "translation": "Ensimmäinen yhteys"
@@ -2998,6 +3016,18 @@
     ],
     "translation": "Miten se toimii?"
   },
+  "verifyPartySlide.zadaVerifiedDescription": {
+    "message": "Identity cryptographically verified against the ZADA Trust Registry",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/VerifyPartySlide.tsx",
+        185
+      ]
+    ],
+    "translation": "Identiteetti vahvistettu kryptografisesti ZADA Trust Registry -rekisteriä vasten"
+  },
   "didcommCancelFlow.issuance.description": {
     "message": "If you decline, you will not receive the card.",
     "placeholders": {},
@@ -3073,7 +3103,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        181
+        199
       ]
     ],
     "translation": "ZADA Trust Registry -rekisterissä"
@@ -3325,7 +3355,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        199
+        206
       ]
     ],
     "translation": "Myönnetty {0}"
@@ -3393,7 +3423,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        61
+        60
       ]
     ],
     "translation": "Kieli"
@@ -3409,7 +3439,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        243
+        261
       ]
     ],
     "translation": "Viimeisin yhteys: {0}"
@@ -3461,7 +3491,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        185
+        203
       ]
     ],
     "translation": "Listattu rekisteriin, identiteettiä ei vahvistettu kryptografisesti"
@@ -3551,8 +3581,19 @@
     "translation": "Metatiedot",
     "obsolete": true
   },
+  "home.migrate": {
+    "message": "Migrate credentials",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        178
+      ]
+    ],
+    "translation": "Siirrä todisteet"
+  },
   "menu.item.migrateCredentials": {
-    "translation": "",
     "message": "Migrate credentials",
     "placeholders": {},
     "comments": [
@@ -3563,19 +3604,8 @@
         "src/features/menu/FunkeMenuScreen.tsx",
         158
       ]
-    ]
-  },
-  "home.migrate": {
-    "message": "Migrate credentials",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/wallet/FunkeWalletScreen.tsx",
-        181
-      ]
     ],
-    "translation": "Siirrä todisteet"
+    "translation": ""
   },
   "settings.migrateCredentials": {
     "message": "Migrate credentials",
@@ -3690,7 +3720,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        173
+        170
       ]
     ],
     "translation": "Uusi ZADA-käyttäjä? Luo ZADA ID"
@@ -3772,7 +3802,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        127
+        134
       ]
     ],
     "translation": "Ei kortteja haulle \"{searchQuery}\""
@@ -3909,7 +3939,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        247
+        265
       ]
     ],
     "translation": "Aiempia yhteyksiä ei löytynyt"
@@ -4031,7 +4061,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        208
+        226
       ]
     ],
     "translation": "Organisaatiota ei ole vahvistettu"
@@ -4093,7 +4123,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        194
+        191
       ]
     ],
     "translation": "Passi, ajokortti ja muita"
@@ -4436,7 +4466,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        232
+        250
       ]
     ],
     "translation": "Aiemmat yhteydet"
@@ -4661,7 +4691,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        194
+        212
       ]
     ],
     "translation": "Luotettu toimija"
@@ -4945,7 +4975,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        219
+        216
       ]
     ],
     "translation": "Skannaa QR-koodi"
@@ -5070,7 +5100,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        93
+        94
       ]
     ],
     "translation": "Hae kortteja"
@@ -5150,7 +5180,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        165
+        162
       ]
     ],
     "translation": "Valmistele lompakkosi"
@@ -5178,7 +5208,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        148
+        147
       ]
     ],
     "translation": "Asetukset"
@@ -6126,7 +6156,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        135
+        148
       ]
     ],
     "translation": "Mikään organisaatio ei luota toimijaan {name}."
@@ -6173,7 +6203,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        140
+        153
       ]
     ],
     "translation": "Mikään organisaatio ei luota tähän toimijaan."
@@ -6652,18 +6682,6 @@
     ],
     "translation": "Yritä uudelleen"
   },
-  "passportNfc.retry": {
-    "message": "Try again",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/passport/PassportNfcReadScreen.tsx",
-        99
-      ]
-    ],
-    "translation": "Yritä uudelleen"
-  },
   "passportIssue.retry": {
     "message": "Try again",
     "placeholders": {},
@@ -6672,6 +6690,18 @@
       [
         "src/features/passport/PassportFlow.tsx",
         80
+      ]
+    ],
+    "translation": "Yritä uudelleen"
+  },
+  "passportNfc.retry": {
+    "message": "Try again",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/passport/PassportNfcReadScreen.tsx",
+        99
       ]
     ],
     "translation": "Yritä uudelleen"
@@ -6934,6 +6964,18 @@
     ],
     "translation": "ZADA Networkin vahvistama"
   },
+  "verifyPartySlide.zadaVerifiedTitle": {
+    "message": "Verified by ZADA Network",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/VerifyPartySlide.tsx",
+        181
+      ]
+    ],
+    "translation": "ZADA Networkin vahvistama"
+  },
   "trust.trustedBy": {
     "message": "Verified By:",
     "placeholders": {},
@@ -6943,7 +6985,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        108
+        113
       ]
     ],
     "translation": "Luottamuksen osoittajat"
@@ -7337,7 +7379,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        67
+        68
       ]
     ],
     "translation": "Täällä ei ole vielä mitään"

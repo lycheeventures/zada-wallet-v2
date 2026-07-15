@@ -8,7 +8,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        98
+        103
       ]
     ],
     "translation": "(Demo)"
@@ -31,6 +31,24 @@
     ],
     "translation": "{0} Karten insgesamt"
   },
+  "trust.zadaVerified": {
+    "message": "{0} is in the ZADA Trust Registry, and its signing key was cryptographically verified against the certificate ZADA published for it.",
+    "placeholders": {
+      "0": [
+        "name ?? 'This organization'"
+      ]
+    },
+    "comments": [
+      "Shown when an organization signing key was cryptographically verified against its ZADA trust registry certificate"
+    ],
+    "origin": [
+      [
+        "src/features/wallet/FunkeTrustDetailScreen.tsx",
+        120
+      ]
+    ],
+    "translation": "{0} ist im ZADA Trust Registry, und der Signaturschlüssel wurde kryptografisch anhand des Zertifikats überprüft, das ZADA dafür veröffentlicht hat."
+  },
   "trust.zadaRegistryListing": {
     "message": "{0} is listed in the ZADA Trust Registry. Its identity has not been cryptographically verified.",
     "placeholders": {
@@ -44,7 +62,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        115
+        127
       ]
     ],
     "translation": "{0} ist im ZADA Trust Registry gelistet. Die Identität wurde nicht kryptografisch überprüft."
@@ -260,7 +278,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        123
+        135
       ]
     ],
     "translation": "Eine Liste von Organisationen, die {name} vertrauen."
@@ -274,7 +292,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        128
+        141
       ]
     ],
     "translation": "Eine Liste von Organisationen, die dieser unbekannten Organisation vertrauen."
@@ -352,7 +370,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        65
+        70
       ]
     ],
     "translation": "Über diese Partei"
@@ -451,20 +469,6 @@
     ],
     "translation": "Aktivitäten werden hier angezeigt, sobald du Nachweise teilst oder erhältst."
   },
-  "documentCatalog.title": {
-    "message": "Add a document",
-    "placeholders": {},
-    "comments": [
-      "Title of the official-document catalog screen"
-    ],
-    "origin": [
-      [
-        "src/features/documents/DocumentCatalogScreen.tsx",
-        76
-      ]
-    ],
-    "translation": "Dokument hinzufügen"
-  },
   "menu.item.addDocument": {
     "message": "Add a document",
     "placeholders": {},
@@ -479,6 +483,20 @@
     ],
     "translation": "Dokument hinzufügen"
   },
+  "documentCatalog.title": {
+    "message": "Add a document",
+    "placeholders": {},
+    "comments": [
+      "Title of the official-document catalog screen"
+    ],
+    "origin": [
+      [
+        "src/features/documents/DocumentCatalogScreen.tsx",
+        76
+      ]
+    ],
+    "translation": "Dokument hinzufügen"
+  },
   "home.addDocument": {
     "message": "Add an official document",
     "placeholders": {},
@@ -486,7 +504,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        193
+        190
       ]
     ],
     "translation": "Offizielles Dokument hinzufügen"
@@ -653,7 +671,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        77
+        82
       ]
     ],
     "translation": "Überlege immer, ob das Teilen mit einer Partei sinnvoll ist."
@@ -825,7 +843,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        198
+        216
       ]
     ],
     "translation": "Vertraut von {0} Organisationen"
@@ -1066,7 +1084,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        173
+        172
       ]
     ],
     "translation": "Biometrische Authentifizierung ist deaktiviert oder wird auf diesem Gerät nicht unterstützt."
@@ -1104,7 +1122,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        164
+        163
       ]
     ],
     "translation": "Biometrisches Entsperren"
@@ -1118,7 +1136,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        128
+        127
       ]
     ],
     "translation": "Biometrie deaktiviert"
@@ -1132,7 +1150,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        96
+        95
       ]
     ],
     "translation": "Biometrie aktiviert"
@@ -1187,7 +1205,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        182
+        179
       ]
     ],
     "translation": "Übertrage Nachweise aus der alten App"
@@ -1475,7 +1493,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        49
+        50
       ]
     ],
     "translation": "Karten"
@@ -1766,8 +1784,19 @@
     ],
     "translation": "Land"
   },
+  "home.createZadaId": {
+    "message": "Create ZADA ID",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        169
+      ]
+    ],
+    "translation": "ZADA ID erstellen"
+  },
   "menu.item.createZadaId": {
-    "translation": "",
     "message": "Create ZADA ID",
     "placeholders": {},
     "comments": [
@@ -1778,19 +1807,8 @@
         "src/features/menu/FunkeMenuScreen.tsx",
         148
       ]
-    ]
-  },
-  "home.createZadaId": {
-    "message": "Create ZADA ID",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/wallet/FunkeWalletScreen.tsx",
-        172
-      ]
     ],
-    "translation": "ZADA ID erstellen"
+    "translation": ""
   },
   "passportIssue.inProgress": {
     "message": "Creating your passport credential…",
@@ -1981,7 +1999,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        72
+        73
       ]
     ],
     "translation": "Nachweise werden hier angezeigt, sobald du sie erhältst."
@@ -2101,7 +2119,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        164
+        177
       ]
     ],
     "translation": "Demo-Organisation"
@@ -2113,7 +2131,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        218
+        236
       ]
     ],
     "translation": "Demo-Organisation"
@@ -2154,7 +2172,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        222
+        240
       ]
     ],
     "translation": "Teile keine echten Daten"
@@ -2674,7 +2692,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        236
+        254
       ]
     ],
     "translation": "Erste Interaktion"
@@ -2998,6 +3016,18 @@
     ],
     "translation": "Wie funktioniert es?"
   },
+  "verifyPartySlide.zadaVerifiedDescription": {
+    "message": "Identity cryptographically verified against the ZADA Trust Registry",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/VerifyPartySlide.tsx",
+        185
+      ]
+    ],
+    "translation": "Identität kryptografisch anhand des ZADA Trust Registry überprüft"
+  },
   "didcommCancelFlow.issuance.description": {
     "message": "If you decline, you will not receive the card.",
     "placeholders": {},
@@ -3073,7 +3103,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        181
+        199
       ]
     ],
     "translation": "Im ZADA Trust Registry"
@@ -3325,7 +3355,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        199
+        206
       ]
     ],
     "translation": "Ausgestellt am {0}"
@@ -3393,7 +3423,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        61
+        60
       ]
     ],
     "translation": "Sprache"
@@ -3409,7 +3439,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        243
+        261
       ]
     ],
     "translation": "Letzte Interaktion: {0}"
@@ -3461,7 +3491,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        185
+        203
       ]
     ],
     "translation": "Im Register gelistet, Identität nicht kryptografisch überprüft"
@@ -3551,8 +3581,19 @@
     "translation": "Metadaten",
     "obsolete": true
   },
+  "home.migrate": {
+    "message": "Migrate credentials",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        178
+      ]
+    ],
+    "translation": "Nachweise migrieren"
+  },
   "menu.item.migrateCredentials": {
-    "translation": "",
     "message": "Migrate credentials",
     "placeholders": {},
     "comments": [
@@ -3563,19 +3604,8 @@
         "src/features/menu/FunkeMenuScreen.tsx",
         158
       ]
-    ]
-  },
-  "home.migrate": {
-    "message": "Migrate credentials",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/wallet/FunkeWalletScreen.tsx",
-        181
-      ]
     ],
-    "translation": "Nachweise migrieren"
+    "translation": ""
   },
   "settings.migrateCredentials": {
     "message": "Migrate credentials",
@@ -3690,7 +3720,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        173
+        170
       ]
     ],
     "translation": "Neu bei ZADA? Richte deine ZADA ID ein"
@@ -3772,7 +3802,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        127
+        134
       ]
     ],
     "translation": "Keine Karten gefunden für \"{searchQuery}\""
@@ -3909,7 +3939,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        247
+        265
       ]
     ],
     "translation": "Keine vorherigen Interaktionen gefunden"
@@ -4031,7 +4061,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        208
+        226
       ]
     ],
     "translation": "Organisation ist nicht verifiziert"
@@ -4093,7 +4123,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        194
+        191
       ]
     ],
     "translation": "Reisepass, Führerschein und mehr"
@@ -4436,7 +4466,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        232
+        250
       ]
     ],
     "translation": "Vorherige Interaktionen"
@@ -4661,7 +4691,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        194
+        212
       ]
     ],
     "translation": "Vertrauenswürdige Organisation"
@@ -4945,7 +4975,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        219
+        216
       ]
     ],
     "translation": "QR-Code scannen"
@@ -5070,7 +5100,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        93
+        94
       ]
     ],
     "translation": "Karten suchen"
@@ -5150,7 +5180,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        165
+        162
       ]
     ],
     "translation": "Richte dein Wallet ein"
@@ -5178,7 +5208,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        148
+        147
       ]
     ],
     "translation": "Einstellungen"
@@ -6126,7 +6156,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        135
+        148
       ]
     ],
     "translation": "Es gibt keine Organisationen, die {name} vertrauen."
@@ -6173,7 +6203,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        140
+        153
       ]
     ],
     "translation": "Es gibt keine Organisationen, die dieser unbekannten Organisation vertrauen."
@@ -6652,18 +6682,6 @@
     ],
     "translation": "Erneut versuchen"
   },
-  "passportNfc.retry": {
-    "message": "Try again",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/passport/PassportNfcReadScreen.tsx",
-        99
-      ]
-    ],
-    "translation": "Erneut versuchen"
-  },
   "passportIssue.retry": {
     "message": "Try again",
     "placeholders": {},
@@ -6672,6 +6690,18 @@
       [
         "src/features/passport/PassportFlow.tsx",
         80
+      ]
+    ],
+    "translation": "Erneut versuchen"
+  },
+  "passportNfc.retry": {
+    "message": "Try again",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/passport/PassportNfcReadScreen.tsx",
+        99
       ]
     ],
     "translation": "Erneut versuchen"
@@ -6934,6 +6964,18 @@
     ],
     "translation": "Verifiziert durch ZADA Network"
   },
+  "verifyPartySlide.zadaVerifiedTitle": {
+    "message": "Verified by ZADA Network",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/VerifyPartySlide.tsx",
+        181
+      ]
+    ],
+    "translation": "Verifiziert durch ZADA Network"
+  },
   "trust.trustedBy": {
     "message": "Verified By:",
     "placeholders": {},
@@ -6943,7 +6985,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        108
+        113
       ]
     ],
     "translation": "Vertraut von"
@@ -7337,7 +7379,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        67
+        68
       ]
     ],
     "translation": "Hier ist noch nichts"
