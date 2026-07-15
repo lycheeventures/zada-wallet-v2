@@ -17,10 +17,22 @@ Pod::Spec.new do |s|
 
   s.dependency 'ExpoModulesCore'
 
-  # NFCPassportReader (MIT) is NOT in the CocoaPods trunk — it is SPM-recommended. It is therefore
-  # wired at the APP level, not as an s.dependency here (a git pod can't be a transitive podspec dep).
-  # See ../README.md → "iOS dependency wiring". Until that is in place, the iOS build will fail to
-  # resolve `import NFCPassportReader`.
+  # NFCPassportReader is injected into the CNG Podfile as a git pod at the APP target by
+  # plugins/withNfcPassportReader.js and builds as NFCPassportReader.framework.
+  #
+  # Do NOT add `s.dependency 'NFCPassportReader'` here. Empirically (build #5 had a clean Pods project;
+  # build #6 — which only added that line — did not), that one dependency edge made CocoaPods
+  # re-serialize Pods.xcodeproj and rewrite the eudi mdoc SPM references (XCRemoteSwiftPackageReference)
+  # into a form xcodebuild rejects at archive time:
+  #   -[XCRemoteSwiftPackageReference _setSavedArchiveVersion:]: unrecognized selector
+  #   → "The project 'Pods' is damaged" → `import Expo` "no such module 'Expo'".
+  # Without the edge the project serializes cleanly and everything compiles.
+  #
+  # All we actually need is for `import NFCPassportReader` to resolve in THIS target's Swift compile, so
+  # point the target at the framework's build dir — no dependency edge, pod graph unchanged:
+  s.pod_target_xcconfig = {
+    'FRAMEWORK_SEARCH_PATHS' => '$(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/NFCPassportReader"',
+  }
 
   s.source_files = "**/*.{h,m,mm,swift,hpp,cpp}"
 end

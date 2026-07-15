@@ -76,3 +76,59 @@ To see the builder's filesystem directly, temporarily set
 feature line. Other `zada/*` branches (`combined`, `credential-x5c-trust`, `issuer-trust-anchor`,
 `credential-migration`) hold WIP not yet reconciled into `main` — notably an alternate home-screen
 design. Re-verify the active home before UI work; don't assume a screenshot matches the branch.
+
+## Building for iOS (first iOS build: Jul 2026)
+
+The app had only ever been built for Android before. Getting the **first iOS archive** onto TestFlight
+(`paradym-production` profile → App Store Connect app `1578666669`, bundle `com.zadanetwork.wallet`)
+surfaced a chain of blockers — each hid the next, so it took several builds to clear them all. Fixes
+landed on branch `zada/passport-ios-nfc-api-fixes`.
+
+```bash
+cd apps/easypid
+npx --no-install eas-cli build --profile paradym-production --platform ios --non-interactive --no-wait
+```
+
+**The blocker chain, in order (each had to be fixed to reveal the next):**
+
+1. **iOS credentials are interactive the first time.** A non-interactive `eas build` fails with
+   "Distribution Certificate is not validated for non-interactive builds." Run `eas build` once
+   *without* `--non-interactive` (Apple login + 2FA) to create/store the Distribution Certificate &
+   provisioning profile; after that, non-interactive builds work.
+2. **ML Kit breaks `pod install` under dynamic frameworks.** `@react-native-ml-kit/text-recognition`
+   (the MRZ OCR) pulls the `GoogleMLKit / MLKit* / GoogleUtilities*` subtree in as **static** binaries,
+   which CocoaPods refuses to link into this project's dynamic `use_frameworks!`
+   ("transitive dependencies that include statically linked binaries"). Forcing them `static_framework`
+   makes it **worse** (the check then flags all ~17 pods). Fix = **exclude ML Kit from the iOS build**
+   in `apps/easypid/react-native.config.js` (`platforms: { ios: null }`). Costs nothing: ML Kit OCR is
+   already non-functional on the New Architecture; the passport flow degrades to manual MRZ entry.
+3. **`react-native.config.js` must be ESM.** `apps/easypid/package.json` has `"type": "module"`, so the
+   config is parsed as an ES module. `module.exports` throws "module is not defined in ES module scope"
+   during codegen ("Generate Specs"). Use `export default`. A `.cjs` rename does **not** work — the RN
+   config loader ignores `.cjs` and ML Kit reappears in autolinking.
+4. **Exposing NFCPassportReader to the app-local `PassportNfc` pod target** — see
+   `modules/passport-nfc/README.md` → "iOS dependency wiring". Short version: use
+   `s.pod_target_xcconfig` `FRAMEWORK_SEARCH_PATHS` in `PassportNfc.podspec`, **not**
+   `s.dependency 'NFCPassportReader'` — the latter re-serializes `Pods.xcodeproj` and corrupts the eudi
+   mdoc **SPM** refs ("The project 'Pods' is damaged" → `import Expo` no such module 'Expo').
+
+**Toolchain notes.** Keep the EAS image at **Xcode 26+** (`macos-sequoia-15.6-xcode-26.0` in
+`eas.json`) — Apple requires Xcode 26+ for App Store submission since 2026-04-28, and downgrading does
+**not** fix the "Pods project is damaged" error (that was the `s.dependency` regression above, not the
+Xcode version). Read the **actual EAS build duration** from the dashboard, not wall-clock around the
+build — a shorter build usually means it failed *earlier*, not that it got further via cache.
+
+**Submitting to TestFlight** (also interactive the first time):
+
+```bash
+cd apps/easypid
+npx eas-cli submit -p ios --profile paradym-production --id <build-id>   # no --non-interactive
+```
+
+The first submit prompts to set up an **App Store Connect API Key** (Apple login + 2FA); it stores the
+key so later submits can be non-interactive. `--non-interactive` fails with "App Store Connect API Keys
+cannot be set up in --non-interactive mode." After upload, Apple processes the build (~5–15 min) before
+it appears under TestFlight; a first build may also ask a one-time export-compliance question.
+
+**On-device NFC test:** passport chip reading needs a **physical iPhone (7+/iOS 15+)** — it does not
+work in the simulator.
