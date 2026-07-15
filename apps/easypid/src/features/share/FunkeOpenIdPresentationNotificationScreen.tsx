@@ -202,10 +202,21 @@ export function FunkeOpenIdPresentationNotificationScreen() {
           error,
         })
 
+        // "Presentation could not be shared" on its own carries no diagnostic signal — the same
+        // string covers a rejected response, a signing failure and a network error. The underlying
+        // error is the only thing that says WHY (for a non-2xx from the verifier's response_uri it
+        // carries that response body), so surface it instead of discarding it outside dev mode.
+        // Truncated to keep the slide readable; the full error is in the log above.
+        const errorDetail = error instanceof Error ? error.message.trim() : undefined
+        const truncatedDetail = errorDetail && errorDetail.length > 300 ? `${errorDetail.slice(0, 300)}…` : errorDetail
+
         return handleError({
           reason: t(commonMessages.presentationCouldNotBeShared),
-          description:
-            error instanceof Error && isDevelopmentModeEnabled ? `Development mode error: ${error.message}` : undefined,
+          description: truncatedDetail
+            ? isDevelopmentModeEnabled
+              ? `Development mode error: ${errorDetail}`
+              : truncatedDetail
+            : undefined,
         })
       }
     },
