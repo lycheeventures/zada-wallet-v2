@@ -402,19 +402,33 @@ export function getSdJwtTypeMetadataCredentialDisplay(
   return credentialDisplay
 }
 
+/**
+ * Hovi stamps every credential template it hosts with the SAME stock theme image unless the issuer
+ * uploads its own. It is not branding — it's an unset default — but it behaves like branding here:
+ * it overrides the card background, so every card from every issuer renders identically, and it
+ * defeats the per-credential colours we'd otherwise pick. Treat it as "no background image" so cards
+ * fall back to the ZADA palette and stay visually distinguishable.
+ */
+const stockIssuerBackgroundImages = ['/default-images/credentialTemplateTheme']
+
+const isStockIssuerBackgroundImage = (uri?: string) =>
+  uri !== undefined && stockIssuerBackgroundImages.some((stock) => uri.includes(stock))
+
 export function getOpenId4VcCredentialDisplay(openId4VcMetadata: OpenId4VcCredentialMetadata) {
   const openidCredentialDisplay = findDisplayByLocale(openId4VcMetadata.credential.display, i18n.locale)
+  const backgroundImageUri = openidCredentialDisplay?.background_image?.uri
 
   const credentialDisplay: Omit<CredentialDisplay, 'name'> & { name?: string } = {
     name: openidCredentialDisplay?.name,
     description: openidCredentialDisplay?.description,
     textColor: openidCredentialDisplay?.text_color,
     backgroundColor: openidCredentialDisplay?.background_color,
-    backgroundImage: openidCredentialDisplay?.background_image
-      ? {
-          url: openidCredentialDisplay.background_image.uri,
-        }
-      : undefined,
+    backgroundImage:
+      backgroundImageUri && !isStockIssuerBackgroundImage(backgroundImageUri)
+        ? {
+            url: backgroundImageUri,
+          }
+        : undefined,
     issuer: getOpenId4VcIssuerDisplay(openId4VcMetadata),
   }
 
