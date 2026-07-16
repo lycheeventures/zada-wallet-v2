@@ -8,7 +8,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        98
+        103
       ]
     ],
     "translation": "(Demo)"
@@ -31,6 +31,24 @@
     ],
     "translation": "{0} cards total"
   },
+  "trust.zadaVerified": {
+    "message": "{0} is in the ZADA Trust Registry, and its signing key was cryptographically verified against the certificate ZADA published for it.",
+    "placeholders": {
+      "0": [
+        "name ?? 'This organization'"
+      ]
+    },
+    "comments": [
+      "Shown when an organization signing key was cryptographically verified against its ZADA trust registry certificate"
+    ],
+    "origin": [
+      [
+        "src/features/wallet/FunkeTrustDetailScreen.tsx",
+        120
+      ]
+    ],
+    "translation": "{0} is in the ZADA Trust Registry, and its signing key was cryptographically verified against the certificate ZADA published for it."
+  },
   "trust.zadaRegistryListing": {
     "message": "{0} is listed in the ZADA Trust Registry. Its identity has not been cryptographically verified.",
     "placeholders": {
@@ -44,7 +62,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        115
+        127
       ]
     ],
     "translation": "{0} is listed in the ZADA Trust Registry. Its identity has not been cryptographically verified."
@@ -260,7 +278,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        123
+        135
       ]
     ],
     "translation": "A list of organizations that trust {name}."
@@ -274,7 +292,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        128
+        141
       ]
     ],
     "translation": "A list of organizations that trust this unknown organization."
@@ -352,7 +370,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        65
+        70
       ]
     ],
     "translation": "About this organization"
@@ -451,20 +469,6 @@
     ],
     "translation": "Activity will appear here once you share or receive credentials."
   },
-  "documentCatalog.title": {
-    "message": "Add a document",
-    "placeholders": {},
-    "comments": [
-      "Title of the official-document catalog screen"
-    ],
-    "origin": [
-      [
-        "src/features/documents/DocumentCatalogScreen.tsx",
-        76
-      ]
-    ],
-    "translation": "Add a document"
-  },
   "menu.item.addDocument": {
     "message": "Add a document",
     "placeholders": {},
@@ -479,6 +483,20 @@
     ],
     "translation": "Add a document"
   },
+  "documentCatalog.title": {
+    "message": "Add a document",
+    "placeholders": {},
+    "comments": [
+      "Title of the official-document catalog screen"
+    ],
+    "origin": [
+      [
+        "src/features/documents/DocumentCatalogScreen.tsx",
+        76
+      ]
+    ],
+    "translation": "Add a document"
+  },
   "home.addDocument": {
     "message": "Add an official document",
     "placeholders": {},
@@ -486,7 +504,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        193
+        190
       ]
     ],
     "translation": "Add an official document"
@@ -653,7 +671,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        77
+        82
       ]
     ],
     "translation": "Always consider whether sharing with an organization is wise."
@@ -825,10 +843,10 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        198
+        216
       ]
     ],
-    "translation": "{0} has been verified by ZADA Network and is part of the ZADA Trust Registry."
+    "translation": "Approved by {0} organizations"
   },
   "verifyPartySlide.approvedByOneOrganization": {
     "message": "Approved by one organization",
@@ -1066,7 +1084,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        173
+        172
       ]
     ],
     "translation": "Biometric authentication is disabled or not supported on this device."
@@ -1104,7 +1122,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        164
+        163
       ]
     ],
     "translation": "Biometric unlock"
@@ -1118,7 +1136,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        128
+        127
       ]
     ],
     "translation": "Biometrics disabled"
@@ -1132,7 +1150,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        96
+        95
       ]
     ],
     "translation": "Biometrics enabled"
@@ -1186,7 +1204,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        182
+        179
       ]
     ],
     "translation": "Bring over credentials from the old app"
@@ -1474,7 +1492,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        49
+        50
       ]
     ],
     "translation": "Cards"
@@ -1764,8 +1782,19 @@
     ],
     "translation": "Country"
   },
+  "home.createZadaId": {
+    "message": "Create ZADA ID",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        169
+      ]
+    ],
+    "translation": "Create ZADA ID"
+  },
   "menu.item.createZadaId": {
-    "translation": "Create ZADA ID",
     "message": "Create ZADA ID",
     "placeholders": {},
     "comments": [
@@ -1775,17 +1804,6 @@
       [
         "src/features/menu/FunkeMenuScreen.tsx",
         148
-      ]
-    ]
-  },
-  "home.createZadaId": {
-    "message": "Create ZADA ID",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/wallet/FunkeWalletScreen.tsx",
-        172
       ]
     ],
     "translation": "Create ZADA ID"
@@ -1978,7 +1996,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        72
+        73
       ]
     ],
     "translation": "Credentials will appear here once you receive them."
@@ -2098,7 +2116,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        164
+        177
       ]
     ],
     "translation": "Demo organization"
@@ -2110,7 +2128,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        218
+        236
       ]
     ],
     "translation": "Demo organization"
@@ -2151,7 +2169,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        222
+        240
       ]
     ],
     "translation": "Do not share real data"
@@ -2671,7 +2689,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        236
+        254
       ]
     ],
     "translation": "First time interaction"
@@ -2995,6 +3013,18 @@
     ],
     "translation": "How does it work?"
   },
+  "verifyPartySlide.zadaVerifiedDescription": {
+    "message": "Identity cryptographically verified against the ZADA Trust Registry",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/VerifyPartySlide.tsx",
+        185
+      ]
+    ],
+    "translation": "Identity cryptographically verified against the ZADA Trust Registry"
+  },
   "didcommCancelFlow.issuance.description": {
     "message": "If you decline, you will not receive the card.",
     "placeholders": {},
@@ -3070,7 +3100,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        181
+        199
       ]
     ],
     "translation": "In ZADA Trust Registry"
@@ -3322,7 +3352,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        199
+        206
       ]
     ],
     "translation": "Issued on {0}"
@@ -3390,7 +3420,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        61
+        60
       ]
     ],
     "translation": "Language"
@@ -3406,7 +3436,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        243
+        261
       ]
     ],
     "translation": "Last interaction: {0}"
@@ -3458,7 +3488,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        185
+        203
       ]
     ],
     "translation": "Listed in the registry, identity not cryptographically verified"
@@ -3548,8 +3578,19 @@
     "translation": "Metadata",
     "obsolete": true
   },
+  "home.migrate": {
+    "message": "Migrate credentials",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/wallet/FunkeWalletScreen.tsx",
+        178
+      ]
+    ],
+    "translation": "Migrate credentials"
+  },
   "menu.item.migrateCredentials": {
-    "translation": "Migrate credentials",
     "message": "Migrate credentials",
     "placeholders": {},
     "comments": [
@@ -3559,17 +3600,6 @@
       [
         "src/features/menu/FunkeMenuScreen.tsx",
         158
-      ]
-    ]
-  },
-  "home.migrate": {
-    "message": "Migrate credentials",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/wallet/FunkeWalletScreen.tsx",
-        181
       ]
     ],
     "translation": "Migrate credentials"
@@ -3686,7 +3716,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        173
+        170
       ]
     ],
     "translation": "New to ZADA? Set up your ZADA ID"
@@ -3768,7 +3798,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        127
+        134
       ]
     ],
     "translation": "No cards found for \"{searchQuery}\""
@@ -3905,7 +3935,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        247
+        265
       ]
     ],
     "translation": "No previous interactions found"
@@ -4027,7 +4057,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        208
+        226
       ]
     ],
     "translation": "Organization is not verified"
@@ -4089,7 +4119,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        194
+        191
       ]
     ],
     "translation": "Passport, driver license and more"
@@ -4432,7 +4462,7 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        232
+        250
       ]
     ],
     "translation": "Previous interactions"
@@ -4657,10 +4687,10 @@
     "origin": [
       [
         "src/features/receive/slides/VerifyPartySlide.tsx",
-        194
+        212
       ]
     ],
-    "translation": "Verified Organisation"
+    "translation": "Recognized organization"
   },
   "cardLifecycle.refreshCardButton": {
     "message": "Refresh card",
@@ -4941,7 +4971,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        219
+        216
       ]
     ],
     "translation": "Scan QR-code"
@@ -5066,7 +5096,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        93
+        94
       ]
     ],
     "translation": "Search cards"
@@ -5146,7 +5176,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeWalletScreen.tsx",
-        165
+        162
       ]
     ],
     "translation": "Set up your wallet"
@@ -5174,7 +5204,7 @@
     "origin": [
       [
         "src/features/menu/FunkeSettingsScreen.tsx",
-        148
+        147
       ]
     ],
     "translation": "Settings"
@@ -6122,7 +6152,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        135
+        148
       ]
     ],
     "translation": "The organisation has not been verified and is NOT part of the ZADA Trust Registry."
@@ -6169,7 +6199,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        140
+        153
       ]
     ],
     "translation": "There are no organizations that trust this unknown organization."
@@ -6648,18 +6678,6 @@
     ],
     "translation": "Try again"
   },
-  "passportNfc.retry": {
-    "message": "Try again",
-    "placeholders": {},
-    "comments": [],
-    "origin": [
-      [
-        "src/features/passport/PassportNfcReadScreen.tsx",
-        99
-      ]
-    ],
-    "translation": "Try again"
-  },
   "passportIssue.retry": {
     "message": "Try again",
     "placeholders": {},
@@ -6668,6 +6686,18 @@
       [
         "src/features/passport/PassportFlow.tsx",
         80
+      ]
+    ],
+    "translation": "Try again"
+  },
+  "passportNfc.retry": {
+    "message": "Try again",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/passport/PassportNfcReadScreen.tsx",
+        99
       ]
     ],
     "translation": "Try again"
@@ -6930,6 +6960,18 @@
     ],
     "translation": "Verified by ZADA Network"
   },
+  "verifyPartySlide.zadaVerifiedTitle": {
+    "message": "Verified by ZADA Network",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/features/receive/slides/VerifyPartySlide.tsx",
+        181
+      ]
+    ],
+    "translation": "Verified by ZADA Network"
+  },
   "trust.trustedBy": {
     "message": "Verified By:",
     "placeholders": {},
@@ -6939,7 +6981,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeTrustDetailScreen.tsx",
-        108
+        113
       ]
     ],
     "translation": "Verified By:"
@@ -7333,7 +7375,7 @@
     "origin": [
       [
         "src/features/wallet/FunkeCredentialsScreen.tsx",
-        67
+        68
       ]
     ],
     "translation": "You don’t have any credentials yet"

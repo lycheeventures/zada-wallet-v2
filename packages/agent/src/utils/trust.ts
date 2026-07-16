@@ -16,6 +16,12 @@ export type TrustMechanism =
   | 'openid_federation'
   | 'x509'
   | 'did'
+  // ZADA: the party's x5c chain was cryptographically validated against the certificate ZADA
+  // published for it in the trust registry. This is the STRONG signal — the signing key is bound to
+  // the registry entry, so the party provably is who the registry says it is. Distinct from the
+  // generic 'x509' (which only means "chained to some trusted cert", e.g. an EU/hardcoded anchor)
+  // so the UI can claim ZADA verification only when ZADA actually verified it.
+  | 'zada_x509'
   // ZADA: issuer is listed in the ZADA trust registry by its issuer URL, but the credential-issuer
   // metadata was NOT cryptographically signed (no x5c to chain to a registered certificate). This is
   // a weaker, registry-listing-only trust signal and MUST be surfaced distinctly from 'x509'/'did'.
@@ -495,6 +501,32 @@ const getTrustedEntitiesForX509Certificate = async ({
  * display data. Shared by the offer-time path (x5c from signed issuer metadata) and the
  * credential-time path (x5c from the issued credential's header — see ADR-0002 / Path B).
  */
+/**
+ * Fetch the certificate(s) ZADA published for `issuer` in the trust registry, to be used as trust
+ * anchors when validating that issuer's x5c chain.
+ *
+ * This is the anchor lookup on its own, without the display data — needed by the agent's x509
+ * `getTrustedCertificatesForVerification` hook, which credo calls while verifying signed
+ * credential-issuer metadata (before any of our own trust code runs). Returns [] on any miss or
+ * error so callers fail closed.
+ */
+export const getZadaRegistryAnchorsForIssuer = async (issuer?: string): Promise<string[]> => {
+  if (!issuer) return []
+
+  let result: Awaited<ReturnType<typeof getTrustRegistryEntriesByIssuer>>
+  try {
+    result = await getTrustRegistryEntriesByIssuer(issuer)
+  } catch (error) {
+    console.error('ZADA trust registry lookup failed:', error)
+    return []
+  }
+
+  const org = result?.trusted ? result.org : null
+  if (!org) return []
+
+  return (org.certificates ?? (org.certificate ? [org.certificate] : [])).filter(Boolean) as string[]
+}
+
 export const resolveZadaTrustFromX5c = async ({
   agent,
   issuer,
@@ -554,7 +586,7 @@ export const resolveZadaTrustFromX5c = async ({
     trustedEntities.push(walletTrustedEntity)
   }
 
-  return { trustedEntities, trustMechanism: 'x509' }
+  return { trustedEntities, trustMechanism: 'zada_x509' }
 }
 
 /**
@@ -660,7 +692,7 @@ export const resolveZadaVerifierTrustFromX5c = async ({
     ]
     if (walletTrustedEntity) trustedEntities.push(walletTrustedEntity)
 
-    return { trustedEntities, trustMechanism: 'x509' }
+    return { trustedEntities, trustMechanism: 'zada_x509' }
   }
 
   return null // no published certificate matched → not a recognised ZADA verifier
@@ -681,9 +713,13 @@ export const getTrustedEntitiesForZADA = async ({
   trustMechanism: TrustMechanism
 }> => {
   // Strong path: the issuer signed its metadata with an x5c chain. If it chains to a registered
-  // ZADA certificate we return cryptographic ('x509'/'did') trust; if a signature is present but
+  // ZADA certificate we return cryptographic ('zada_x509') trust; if a signature is present but
   // does NOT chain we return untrusted — a *failed* signature must never be silently downgraded to
   // the weaker registry-listing state.
+  //
+  // NB: for this to ever fire, the metadata must actually be fetched as a signed JWT. Hovi only
+  // serves the signed form under `Accept: application/jwt` (a plain GET returns unsigned JSON), and
+  // credo sends no Accept header of its own — see `withSignedIssuerMetadataAccept` in agent.ts.
   if (signedCredentialIssuer?.signer.method === 'x5c' && signedCredentialIssuer.signer.x5c?.length) {
     return resolveZadaTrustFromX5c({ agent, issuer, x5c: signedCredentialIssuer.signer.x5c, walletTrustedEntity })
   }
