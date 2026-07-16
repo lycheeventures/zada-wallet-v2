@@ -88,8 +88,21 @@ public class PassportNfcModule: Module {
   private func map(_ p: NFCPassportModel) -> [String: Any?] {
     // iOS bonus: UIImage decodes JPEG2000 natively, so we always hand JS a renderable JPEG data URI —
     // sidestepping the Android JP2 problem. (passportImage is already decoded by the library.)
+    //
+    // The portrait MUST be downscaled first. Re-encoding the chip's JPEG2000 as a full-resolution JPEG
+    // inflates a ~15-20 KB DG2 image to ~60-150 KB, and base64 adds a further third on top. Android
+    // passes the raw JP2 through untouched and stays small, so this bloat is iOS-only — which is why
+    // passport verification 500'd on iOS while succeeding on Android: the portrait is a required claim
+    // for face matching, so it rides along in every presentation, and the oversized one exceeds what
+    // Hovi accepts on the verification endpoint (it 500s rather than reporting a size error). The
+    // driver-license issuer hit the same Hovi limit and fixed it the same way — see
+    // verifiable-link-issuer's image.server.ts, whose 60 KB threshold is the best evidence we have of
+    // where that limit sits. Bound the longest side and drop the quality: enough detail to face-match
+    // (Android matches on ~240x320-480x640 DG2 images), comfortably under the limit.
     var faceBase64: String? = nil
-    if let image = p.passportImage, let jpeg = image.jpegData(compressionQuality: 0.9) {
+    if let image = p.passportImage,
+      let jpeg = downscaledJpeg(image, maxDimension: 480, quality: 0.7)
+    {
       faceBase64 = jpeg.base64EncodedString()
     }
 
@@ -125,6 +138,29 @@ public class PassportNfcModule: Module {
     case "F", "FEMALE": return "FEMALE"
     default: return "UNSPECIFIED"
     }
+  }
+
+  /// JPEG-encode `image`, first scaling it down so its longest side is at most `maxDimension`.
+  /// Images already within the bound are encoded at their own size — never upscaled, since that would
+  /// add bytes without adding detail. Returns nil only if encoding fails, matching the previous
+  /// `jpegData` behaviour (the caller then reports no portrait rather than a broken one).
+  private func downscaledJpeg(_ image: UIImage, maxDimension: CGFloat, quality: CGFloat) -> Data? {
+    let longest = max(image.size.width, image.size.height)
+    guard longest > maxDimension, longest > 0 else {
+      return image.jpegData(compressionQuality: quality)
+    }
+
+    let scale = maxDimension / longest
+    let target = CGSize(width: image.size.width * scale, height: image.size.height * scale)
+
+    // Draw at scale 1 so `target` is in pixels, not points — otherwise the output is silently
+    // multiplied by the device's screen scale (2x/3x) and we ship the bloat we are trying to avoid.
+    let format = UIGraphicsImageRendererFormat.default()
+    format.scale = 1
+    let resized = UIGraphicsImageRenderer(size: target, format: format).image { _ in
+      image.draw(in: CGRect(origin: .zero, size: target))
+    }
+    return resized.jpegData(compressionQuality: quality)
   }
 }
 
