@@ -14,6 +14,7 @@ import {
 import { usePushToWallet } from '@package/app'
 import { Button, FlexPage, Heading, HeroIcons, Paragraph, ProgressBar, Spinner, YStack } from '@package/ui'
 import { useLocalSearchParams } from 'expo-router'
+import * as WebBrowser from 'expo-web-browser'
 import { useEffect, useRef, useState } from 'react'
 
 type Query = { offers?: string; batch?: string }
@@ -89,6 +90,14 @@ export function MigrateBatchScreen() {
   useEffect(() => {
     if (started.current) return
     started.current = true
+
+    // The migration web flow runs in an in-app browser (`useCredentialMigration` →
+    // WebBrowser.openBrowserAsync). On iOS that's an SFSafariViewController which stays
+    // presented when the deep link brings us here, so the user would watch a blank overlay
+    // while the import ran behind it and have to close it by hand. Dismiss it ourselves.
+    // iOS-only API — it throws on Android (where the Custom Tab is already backgrounded),
+    // hence the catch.
+    WebBrowser.dismissBrowser().catch(() => {})
 
     const acceptOne = async (uri: string) => {
       const { resolvedCredentialOffer } = await resolveOpenId4VciOffer({
