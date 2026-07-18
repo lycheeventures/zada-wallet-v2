@@ -96,6 +96,10 @@
 				"EXPO_PUBLIC_DOCUMENT_ISSUER_API_KEY": "vci_2BuxvKkhzsOn7cIB7Hpg5-hH8ke9sFYIPVAqpIdUkwA"
 			}
 		},
+		"paradym-production-android": {
+			"extends": "paradym-production",
+			"credentialsSource": "local"
+		},
 		"e2e-test": {
 			"extends": "paradym-preview",
 			"withoutCredentials": true,
@@ -126,7 +130,8 @@
 				"ascAppId": "1578666669"
 			},
 			"android": {
-				"track": "alpha"
+				"track": "production",
+				"releaseStatus": "draft"
 			}
 		}
 	}
