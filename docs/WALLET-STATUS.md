@@ -1,10 +1,45 @@
 # ZADA Edge Wallet — status
 
-**As of:** 2026-07-04 · **App:** ZADA (`com.zadanetwork.wallet`), easypid `v1.20.1` ·
-**Single branch:** `main` (GitHub `origin` and local are in sync)
+**As of:** 2026-07-18 · **App:** ZADA (`com.zadanetwork.wallet`), easypid `v1.20.1` (versionCode 210)
 
 This is the current, verified state of `zada-wallet-v2` (the `apps/easypid` Expo/Credo app).
 It is a fork of Animo's paradym-wallet with ZADA wiring on top.
+
+---
+
+## 0. Production release status (2026-07-18)
+
+> **The v2 wallet is now migrating from internal testing to the public stores. This section is the
+> single source of truth for release state; the older §6 below is background.**
+
+**⚠️ v2 replaces the live legacy wallet IN PLACE.** `com.zadanetwork.wallet` is an existing,
+published app on *both* stores, not a new listing:
+- **Google Play:** "ZADA Digital Identity Wallet", seller ZADA Solutions, **live release
+  209 (1.6.9)**, ~5,245 active installs (mostly Myanmar). Publishing v2 auto-updates these users.
+- **Apple App Store:** "ZADA Wallet" **v1.6.8**, ASC id **1578666669**, seller Lychee Ventures Ltd.
+
+Because the package/bundle id is identical, a store release is an **update** to the legacy app, not
+a fresh install. Existing users land in a fresh v2 wallet; **credential migration is user-initiated
+and not yet auto-prompted** (follow-up tracked — see §8). This was an explicit product decision
+(replace in place, full rollout), taken 2026-07-18.
+
+### Android — ✅ submitted as DRAFT, awaiting manual publish
+
+- **AAB build `91e343b7`** (EAS, profile `paradym-production-android`), easypid **1.20.1 /
+  versionCode 210**, ABIs **arm64-v8a + armeabi-v7a**, signed with the **real Play upload key**
+  (`CN=Zada`, alias `key0`; cert SHA-256 `F7:EA:0E:7B…`, verified against Play's registered upload
+  key — byte-identical).
+- **Submitted** to the Play **production track** as a **DRAFT** release (submission `0a4da10b`).
+  Confirmed via Play API: draft `1.20.1 / 210` sits beside the live `209 (1.6.9)`; nothing has
+  reached users.
+- **Your remaining step:** Play Console → *Test and release → Production* → review the draft, add
+  release notes, and **Start rollout** (that click = full rollout to all users). Consider a staged %
+  in the Console UI for a first EAS release.
+
+### iOS — deferred to a separate session (playbook in §6b)
+
+No new build required and **no certificate to recover** — a finished App Store (`store`) build of
+current `main` already exists: **build `17c28255`**, commit `395d0d4`, buildNumber 12.
 
 ---
 
@@ -146,22 +181,75 @@ obsolete-only.
 
 ## 6. Build & release (EAS)
 
-Build the ZADA test APK from `apps/easypid` (Node ≥22, `corepack pnpm`):
+**EAS project:** `@zada-solutions/zada-edge-wallet` (`898f5f59-f246-4fa4-b73d-0140443f967b`).
+Account is on a paid plan but currently running **pay-as-you-go overages** — each build costs.
+**EAS builds from committed, git-tracked files** — commit first; `git ls-files <path>` shows exactly
+what reaches the builder. Verify native code actually shipped (`docs/eas-build-notes.md`): "build
+success" ≠ "your code is in the binary".
 
-```
+### Build profiles (`apps/easypid/eas.json`)
+- `paradym-preview` — internal **APK** (arm64 only historically).
+- `paradym-production` — **store AAB/IPA**, `autoIncrement`, `resourceClass: large`. Shared by
+  **iOS** (TestFlight/App Store) and, for **submit**, Android. `appVersionSource: remote` (EAS holds
+  the version counters; Android versionCode is at **209** → next build 210; iOS buildNumber at 12).
+- **`paradym-production-android`** — `extends paradym-production` + `credentialsSource: local`. Use
+  this to build the **Android store AAB** so it signs with the **local upload keystore** without
+  forcing the shared iOS profile to resolve local iOS credentials it doesn't have.
+- `base.app.config.js` now builds **`['arm64-v8a', 'armeabi-v7a']`** for the store (32-bit devices
+  are common in the user base; free in an AAB — Play splits per device).
+
+### Android store release (reproduce the 2026-07-18 release)
+
+Signing/publishing secrets are **not in the repo** — they live in
+`~/Documents/claudecode/wallet keys/` (`zada.keystore`, `keystore.txt`, the Play service-account
+JSON). The keystore is the original **upload key** recovered from the previous developer's setup
+(all passwords `Zada_12`, alias `key0`). See `credentials.json` note below.
+
+```bash
+cd apps/easypid
+# 1. Build the store AAB (signs with the local upload keystore via credentials.json)
 EXPO_PUBLIC_APP_TYPE=PARADYM_WALLET npx eas-cli build \
-  --profile paradym-preview --platform android --non-interactive
+  -p android -e paradym-production-android --non-interactive
+# 2. Submit the build to Play as a DRAFT on the production track
+EXPO_PUBLIC_APP_TYPE=PARADYM_WALLET npx eas-cli submit \
+  -p android -e paradym-production --id <BUILD_ID> --non-interactive
 ```
 
-- `paradym-preview` = ZADA-branded internal **APK**, `resourceClass: large` (paid plan),
-  `android.buildArchs: ['arm64-v8a']` (avoids free-tier Gradle OOM; add ABIs back for store builds).
-- Keystore is server-managed. **EAS builds from committed, git-tracked files** — commit first;
-  verify inclusion with `git ls-files <path>`.
-- **Verify native code actually shipped:** `unzip -p app.apk 'classes*.dex' | strings | grep -c
-  "<package/path>"` (compare against a known-present control). "Build success" ≠ "your code is in
-  the binary". Full detail in `docs/eas-build-notes.md`.
-- **Latest build:** kicked off from `6f10c09` (onboarding + i18n). Rebuild from `a73a7b5` to include
-  the cold-credential feature.
+- **`apps/easypid/credentials.json` is git-ignored and machine-local** — it points EAS at the
+  keystore + passwords. Recreate it if missing:
+  ```json
+  { "android": { "keystore": {
+      "keystorePath": "/Users/andsig/Documents/claudecode/wallet keys/zada.keystore",
+      "keystorePassword": "Zada_12", "keyAlias": "key0", "keyPassword": "Zada_12" } } }
+  ```
+- **Service account:** `eas submit` has no `--key` flag; add `serviceAccountKeyPath` under
+  `submit.paradym-production.android` in `eas.json` **locally only** (don't commit the machine path),
+  pointing at `…/wallet keys/zada-wallet-0682e1084dbf.json`
+  (`zada-wallet@zada-wallet.iam.gserviceaccount.com`, has Release-manager access — verified).
+- `submit.paradym-production.android` is set to `track: production`, `releaseStatus: draft` — the
+  upload lands as a reviewable draft; **no rollout happens until you publish in the Console.**
+- **Verify a built AAB before submitting:** unzip it, check `base/lib/` for both ABIs, and extract
+  `META-INF/KEY0.RSA` → the signer cert SHA-256 must equal the Play upload key `F7:EA:0E:7B…`
+  (no Java on this Mac; use `openssl pkcs7 -inform DER -print_certs`).
+
+### 6b. iOS store release — next-session playbook
+
+**No certificate to recover** (unlike Android): Apple manages App Store signing; the distribution
+cert + provisioning profile are already stored in EAS (proven by existing `store`-distribution iOS
+builds). The same cert that built TestFlight builds signs the App Store release; TestFlight and App
+Store share one binary.
+
+1. **Build** — optional. A finished `store` build of current `main` already exists:
+   **`17c28255`** (commit `395d0d4`, buildNumber 12). Only build fresh if `main` has moved:
+   `EXPO_PUBLIC_APP_TYPE=PARADYM_WALLET npx eas-cli build -p ios -e paradym-production --non-interactive`.
+2. **Deliver to App Store Connect** — `eas submit -p ios -e paradym-production --id 17c28255`
+   (`submit.paradym-production.ios.ascAppId = 1578666669`). This lands in ASC/TestFlight, **not** the
+   public store.
+3. **Release** — this part is **manual in App Store Connect** (`eas submit` can't do it): create a
+   new App Store version `1.20.1` (valid: 1.20.1 > live 1.6.8), attach the build, complete metadata
+   (what's-new, screenshots, **App Privacy** answers, export compliance, age rating), **Submit for
+   Review**. Apple review ~1–3 days (identity/wallet apps can draw extra scrutiny), then release.
+4. Same in-place-replacement + un-prompted-migration caveat as Android (§0, §8).
 
 ---
 
@@ -178,6 +266,19 @@ EXPO_PUBLIC_APP_TYPE=PARADYM_WALLET npx eas-cli build \
 ---
 
 ## 8. Known issues & follow-ups
+
+- **⚠️ RELEASE-CRITICAL: no first-run migration prompt.** When ~5,245 legacy Play users (and the
+  iOS users) auto-update to v2, they land in an empty wallet with **no prompt** to migrate — they
+  must find "Migrate credentials" / "Create ZADA ID" themselves
+  (`features/migration/useCredentialMigration.tsx`, mmkv `hasZadaIdOnboarded`). Accepted for the
+  first release; add a one-time detect-fresh-install → steer-to-migration sheet next (a
+  `MigrationWelcomeSheet` existed on the old `zada/credential-migration` branch — reusable).
+- **Secrets hygiene:** the legacy repo `lycheeventures/zada-wallet` has `private_key.pepk` committed
+  (harmless — encrypted to Google — but should be cleaned). `EXPO_PUBLIC_DOCUMENT_ISSUER_API_KEY`
+  (`vci_…`) + `EXPO_PUBLIC_SUPPORT_APP_KEY` are baked into the public bundle via `eas.json`; a public
+  store release widens their exposure — plan a rotation.
+- **Animo leftovers not blockers but debt:** `associatedDomains`/scheme are still Animo's
+  (`paradym.id`, `paradymwallet.app`, `id.animo.paradym://`, mediator `did:web:mediator.paradym.id`).
 
 - **`sw/AI_INSTRUCTIONS.MD` contains Swedish rules, not Swahili.** Translations were produced by
   applying the principles to Swahili, but this file should be rewritten for proper future passes.
