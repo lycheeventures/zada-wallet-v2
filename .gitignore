@@ -75,6 +75,12 @@ buck-out/
 \.buckd/
 *.keystore
 
+# EAS local credentials — keystore passwords + Play service-account keys. Never commit.
+credentials.json
+*.jks
+*-service-account*.json
+zada-wallet-*.json
+
 # fastlane
 #
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
