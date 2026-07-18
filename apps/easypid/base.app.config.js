@@ -149,10 +149,11 @@ const createBaseConfig = (appSpecific) => {
             compileSdkVersion: 36,
             useLegacyPackaging: true,
             extraMavenRepos: ['https://s01.oss.sonatype.org/content/repositories/snapshots/'],
-            // Build only arm64-v8a for free-tier EAS test builds: compiling all four ABIs
-            // OOM-kills the Gradle daemon on the medium resource class. Every modern Android
-            // phone is arm64-v8a. Add 'armeabi-v7a' (32-bit) / x86 ABIs back for store builds.
-            buildArchs: ['arm64-v8a'],
+            // arm64-v8a covers every modern phone; armeabi-v7a keeps 32-bit devices — still common
+            // in the Myanmar/Thailand user base — able to install. Play splits the AAB per device,
+            // so the second ABI costs build time, not download size. x86/x86_64 are omitted
+            // (emulators only); all four OOM-kill the Gradle daemon below the `large` resource class.
+            buildArchs: ['arm64-v8a', 'armeabi-v7a'],
           },
           ios: {
             deploymentTarget: '16.0',
