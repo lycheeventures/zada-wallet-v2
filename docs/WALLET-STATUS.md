@@ -203,7 +203,8 @@ success" ≠ "your code is in the binary".
 Signing/publishing secrets are **not in the repo** — they live in
 `~/Documents/claudecode/wallet keys/` (`zada.keystore`, `keystore.txt`, the Play service-account
 JSON). The keystore is the original **upload key** recovered from the previous developer's setup
-(all passwords `Zada_12`, alias `key0`). See `credentials.json` note below.
+its alias and passwords are recorded in `keystore.txt` beside it (do **not** copy secrets into this
+repo). See `credentials.json` note below.
 
 ```bash
 cd apps/easypid
@@ -220,7 +221,8 @@ EXPO_PUBLIC_APP_TYPE=PARADYM_WALLET npx eas-cli submit \
   ```json
   { "android": { "keystore": {
       "keystorePath": "/Users/andsig/Documents/claudecode/wallet keys/zada.keystore",
-      "keystorePassword": "Zada_12", "keyAlias": "key0", "keyPassword": "Zada_12" } } }
+      "keystorePassword": "<see keystore.txt>", "keyAlias": "<see keystore.txt>",
+      "keyPassword": "<see keystore.txt>" } } }
   ```
 - **Service account:** `eas submit` has no `--key` flag; add `serviceAccountKeyPath` under
   `submit.paradym-production.android` in `eas.json` **locally only** (don't commit the machine path),
