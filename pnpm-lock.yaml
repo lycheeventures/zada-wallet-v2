@@ -21,34 +21,10 @@ catalogs:
     '@animo-id/mdoc':
       specifier: 0.5.2
       version: 0.5.2
-    '@astronautlabs/jsonpath':
-      specifier: ^1.1.2
-      version: 1.1.2
     '@babel/core':
       specifier: ^7.28.5
       version: 7.28.5
-    '@credo-ts/anoncreds':
-      specifier: 0.6.2
-      version: 0.6.2
-    '@credo-ts/askar':
-      specifier: 0.6.2
-      version: 0.6.2
-    '@credo-ts/cheqd':
-      specifier: 0.6.2
-      version: 0.6.2
     '@credo-ts/core':
-      specifier: 0.6.2
-      version: 0.6.2
-    '@credo-ts/didcomm':
-      specifier: 0.6.2
-      version: 0.6.2
-    '@credo-ts/openid4vc':
-      specifier: 0.6.2
-      version: 0.6.2
-    '@credo-ts/question-answer':
-      specifier: 0.6.2
-      version: 0.6.2
-    '@credo-ts/react-native':
       specifier: 0.6.2
       version: 0.6.2
     '@expo-google-fonts/open-sans':
@@ -63,9 +39,6 @@ catalogs:
     '@hyperledger/anoncreds-react-native':
       specifier: 0.3.4
       version: 0.3.4
-    '@openid4vc/oauth2':
-      specifier: ^0.4.0
-      version: 0.4.3
     '@openwallet-foundation/askar-react-native':
       specifier: 0.6.0
       version: 0.6.0
@@ -81,42 +54,9 @@ catalogs:
     '@shopify/react-native-skia':
       specifier: ^2.4.14
       version: 2.4.14
-    '@tamagui/animations-react-native':
-      specifier: 1.142.0
-      version: 1.142.0
     '@tamagui/babel-plugin':
       specifier: 1.142.0
       version: 1.142.0
-    '@tamagui/colors':
-      specifier: 1.142.0
-      version: 1.142.0
-    '@tamagui/font-inter':
-      specifier: 1.142.0
-      version: 1.142.0
-    '@tamagui/lucide-icons':
-      specifier: 1.142.0
-      version: 1.142.0
-    '@tamagui/react-native-media-driver':
-      specifier: 1.142.0
-      version: 1.142.0
-    '@tamagui/shorthands':
-      specifier: 1.142.0
-      version: 1.142.0
-    '@tamagui/themes':
-      specifier: 1.142.0
-      version: 1.142.0
-    '@tamagui/toast':
-      specifier: 1.142.0
-      version: 1.142.0
-    '@tanstack/react-query':
-      specifier: ^5.90.14
-      version: 5.90.14
-    '@types/fast-text-encoding':
-      specifier: ^1.0.3
-      version: 1.0.3
-    '@types/react':
-      specifier: ~19.1.0
-      version: 19.1.17
     babel-plugin-module-resolver:
       specifier: ^5.0.2
       version: 5.0.2
@@ -129,9 +69,6 @@ catalogs:
     burnt:
       specifier: ^0.13.0
       version: 0.13.0
-    credo-ts-didweb-anoncreds:
-      specifier: 0.0.2-alpha.2
-      version: 0.0.2-alpha.2
     expo:
       specifier: ^54.0.27
       version: 54.0.27
@@ -207,9 +144,6 @@ catalogs:
     fast-text-encoding:
       specifier: ^1.0.6
       version: 1.0.6
-    query-string:
-      specifier: ^9.3.1
-      version: 9.3.1
     react:
       specifier: 19.1.0
       version: 19.1.0
@@ -225,9 +159,6 @@ catalogs:
     react-native-get-random-values:
       specifier: ^2.0.0
       version: 2.0.0
-    react-native-heroicons:
-      specifier: ^4.0.0
-      version: 4.0.0
     react-native-keychain:
       specifier: ^10.0.0
       version: 10.0.0
@@ -252,12 +183,6 @@ catalogs:
     react-native-svg:
       specifier: ^15.15.1
       version: 15.15.1
-    rxjs:
-      specifier: ^7.8.1
-      version: 7.8.2
-    tamagui:
-      specifier: 1.142.0
-      version: 1.142.0
     typescript:
       specifier: ~5.9.3
       version: 5.9.3
@@ -352,9 +277,6 @@ importers:
       '@react-native-masked-view/masked-view':
         specifier: 'catalog:'
         version: 0.3.2(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)
-      '@react-native-ml-kit/text-recognition':
-        specifier: ^1.5.2
-        version: 1.5.2(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)
       '@react-native-picker/picker':
         specifier: ^2.11.4
         version: 2.11.4(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)
@@ -454,9 +376,6 @@ importers:
       fast-text-encoding:
         specifier: 'catalog:'
         version: 1.0.6
-      mrz:
-        specifier: ^3.1.0
-        version: 3.5.0
       react:
         specifier: 'catalog:'
         version: 19.1.0
@@ -2374,12 +2293,6 @@ packages:
     peerDependencies:
       react: '>=16'
       react-native: '>=0.57'
-
-  '@react-native-ml-kit/text-recognition@1.5.2':
-    resolution: {integrity: sha512-zPnJrD19u4FhT0ntvtnZVEhvPym9KyZ0R+UXBYJbCT0ePL9DpMnSewBFnHy44YnXKGgbokRQXUQMMM+GOsQs7w==}
-    peerDependencies:
-      react: '>=16.8.1'
-      react-native: '>=0.60.0-rc.0 <1.0.x'
 
   '@react-native-picker/picker@2.11.4':
     resolution: {integrity: sha512-Kf8h1AMnBo54b1fdiVylP2P/iFcZqzpMYcglC28EEFB1DEnOjsNr6Ucqc+3R9e91vHxEDnhZFbYDmAe79P2gjA==}
@@ -5263,9 +5176,6 @@ packages:
 
   moo@0.5.2:
     resolution: {integrity: sha512-iSAJLHYKnX41mKcJKjqvnAN9sf0LMDTXDEvFv+ffuRR9a1MIuXLjMNL6EsnDHSkKLTWNqQQ5uo61P4EbU4NU+Q==}
-
-  mrz@3.5.0:
-    resolution: {integrity: sha512-O+EQUXnMPqCHr00SkFKsek8vhGm4ofr/bKF8H4YbKNCpU/Son1KMZo5cGrZAA1OzwGX0VoovLT/ZEuPl3zZTpw==}
 
   ms@2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
@@ -8802,11 +8712,6 @@ snapshots:
       react-native: 0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0)
 
   '@react-native-masked-view/masked-view@0.3.2(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      react: 19.1.0
-      react-native: 0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0)
-
-  '@react-native-ml-kit/text-recognition@1.5.2(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)':
     dependencies:
       react: 19.1.0
       react-native: 0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0)
@@ -12788,8 +12693,6 @@ snapshots:
   mkdirp@1.0.4: {}
 
   moo@0.5.2: {}
-
-  mrz@3.5.0: {}
 
   ms@2.0.0: {}
 

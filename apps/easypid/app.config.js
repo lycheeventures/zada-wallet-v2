@@ -62,9 +62,7 @@ APP_CONFIGS.FUNKE_WALLET.android.config = {
 APP_CONFIGS.PARADYM_WALLET.ios.entitlements = {
   'com.apple.developer.nfc.readersession.formats': ['TAG'],
 }
-// Pull NFCPassportReader into the iOS build (it's git/SPM-only, so it can't be a podspec dep). The
-// ML Kit / Google static-binary linkage conflict is handled by excluding that native module from the
-// iOS build in react-native.config.js (not by a Podfile hook).
+// Pull NFCPassportReader into the iOS build (it's git/SPM-only, so it can't be a podspec dep).
 APP_CONFIGS.PARADYM_WALLET.plugins = [...APP_CONFIGS.PARADYM_WALLET.plugins, withNfcPassportReader]
 
 export default () => {
