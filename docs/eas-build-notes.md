@@ -95,18 +95,16 @@ npx --no-install eas-cli build --profile paradym-production --platform ios --non
    "Distribution Certificate is not validated for non-interactive builds." Run `eas build` once
    *without* `--non-interactive` (Apple login + 2FA) to create/store the Distribution Certificate &
    provisioning profile; after that, non-interactive builds work.
-2. **ML Kit breaks `pod install` under dynamic frameworks.** `@react-native-ml-kit/text-recognition`
-   (the MRZ OCR) pulls the `GoogleMLKit / MLKit* / GoogleUtilities*` subtree in as **static** binaries,
-   which CocoaPods refuses to link into this project's dynamic `use_frameworks!`
-   ("transitive dependencies that include statically linked binaries"). Forcing them `static_framework`
-   makes it **worse** (the check then flags all ~17 pods). Fix = **exclude ML Kit from the iOS build**
-   in `apps/easypid/react-native.config.js` (`platforms: { ios: null }`). Costs nothing: ML Kit OCR is
-   already non-functional on the New Architecture; the passport flow degrades to manual MRZ entry.
-3. **`react-native.config.js` must be ESM.** `apps/easypid/package.json` has `"type": "module"`, so the
-   config is parsed as an ES module. `module.exports` throws "module is not defined in ES module scope"
-   during codegen ("Generate Specs"). Use `export default`. A `.cjs` rename does **not** work — the RN
-   config loader ignores `.cjs` and ML Kit reappears in autolinking.
-4. **Exposing NFCPassportReader to the app-local `PassportNfc` pod target** — see
+2. **ML Kit (MRZ OCR) was removed entirely (2026-07).** `@react-native-ml-kit/text-recognition` was
+   dropped from the passport flow — its prebuilt `libmlkit_google_ocr_pipeline.so` was **not
+   16 KB-page-aligned**, which blocks Google Play releases for apps targeting API 35+ (all other native
+   libs in the AAB are aligned; it was the sole offender). The OCR was already non-functional on the New
+   Architecture, so `PassportScanScreen` now opens straight on manual MRZ entry. This also retired the
+   old iOS-only pod-install workaround (ML Kit pulled the `GoogleMLKit` static-binary subtree, which
+   CocoaPods refused under dynamic `use_frameworks!`) and the `react-native.config.js` file it lived in.
+   To re-add OCR later, bump ML Kit to a 16 KB-aligned release (`com.google.mlkit:text-recognition:16.0.1`
+   ships an aligned `libmlkit_google_ocr_pipeline.so`) rather than reverting to 16.0.0.
+3. **Exposing NFCPassportReader to the app-local `PassportNfc` pod target** — see
    `modules/passport-nfc/README.md` → "iOS dependency wiring". Short version: use
    `s.pod_target_xcconfig` `FRAMEWORK_SEARCH_PATHS` in `PassportNfc.podspec`, **not**
    `s.dependency 'NFCPassportReader'` — the latter re-serializes `Pods.xcodeproj` and corrupts the eudi
