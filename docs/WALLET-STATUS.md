@@ -1,45 +1,55 @@
 # ZADA Edge Wallet — status
 
-**As of:** 2026-07-18 · **App:** ZADA (`com.zadanetwork.wallet`), easypid `v1.20.1` (versionCode 210)
+**As of:** 2026-07-22 · **App:** ZADA (`com.zadanetwork.wallet`), easypid `v1.20.1` (versionCode 211) ·
+**Android: 🟢 LIVE in production**
 
 This is the current, verified state of `zada-wallet-v2` (the `apps/easypid` Expo/Credo app).
 It is a fork of Animo's paradym-wallet with ZADA wiring on top.
 
 ---
 
-## 0. Production release status (2026-07-18)
+## 0. Production release status (2026-07-22)
 
-> **The v2 wallet is now migrating from internal testing to the public stores. This section is the
-> single source of truth for release state; the older §6 below is background.**
+> **This section is the single source of truth for release state; the older §6 below is background.**
 
-**⚠️ v2 replaces the live legacy wallet IN PLACE.** `com.zadanetwork.wallet` is an existing,
-published app on *both* stores, not a new listing:
-- **Google Play:** "ZADA Digital Identity Wallet", seller ZADA Solutions, **live release
-  209 (1.6.9)**, ~5,245 active installs (mostly Myanmar). Publishing v2 auto-updates these users.
+**⚠️ v2 replaces the legacy wallet IN PLACE.** `com.zadanetwork.wallet` is an existing, published app
+on *both* stores, not a new listing:
+- **Google Play:** "ZADA Digital Identity Wallet", seller ZADA Solutions — **v2 (1.20.1 / 211) is now
+  the live release**, replacing legacy `209 (1.6.9)`. ~5,245 active installs (mostly Myanmar) are
+  auto-updated.
 - **Apple App Store:** "ZADA Wallet" **v1.6.8**, ASC id **1578666669**, seller Lychee Ventures Ltd.
+  (still on legacy — iOS v2 not yet released; see §6b).
 
-Because the package/bundle id is identical, a store release is an **update** to the legacy app, not
-a fresh install. Existing users land in a fresh v2 wallet; **credential migration is user-initiated
-and not yet auto-prompted** (follow-up tracked — see §8). This was an explicit product decision
-(replace in place, full rollout), taken 2026-07-18.
+Because the package/bundle id is identical, a store release is an **update** to the legacy app, not a
+fresh install. Existing users land in a fresh v2 wallet; **credential migration is user-initiated and
+not yet auto-prompted** (follow-up — see §8). This was an explicit product decision (replace in place,
+full rollout).
 
-### Android — ✅ submitted as DRAFT, awaiting manual publish
+### Android — 🟢 LIVE in production (2026-07-22)
 
-- **AAB build `91e343b7`** (EAS, profile `paradym-production-android`), easypid **1.20.1 /
-  versionCode 210**, ABIs **arm64-v8a + armeabi-v7a**, signed with the **real Play upload key**
-  (`CN=Zada`, alias `key0`; cert SHA-256 `F7:EA:0E:7B…`, verified against Play's registered upload
-  key — byte-identical).
-- **Submitted** to the Play **production track** as a **DRAFT** release (submission `0a4da10b`).
-  Confirmed via Play API: draft `1.20.1 / 210` sits beside the live `209 (1.6.9)`; nothing has
-  reached users.
-- **Your remaining step:** Play Console → *Test and release → Production* → review the draft, add
-  release notes, and **Start rollout** (that click = full rollout to all users). Consider a staged %
-  in the Console UI for a first EAS release.
+- **Live build: 1.20.1 / versionCode 211**, ABIs **arm64-v8a + armeabi-v7a**, signed with the **real
+  Play upload key** (`CN=Zada`, alias `key0`; cert SHA-256 `F7:EA:0E:7B…`, verified byte-identical to
+  Play's registered upload key). Keystore + Play service-account key are held **outside the repo**
+  (`~/Documents/claudecode/wallet keys/`); the local build uses a git-ignored `credentials.json`
+  (see §6).
+- **Two Play blockers hit and cleared on the way to publish:**
+  1. **16 KB page-size** (blocks API 35+ with non-aligned native libs). Exactly one lib failed —
+     `libmlkit_google_ocr_pipeline.so` (ML Kit MRZ OCR, prebuilt at 4 KB). OCR was already
+     non-functional on the New Arch, so it was **removed** and the passport screen now opens straight
+     on manual entry (versionCode 211; all 64-bit libs 16 KB-aligned — verified in the AAB). To re-add
+     OCR later, use ML Kit **16.0.1** (ships an aligned `.so`), not 16.0.0.
+  2. **Advertising-ID declaration.** The app does not use an ad ID (verified: no ad SDK, no `AD_ID`
+     in the 211 manifest) → declared **No**. It stayed "incomplete" because **stale legacy builds on
+     the beta/alpha/internal tracks still carried `AD_ID`** — Play validates the declaration against
+     *all* tracks. Fixed by promoting the clean 211 across those tracks (all 4 now on 211).
+- Release/build config: build profile **`paradym-production-android`** (`credentialsSource: local`);
+  submit profile `paradym-production` (`track: production`). See §6.
 
-### iOS — deferred to a separate session (playbook in §6b)
+### iOS — not yet released (playbook in §6b)
 
-No new build required and **no certificate to recover** — a finished App Store (`store`) build of
-current `main` already exists: **build `17c28255`**, commit `395d0d4`, buildNumber 12.
+Still on the legacy App Store build. **No certificate to recover** — a finished App Store (`store`)
+build of current `main` already exists: **build `17c28255`**, commit `395d0d4`, buildNumber 12.
+Remaining work is App Store Connect metadata + Apple review, not signing.
 
 ---
 
@@ -269,6 +279,17 @@ Store share one binary.
 
 ## 8. Known issues & follow-ups
 
+- **⏰ DEADLINE — target Android 16 (API 36) by Aug 31 2026.** Currently targets **API 35** (no
+  `targetSdkVersion` override → Expo SDK 54 default; `compileSdkVersion` is already 36). After that
+  date, apps not within 1 year of the latest Android release **can't ship updates**. Fix: add
+  `targetSdkVersion: 36` to `expo-build-properties.android` + test Android 16 behavior changes; bundle
+  with the next Expo/RN bump. (Committed TODO.) Related non-blocking Play advisories: edge-to-edge
+  deprecated APIs (clears with the version bump), large-screen/orientation (portrait lock is a
+  deliberate product choice — likely won't-fix), and R8 optimization (risky with Credo/askar
+  reflection — needs keep-rules + a full device regression).
+- **Play "What's new" release note is drafted but not yet applied to the listing.** EN + Burmese
+  written (Burmese needs a native-speaker check before relying on it); references the real home-screen
+  path ("Set up your wallet" → "Migrate credentials").
 - **⚠️ RELEASE-CRITICAL: no first-run migration prompt.** When ~5,245 legacy Play users (and the
   iOS users) auto-update to v2, they land in an empty wallet with **no prompt** to migrate — they
   must find "Migrate credentials" / "Create ZADA ID" themselves
