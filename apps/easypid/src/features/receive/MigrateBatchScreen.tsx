@@ -91,11 +91,12 @@ export function MigrateBatchScreen() {
     if (started.current) return
     started.current = true
 
-    // The migration web flow runs in an in-app browser (`useCredentialMigration` →
-    // WebBrowser.openBrowserAsync). On iOS that's an SFSafariViewController which stays
-    // presented when the deep link brings us here, so the user would watch a blank overlay
-    // while the import ran behind it and have to close it by hand. Dismiss it ourselves.
-    // iOS-only API — it throws on Android (where the Custom Tab is already backgrounded),
+    // Backstop for the iOS in-app browser overlay (`useCredentialMigration` →
+    // WebBrowser.openBrowserAsync). The primary dismiss happens at deep-link time in
+    // +native-intent.tsx — on a warm app the /authenticate PIN gate mounts before this screen,
+    // so a dismiss here alone runs too late and the user stares at a dead overlay. Kept as a
+    // safety net for any path that reaches this screen with the browser still presented.
+    // iOS-only API — it rejects on Android (where the Custom Tab is already backgrounded),
     // hence the catch.
     WebBrowser.dismissBrowser().catch(() => {})
 
