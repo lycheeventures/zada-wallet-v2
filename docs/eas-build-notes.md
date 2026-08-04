@@ -116,17 +116,21 @@ npx --no-install eas-cli build --profile paradym-production --platform ios --non
 Xcode version). Read the **actual EAS build duration** from the dashboard, not wall-clock around the
 build — a shorter build usually means it failed *earlier*, not that it got further via cache.
 
-**⚠️ "Pods project is damaged" can ALSO come from gem drift on the EAS image (Aug 2026).** Build #15
+**⚠️ "Pods project is damaged" can ALSO come from a floating remote pod (Aug 2026).** Builds #15/#16
 (2026-08-04) hit the identical failure signature (`-[XCRemoteSwiftPackageReference
 _setSavedArchiveVersion:]` → "The project 'Pods' is damaged" → `no such module 'Expo'`) from source
 that differed from green build #14 (2026-07-22) only in TypeScript files — no `s.dependency` involved.
-Cause: EAS updates Ruby gems *within* a pinned image tag, and **`xcodeproj` 1.28.0/1.28.1 (released
-2026-07-06, first release in 9 months, adds objectVersion support for newer Xcode) serializes the Pods
-project — including the eudi mdoc `spm_dependency` SPM refs — in a form Xcode 26.0's parser rejects.**
-Fix: the `eas-build-pre-install` hook in `apps/easypid/package.json` force-downgrades the gem to
-**`xcodeproj` 1.27.0** (the version behind every green build) on iOS builds and prints `gem list
-xcodeproj` so the build log proves which version `pod install` used. If a future image bump makes
-1.27.0 incompatible, prefer moving to a newer Xcode image over unpinning blindly.
+Diffing the two builds' `INSTALL_PODS` logs showed **exactly one input changed: `libwebp` 1.5.0 →
+1.6.0** (a transitive dep of `SDWebImageWebPCoder`, constraint `~> 1.0`; with CNG prebuild there is no
+committed `Podfile.lock`, so remote spec-repo pods re-resolve every build). That single content change
+flips CocoaPods' Pods.xcodeproj serialization into a form Xcode 26.0 rejects — same "magical",
+content-sensitive corruption class as the `s.dependency` regression (cf. CocoaPods issue #12733). Fix:
+**pin `libwebp` 1.5.0 via `expo-build-properties` → `ios.extraPods`** in `base.app.config.js`.
+Ruled out first: gem drift — the `eas-build-pre-install` hook now pins `xcodeproj` to 1.27.0 and
+prints `gem list xcodeproj`, which proved the image already had 1.27.0 (the hook stays as cheap
+insurance against future gem drift). **Debug technique:** `eas build:view <id> --json` → `logFiles[1]`
+is the full brotli-compressed phase log (all phases, JSON lines); download both builds' logs and diff
+the `Installing X (v)` lines of the `INSTALL_PODS` phase to spot floating-pod drift instantly.
 
 **Submitting to TestFlight** (also interactive the first time):
 

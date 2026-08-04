@@ -158,6 +158,12 @@ const createBaseConfig = (appSpecific) => {
           ios: {
             deploymentTarget: '16.0',
             useFrameworks: 'dynamic',
+            // libwebp floats via SDWebImageWebPCoder's `~> 1.0` and there is no committed
+            // Podfile.lock (CNG prebuild). 1.6.0 (released between the green 2026-07-22 build
+            // and 2026-08-04) makes CocoaPods emit a Pods.xcodeproj that Xcode 26.0 rejects as
+            // "damaged" (the XCRemoteSwiftPackageReference/_setSavedArchiveVersion crash) —
+            // pin the last known-good version. See docs/eas-build-notes.md "gem drift" note.
+            extraPods: [{ name: 'libwebp', version: '1.5.0' }],
           },
         },
       ],
