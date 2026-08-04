@@ -116,6 +116,18 @@ npx --no-install eas-cli build --profile paradym-production --platform ios --non
 Xcode version). Read the **actual EAS build duration** from the dashboard, not wall-clock around the
 build — a shorter build usually means it failed *earlier*, not that it got further via cache.
 
+**⚠️ "Pods project is damaged" can ALSO come from gem drift on the EAS image (Aug 2026).** Build #15
+(2026-08-04) hit the identical failure signature (`-[XCRemoteSwiftPackageReference
+_setSavedArchiveVersion:]` → "The project 'Pods' is damaged" → `no such module 'Expo'`) from source
+that differed from green build #14 (2026-07-22) only in TypeScript files — no `s.dependency` involved.
+Cause: EAS updates Ruby gems *within* a pinned image tag, and **`xcodeproj` 1.28.0/1.28.1 (released
+2026-07-06, first release in 9 months, adds objectVersion support for newer Xcode) serializes the Pods
+project — including the eudi mdoc `spm_dependency` SPM refs — in a form Xcode 26.0's parser rejects.**
+Fix: the `eas-build-pre-install` hook in `apps/easypid/package.json` force-downgrades the gem to
+**`xcodeproj` 1.27.0** (the version behind every green build) on iOS builds and prints `gem list
+xcodeproj` so the build log proves which version `pod install` used. If a future image bump makes
+1.27.0 incompatible, prefer moving to a newer Xcode image over unpinning blindly.
+
 **Submitting to TestFlight** (also interactive the first time):
 
 ```bash
