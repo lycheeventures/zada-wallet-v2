@@ -6,7 +6,22 @@ import { logger, parseInvitationUrlSync } from '@package/agent'
 import { deeplinkSchemes } from '@package/app'
 import * as Haptics from 'expo-haptics'
 import { router } from 'expo-router'
+import * as WebBrowser from 'expo-web-browser'
+import { Platform } from 'react-native'
 import { credentialDataHandlerOptions } from './(app)/_layout'
+
+// The ZADA ID / migration web flow runs in an in-app browser (WebBrowser.openBrowserAsync).
+// On iOS that's an SFSafariViewController that stays presented on top of the app when its
+// "Add to wallet" deep link fires — the wallet navigates (usually to the PIN unlock screen)
+// invisibly behind the overlay, so the button feels dead until the user closes the browser by
+// hand. Dismiss it here, at deep-link time, rather than in a destination screen: the
+// /authenticate gate mounts before any credential screen, so a screen-level dismiss runs too
+// late. Fire-and-forget — this handler must stay sync (see note above redirectSystemPath).
+// Not needed on Android, where the Custom Tab is backgrounded by the intent automatically.
+function dismissInAppBrowser() {
+  if (Platform.OS !== 'ios') return
+  WebBrowser.dismissBrowser().catch(() => {})
+}
 
 // NOTE: previously we had this method async, but somehow this prevent the
 // deeplink from working on a cold startup. We updated the invitation handler to
@@ -32,6 +47,7 @@ export function redirectSystemPath({ path, initial }: { path: string; initial: b
           redirectPath = `/authenticate?redirectAfterUnlock=${encodedRedirect}`
         }
         logger.debug('Deeplink is a batch credential import. Routing to batch screen.')
+        dismissInAppBrowser()
         return redirectPath
       }
     } catch (_error) {
@@ -122,6 +138,7 @@ export function redirectSystemPath({ path, initial }: { path: string; initial: b
       }
 
       logger.debug(`Redirecting to path ${redirectPath}`)
+      dismissInAppBrowser()
       return redirectPath
     }
 
