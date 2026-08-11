@@ -1,6 +1,6 @@
 import { Trans, useLingui } from '@lingui/react/macro'
-import { type DisplayImage, useCredentialsForDisplay } from '@package/agent'
-import { TextBackButton } from '@package/app'
+import { type CredentialForDisplay, type DisplayImage, useCredentialsForDisplay } from '@package/agent'
+import { type CredentialCategoryTheme, getCredentialCategory, TextBackButton } from '@package/app'
 import { FunkeCredentialCard } from '@package/app/components'
 import { useHaptics, useScrollViewPosition } from '@package/app/hooks'
 import {
@@ -36,6 +36,29 @@ export function FunkeCredentialsScreen() {
   const filteredCredentials = useMemo(() => {
     return credentials.filter((credential) => credential.display.name.toLowerCase().includes(searchQuery.toLowerCase()))
   }, [credentials, searchQuery])
+
+  // Category order (identity first) keeps the most-used cards on top. Sections only appear once
+  // the wallet is big enough that a flat stack gets slow to scan — below that, headers with one
+  // card each would be more chrome than signal. Search results always render flat.
+  const categorizedCredentials = useMemo(() => {
+    return filteredCredentials
+      .map((credential) => ({
+        credential,
+        category: getCredentialCategory({ type: credential.metadata.type, name: credential.display.name }),
+      }))
+      .sort((a, b) => a.category.order - b.category.order)
+  }, [filteredCredentials])
+
+  const sections = useMemo(() => {
+    if (credentials.length <= 6 || searchQuery) return null
+    const byCategory = new Map<string, { category: CredentialCategoryTheme; items: typeof categorizedCredentials }>()
+    for (const entry of categorizedCredentials) {
+      const section = byCategory.get(entry.category.id) ?? { category: entry.category, items: [] }
+      section.items.push(entry)
+      byCategory.set(entry.category.id, section)
+    }
+    return Array.from(byCategory.values())
+  }, [categorizedCredentials, credentials.length, searchQuery])
 
   const { handleScroll, isScrolledByOffset, scrollEventThrottle } = useScrollViewPosition()
   const { push } = useRouter()
@@ -107,27 +130,32 @@ export function FunkeCredentialsScreen() {
             />
           </Stack>
           {filteredCredentials.length > 0 ? (
-            // Larger cards fanned out and stacked in front of each other (each overlaps the previous),
-            // tap one to open it.
+            // Larger cards fanned out and stacked in front of each other (each overlaps the
+            // previous), tap one to open it. The overlap leaves each card's white banner (logo +
+            // name) visible. With enough cards, they split into category sections instead.
             <YStack fg={1} pb="$12">
-              {filteredCredentials.map((credential, index) => (
-                <YStack key={credential.id} mt={index === 0 ? 0 : -120} zIndex={index}>
-                  <FunkeCredentialCard
-                    name={credential.display.name}
-                    textColor={credential.display.textColor}
-                    bgColor={credential.display.backgroundColor}
-                    issuerImage={{
-                      url: credential.display.issuer.logo?.url,
-                      altText: credential.display.issuer.logo?.altText,
-                    }}
-                    backgroundImage={{
-                      url: credential.display.backgroundImage?.url,
-                      altText: credential.display.backgroundImage?.altText,
-                    }}
-                    onPress={() => pushToCredential(credential.id)}
-                  />
-                </YStack>
-              ))}
+              {sections
+                ? sections.map((section, sectionIndex) => (
+                    <YStack key={section.category.id} mt={sectionIndex === 0 ? 0 : '$6'}>
+                      <CategorySectionHeader category={section.category} />
+                      {section.items.map(({ credential }, index) => (
+                        <CredentialStackItem
+                          key={credential.id}
+                          credential={credential}
+                          index={index}
+                          onPress={() => pushToCredential(credential.id)}
+                        />
+                      ))}
+                    </YStack>
+                  ))
+                : categorizedCredentials.map(({ credential }, index) => (
+                    <CredentialStackItem
+                      key={credential.id}
+                      credential={credential}
+                      index={index}
+                      onPress={() => pushToCredential(credential.id)}
+                    />
+                  ))}
             </YStack>
           ) : (
             <Paragraph mt="$8" ta="center">
@@ -143,6 +171,51 @@ export function FunkeCredentialsScreen() {
         <TextBackButton />
       </YStack>
     </FlexPage>
+  )
+}
+
+function CategorySectionHeader({ category }: { category: CredentialCategoryTheme }) {
+  const { t } = useLingui()
+  const CategoryIcon = category.icon
+  return (
+    <XStack ai="center" gap="$2" mb="$3">
+      <CategoryIcon size={16} strokeWidth={2.5} color={category.color ?? '#5F5E5A'} />
+      <Paragraph fontSize={13} fontWeight="$semiBold" color="$grey-700">
+        {t(category.label)}
+      </Paragraph>
+    </XStack>
+  )
+}
+
+function CredentialStackItem({
+  credential,
+  index,
+  onPress,
+}: {
+  credential: CredentialForDisplay
+  index: number
+  onPress: () => void
+}) {
+  return (
+    <YStack mt={index === 0 ? 0 : -120} zIndex={index}>
+      <FunkeCredentialCard
+        name={credential.display.name}
+        issuerName={credential.display.issuer.name}
+        credentialType={credential.metadata.type}
+        issuedAt={credential.metadata.issuedAt ? new Date(credential.metadata.issuedAt) : credential.createdAt}
+        textColor={credential.display.textColor}
+        bgColor={credential.display.backgroundColor}
+        issuerImage={{
+          url: credential.display.issuer.logo?.url,
+          altText: credential.display.issuer.logo?.altText,
+        }}
+        backgroundImage={{
+          url: credential.display.backgroundImage?.url,
+          altText: credential.display.backgroundImage?.altText,
+        }}
+        onPress={onPress}
+      />
+    </YStack>
   )
 }
 

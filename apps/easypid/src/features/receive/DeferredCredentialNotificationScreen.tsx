@@ -92,6 +92,7 @@ export function DeferredCredentialNotificationScreen() {
                 }}
                 textColor={credentialDisplay.textColor}
                 name={credentialDisplay.name}
+                issuerName={credentialDisplay.issuer.name}
                 backgroundImage={{
                   url: credentialDisplay.backgroundImage?.url,
                   altText: credentialDisplay.backgroundImage?.altText,

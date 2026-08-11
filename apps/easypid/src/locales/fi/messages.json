@@ -75,7 +75,7 @@
 		},
 		"comments": ["Subheading under attribute list: X from Y"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 144]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 146]
 		],
 		"translation": "{disclosedAttributeLength} kortista {0}"
 	},
@@ -171,14 +171,14 @@
 		"message": "A PDF copy of this credential.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 92]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 94]],
 		"translation": "PDF-kopio tästä todisteesta."
 	},
 	"credentials.cold.qrHint": {
 		"message": "A verifier can scan this QR to check it — even offline. Or share it as a PDF.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 84]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 86]],
 		"translation": "Vastaanottaja voi skannata tämän QR-koodin tarkistaakseen sen — myös offline-tilassa. Tai voit jakaa sen PDF-tiedostona."
 	},
 	"offlineQr.instruction": {
@@ -401,7 +401,7 @@
 		"placeholders": {},
 		"comments": ["Description of the error box explaining pending credentials"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 124]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 125]
 		],
 		"translation": "Kortin noutaminen myöntäjältä epäonnistui."
 	},
@@ -752,7 +752,7 @@
 		"message": "Card details",
 		"placeholders": {},
 		"comments": ["Title of the credential details screen"],
-		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 97]],
+		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 100]],
 		"translation": "Kortin tiedot"
 	},
 	"cardLifecycle.limitedByDate.expired.title": {
@@ -796,9 +796,9 @@
 			"Title of the info box explaining that the credential is not available yet"
 		],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 135],
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 152],
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 173]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 136],
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 153],
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 174]
 		],
 		"translation": "Kortti ei vielä saatavilla"
 	},
@@ -850,7 +850,7 @@
 		"message": "Cards",
 		"placeholders": {},
 		"comments": ["Heading for the list of user credentials"],
-		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 50]],
+		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 73]],
 		"translation": "Kortit"
 	},
 	"menu.item.cards": {
@@ -948,7 +948,7 @@
 		"message": "Continue — read chip",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/passport/PassportScanScreen.tsx", 79]],
+		"origin": [["src/features/passport/PassportScanScreen.tsx", 78]],
 		"translation": "Jatka — lue siru"
 	},
 	"onboardingIntro.continueToSetup": {
@@ -1000,7 +1000,7 @@
 		"comments": [],
 		"origin": [
 			["src/features/wallet/ColdCredentialSheet.tsx", 38],
-			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 60]
+			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 63]
 		],
 		"translation": "Offline-kopion luonti epäonnistui. Yritä uudelleen."
 	},
@@ -1055,8 +1055,8 @@
 		"placeholders": {},
 		"comments": ["Label for button that shows detailed card attributes"],
 		"origin": [
-			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 110],
-			["src/features/wallet/FunkeCredentialDetailScreen.tsx", 128]
+			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 115],
+			["src/features/wallet/FunkeCredentialDetailScreen.tsx", 131]
 		],
 		"translation": "Kortin tiedot"
 	},
@@ -1137,7 +1137,7 @@
 		"message": "Credentials will appear here once you receive them.",
 		"placeholders": {},
 		"comments": ["Subtext explaining that credentials will appear later"],
-		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 73]],
+		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 96]],
 		"translation": "Todisteet näkyvät täällä, kun vastaanotat niitä."
 	},
 	"noContentWallet.message": {
@@ -1165,7 +1165,7 @@
 		"message": "Date of birth (YYMMDD)",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/passport/PassportScanScreen.tsx", 62]],
+		"origin": [["src/features/passport/PassportScanScreen.tsx", 61]],
 		"translation": "Syntymäaika (VVKKPP)"
 	},
 	"common.declineButton": {
@@ -1306,6 +1306,13 @@
 		"comments": [],
 		"origin": [["../../packages/translations/src/commonMessages.ts", 552]],
 		"translation": "Hollanti"
+	},
+	"credentialCategory.education": {
+		"message": "Education",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 49]],
+		"translation": "Koulutus"
 	},
 	"eidCard.requestAttributesTitle": {
 		"message": "eID card",
@@ -1454,7 +1461,7 @@
 		"message": "Expiry date (YYMMDD)",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/passport/PassportScanScreen.tsx", 69]],
+		"origin": [["src/features/passport/PassportScanScreen.tsx", 68]],
 		"translation": "Viimeinen voimassaolopäivä (VVKKPP)"
 	},
 	"settings.exportDebugLogs": {
@@ -1494,7 +1501,7 @@
 		"placeholders": {},
 		"comments": ["Title of the error box explaining pending credentials"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 119]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 120]
 		],
 		"translation": "Kortin noutaminen epäonnistui"
 	},
@@ -1518,6 +1525,13 @@
 		"comments": ["Shown while waiting for data to be received from backend"],
 		"origin": [["src/features/receive/slides/LoadingRequestSlide.tsx", 51]],
 		"translation": "Haetaan tietoja"
+	},
+	"credentialCategory.finance": {
+		"message": "Finance",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 63]],
+		"translation": "Talous"
 	},
 	"passportScan.manualIntro": {
 		"message": "Find these on the photo page of your passport. They unlock the passport's chip so it can be read securely.",
@@ -1567,7 +1581,7 @@
 		"message": "Get a verifiable QR and PDF that work offline",
 		"placeholders": {},
 		"comments": ["Description for the offline copy button"],
-		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 147]],
+		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 150]],
 		"translation": "Hae todennettava QR-koodi ja PDF, jotka toimivat offline-tilassa"
 	},
 	"home.getStarted": {
@@ -1654,6 +1668,13 @@
 		],
 		"translation": "suurempi tai yhtä suuri kuin"
 	},
+	"credentialCategory.health": {
+		"message": "Health",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 42]],
+		"translation": "Terveys"
+	},
 	"home.helloWithName": {
 		"message": "Hello, {userName}!",
 		"placeholders": {
@@ -1684,7 +1705,7 @@
 		"placeholders": {},
 		"comments": ["Option to hide metadata in option sheet"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 185]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 187]
 		],
 		"translation": "Piilota metatiedot"
 	},
@@ -1725,6 +1746,13 @@
 		"comments": ["Title for third slide of wallet onboarding"],
 		"origin": [["src/features/onboarding/screens/wallet-explanation.tsx", 57]],
 		"translation": "Miten se toimii?"
+	},
+	"credentialCategory.identity": {
+		"message": "Identity",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 35]],
+		"translation": "Henkilöllisyys"
 	},
 	"verifyPartySlide.zadaVerifiedDescription": {
 		"message": "Identity cryptographically verified against the ZADA Trust Registry",
@@ -1897,8 +1925,8 @@
 		},
 		"comments": ["Prefix before issuer name", "Prefix before issuer name"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 110],
-			["src/features/wallet/FunkeCredentialDetailScreen.tsx", 102]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 111],
+			["src/features/wallet/FunkeCredentialDetailScreen.tsx", 105]
 		],
 		"translation": "Myöntäjä: {0}."
 	},
@@ -1918,8 +1946,14 @@
 		"placeholders": {
 			"0": ["formatDate(issuedAt, { includeTime: false })"]
 		},
-		"comments": ["Label before the date a credential was issued"],
-		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 206]],
+		"comments": [
+			"Label before the date a credential was issued",
+			"Label before the date a credential was issued"
+		],
+		"origin": [
+			["../../packages/app/src/components/FunkeCredentialCard.tsx", 149],
+			["src/features/wallet/FunkeCredentialsScreen.tsx", 279]
+		],
 		"translation": "Myönnetty {0}"
 	},
 	"common.fields.issuer": {
@@ -2035,7 +2069,7 @@
 		"placeholders": {},
 		"comments": ["Section header title for metadata attributes"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 161]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 163]
 		],
 		"translation": "Metatiedot"
 	},
@@ -2167,7 +2201,7 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [
-			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 91]
+			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 96]
 		],
 		"translation": "Tietoja ei löytynyt"
 	},
@@ -2177,7 +2211,7 @@
 			"searchQuery": ["searchQuery"]
 		},
 		"comments": ["Shown when search yields no results; includes query string"],
-		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 134]],
+		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 162]],
 		"translation": "Ei kortteja haulle \"{searchQuery}\""
 	},
 	"credentials.noCardsMessage": {
@@ -2295,7 +2329,7 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [
-			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 66]
+			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 69]
 		],
 		"translation": "Offline-kopio valmis"
 	},
@@ -2305,7 +2339,7 @@
 		"comments": [
 			"Label for the button that opens the offline cold-credential copy (PDF + scannable QR)"
 		],
-		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 142]],
+		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 145]],
 		"translation": "Offline-PDF ja QR-koodi"
 	},
 	"network.onlineAgain": {
@@ -2345,6 +2379,13 @@
 		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 125]],
 		"translation": "Organisaatio ei ole vahvistettu"
 	},
+	"credentialCategory.other": {
+		"message": "Other",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 77]],
+		"translation": "Muut"
+	},
 	"requestPurpose.infoSheet.title": {
 		"message": "Overasking detected",
 		"placeholders": {},
@@ -2365,7 +2406,7 @@
 		"message": "Passport number",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/passport/PassportScanScreen.tsx", 55]],
+		"origin": [["src/features/passport/PassportScanScreen.tsx", 54]],
 		"translation": "Passin numero"
 	},
 	"home.addDocumentSubtitle": {
@@ -2396,7 +2437,7 @@
 		"placeholders": {},
 		"comments": ["Title of the pending credential notification screen"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 105]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 106]
 		],
 		"translation": "Odottava kortti"
 	},
@@ -2706,7 +2747,7 @@
 		"message": "Regenerate",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 99]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 103]],
 		"translation": "Luo uudelleen"
 	},
 	"common.fields.region": {
@@ -2735,7 +2776,7 @@
 		"placeholders": {},
 		"comments": ["Heading above list of attributes shown to the user"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 137]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 139]
 		],
 		"translation": "Pyydetyt tiedot"
 	},
@@ -2771,19 +2812,19 @@
 		"origin": [["../../packages/translations/src/commonMessages.ts", 61]],
 		"translation": "Nollaa lompakko"
 	},
-	"submission.reviewTitle": {
-		"message": "Review the request",
-		"placeholders": {},
-		"comments": ["Heading shown at the top of the share credentials screen"],
-		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 61]],
-		"translation": "Tarkasta pyyntö"
-	},
 	"signShare.title": {
 		"message": "Review the request",
 		"placeholders": {},
 		"comments": ["Main heading in the sign & share screen"],
 		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 72]],
 		"translation": "Tarkista pyyntö"
+	},
+	"submission.reviewTitle": {
+		"message": "Review the request",
+		"placeholders": {},
+		"comments": ["Heading shown at the top of the share credentials screen"],
+		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 61]],
+		"translation": "Tarkasta pyyntö"
 	},
 	"common.revoked": {
 		"message": "Revoked",
@@ -2924,7 +2965,7 @@
 		"message": "Search cards",
 		"placeholders": {},
 		"comments": ["Placeholder for search input in credentials list"],
-		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 94]],
+		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 117]],
 		"translation": "Hae kortteja"
 	},
 	"onboardingIntroduction.step1.title": {
@@ -3012,7 +3053,7 @@
 		"message": "Share PDF",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 97]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 100]],
 		"translation": "Jaa PDF"
 	},
 	"offlineQr.heading": {
@@ -3027,7 +3068,7 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [
-			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 134]
+			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 141]
 		],
 		"translation": "Jaettavat tiedot"
 	},
@@ -3087,7 +3128,7 @@
 		"placeholders": {},
 		"comments": ["Option to show metadata in option sheet"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 190]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 192]
 		],
 		"translation": "Näytä metatiedot"
 	},
@@ -3395,7 +3436,7 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [
-			["src/features/receive/slides/CredentialRetrievalSlide.tsx", 196]
+			["src/features/receive/slides/CredentialRetrievalSlide.tsx", 198]
 		],
 		"translation": "Kortti noudetaan, kun se on saatavilla."
 	},
@@ -3468,7 +3509,7 @@
 		"placeholders": {},
 		"comments": ["Description of the info box explaining the card is pending"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 178]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 179]
 		],
 		"translation": "Myöntäjä ei ole vielä tehnyt korttia saataville. Yritä myöhemmin uudelleen."
 	},
@@ -3490,7 +3531,7 @@
 			"Description of the info box explaining the card is pending with expected time"
 		],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 140]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 141]
 		],
 		"translation": "Kortin myöntäjä ehdottaa, että tarkistat uudelleen kello {0}."
 	},
@@ -3505,7 +3546,7 @@
 			"Description of the info box explaining the card is pending with expected date"
 		],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 157]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 158]
 		],
 		"translation": "Kortin myöntäjä ehdottaa, että tarkistat uudelleen {0}."
 	},
@@ -3697,7 +3738,7 @@
 		"comments": [],
 		"origin": [
 			["src/features/wallet/ColdCredentialSheet.tsx", 37],
-			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 59]
+			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 62]
 		],
 		"translation": "Tätä myöntäjää ei vielä tunnisteta offline-kopioita varten."
 	},
@@ -3827,11 +3868,18 @@
 		"origin": [["src/features/receive/slides/TxCodeSlide.tsx", 68]],
 		"translation": "Tapahtumakoodi"
 	},
+	"credentialCategory.travel": {
+		"message": "Travel",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 70]],
+		"translation": "Matkustus"
+	},
 	"credentials.cold.retry": {
 		"message": "Try again",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 74]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 75]],
 		"translation": "Yritä uudelleen"
 	},
 	"passportNfc.retry": {
@@ -3989,7 +4037,7 @@
 		"comments": [
 			"Badge shown when the credential issuer was cryptographically verified against the ZADA trust registry"
 		],
-		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 110]],
+		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 113]],
 		"translation": "ZADA Networkin vahvistama"
 	},
 	"verifyPartySlide.zadaVerifiedTitle": {
@@ -4053,7 +4101,7 @@
 		"message": "View attributes of the card",
 		"placeholders": {},
 		"comments": ["Description text for the attributes button"],
-		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 133]],
+		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 136]],
 		"translation": "Näytä kortin tiedot"
 	},
 	"menu.section.wallet": {
@@ -4108,6 +4156,13 @@
 			["../../packages/app/src/components/CardInfoLifecycle.tsx", 229]
 		],
 		"translation": "Tulee voimaan {activeDaysString} kuluttua"
+	},
+	"credentialCategory.work": {
+		"message": "Work",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 56]],
+		"translation": "Työ"
 	},
 	"common.yes": {
 		"message": "Yes",
@@ -4229,7 +4284,7 @@
 		"message": "You don’t have any credentials yet",
 		"placeholders": {},
 		"comments": ["Shown when the user has no credentials"],
-		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 68]],
+		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 91]],
 		"translation": "Täällä ei ole vielä mitään"
 	},
 	"wallet.emptyTitle": {
@@ -4279,18 +4334,18 @@
 		],
 		"translation": "Sinulla ei ole pyydettyjä kortteja."
 	},
-	"submission.missingCardsWarning": {
-		"message": "You don't have the required cards",
-		"placeholders": {},
-		"comments": ["Shown when user lacks required credentials"],
-		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 130]],
-		"translation": "Sinulla ei ole tarvittavia kortteja"
-	},
 	"signShare.missingCards": {
 		"message": "You don't have the required cards",
 		"placeholders": {},
 		"comments": ["Shown when the user lacks the required credentials"],
 		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 180]],
+		"translation": "Sinulla ei ole tarvittavia kortteja"
+	},
+	"submission.missingCardsWarning": {
+		"message": "You don't have the required cards",
+		"placeholders": {},
+		"comments": ["Shown when user lacks required credentials"],
+		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 130]],
 		"translation": "Sinulla ei ole tarvittavia kortteja"
 	},
 	"pinLocked.description": {
@@ -4374,7 +4429,7 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [
-			["src/features/receive/slides/CredentialRetrievalSlide.tsx", 246]
+			["src/features/receive/slides/CredentialRetrievalSlide.tsx", 249]
 		],
 		"translation": "Korttisi eivät ole vielä valmiita. Tarkistamme silloin tällöin taustalla ja noudamme kortit, kun ne ovat valmiita."
 	},

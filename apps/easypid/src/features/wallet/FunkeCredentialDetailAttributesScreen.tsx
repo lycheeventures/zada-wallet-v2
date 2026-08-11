@@ -54,7 +54,10 @@ export function FunkeCredentialDetailAttributesScreen() {
       if (result.error) {
         const message =
           result.error === 'offline'
-            ? t({ id: 'credentials.cold.offline', message: 'You’re offline. Connect once to create your offline copy.' })
+            ? t({
+                id: 'credentials.cold.offline',
+                message: 'You’re offline. Connect once to create your offline copy.',
+              })
             : result.error === 'untrusted'
               ? t({ id: 'credentials.cold.untrusted', message: 'This issuer isn’t recognised for offline copies yet.' })
               : t({ id: 'credentials.cold.failed', message: 'Couldn’t create the offline copy. Please try again.' })
@@ -63,7 +66,9 @@ export function FunkeCredentialDetailAttributesScreen() {
       }
 
       if (result.created) {
-        toast.show(t({ id: 'credentials.cold.ready', message: 'Offline copy ready' }), { customData: { preset: 'success' } })
+        toast.show(t({ id: 'credentials.cold.ready', message: 'Offline copy ready' }), {
+          customData: { preset: 'success' },
+        })
       }
       await new Promise((resolve) => setTimeout(resolve, 100))
       await Sharing.shareAsync(result.path)
@@ -122,6 +127,8 @@ export function FunkeCredentialDetailAttributesScreen() {
               }}
               textColor={credential.display.textColor}
               name={credential.display.name}
+              issuerName={credential.display.issuer.name}
+              credentialType={credential.metadata.type}
               backgroundImage={{
                 url: credential.display.backgroundImage?.url,
                 altText: credential.display.backgroundImage?.altText,

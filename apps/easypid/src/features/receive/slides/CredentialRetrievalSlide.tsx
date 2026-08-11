@@ -187,7 +187,9 @@ export const CredentialRetrievalSlide = ({
           >
             {isCompleted ? (
               <Paragraph ta="center" mt="$-2" mb="$6">
-                <Trans id="retrieveCredential.cardSuccessfully added">Credential successfully added to your wallet!</Trans>
+                <Trans id="retrieveCredential.cardSuccessfully added">
+                  Credential successfully added to your wallet!
+                </Trans>
               </Paragraph>
             ) : isStoring ? (
               <Paragraph ta="center" mt="$-2" mb="$6"></Paragraph>
@@ -208,6 +210,7 @@ export const CredentialRetrievalSlide = ({
               issuerImage={display.issuer.logo}
               textColor={display.textColor}
               name={display.name}
+              issuerName={display.issuer.name}
               backgroundImage={display.backgroundImage}
               bgColor={display.backgroundColor}
               isLoading={isStoring && !isCompleteAndAllowed}
@@ -244,8 +247,8 @@ export const CredentialRetrievalSlide = ({
                     ) : (
                       <Paragraph>
                         <Trans id="receiveCredential.deferredCredentialParagraph">
-                          Your credentials are not yet ready. We will check once in a while in the background and fetch the
-                          credentials once they're ready.
+                          Your credentials are not yet ready. We will check once in a while in the background and fetch
+                          the credentials once they're ready.
                         </Trans>
                       </Paragraph>
                     )}

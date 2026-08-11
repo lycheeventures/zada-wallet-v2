@@ -1,14 +1,20 @@
 import {
   AlertOctagon,
   ArrowLeft,
+  Briefcase,
   CornerDownRight,
   FileBadge,
+  Fingerprint,
+  GraduationCap,
+  HeartPulse,
   History,
   Inbox,
   ListFilter,
+  Plane,
   RefreshCw,
   Scan,
   Trash2,
+  Wallet,
   X,
 } from '@tamagui/lucide-icons'
 import { forwardRef } from 'react'
@@ -36,6 +42,7 @@ import {
   EllipsisVerticalIcon,
   ExclamationCircleIcon,
   FingerPrintIcon,
+  FolderIcon,
   GlobeAltIcon,
   HandRaisedIcon,
   IdentificationIcon,
@@ -51,14 +58,13 @@ import {
   QrCodeIcon,
   QuestionMarkCircleIcon,
   QueueListIcon,
+  ShareIcon,
   ShieldCheckIcon,
   StarIcon,
   TrashIcon,
   UserIcon,
   XCircleIcon,
   XMarkIcon,
-  FolderIcon,
-  ShareIcon
 } from 'react-native-heroicons/outline'
 import {
   ArchiveBoxXMarkIcon as ArchiveBoxXMarkFilledIcon,
@@ -109,6 +115,12 @@ export const LucideIcons = {
   X,
   RefreshCw,
   History,
+  Briefcase,
+  Fingerprint,
+  GraduationCap,
+  HeartPulse,
+  Plane,
+  Wallet,
 }
 
 export interface HeroIconProps extends SvgProps {
