@@ -14,6 +14,7 @@ import { Redirect, useLocalSearchParams } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect, useRef, useState } from 'react'
 import { InvalidPinError } from '../crypto/error'
+import { peekPendingDeeplink } from '../utils/pendingDeeplink'
 import { useResetWalletDevMenu } from '../utils/resetWallet'
 
 /**
@@ -83,10 +84,13 @@ export default function Authenticate() {
   }, [secureUnlock, isInitializingAgent])
 
   if (secureUnlock.state === 'unlocked') {
-    // Expo and urls as query params don't go well together, so we encoded the url as base64
+    // Expo and urls as query params don't go well together, so we encoded the url as base64.
+    // When the param is missing, fall back to the out-of-band pending deeplink target: on
+    // Android the lock/deeplink navigation races can strip redirectAfterUnlock, which used to
+    // silently dump the user on the dashboard mid batch-import (see pendingDeeplink.ts).
     const redirect = redirectAfterUnlock
       ? TypedArrayEncoder.toUtf8String(TypedArrayEncoder.fromBase64(redirectAfterUnlock))
-      : '/'
+      : (peekPendingDeeplink() ?? '/')
 
     return <Redirect href={redirect} />
   }

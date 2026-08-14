@@ -19,11 +19,13 @@ import {
   XStack,
   YStack,
 } from '@package/ui'
-import { useRouter } from 'expo-router'
+import { useNavigation, useRouter } from 'expo-router'
+import { useEffect } from 'react'
 import { useMMKVBoolean } from 'react-native-mmkv'
 import { FadeIn } from 'react-native-reanimated'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { mmkv } from '../../storage/mmkv'
+import { onPendingDeeplink, peekPendingDeeplink } from '../../utils/pendingDeeplink'
 import { HAS_ZADA_ID_ONBOARDED_KEY, useCredentialMigration } from '../migration/useCredentialMigration'
 import { AllCardsCard } from './components/AllCardsCard'
 import { InboxIcon } from './components/InboxIcon'
@@ -115,6 +117,32 @@ export function FunkeWalletScreen() {
   const { t } = useLingui()
   const { startMigration } = useCredentialMigration()
   const insets = useSafeAreaInsets()
+
+  // Safety net for the Android deeplink race where the router never navigates at all: the
+  // wallet sits unlocked on this dashboard while the deep link's target only exists as the
+  // out-of-band pending record (see pendingDeeplink.ts). The check is DEFERRED and gated on
+  // this screen still being focused: when the normal navigation does go through, the router
+  // has moved off the dashboard by the time the timer fires and we do nothing — this must
+  // never race the primary path into double-mounting the target (its offer tokens are
+  // single-use). If a lock intervenes right after our push, the (app) layout re-wraps the
+  // route as redirectAfterUnlock, so nothing is lost.
+  const navigation = useNavigation()
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined
+    const navigateToPendingIfStillHere = () => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        const target = peekPendingDeeplink()
+        if (target && navigation.isFocused()) push(target)
+      }, 800)
+    }
+    navigateToPendingIfStillHere()
+    const unsubscribe = onPendingDeeplink(navigateToPendingIfStillHere)
+    return () => {
+      clearTimeout(timer)
+      unsubscribe()
+    }
+  }, [navigation, push])
 
   // Getting-started buttons disappear after first use. Migrate + Create ZADA ID share one flag
   // because they run the same onboarding flow; the document catalog tracks its own.

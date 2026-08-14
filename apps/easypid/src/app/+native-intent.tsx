@@ -2,6 +2,7 @@ import 'fast-text-encoding'
 
 import { TypedArrayEncoder } from '@credo-ts/core'
 import { allowedRedirectBaseUrls, appScheme } from '@easypid/constants'
+import { setPendingDeeplink } from '@easypid/utils/pendingDeeplink'
 import { logger, parseInvitationUrlSync } from '@package/agent'
 import { deeplinkSchemes } from '@package/app'
 import * as Haptics from 'expo-haptics'
@@ -42,6 +43,10 @@ export function redirectSystemPath({ path, initial }: { path: string; initial: b
       const { search } = new URL(path)
       if (search.includes('batch=') || search.includes('offers=')) {
         let redirectPath = `/notifications/credentialBatch${search}`
+        // Also record the target out-of-band: the authenticate-wrapper navigation below is racy
+        // on Android (deeplink vs AppState lock vs layout redirect) and can drop the
+        // redirectAfterUnlock param — see pendingDeeplink.ts.
+        setPendingDeeplink(redirectPath)
         if (!initial) {
           const encodedRedirect = TypedArrayEncoder.toBase64URL(TypedArrayEncoder.fromString(redirectPath))
           redirectPath = `/authenticate?redirectAfterUnlock=${encodedRedirect}`
@@ -130,6 +135,10 @@ export function redirectSystemPath({ path, initial }: { path: string; initial: b
     }
 
     if (redirectPath) {
+      // Out-of-band copy of the target — survives the Android navigation races that can drop
+      // the redirectAfterUnlock param. See pendingDeeplink.ts.
+      setPendingDeeplink(redirectPath)
+
       // Always make the user authenticate first when opening with a deeplink
       // On initial load this is already the case so we skip it
       if (!initial) {
