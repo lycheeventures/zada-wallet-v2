@@ -1,7 +1,11 @@
 # ZADA Edge Wallet — status
 
-**As of:** 2026-07-22 · **App:** ZADA (`com.zadanetwork.wallet`), easypid `v1.20.1` (versionCode 211) ·
-**Android: 🟢 LIVE in production**
+**As of:** 2026-08-13 · **App:** ZADA (`com.zadanetwork.wallet`), easypid `v1.20.2` on `main` ·
+**Android: 🟢 LIVE in production (1.20.1/211)** · **iOS: 🟢 LIVE on the App Store (1.20.1, since
+2026-08-11)** — §0's iOS paragraph below predates the iOS release. `main` (1.20.2) additionally
+carries the credential-card redesign (`docs/credential-card-design.md`) and two Android
+batch-migration fixes (`docs/deeplink-auth-batch-import.md`) — **1.20.2 store releases are the
+next step** (the Android fix is release-critical, see §8).
 
 This is the current, verified state of `zada-wallet-v2` (the `apps/easypid` Expo/Credo app).
 It is a fork of Animo's paradym-wallet with ZADA wiring on top.
@@ -279,6 +283,14 @@ Store share one binary.
 
 ## 8. Known issues & follow-ups
 
+- **⚠️ RELEASE-CRITICAL: production Android (1.20.1/211) can crash to a blank blue screen on
+  batch migration.** `MigrateBatchScreen` called `WebBrowser.dismissBrowser()` unguarded; the API
+  is iOS-only and on Android returns `undefined` (not a rejected promise), so `.catch()` threw and
+  crashed the React tree on mount. Fixed on `main` (Aug 2026, PR #32) together with the Android
+  lock-race redirect loss (pending-deeplink store) — see `docs/deeplink-auth-batch-import.md`.
+  **Ship 1.20.2 to Play** to get both fixes to the ~5,245 production users; iOS 1.20.2 (TestFlight
+  build 21) predates the pending-deeplink commit but is unaffected (iOS event order is stable) —
+  the next iOS build picks it up automatically.
 - **⏰ DEADLINE — target Android 16 (API 36) by Aug 31 2026.** Currently targets **API 35** (no
   `targetSdkVersion` override → Expo SDK 54 default; `compileSdkVersion` is already 36). After that
   date, apps not within 1 year of the latest Android release **can't ship updates**. Fix: add

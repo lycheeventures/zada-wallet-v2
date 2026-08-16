@@ -146,3 +146,20 @@ it appears under TestFlight; a first build may also ask a one-time export-compli
 
 **On-device NFC test:** passport chip reading needs a **physical iPhone (7+/iOS 15+)** — it does not
 work in the simulator.
+
+**Same-version TestFlight submits are rejected (Aug 2026).** Once a given `expo.version`
+(CFBundleShortVersionString) has been submitted to App Store Connect, `eas submit` refuses another
+submission of that version — even with a new buildNumber ("You've already submitted this version of
+the app"). The version comes from `apps/easypid/package.json` (`app.config.js` imports it). Fix:
+bump the patch version, rebuild, resubmit. Rule of thumb: **every TestFlight push after a store
+submission starts with a version bump.**
+
+**Flaky `askar-react-native` binary download in INSTALL_DEPENDENCIES (Aug 2026).** The askar
+package's install script downloads a prebuilt native binary; the host occasionally drops the
+connection (`fetch failed … SocketError: other side closed`, `UND_ERR_SOCKET`), failing
+`pnpm install --frozen-lockfile` and the whole build in ~90s. It can flake several times in a row.
+Nothing is wrong with the repo — just retry the build. **Reading EAS logs without the web UI:**
+query `https://api.expo.dev/graphql` for `builds.byId(buildId).logFiles` with the `expo-session`
+header from `~/.expo/state.json` and a real `User-Agent` (default python UA gets a Cloudflare 403);
+download the log URL as RAW BYTES and brotli-decompress (`node zlib.brotliDecompressSync`) — it's
+JSON lines with a `phase` field.
