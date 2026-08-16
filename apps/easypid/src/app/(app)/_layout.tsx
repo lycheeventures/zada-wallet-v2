@@ -3,6 +3,7 @@ import { useSecureUnlock } from '@easypid/agent'
 import { mediatorDid } from '@easypid/constants'
 import { useHasFinishedOnboarding } from '@easypid/features/onboarding'
 import { useFeatureFlag } from '@easypid/hooks/useFeatureFlag'
+import { clearPendingDeeplink } from '@easypid/utils/pendingDeeplink'
 import { useResetWalletDevMenu } from '@easypid/utils/resetWallet'
 import {
   AgentProvider,
@@ -51,6 +52,12 @@ export default function AppLayout() {
 
     registerCredentialsForDcApi(secureUnlock.context.agent)
   }, [secureUnlock])
+
+  // A deeplink's out-of-band pending target (see pendingDeeplink.ts) is fulfilled the moment its
+  // route actually mounts — end its lifecycle here so it can't fire again later.
+  useEffect(() => {
+    if (pathname) clearPendingDeeplink(pathname)
+  }, [pathname])
 
   // It could be that the onboarding is cut of mid-process, and e.g. the user closes the app
   // if this is the case we will redo the onboarding

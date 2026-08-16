@@ -75,7 +75,7 @@
 		},
 		"comments": ["Subheading under attribute list: X from Y"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 144]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 146]
 		],
 		"translation": "{disclosedAttributeLength} from {0}"
 	},
@@ -171,14 +171,14 @@
 		"message": "A PDF copy of this credential.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 92]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 94]],
 		"translation": "A PDF copy of this credential."
 	},
 	"credentials.cold.qrHint": {
 		"message": "A verifier can scan this QR to check it — even offline. Or share it as a PDF.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 84]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 86]],
 		"translation": "A verifier can scan this QR to check it — even offline. Or share it as a PDF."
 	},
 	"offlineQr.instruction": {
@@ -401,7 +401,7 @@
 		"placeholders": {},
 		"comments": ["Description of the error box explaining pending credentials"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 124]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 125]
 		],
 		"translation": "An error occurred while retrieving the card from the issuer."
 	},
@@ -751,7 +751,7 @@
 		"message": "Card details",
 		"placeholders": {},
 		"comments": ["Title of the credential details screen"],
-		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 97]],
+		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 100]],
 		"translation": "Card details"
 	},
 	"cardLifecycle.limitedByDate.expired.title": {
@@ -795,9 +795,9 @@
 			"Title of the info box explaining that the credential is not available yet"
 		],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 135],
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 152],
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 173]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 136],
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 153],
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 174]
 		],
 		"translation": "Card not available yet"
 	},
@@ -849,7 +849,7 @@
 		"message": "Cards",
 		"placeholders": {},
 		"comments": ["Heading for the list of user credentials"],
-		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 50]],
+		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 73]],
 		"translation": "Cards"
 	},
 	"menu.item.cards": {
@@ -947,7 +947,7 @@
 		"message": "Continue — read chip",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/passport/PassportScanScreen.tsx", 79]],
+		"origin": [["src/features/passport/PassportScanScreen.tsx", 78]],
 		"translation": "Continue — read chip"
 	},
 	"onboardingIntro.continueToSetup": {
@@ -998,7 +998,7 @@
 		"comments": [],
 		"origin": [
 			["src/features/wallet/ColdCredentialSheet.tsx", 38],
-			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 60]
+			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 63]
 		],
 		"translation": "Couldn’t create the offline copy. Please try again."
 	},
@@ -1053,8 +1053,8 @@
 		"placeholders": {},
 		"comments": ["Label for button that shows detailed card attributes"],
 		"origin": [
-			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 110],
-			["src/features/wallet/FunkeCredentialDetailScreen.tsx", 128]
+			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 115],
+			["src/features/wallet/FunkeCredentialDetailScreen.tsx", 131]
 		],
 		"translation": "Credential Details"
 	},
@@ -1134,7 +1134,7 @@
 		"message": "Credentials will appear here once you receive them.",
 		"placeholders": {},
 		"comments": ["Subtext explaining that credentials will appear later"],
-		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 73]],
+		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 96]],
 		"translation": "Credentials will appear here once you receive them."
 	},
 	"noContentWallet.message": {
@@ -1162,7 +1162,7 @@
 		"message": "Date of birth (YYMMDD)",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/passport/PassportScanScreen.tsx", 62]],
+		"origin": [["src/features/passport/PassportScanScreen.tsx", 61]],
 		"translation": "Date of birth (YYMMDD)"
 	},
 	"common.declineButton": {
@@ -1303,6 +1303,13 @@
 		"comments": [],
 		"origin": [["../../packages/translations/src/commonMessages.ts", 552]],
 		"translation": "Dutch"
+	},
+	"credentialCategory.education": {
+		"message": "Education",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 49]],
+		"translation": "Education"
 	},
 	"eidCard.requestAttributesTitle": {
 		"message": "eID card",
@@ -1451,7 +1458,7 @@
 		"message": "Expiry date (YYMMDD)",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/passport/PassportScanScreen.tsx", 69]],
+		"origin": [["src/features/passport/PassportScanScreen.tsx", 68]],
 		"translation": "Expiry date (YYMMDD)"
 	},
 	"settings.exportDebugLogs": {
@@ -1491,7 +1498,7 @@
 		"placeholders": {},
 		"comments": ["Title of the error box explaining pending credentials"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 119]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 120]
 		],
 		"translation": "Failed to retrieve card"
 	},
@@ -1515,6 +1522,13 @@
 		"comments": ["Shown while waiting for data to be received from backend"],
 		"origin": [["src/features/receive/slides/LoadingRequestSlide.tsx", 51]],
 		"translation": "Fetching information"
+	},
+	"credentialCategory.finance": {
+		"message": "Finance",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 63]],
+		"translation": "Finance"
 	},
 	"passportScan.manualIntro": {
 		"message": "Find these on the photo page of your passport. They unlock the passport's chip so it can be read securely.",
@@ -1564,7 +1578,7 @@
 		"message": "Get a verifiable QR and PDF that work offline",
 		"placeholders": {},
 		"comments": ["Description for the offline copy button"],
-		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 147]],
+		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 150]],
 		"translation": "Get a verifiable QR and PDF that work offline"
 	},
 	"home.getStarted": {
@@ -1651,6 +1665,13 @@
 		],
 		"translation": "greater than or equal to"
 	},
+	"credentialCategory.health": {
+		"message": "Health",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 42]],
+		"translation": "Health"
+	},
 	"home.helloWithName": {
 		"message": "Hello, {userName}!",
 		"placeholders": {
@@ -1681,7 +1702,7 @@
 		"placeholders": {},
 		"comments": ["Option to hide metadata in option sheet"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 185]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 187]
 		],
 		"translation": "Hide metadata attributes"
 	},
@@ -1722,6 +1743,13 @@
 		"comments": ["Title for third slide of wallet onboarding"],
 		"origin": [["src/features/onboarding/screens/wallet-explanation.tsx", 57]],
 		"translation": "How does it work?"
+	},
+	"credentialCategory.identity": {
+		"message": "Identity",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 35]],
+		"translation": "Identity"
 	},
 	"verifyPartySlide.zadaVerifiedDescription": {
 		"message": "Identity cryptographically verified against the ZADA Trust Registry",
@@ -1894,8 +1922,8 @@
 		},
 		"comments": ["Prefix before issuer name", "Prefix before issuer name"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 110],
-			["src/features/wallet/FunkeCredentialDetailScreen.tsx", 102]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 111],
+			["src/features/wallet/FunkeCredentialDetailScreen.tsx", 105]
 		],
 		"translation": "Issued by {0}."
 	},
@@ -1915,8 +1943,14 @@
 		"placeholders": {
 			"0": ["formatDate(issuedAt, { includeTime: false })"]
 		},
-		"comments": ["Label before the date a credential was issued"],
-		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 206]],
+		"comments": [
+			"Label before the date a credential was issued",
+			"Label before the date a credential was issued"
+		],
+		"origin": [
+			["../../packages/app/src/components/FunkeCredentialCard.tsx", 149],
+			["src/features/wallet/FunkeCredentialsScreen.tsx", 279]
+		],
 		"translation": "Issued on {0}"
 	},
 	"common.fields.issuer": {
@@ -2032,7 +2066,7 @@
 		"placeholders": {},
 		"comments": ["Section header title for metadata attributes"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 161]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 163]
 		],
 		"translation": "Metadata"
 	},
@@ -2163,7 +2197,7 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [
-			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 91]
+			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 96]
 		],
 		"translation": "No attributes found"
 	},
@@ -2173,7 +2207,7 @@
 			"searchQuery": ["searchQuery"]
 		},
 		"comments": ["Shown when search yields no results; includes query string"],
-		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 134]],
+		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 162]],
 		"translation": "No cards found for \"{searchQuery}\""
 	},
 	"credentials.noCardsMessage": {
@@ -2291,7 +2325,7 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [
-			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 66]
+			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 69]
 		],
 		"translation": "Offline copy ready"
 	},
@@ -2301,7 +2335,7 @@
 		"comments": [
 			"Label for the button that opens the offline cold-credential copy (PDF + scannable QR)"
 		],
-		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 142]],
+		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 145]],
 		"translation": "Offline PDF & QR code"
 	},
 	"network.onlineAgain": {
@@ -2341,6 +2375,13 @@
 		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 125]],
 		"translation": "Organization not verified"
 	},
+	"credentialCategory.other": {
+		"message": "Other",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 77]],
+		"translation": "Other"
+	},
 	"requestPurpose.infoSheet.title": {
 		"message": "Overasking detected",
 		"placeholders": {},
@@ -2361,7 +2402,7 @@
 		"message": "Passport number",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/passport/PassportScanScreen.tsx", 55]],
+		"origin": [["src/features/passport/PassportScanScreen.tsx", 54]],
 		"translation": "Passport number"
 	},
 	"home.addDocumentSubtitle": {
@@ -2392,7 +2433,7 @@
 		"placeholders": {},
 		"comments": ["Title of the pending credential notification screen"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 105]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 106]
 		],
 		"translation": "Pending card"
 	},
@@ -2702,7 +2743,7 @@
 		"message": "Regenerate",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 99]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 103]],
 		"translation": "Regenerate"
 	},
 	"common.fields.region": {
@@ -2731,7 +2772,7 @@
 		"placeholders": {},
 		"comments": ["Heading above list of attributes shown to the user"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 137]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 139]
 		],
 		"translation": "Requested attributes"
 	},
@@ -2767,18 +2808,18 @@
 		"origin": [["../../packages/translations/src/commonMessages.ts", 61]],
 		"translation": "Reset Wallet"
 	},
-	"submission.reviewTitle": {
-		"message": "Review the request",
-		"placeholders": {},
-		"comments": ["Heading shown at the top of the share credentials screen"],
-		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 61]],
-		"translation": "Review the request"
-	},
 	"signShare.title": {
 		"message": "Review the request",
 		"placeholders": {},
 		"comments": ["Main heading in the sign & share screen"],
 		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 72]],
+		"translation": "Review the request"
+	},
+	"submission.reviewTitle": {
+		"message": "Review the request",
+		"placeholders": {},
+		"comments": ["Heading shown at the top of the share credentials screen"],
+		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 61]],
 		"translation": "Review the request"
 	},
 	"common.revoked": {
@@ -2920,7 +2961,7 @@
 		"message": "Search cards",
 		"placeholders": {},
 		"comments": ["Placeholder for search input in credentials list"],
-		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 94]],
+		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 117]],
 		"translation": "Search cards"
 	},
 	"onboardingIntroduction.step1.title": {
@@ -3008,7 +3049,7 @@
 		"message": "Share PDF",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 97]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 100]],
 		"translation": "Share PDF"
 	},
 	"offlineQr.heading": {
@@ -3023,7 +3064,7 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [
-			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 134]
+			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 141]
 		],
 		"translation": "Shareable attributes"
 	},
@@ -3083,7 +3124,7 @@
 		"placeholders": {},
 		"comments": ["Option to show metadata in option sheet"],
 		"origin": [
-			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 190]
+			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 192]
 		],
 		"translation": "Show metadata attributes"
 	},
@@ -3391,7 +3432,7 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [
-			["src/features/receive/slides/CredentialRetrievalSlide.tsx", 196]
+			["src/features/receive/slides/CredentialRetrievalSlide.tsx", 198]
 		],
 		"translation": "The credential will be fetched once available."
 	},
@@ -3464,7 +3505,7 @@
 		"placeholders": {},
 		"comments": ["Description of the info box explaining the card is pending"],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 178]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 179]
 		],
 		"translation": "The issuer has not yet made the card available. Please check again later."
 	},
@@ -3486,7 +3527,7 @@
 			"Description of the info box explaining the card is pending with expected time"
 		],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 140]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 141]
 		],
 		"translation": "The issuer of the card indicated you should check again at {0}."
 	},
@@ -3501,7 +3542,7 @@
 			"Description of the info box explaining the card is pending with expected date"
 		],
 		"origin": [
-			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 157]
+			["src/features/receive/DeferredCredentialNotificationScreen.tsx", 158]
 		],
 		"translation": "The issuer of the card indicated you should check again on {0}."
 	},
@@ -3693,7 +3734,7 @@
 		"comments": [],
 		"origin": [
 			["src/features/wallet/ColdCredentialSheet.tsx", 37],
-			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 59]
+			["src/features/wallet/FunkeCredentialDetailAttributesScreen.tsx", 62]
 		],
 		"translation": "This issuer isn’t recognised for offline copies yet."
 	},
@@ -3823,11 +3864,18 @@
 		"origin": [["src/features/receive/slides/TxCodeSlide.tsx", 68]],
 		"translation": "Transaction code"
 	},
+	"credentialCategory.travel": {
+		"message": "Travel",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 70]],
+		"translation": "Travel"
+	},
 	"credentials.cold.retry": {
 		"message": "Try again",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 74]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 75]],
 		"translation": "Try again"
 	},
 	"passportNfc.retry": {
@@ -3985,7 +4033,7 @@
 		"comments": [
 			"Badge shown when the credential issuer was cryptographically verified against the ZADA trust registry"
 		],
-		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 110]],
+		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 113]],
 		"translation": "Verified by ZADA Network"
 	},
 	"verifyPartySlide.zadaVerifiedTitle": {
@@ -4049,7 +4097,7 @@
 		"message": "View attributes of the card",
 		"placeholders": {},
 		"comments": ["Description text for the attributes button"],
-		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 133]],
+		"origin": [["src/features/wallet/FunkeCredentialDetailScreen.tsx", 136]],
 		"translation": "View attributes of the card"
 	},
 	"menu.section.wallet": {
@@ -4104,6 +4152,13 @@
 			["../../packages/app/src/components/CardInfoLifecycle.tsx", 229]
 		],
 		"translation": "Will be active in {activeDaysString}"
+	},
+	"credentialCategory.work": {
+		"message": "Work",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["../../packages/app/src/utils/credentialCategory.ts", 56]],
+		"translation": "Work"
 	},
 	"common.yes": {
 		"message": "Yes",
@@ -4225,7 +4280,7 @@
 		"message": "You don’t have any credentials yet",
 		"placeholders": {},
 		"comments": ["Shown when the user has no credentials"],
-		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 68]],
+		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 91]],
 		"translation": "You don’t have any credentials yet"
 	},
 	"wallet.emptyTitle": {
@@ -4275,18 +4330,18 @@
 		],
 		"translation": "You don't have the requested card(s)."
 	},
-	"submission.missingCardsWarning": {
-		"message": "You don't have the required cards",
-		"placeholders": {},
-		"comments": ["Shown when user lacks required credentials"],
-		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 130]],
-		"translation": "You don't have the required cards"
-	},
 	"signShare.missingCards": {
 		"message": "You don't have the required cards",
 		"placeholders": {},
 		"comments": ["Shown when the user lacks the required credentials"],
 		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 180]],
+		"translation": "You don't have the required cards"
+	},
+	"submission.missingCardsWarning": {
+		"message": "You don't have the required cards",
+		"placeholders": {},
+		"comments": ["Shown when user lacks required credentials"],
+		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 130]],
 		"translation": "You don't have the required cards"
 	},
 	"pinLocked.description": {
@@ -4370,7 +4425,7 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [
-			["src/features/receive/slides/CredentialRetrievalSlide.tsx", 246]
+			["src/features/receive/slides/CredentialRetrievalSlide.tsx", 249]
 		],
 		"translation": "Your credentials are not yet ready. We will check once in a while in the background and fetch the credentials once they're ready."
 	},

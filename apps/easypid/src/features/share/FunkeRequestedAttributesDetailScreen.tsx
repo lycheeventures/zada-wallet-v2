@@ -124,6 +124,8 @@ export function FunkeRequestedAttributesDetailScreen({
                   }}
                   textColor={activeCredential.display.textColor}
                   name={activeCredential.display.name}
+                  issuerName={activeCredential.display.issuer.name}
+                  credentialType={activeCredential.metadata.type}
                   backgroundImage={{
                     url: activeCredential.display.backgroundImage?.url,
                     altText: activeCredential.display.backgroundImage?.altText,

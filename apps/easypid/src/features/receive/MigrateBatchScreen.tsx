@@ -16,6 +16,7 @@ import { Button, FlexPage, Heading, HeroIcons, Paragraph, ProgressBar, Spinner, 
 import { useLocalSearchParams } from 'expo-router'
 import * as WebBrowser from 'expo-web-browser'
 import { useEffect, useRef, useState } from 'react'
+import { Platform } from 'react-native'
 
 type Query = { offers?: string; batch?: string }
 
@@ -96,9 +97,12 @@ export function MigrateBatchScreen() {
     // +native-intent.tsx — on a warm app the /authenticate PIN gate mounts before this screen,
     // so a dismiss here alone runs too late and the user stares at a dead overlay. Kept as a
     // safety net for any path that reaches this screen with the browser still presented.
-    // iOS-only API — it rejects on Android (where the Custom Tab is already backgrounded),
-    // hence the catch.
-    WebBrowser.dismissBrowser().catch(() => {})
+    // MUST stay behind the iOS guard: on Android dismissBrowser() returns undefined (not a
+    // rejected promise), so an unguarded `.catch()` throws and crashes this screen — the
+    // Custom Tab there is already backgrounded by the intent, no dismiss needed.
+    if (Platform.OS === 'ios') {
+      WebBrowser.dismissBrowser().catch(() => {})
+    }
 
     const acceptOne = async (uri: string) => {
       const { resolvedCredentialOffer } = await resolveOpenId4VciOffer({

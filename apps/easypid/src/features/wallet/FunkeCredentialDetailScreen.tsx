@@ -85,6 +85,9 @@ export function FunkeCredentialDetailScreen() {
                 }}
                 textColor={credential.display.textColor}
                 name={credential.display.name}
+                issuerName={credential.display.issuer.name}
+                credentialType={credential.metadata.type}
+                issuedAt={credential.metadata.issuedAt ? new Date(credential.metadata.issuedAt) : credential.createdAt}
                 backgroundImage={{
                   url: credential.display.backgroundImage?.url,
                   altText: credential.display.backgroundImage?.altText,
