@@ -27,8 +27,24 @@ const walletKeyStoreBaseOptions: KeychainSetOptions & KeychainAuthenticationType
   /* Android Only. Ensure wallet key is protected by hardware. Wil results in error if hardware is not available. Hardware is either StrongBox or TEE */
   securityLevel: Keychain.SECURITY_LEVEL.SECURE_HARDWARE,
 
-  /* Android Only. Ensure wallet key is protected using RSA storage type, this is the only storage type supporting biometrics. */
-  storage: Keychain.STORAGE_TYPE.RSA,
+  /**
+   * Android Only. AES-256-GCM with `setUserAuthenticationRequired`.
+   *
+   * This used to be `STORAGE_TYPE.RSA`, with the note "this is the only storage type supporting
+   * biometrics". That was true of older react-native-keychain; since v10 `AES_GCM` is the
+   * biometric-gated symmetric storage and RSA is only needed for asymmetric operations we don't do.
+   *
+   * RSA-2048/ECB/PKCS1 with a user-auth-bound key is the flakiest thing you can ask an OEM keystore
+   * for, and we have a device (Aug 2026) where storing the key works but reading it back fails with
+   * `CryptoFailedException: Wrapped error: unknown key type ...`. AES-GCM is the primitive every
+   * Android keystore has to implement well.
+   *
+   * Safe for existing installs: reads resolve the cipher storage from the *stored* entry, not from
+   * these options, and react-native-keychain v10 never auto-migrates between cipher storages
+   * (`migrateCipherStorage` is dead code). Anyone with an RSA-stored key keeps using RSA until they
+   * re-enable biometrics.
+   */
+  storage: Keychain.STORAGE_TYPE.AES_GCM,
 
   /* Ensure wallet key is protected by biometrics. It is not possible to fallback to the device passcode if the biometric authentication failed. */
   authenticationType: Keychain.AUTHENTICATION_TYPE.BIOMETRICS,

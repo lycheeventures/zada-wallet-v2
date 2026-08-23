@@ -48,6 +48,29 @@ now retries once on Android without the hardware requirement. Hardware-backed is
 first, and reads are unaffected (the Android module resolves the cipher storage from the stored
 entry and does not re-check the level).
 
+## RSA vs AES-GCM key storage (Aug 2026)
+
+The first real error we ever captured, from a test build of the fix above:
+
+```
+Error retrieving value with id 'PARADYM_WALLET_KEY_1' from keychain
+  <- com.oblador.keychain.exceptions.CryptoFailedException: Wrapped error: unknown key type p...
+```
+
+Note **retrieving**, not storing: the wallet key was written fine and then could not be read back.
+So the failure is in the RSA decrypt, one step later than the security-level problem above.
+
+`walletKeyStoreBaseOptions` asked for `STORAGE_TYPE.RSA`, justified by a comment saying it is "the
+only storage type supporting biometrics". That was true of older react-native-keychain. Since v10
+`STORAGE_TYPE.AES_GCM` is the biometric-gated symmetric storage, and RSA-2048/ECB/PKCS1 bound to
+user authentication is the flakiest thing you can ask an OEM keystore for. We now use AES-GCM.
+
+Existing installs are unaffected: reads resolve the cipher storage from the stored entry rather
+than from these options, and v10 never auto-migrates (`migrateCipherStorage` is dead code). One
+behavioural difference to watch: with `AES_GCM` the *encrypt* also requires authentication, so
+storing the key can itself prompt (the 5-second auth validity window may absorb the read that
+follows).
+
 ## Diagnostics
 
 There is still **no crash reporting in this app**. As a stopgap:
