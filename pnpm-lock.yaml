@@ -21,10 +21,34 @@ catalogs:
     '@animo-id/mdoc':
       specifier: 0.5.2
       version: 0.5.2
+    '@astronautlabs/jsonpath':
+      specifier: ^1.1.2
+      version: 1.1.2
     '@babel/core':
       specifier: ^7.28.5
       version: 7.28.5
+    '@credo-ts/anoncreds':
+      specifier: 0.6.2
+      version: 0.6.2
+    '@credo-ts/askar':
+      specifier: 0.6.2
+      version: 0.6.2
+    '@credo-ts/cheqd':
+      specifier: 0.6.2
+      version: 0.6.2
     '@credo-ts/core':
+      specifier: 0.6.2
+      version: 0.6.2
+    '@credo-ts/didcomm':
+      specifier: 0.6.2
+      version: 0.6.2
+    '@credo-ts/openid4vc':
+      specifier: 0.6.2
+      version: 0.6.2
+    '@credo-ts/question-answer':
+      specifier: 0.6.2
+      version: 0.6.2
+    '@credo-ts/react-native':
       specifier: 0.6.2
       version: 0.6.2
     '@expo-google-fonts/open-sans':
@@ -39,6 +63,9 @@ catalogs:
     '@hyperledger/anoncreds-react-native':
       specifier: 0.3.4
       version: 0.3.4
+    '@openid4vc/oauth2':
+      specifier: ^0.4.0
+      version: 0.4.6
     '@openwallet-foundation/askar-react-native':
       specifier: 0.6.0
       version: 0.6.0
@@ -54,9 +81,42 @@ catalogs:
     '@shopify/react-native-skia':
       specifier: ^2.4.14
       version: 2.4.14
+    '@tamagui/animations-react-native':
+      specifier: 1.142.0
+      version: 1.142.0
     '@tamagui/babel-plugin':
       specifier: 1.142.0
       version: 1.142.0
+    '@tamagui/colors':
+      specifier: 1.142.0
+      version: 1.142.0
+    '@tamagui/font-inter':
+      specifier: 1.142.0
+      version: 1.142.0
+    '@tamagui/lucide-icons':
+      specifier: 1.142.0
+      version: 1.142.0
+    '@tamagui/react-native-media-driver':
+      specifier: 1.142.0
+      version: 1.142.0
+    '@tamagui/shorthands':
+      specifier: 1.142.0
+      version: 1.142.0
+    '@tamagui/themes':
+      specifier: 1.142.0
+      version: 1.142.0
+    '@tamagui/toast':
+      specifier: 1.142.0
+      version: 1.142.0
+    '@tanstack/react-query':
+      specifier: ^5.90.14
+      version: 5.90.14
+    '@types/fast-text-encoding':
+      specifier: ^1.0.3
+      version: 1.0.3
+    '@types/react':
+      specifier: ~19.1.0
+      version: 19.1.17
     babel-plugin-module-resolver:
       specifier: ^5.0.2
       version: 5.0.2
@@ -69,6 +129,9 @@ catalogs:
     burnt:
       specifier: ^0.13.0
       version: 0.13.0
+    credo-ts-didweb-anoncreds:
+      specifier: 0.0.2-alpha.2
+      version: 0.0.2-alpha.2
     expo:
       specifier: ^54.0.27
       version: 54.0.27
@@ -144,6 +207,9 @@ catalogs:
     fast-text-encoding:
       specifier: ^1.0.6
       version: 1.0.6
+    query-string:
+      specifier: ^9.3.1
+      version: 9.3.1
     react:
       specifier: 19.1.0
       version: 19.1.0
@@ -159,6 +225,9 @@ catalogs:
     react-native-get-random-values:
       specifier: ^2.0.0
       version: 2.0.0
+    react-native-heroicons:
+      specifier: ^4.0.0
+      version: 4.0.0
     react-native-keychain:
       specifier: ^10.0.0
       version: 10.0.0
@@ -183,6 +252,12 @@ catalogs:
     react-native-svg:
       specifier: ^15.15.1
       version: 15.15.1
+    rxjs:
+      specifier: ^7.8.1
+      version: 7.8.2
+    tamagui:
+      specifier: 1.142.0
+      version: 1.142.0
     typescript:
       specifier: ~5.9.3
       version: 5.9.3
@@ -197,6 +272,9 @@ patchedDependencies:
   '@tamagui/input@1.142.0':
     hash: 5vtw6yxe7ybmqc4jrvkukbfble
     path: patches/@tamagui__input@1.142.0.patch
+  react-native-keychain@10.0.0:
+    hash: j25u2aufwjf5zh4xwqnvlmtiuq
+    path: patches/react-native-keychain@10.0.0.patch
 
 importers:
 
@@ -396,7 +474,7 @@ importers:
         version: 2.0.0(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))
       react-native-keychain:
         specifier: 'catalog:'
-        version: 10.0.0
+        version: 10.0.0(patch_hash=j25u2aufwjf5zh4xwqnvlmtiuq)
       react-native-mmkv:
         specifier: 'catalog:'
         version: 4.1.0(react-native-nitro-modules@0.31.10(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0))(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)
@@ -484,7 +562,7 @@ importers:
         version: 0.3.4(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)
       '@openid4vc/oauth2':
         specifier: 'catalog:'
-        version: 0.4.3
+        version: 0.4.6
       '@openwallet-foundation/askar-react-native':
         specifier: 'catalog:'
         version: 0.6.0(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)
@@ -628,7 +706,7 @@ importers:
         version: 2.0.0(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))
       react-native-keychain:
         specifier: 'catalog:'
-        version: 10.0.0
+        version: 10.0.0(patch_hash=j25u2aufwjf5zh4xwqnvlmtiuq)
 
   packages/translations:
     dependencies:
@@ -1955,9 +2033,6 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@openid4vc/oauth2@0.4.3':
-    resolution: {integrity: sha512-XIcb6TayV7TJkkpUvEVdY1rqtz6etXje0pRcJqV0H2FdXlU/TfMkcrZOniS9lmjUBQXDShHerMgVHxLREIiYrA==}
-
   '@openid4vc/oauth2@0.4.6':
     resolution: {integrity: sha512-PVa+N9UHt4KhHh02KHUHqS64vdnoaktNSVr7VUgeaB1NS0c3+7UIa2A/TnsyZqUAy9TxGltAflxsaWO+HtWPQQ==}
 
@@ -1966,9 +2041,6 @@ packages:
 
   '@openid4vc/openid4vp@0.4.6':
     resolution: {integrity: sha512-d7H8SuFlHZS30OC1U8vsezGHuXkOTp97rrHbsxrge7AQaHHi8BZXAwUGdujbXdkkU7zulXx9yk2+J+ZTb/GE3A==}
-
-  '@openid4vc/utils@0.4.3':
-    resolution: {integrity: sha512-5HVZ30yWvZJk6k7cmIGuXlqdwzyVb23wosjLa7PDbjg3cU917zgAxgr/5ksiA3ny3huy3TEF3dTrfyTC5sjvYg==}
 
   '@openid4vc/utils@0.4.6':
     resolution: {integrity: sha512-qpZ40ccnYTMdmW5zzIiN5SvNBzWHu0cUz97Itw+YMC8obosQ62c4Tg9LpwWwVirouN9oOQZ7IuF1EDakiB8w3w==}
@@ -6585,9 +6657,6 @@ packages:
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
-  zod@4.1.13:
-    resolution: {integrity: sha512-AvvthqfqrAhNH9dnfmrfKzX5upOdjUVJYFqNSlkmGf64gRaTzlPwz99IHYnVs28qYAybvAlBV+H7pn0saFY4Ig==}
-
   zod@4.3.6:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
@@ -8351,11 +8420,6 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
 
-  '@openid4vc/oauth2@0.4.3':
-    dependencies:
-      '@openid4vc/utils': 0.4.3
-      zod: 4.1.13
-
   '@openid4vc/oauth2@0.4.6':
     dependencies:
       '@openid4vc/utils': 0.4.6
@@ -8372,11 +8436,6 @@ snapshots:
       '@openid4vc/oauth2': 0.4.6
       '@openid4vc/utils': 0.4.6
       zod: 4.3.6
-
-  '@openid4vc/utils@0.4.3':
-    dependencies:
-      buffer: 6.0.3
-      zod: 4.1.13
 
   '@openid4vc/utils@0.4.6':
     dependencies:
@@ -13110,7 +13169,7 @@ snapshots:
       react: 19.1.0
       react-native: 0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0)
 
-  react-native-keychain@10.0.0: {}
+  react-native-keychain@10.0.0(patch_hash=j25u2aufwjf5zh4xwqnvlmtiuq): {}
 
   react-native-mmkv@4.1.0(react-native-nitro-modules@0.31.10(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0))(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0):
     dependencies:
@@ -14137,7 +14196,5 @@ snapshots:
       zod: 4.3.6
 
   zod@3.25.76: {}
-
-  zod@4.1.13: {}
 
   zod@4.3.6: {}

@@ -1,0 +1,30 @@
+diff --git a/android/src/main/java/com/oblador/keychain/cipherStorage/CipherCache.kt b/android/src/main/java/com/oblador/keychain/cipherStorage/CipherCache.kt
+index 05bef296d8560895d6e0573059a7367dcf774b83..1411baac972e91c31322e0f6cf40c5b46fa92be1 100644
+--- a/android/src/main/java/com/oblador/keychain/cipherStorage/CipherCache.kt
++++ b/android/src/main/java/com/oblador/keychain/cipherStorage/CipherCache.kt
+@@ -25,10 +25,21 @@ object CipherCache {
+      */
+     @Throws(NoSuchAlgorithmException::class, NoSuchPaddingException::class)
+     fun getCipher(transformation: String): Cipher {
+-        return synchronized(this) {
+-            (cipherCache.get() ?: mutableMapOf<String, Cipher>().also { cipherCache.set(it) })
+-                .getOrPut(transformation) { Cipher.getInstance(transformation) }
+-        }
++        // PATCHED (ZADA): always return a fresh Cipher instead of a per-thread cached one.
++        //
++        // A Cipher obtained from Cipher.getInstance(String) binds to a JCA provider on its first
++        // init() and keeps it. CipherStorageKeystoreRsaEcb encrypts with a deliberately
++        // NON-keystore public key (innerEncryptedCredentials re-derives it via
++        // KeyFactory.getInstance("RSA") -> Conscrypt) and decrypts with the AndroidKeyStore
++        // private key. Because the coroutine dispatcher is Dispatchers.Default, both operations
++        // routinely land on the same pool thread, so the decrypt reuses the Cipher that the
++        // encrypt bound to Conscrypt and hands it an opaque keystore key:
++        //
++        //     CryptoFailedException: Wrapped error: unknown key type passed to RSA
++        //
++        // That is every biometric unlock on Android failing, on Pixel and OPPO alike. Cipher
++        // construction is cheap; correctness is not negotiable for the wallet key.
++        return Cipher.getInstance(transformation)
+     }
+ 
+     /**
