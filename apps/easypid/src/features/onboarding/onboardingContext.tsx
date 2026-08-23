@@ -11,7 +11,7 @@ import {
 } from '@package/agent'
 import { useHaptics } from '@package/app'
 import { getLegacySecureWalletKey, removeLegacySecureWalletKey } from '@package/secure-store/legacyUnlock'
-import { secureWalletKey } from '@package/secure-store/secureUnlock'
+import { secureWalletKey, setIsBiometricsEnabled } from '@package/secure-store/secureUnlock'
 import { commonMessages } from '@package/translations'
 import { useToastController } from '@package/ui'
 import { sleep } from '@package/utils'
@@ -20,6 +20,12 @@ import type React from 'react'
 import { createContext, type PropsWithChildren, useCallback, useContext, useEffect, useState } from 'react'
 import { Linking } from 'react-native'
 import { useHasFinishedOnboarding } from './hasFinishedOnboarding'
+import {
+  clearLastOnboardingError,
+  describeError,
+  type OnboardingErrorStep,
+  recordOnboardingError,
+} from './onboardingError'
 import { onboardingSteps } from './steps'
 
 export type OnboardingContext = {
@@ -86,6 +92,7 @@ export function OnboardingContextProvider({
   }, [currentStepName])
 
   const finishOnboarding = useCallback(() => {
+    clearLastOnboardingError()
     setHasFinishedOnboarding(true)
     // The Onboarding fades out based on the mmkv value
     // Wait 500ms before navigating to home
@@ -165,7 +172,7 @@ export function OnboardingContextProvider({
       })
       .then(goToNextStep)
       .catch((e) => {
-        reset({ error: e, resetToStep: 'welcome' })
+        reset({ error: e, errorStep: 'pin', resetToStep: 'welcome' })
         throw e
       })
   }
@@ -178,6 +185,10 @@ export function OnboardingContextProvider({
     if (!agent || (secureUnlock.state !== 'acquired-wallet-key' && secureUnlock.state !== 'unlocked')) {
       await reset({
         resetToStep: 'pin',
+        error: new Error('Missing agent or unlocked wallet key when enabling biometrics'),
+        errorStep: 'biometrics',
+        // Internal state bug, not something to put in front of the user
+        toastMessage: t(commonMessages.pleaseTryAgain),
       })
       return
     }
@@ -199,7 +210,12 @@ export function OnboardingContextProvider({
             ? secureUnlock.walletKey
             : secureUnlock.context.agent.modules.askar.config.store.key
         if (!walletKey) {
-          await reset({ resetToStep: 'pin' })
+          await reset({
+            resetToStep: 'pin',
+            error: new Error('No wallet key available when enabling biometrics'),
+            errorStep: 'biometrics',
+            toastMessage: t(commonMessages.pleaseTryAgain),
+          })
           return
         }
 
@@ -224,26 +240,54 @@ export function OnboardingContextProvider({
         throw error
       }
 
-      await reset({
-        resetToStep: 'pin',
-        error,
-      })
-      throw error
+      /**
+       * Anything else means this device won't give us biometry-backed key storage — OEM keystore
+       * quirks are common and we can't enumerate them. That is not a reason to throw away a wallet
+       * the user just created: we used to `reset()` here, which wiped the wallet and dropped the
+       * user back on the PIN screen, so a device that can never store the key looped forever.
+       *
+       * Continue with PIN-only unlock instead; biometrics stays available in Settings.
+       */
+      recordOnboardingError('biometrics', error)
+      console.error('error enabling biometrics', error)
+
+      setIsBiometricsEnabled(false)
+      // Best effort: drop a key that may have been stored before the failure
+      await secureWalletKey.removeWalletKey(secureWalletKey.getWalletKeyVersion()).catch(() => {})
+
+      toast.show(
+        t({
+          id: 'onboarding.biometricsNotEnabled',
+          message: 'Could not enable biometrics',
+        }),
+        {
+          message: describeError(error),
+          customData: { preset: 'danger' },
+        }
+      )
+
+      goToNextStep()
     }
   }
 
   const reset = async ({
     resetToStep = 'welcome',
     error,
+    errorStep,
     showToast = true,
-    toastMessage = t(commonMessages.pleaseTryAgain),
+    toastMessage,
   }: {
     error?: unknown
+    /** Which part of onboarding failed, for the support diagnostics. */
+    errorStep?: OnboardingErrorStep
     resetToStep: OnboardingStep['step']
     showToast?: boolean
     toastMessage?: string
   }) => {
-    if (error) console.error(error)
+    if (error) {
+      console.error(error)
+      if (errorStep) recordOnboardingError(errorStep, error)
+    }
 
     const stepsToCompleteAfterReset = onboardingSteps
       .slice(onboardingSteps.findIndex((step) => step.step === resetToStep))
@@ -270,7 +314,9 @@ export function OnboardingContextProvider({
           message: 'Error occurred during onboarding',
         }),
         {
-          message: toastMessage,
+          // Show the actual reason when we have one — "Please try again" on a device that will
+          // fail the same way every time is what left us with nothing to triage.
+          message: toastMessage ?? (error ? describeError(error) : t(commonMessages.pleaseTryAgain)),
           customData: {
             preset: 'danger',
           },
@@ -296,6 +342,7 @@ export function OnboardingContextProvider({
     screen = (
       <currentStep.Screen
         goToNextStep={onEnableBiometrics}
+        checkBiometricsSupport
         actionText={t({
           id: 'biometrics.activateBiometricsButton',
           message: 'Activate Biometrics',
