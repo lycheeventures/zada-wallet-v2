@@ -12,8 +12,14 @@ import { mmkv } from '../../storage/mmkv'
 
 const LAST_ONBOARDING_ERROR_KEY = 'lastOnboardingError'
 
-/** This ends up in a toast and a support note, not a log file — keep it to one line. */
-const MAX_DESCRIPTION_LENGTH = 160
+/** What we show the user in a toast — long enough to be useful, short enough to read. */
+const TOAST_DESCRIPTION_LENGTH = 200
+
+/**
+ * What we keep for support. The first field report (Aug 2026) was cut off mid-message at
+ * `unknown key type p...`, which was the one part that mattered — don't do that again.
+ */
+const RECORDED_DESCRIPTION_LENGTH = 600
 
 export type OnboardingErrorStep = 'pin' | 'biometrics'
 
@@ -24,7 +30,7 @@ export type OnboardingErrorStep = 'pin' | 'biometrics'
  * the real reason (the OEM keystore / askar message) in `cause`, so an outer-message-only
  * description tells us nothing.
  */
-export function describeError(error: unknown): string {
+export function describeError(error: unknown, maxLength: number = TOAST_DESCRIPTION_LENGTH): string {
   const parts: string[] = []
 
   let current: unknown = error
@@ -35,13 +41,11 @@ export function describeError(error: unknown): string {
   }
 
   const description = parts.length > 0 ? parts.join(' <- ') : String(error)
-  return description.length > MAX_DESCRIPTION_LENGTH
-    ? `${description.slice(0, MAX_DESCRIPTION_LENGTH - 1)}…`
-    : description
+  return description.length > maxLength ? `${description.slice(0, maxLength - 1)}…` : description
 }
 
 export function recordOnboardingError(step: OnboardingErrorStep, error: unknown) {
-  mmkv.set(LAST_ONBOARDING_ERROR_KEY, `${step}: ${describeError(error)}`)
+  mmkv.set(LAST_ONBOARDING_ERROR_KEY, `${step}: ${describeError(error, RECORDED_DESCRIPTION_LENGTH)}`)
 }
 
 export function getLastOnboardingError(): string | undefined {
