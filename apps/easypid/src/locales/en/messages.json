@@ -171,14 +171,14 @@
 		"message": "A PDF copy of this credential.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 94]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 92]],
 		"translation": "A PDF copy of this credential."
 	},
 	"credentials.cold.qrHint": {
 		"message": "A verifier can scan this QR to check it — even offline. Or share it as a PDF.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 86]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 84]],
 		"translation": "A verifier can scan this QR to check it — even offline. Or share it as a PDF."
 	},
 	"offlineQr.instruction": {
@@ -231,7 +231,7 @@
 		"message": "Activate Biometrics",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/onboarding/onboardingContext.tsx", 299]],
+		"origin": [["src/features/onboarding/onboardingContext.tsx", 346]],
 		"translation": "Activate Biometrics"
 	},
 	"onboarding.biometrics.subtitle": {
@@ -284,7 +284,7 @@
 		"message": "Add an official document",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 190]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 218]],
 		"translation": "Add an official document"
 	},
 	"onboardingWalletExplanation.slide1.subtitle": {
@@ -682,7 +682,7 @@
 		"message": "Bring over credentials from the old app",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 179]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 207]],
 		"translation": "Bring over credentials from the old app"
 	},
 	"common.deleteDeferredCredentialDescription": {
@@ -964,6 +964,13 @@
 		"origin": [["src/features/documents/MdlFlow.tsx", 64]],
 		"translation": "Could not add your driver license. Try again."
 	},
+	"onboarding.biometricsNotEnabled": {
+		"message": "Could not enable biometrics",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/onboarding/onboardingContext.tsx", 259]],
+		"translation": "Could not enable biometrics"
+	},
 	"mdlFlow.offerFailed": {
 		"message": "Could not load the credential offer.",
 		"placeholders": {},
@@ -1013,7 +1020,7 @@
 		"message": "Create ZADA ID",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 169]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 197]],
 		"translation": "Create ZADA ID"
 	},
 	"menu.item.createZadaId": {
@@ -1408,7 +1415,7 @@
 		"message": "Error occurred during onboarding",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/onboarding/onboardingContext.tsx", 268]],
+		"origin": [["src/features/onboarding/onboardingContext.tsx", 312]],
 		"translation": "Error occurred during onboarding"
 	},
 	"notification.errorParsingInvitation": {
@@ -2084,7 +2091,7 @@
 		"message": "Migrate credentials",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 178]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 206]],
 		"translation": "Migrate credentials"
 	},
 	"menu.item.migrateCredentials": {
@@ -2159,7 +2166,7 @@
 		"message": "New to ZADA? Set up your ZADA ID",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 170]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 198]],
 		"translation": "New to ZADA? Set up your ZADA ID"
 	},
 	"common.no": {
@@ -2409,7 +2416,7 @@
 		"message": "Passport, driver license and more",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 191]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 219]],
 		"translation": "Passport, driver license and more"
 	},
 	"inbox.notificationType.pending": {
@@ -2459,7 +2466,7 @@
 		"message": "Pin entries do not match",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/onboarding/onboardingContext.tsx", 122]],
+		"origin": [["src/features/onboarding/onboardingContext.tsx", 129]],
 		"translation": "Pin entries do not match"
 	},
 	"common.pinRequiredToAcceptPresentation": {
@@ -2743,7 +2750,7 @@
 		"message": "Regenerate",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 103]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 99]],
 		"translation": "Regenerate"
 	},
 	"common.fields.region": {
@@ -2887,7 +2894,7 @@
 		"message": "Scan QR-code",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 216]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 244]],
 		"translation": "Scan QR-code"
 	},
 	"nfcScanner.complete.title": {
@@ -3007,7 +3014,7 @@
 		"message": "Set up your wallet",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 162]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 190]],
 		"translation": "Set up your wallet"
 	},
 	"onboarding.setupZadaId.title": {
@@ -3017,18 +3024,18 @@
 		"origin": [["src/features/onboarding/steps.ts", 42]],
 		"translation": "Set up your ZADA ID"
 	},
-	"menu.item.settings": {
-		"message": "Settings",
-		"placeholders": {},
-		"comments": ["Label for settings menu item"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 168]],
-		"translation": "Settings"
-	},
 	"settings.title": {
 		"message": "Settings",
 		"placeholders": {},
 		"comments": ["Header title for the settings screen"],
 		"origin": [["src/features/menu/FunkeSettingsScreen.tsx", 147]],
+		"translation": "Settings"
+	},
+	"menu.item.settings": {
+		"message": "Settings",
+		"placeholders": {},
+		"comments": ["Label for settings menu item"],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 168]],
 		"translation": "Settings"
 	},
 	"submission.share": {
@@ -3049,7 +3056,7 @@
 		"message": "Share PDF",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 100]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 97]],
 		"translation": "Share PDF"
 	},
 	"offlineQr.heading": {
@@ -3686,6 +3693,15 @@
 		],
 		"translation": "This card will be active in {activeDaysString}, on {0}."
 	},
+	"biometrics.notAvailableOnThisDevice": {
+		"message": "This device cannot protect your wallet with biometrics. You will unlock with your PIN.",
+		"placeholders": {},
+		"comments": [
+			"Shown when the device does not support biometry-backed key storage"
+		],
+		"origin": [["src/features/onboarding/screens/biometrics.tsx", 83]],
+		"translation": "This device cannot protect your wallet with biometrics. You will unlock with your PIN."
+	},
 	"common.featureNotSupported": {
 		"message": "This feature is not supported in this version of the app.",
 		"placeholders": {},
@@ -3875,14 +3891,7 @@
 		"message": "Try again",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 75]],
-		"translation": "Try again"
-	},
-	"passportNfc.retry": {
-		"message": "Try again",
-		"placeholders": {},
-		"comments": [],
-		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 99]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 74]],
 		"translation": "Try again"
 	},
 	"passportIssue.retry": {
@@ -3890,6 +3899,13 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [["src/features/passport/PassportFlow.tsx", 80]],
+		"translation": "Try again"
+	},
+	"passportNfc.retry": {
+		"message": "Try again",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 99]],
 		"translation": "Try again"
 	},
 	"documentCatalog.subtitle": {
@@ -4484,7 +4500,7 @@
 		"message": "Your PIN is required to unlock the app",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/app/authenticate.tsx", 104]],
+		"origin": [["src/app/authenticate.tsx", 108]],
 		"translation": "Your PIN is required to unlock the app"
 	},
 	"paradymWallet.about.description": {

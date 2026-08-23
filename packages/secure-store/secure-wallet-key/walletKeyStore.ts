@@ -1,5 +1,6 @@
 import { Platform } from 'react-native'
 import * as Keychain from 'react-native-keychain'
+import { BiometricAuthenticationError } from '../../agent/src'
 import {
   getKeychainItemById,
   type KeychainAuthenticationTypeOptions,
@@ -32,6 +33,21 @@ const walletKeyStoreBaseOptions: KeychainSetOptions & KeychainAuthenticationType
   /* Ensure wallet key is protected by biometrics. It is not possible to fallback to the device passcode if the biometric authentication failed. */
   authenticationType: Keychain.AUTHENTICATION_TYPE.BIOMETRICS,
 }
+
+/**
+ * Same options, minus the hardware-backed requirement.
+ *
+ * `securityLevel: SECURE_HARDWARE` makes react-native-keychain generate the key and then throw
+ * "Cannot generate keys with required security guarantees" whenever the resulting key is not
+ * reported as living inside secure hardware. `canUseBiometryBackedWalletKey` below already
+ * accepts SECURE_SOFTWARE devices, so demanding SECURE_HARDWARE on write contradicts the gate:
+ * the device is offered biometrics and then fails to store the key, taking onboarding with it.
+ *
+ * We still *try* hardware-backed storage first and only fall back to this, so nothing is
+ * downgraded on devices that can do it. Reads are unaffected — the Android module resolves the
+ * cipher storage from the stored entry and does not re-check the security level.
+ */
+const { securityLevel: _requireSecureHardware, ...walletKeyStoreSoftwareFallbackOptions } = walletKeyStoreBaseOptions
 
 const WALLET_KEY_ID = (version: number) => `PARADYM_WALLET_KEY_${version}`
 
@@ -84,16 +100,32 @@ async function canUseBiometryBackedWalletKey(): Promise<boolean> {
 }
 
 /**
- * Store the wallet key in hardware backed, biometric protected storage.
+ * Store the wallet key in biometric protected storage, hardware backed where the device allows it.
  *
- * Will use Secure Enclave on iOS and StrongBox/TEE on Android. If biometrics is not enabled/available,
- * or when hardware backed storage.
+ * Uses Secure Enclave on iOS and StrongBox/TEE on Android. On Android, if the keystore refuses to
+ * give us a hardware-backed key we retry once without that requirement rather than fail — see
+ * `walletKeyStoreSoftwareFallbackOptions`.
  *
  * @throws {KeychainError} if an unexpected error occurs
+ * @throws {BiometricAuthenticationError} if biometrics is cancelled or not enrolled
  */
 async function storeWalletKey(walletKey: string, version: number): Promise<void> {
   const walletKeyId = WALLET_KEY_ID(version)
-  await storeKeychainItem(walletKeyId, walletKey, walletKeyStoreBaseOptions)
+
+  try {
+    await storeKeychainItem(walletKeyId, walletKey, walletKeyStoreBaseOptions)
+  } catch (error) {
+    /**
+     * A biometric error is about the user or their enrolment, not about the storage guarantee.
+     * Retrying without the hardware requirement would not help and would hide the real reason.
+     */
+    if (error instanceof BiometricAuthenticationError) throw error
+
+    // securityLevel is an Android-only option, so there is nothing to relax on iOS.
+    if (Platform.OS !== 'android') throw error
+
+    await storeKeychainItem(walletKeyId, walletKey, walletKeyStoreSoftwareFallbackOptions)
+  }
 }
 
 /**

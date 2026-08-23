@@ -26,9 +26,12 @@ async function getWalletKeyUsingPin(pin: string, version: number) {
   return walletKey
 }
 
+/** Exported so callers can invalidate the check when the device configuration may have changed. */
+export const canUseBiometryBackedWalletKeyQueryKey = ['canUseBiometryBackedWalletKey']
+
 export function useCanUseBiometryBackedWalletKey() {
   return useQuery({
-    queryKey: ['canUseBiometryBackedWalletKey'],
+    queryKey: canUseBiometryBackedWalletKeyQueryKey,
     queryFn: () => secureWalletKey.canUseBiometryBackedWalletKey(),
   }).data
 }

@@ -171,14 +171,14 @@
 		"message": "A PDF copy of this credential.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 94]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 92]],
 		"translation": "Uma cópia em PDF desta credencial."
 	},
 	"credentials.cold.qrHint": {
 		"message": "A verifier can scan this QR to check it — even offline. Or share it as a PDF.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 86]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 84]],
 		"translation": "Um verificador pode ler este código QR para o confirmar — mesmo off-line. Ou pode partilhá-lo como PDF."
 	},
 	"offlineQr.instruction": {
@@ -231,7 +231,7 @@
 		"message": "Activate Biometrics",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/onboarding/onboardingContext.tsx", 299]],
+		"origin": [["src/features/onboarding/onboardingContext.tsx", 346]],
 		"translation": "Ativar biometria"
 	},
 	"onboarding.biometrics.subtitle": {
@@ -284,7 +284,7 @@
 		"message": "Add an official document",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 190]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 218]],
 		"translation": "Adicionar documento oficial"
 	},
 	"onboardingWalletExplanation.slide1.subtitle": {
@@ -683,7 +683,7 @@
 		"message": "Bring over credentials from the old app",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 179]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 207]],
 		"translation": "Transferir as credenciais da aplicação antiga"
 	},
 	"common.deleteDeferredCredentialDescription": {
@@ -965,6 +965,13 @@
 		"origin": [["src/features/documents/MdlFlow.tsx", 64]],
 		"translation": "Não foi possível adicionar a carta de condução. Tente novamente."
 	},
+	"onboarding.biometricsNotEnabled": {
+		"message": "Could not enable biometrics",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/onboarding/onboardingContext.tsx", 259]],
+		"translation": ""
+	},
 	"mdlFlow.offerFailed": {
 		"message": "Could not load the credential offer.",
 		"placeholders": {},
@@ -1015,7 +1022,7 @@
 		"message": "Create ZADA ID",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 169]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 197]],
 		"translation": "Criar ZADA ID"
 	},
 	"menu.item.createZadaId": {
@@ -1411,7 +1418,7 @@
 		"message": "Error occurred during onboarding",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/onboarding/onboardingContext.tsx", 268]],
+		"origin": [["src/features/onboarding/onboardingContext.tsx", 312]],
 		"translation": "Ocorreu um erro durante a integração"
 	},
 	"notification.errorParsingInvitation": {
@@ -2087,7 +2094,7 @@
 		"message": "Migrate credentials",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 178]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 206]],
 		"translation": "Migrar credenciais"
 	},
 	"menu.item.migrateCredentials": {
@@ -2163,7 +2170,7 @@
 		"message": "New to ZADA? Set up your ZADA ID",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 170]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 198]],
 		"translation": "É novo na ZADA? Configure o seu ZADA ID"
 	},
 	"common.no": {
@@ -2413,7 +2420,7 @@
 		"message": "Passport, driver license and more",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 191]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 219]],
 		"translation": "Passaporte, carta de condução e mais"
 	},
 	"inbox.notificationType.pending": {
@@ -2463,7 +2470,7 @@
 		"message": "Pin entries do not match",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/onboarding/onboardingContext.tsx", 122]],
+		"origin": [["src/features/onboarding/onboardingContext.tsx", 129]],
 		"translation": "As entradas de PIN não coincidem"
 	},
 	"common.pinRequiredToAcceptPresentation": {
@@ -2747,7 +2754,7 @@
 		"message": "Regenerate",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 103]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 99]],
 		"translation": "Gerar novamente"
 	},
 	"common.fields.region": {
@@ -2891,7 +2898,7 @@
 		"message": "Scan QR-code",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 216]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 244]],
 		"translation": "Ler código QR"
 	},
 	"nfcScanner.complete.title": {
@@ -3011,7 +3018,7 @@
 		"message": "Set up your wallet",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 162]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 190]],
 		"translation": "Configurar a sua carteira"
 	},
 	"onboarding.setupZadaId.title": {
@@ -3021,18 +3028,18 @@
 		"origin": [["src/features/onboarding/steps.ts", 42]],
 		"translation": "Configurar o seu ZADA ID"
 	},
-	"menu.item.settings": {
-		"message": "Settings",
-		"placeholders": {},
-		"comments": ["Label for settings menu item"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 168]],
-		"translation": "Configurações"
-	},
 	"settings.title": {
 		"message": "Settings",
 		"placeholders": {},
 		"comments": ["Header title for the settings screen"],
 		"origin": [["src/features/menu/FunkeSettingsScreen.tsx", 147]],
+		"translation": "Configurações"
+	},
+	"menu.item.settings": {
+		"message": "Settings",
+		"placeholders": {},
+		"comments": ["Label for settings menu item"],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 168]],
 		"translation": "Configurações"
 	},
 	"submission.share": {
@@ -3053,7 +3060,7 @@
 		"message": "Share PDF",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 100]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 97]],
 		"translation": "Partilhar PDF"
 	},
 	"offlineQr.heading": {
@@ -3690,6 +3697,15 @@
 		],
 		"translation": "Este cartão estará ativo em {activeDaysString}, em {0}."
 	},
+	"biometrics.notAvailableOnThisDevice": {
+		"message": "This device cannot protect your wallet with biometrics. You will unlock with your PIN.",
+		"placeholders": {},
+		"comments": [
+			"Shown when the device does not support biometry-backed key storage"
+		],
+		"origin": [["src/features/onboarding/screens/biometrics.tsx", 83]],
+		"translation": ""
+	},
 	"common.featureNotSupported": {
 		"message": "This feature is not supported in this version of the app.",
 		"placeholders": {},
@@ -3879,14 +3895,7 @@
 		"message": "Try again",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 75]],
-		"translation": "Tentar novamente"
-	},
-	"passportNfc.retry": {
-		"message": "Try again",
-		"placeholders": {},
-		"comments": [],
-		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 99]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 74]],
 		"translation": "Tentar novamente"
 	},
 	"passportIssue.retry": {
@@ -3894,6 +3903,13 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [["src/features/passport/PassportFlow.tsx", 80]],
+		"translation": "Tentar novamente"
+	},
+	"passportNfc.retry": {
+		"message": "Try again",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 99]],
 		"translation": "Tentar novamente"
 	},
 	"documentCatalog.subtitle": {
@@ -4488,7 +4504,7 @@
 		"message": "Your PIN is required to unlock the app",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/app/authenticate.tsx", 104]],
+		"origin": [["src/app/authenticate.tsx", 108]],
 		"translation": "O seu PIN é necessário para desbloquear a aplicação"
 	},
 	"paradymWallet.about.description": {
