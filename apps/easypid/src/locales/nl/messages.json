@@ -969,7 +969,7 @@
 		"message": "Could not enable biometrics",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/onboarding/onboardingContext.tsx", 259]],
+		"origin": [["src/features/onboarding/onboardingContext.tsx", 254]],
 		"translation": ""
 	},
 	"mdlFlow.offerFailed": {
@@ -2470,7 +2470,7 @@
 		"message": "Pin entries do not match",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/onboarding/onboardingContext.tsx", 129]],
+		"origin": [["src/features/onboarding/onboardingContext.tsx", 124]],
 		"translation": "Pincodes komen niet overeen"
 	},
 	"common.pinRequiredToAcceptPresentation": {
@@ -2819,18 +2819,18 @@
 		"origin": [["../../packages/translations/src/commonMessages.ts", 61]],
 		"translation": "Wallet resetten"
 	},
-	"signShare.title": {
-		"message": "Review the request",
-		"placeholders": {},
-		"comments": ["Main heading in the sign & share screen"],
-		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 72]],
-		"translation": "Bekijk het verzoek"
-	},
 	"submission.reviewTitle": {
 		"message": "Review the request",
 		"placeholders": {},
 		"comments": ["Heading shown at the top of the share credentials screen"],
 		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 61]],
+		"translation": "Bekijk het verzoek"
+	},
+	"signShare.title": {
+		"message": "Review the request",
+		"placeholders": {},
+		"comments": ["Main heading in the sign & share screen"],
+		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 72]],
 		"translation": "Bekijk het verzoek"
 	},
 	"common.revoked": {
@@ -3898,18 +3898,18 @@
 		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 74]],
 		"translation": "Probeer opnieuw"
 	},
-	"passportIssue.retry": {
-		"message": "Try again",
-		"placeholders": {},
-		"comments": [],
-		"origin": [["src/features/passport/PassportFlow.tsx", 80]],
-		"translation": "Probeer opnieuw"
-	},
 	"passportNfc.retry": {
 		"message": "Try again",
 		"placeholders": {},
 		"comments": [],
 		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 99]],
+		"translation": "Probeer opnieuw"
+	},
+	"passportIssue.retry": {
+		"message": "Try again",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/passport/PassportFlow.tsx", 80]],
 		"translation": "Probeer opnieuw"
 	},
 	"documentCatalog.subtitle": {
@@ -4350,18 +4350,18 @@
 		],
 		"translation": "Je hebt de gevraagde kaart(en) niet."
 	},
-	"signShare.missingCards": {
-		"message": "You don't have the required cards",
-		"placeholders": {},
-		"comments": ["Shown when the user lacks the required credentials"],
-		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 180]],
-		"translation": "Je hebt niet de vereiste kaarten"
-	},
 	"submission.missingCardsWarning": {
 		"message": "You don't have the required cards",
 		"placeholders": {},
 		"comments": ["Shown when user lacks required credentials"],
 		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 130]],
+		"translation": "Je hebt niet de vereiste kaarten"
+	},
+	"signShare.missingCards": {
+		"message": "You don't have the required cards",
+		"placeholders": {},
+		"comments": ["Shown when the user lacks the required credentials"],
+		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 180]],
 		"translation": "Je hebt niet de vereiste kaarten"
 	},
 	"pinLocked.description": {
@@ -4506,6 +4506,13 @@
 		"comments": [],
 		"origin": [["src/app/authenticate.tsx", 108]],
 		"translation": "Je pincode is vereist om de app te ontgrendelen"
+	},
+	"onboarding.biometricsNotEnabledDescription": {
+		"translation": "",
+		"message": "Your wallet is still protected by your PIN. You can try again in Settings.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/onboarding/onboardingContext.tsx", 261]]
 	},
 	"paradymWallet.about.description": {
 		"message": "ZADA is a digital identity technology company focused on enabling secure and privacy-preserving access to digital services. Our goal is to help individuals and organizations interact digitally with greater trust, while minimizing fraud and unnecessary data exposure.\n\nWith ZADA, users remain in control of their personal data and can choose what information to share, with whom, and for what purpose.\n\nThis application is based on open-source software and includes components developed by Animo Solutions and other contributors, licensed under the Apache License, Version 2.0. ZADA Network has modified and extended this software as part of its implementation.\n\nUnless otherwise stated, the software is provided “as is,” without warranties or conditions of any kind.\n\nZADA supports an ecosystem approach to digital identity, enabling trusted and reusable interactions across services.\n",
