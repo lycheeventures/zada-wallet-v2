@@ -36,9 +36,28 @@ class PassportNfcModule : Module() {
   private var request: Triple<String, String, String>? = null
 
   init {
-    // jMRTD relies on the SpongyCastle (BouncyCastle-for-Android) provider for several algorithms.
+    /**
+     * jMRTD relies on the SpongyCastle (BouncyCastle-for-Android) provider for several algorithms
+     * that no platform provider offers (ISO 9796-2 signatures, some PACE/BAC primitives).
+     *
+     * Register it LAST. It used to go in at `insertProviderAt(..., 1)`, which put it ahead of
+     * `AndroidKeyStoreBCWorkaround` for the whole process — this module is constructed at app
+     * start, so it applied whether or not anyone ever scanned a passport.
+     *
+     * That single line broke every biometric unlock on Android. react-native-keychain's RSA
+     * storage resolves `Cipher.getInstance("RSA/ECB/PKCS1Padding")` to whichever provider ranks
+     * first. SpongyCastle's `CipherSpi.engineInit` accepts only `RSAPublicKey`,
+     * `RSAPrivateCrtKey` or `RSAPrivateKey`, and otherwise throws
+     * `InvalidKeyException("unknown key type passed to RSA")`. Storing the wallet key worked,
+     * because keychain encrypts with a re-derived *plain* `RSAPublicKey`. Reading it back never
+     * did, because `AndroidKeyStoreRSAPrivateKey` is opaque — it implements `RSAKey` but not
+     * `RSAPrivateKey`, so it fell straight through to that throw.
+     *
+     * Appending keeps the algorithms jMRTD needs (it is still the only provider offering them,
+     * and it stays resolvable by name) while leaving AndroidKeyStore keys to the platform.
+     */
     try {
-      Security.insertProviderAt(org.spongycastle.jce.provider.BouncyCastleProvider(), 1)
+      Security.addProvider(org.spongycastle.jce.provider.BouncyCastleProvider())
     } catch (_: Throwable) {}
   }
 
