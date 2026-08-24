@@ -20,12 +20,7 @@ import type React from 'react'
 import { createContext, type PropsWithChildren, useCallback, useContext, useEffect, useState } from 'react'
 import { Linking } from 'react-native'
 import { useHasFinishedOnboarding } from './hasFinishedOnboarding'
-import {
-  clearLastOnboardingError,
-  describeError,
-  type OnboardingErrorStep,
-  recordOnboardingError,
-} from './onboardingError'
+import { clearLastOnboardingError, type OnboardingErrorStep, recordOnboardingError } from './onboardingError'
 import { onboardingSteps } from './steps'
 
 export type OnboardingContext = {
@@ -261,7 +256,12 @@ export function OnboardingContextProvider({
           message: 'Could not enable biometrics',
         }),
         {
-          message: describeError(error),
+          // Plain language only. The full technical reason is recorded above and travels with
+          // the support chat — it does not belong in front of the user.
+          message: t({
+            id: 'onboarding.biometricsNotEnabledDescription',
+            message: 'Your wallet is still protected by your PIN. You can try again in Settings.',
+          }),
           customData: { preset: 'danger' },
         }
       )
@@ -314,9 +314,9 @@ export function OnboardingContextProvider({
           message: 'Error occurred during onboarding',
         }),
         {
-          // Show the actual reason when we have one — "Please try again" on a device that will
-          // fail the same way every time is what left us with nothing to triage.
-          message: toastMessage ?? (error ? describeError(error) : t(commonMessages.pleaseTryAgain)),
+          // The reason goes to `recordOnboardingError`, not to the user. Raw exception text in a
+          // digital identity app reads as broken, and every Android user hits this today.
+          message: toastMessage ?? t(commonMessages.pleaseTryAgain),
           customData: {
             preset: 'danger',
           },
