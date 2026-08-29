@@ -219,6 +219,22 @@ export const VerifyPartySlide = ({
               })}
               onPress={onPressVerifiedIssuer}
             />
+          ) : trustMechanism === 'zada_unavailable' ? (
+            // We could not reach the ZADA trust registry and the copy on this device is too old to
+            // rely on, so we do not know whether this party is a member. Saying "not verified" here
+            // would be a claim we cannot support — this state says what is actually true.
+            <InfoButton
+              variant="warning"
+              title={t({
+                id: 'verifyPartySlide.zadaUnavailableTitle',
+                message: 'Could not check with ZADA',
+              })}
+              description={t({
+                id: 'verifyPartySlide.zadaUnavailableDescription',
+                message: 'No connection to the ZADA Trust Registry, so this organisation could not be confirmed',
+              })}
+              onPress={onPressVerifiedIssuer}
+            />
           ) : (
             <InfoButton
               variant="warning"

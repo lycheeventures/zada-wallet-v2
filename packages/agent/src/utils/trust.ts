@@ -1,6 +1,11 @@
 import { X509Certificate, X509ModuleConfig } from '@credo-ts/core'
 import type { OpenId4VciResolvedCredentialOffer, OpenId4VpResolvedAuthorizationRequest } from '@credo-ts/openid4vc'
-import { getTrustRegistryEntriesByIssuer, getZadaTrustRegistryIssuers } from '@easypid/services/api'
+import {
+  getZadaRegistryIssuerByUrl,
+  getZadaRegistryIssuers,
+  isZadaRegistryStale,
+  rewriteZadaAssetUrl,
+} from '@easypid/services/zadaRegistry'
 import type {
   EitherAgent,
   TrustedDidEntity,
@@ -26,6 +31,12 @@ export type TrustMechanism =
   // metadata was NOT cryptographically signed (no x5c to chain to a registered certificate). This is
   // a weaker, registry-listing-only trust signal and MUST be surfaced distinctly from 'x509'/'did'.
   | 'zada_registry'
+  // ZADA: we could NOT check. The party is not in the registry data on this device AND that data is
+  // stale (the registry has been unreachable for longer than the staleness window — in Myanmar it is
+  // blocked outright). Distinct from 'none' because "we couldn't confirm" and "this party is not in
+  // the registry" are different statements, and the wallet must not make the second one when only
+  // the first is true.
+  | 'zada_unavailable'
   | 'none'
 
 export type TrustList = TrustedEntity & {
@@ -513,18 +524,18 @@ const getTrustedEntitiesForX509Certificate = async ({
 export const getZadaRegistryAnchorsForIssuer = async (issuer?: string): Promise<string[]> => {
   if (!issuer) return []
 
-  let result: Awaited<ReturnType<typeof getTrustRegistryEntriesByIssuer>>
+  // Reads the offline-capable registry store (memory → MMKV cache → bundled snapshot), so this
+  // keeps working where the registry endpoint is unreachable. That matters more here than anywhere
+  // else: credo calls this while verifying an issuer's SIGNED metadata and throws hard when no
+  // anchor comes back, which means a failed lookup does not merely weaken a badge — it makes
+  // adding a credential fail outright.
   try {
-    result = await getTrustRegistryEntriesByIssuer(issuer)
+    const org = await getZadaRegistryIssuerByUrl(issuer)
+    return org?.x509_certificate ? [org.x509_certificate] : []
   } catch (error) {
     console.error('ZADA trust registry lookup failed:', error)
     return []
   }
-
-  const org = result?.trusted ? result.org : null
-  if (!org) return []
-
-  return (org.certificates ?? (org.certificate ? [org.certificate] : [])).filter(Boolean) as string[]
 }
 
 export const resolveZadaTrustFromX5c = async ({
@@ -546,17 +557,16 @@ export const resolveZadaTrustFromX5c = async ({
   // No issuer or no x5c chain → no trust (a self-asserted issuer URL alone proves nothing).
   if (!issuer || !x5c?.length) return untrusted
 
-  // 1. Look up the registry entry — including the certificate(s) ZADA published for this issuer.
-  let result: Awaited<ReturnType<typeof getTrustRegistryEntriesByIssuer>>
+  // 1. Look up the registry entry — including the certificate ZADA published for this issuer.
+  let org: Awaited<ReturnType<typeof getZadaRegistryIssuerByUrl>>
   try {
-    result = await getTrustRegistryEntriesByIssuer(issuer)
+    org = await getZadaRegistryIssuerByUrl(issuer)
   } catch (error) {
     console.error('ZADA trust registry lookup failed:', error)
     return untrusted // fail closed
   }
 
-  const org = result?.trusted ? result.org : null
-  const anchors = (org?.certificates ?? (org?.certificate ? [org.certificate] : [])).filter(Boolean) as string[]
+  const anchors = (org?.x509_certificate ? [org.x509_certificate] : []).filter(Boolean) as string[]
   if (!org || anchors.length === 0) return untrusted
 
   // 2. THE GATE: validate the presented x5c chain against the certificate(s) from the registry.
@@ -573,11 +583,10 @@ export const resolveZadaTrustFromX5c = async ({
   // 3. Cryptographically verified. Now (and only now) enrich the display from the registry.
   const trustedEntities: TrustedEntity[] = [
     {
-      entityId: org.id ?? issuer,
+      entityId: org.org_id ?? issuer,
       organizationName: org.name ?? 'Unknown',
-      // NB: RPC returns logo_uri / primary_logo_url — the old code read org.logo_url (always undefined).
-      logoUri: org.logo_uri || org.primary_logo_url || undefined,
-      uri: org.website || undefined,
+      logoUri: rewriteZadaAssetUrl(org.logo_url),
+      uri: org.credential_issuer_url ?? undefined,
       demo: org.demo ?? false,
     },
   ]
@@ -610,23 +619,22 @@ export const resolveZadaRegistryListing = async ({
   const untrusted = { trustedEntities: [] as TrustedEntity[], trustMechanism: 'none' as TrustMechanism }
   if (!issuer) return untrusted
 
-  let result: Awaited<ReturnType<typeof getTrustRegistryEntriesByIssuer>>
+  let org: Awaited<ReturnType<typeof getZadaRegistryIssuerByUrl>>
   try {
-    result = await getTrustRegistryEntriesByIssuer(issuer)
+    org = await getZadaRegistryIssuerByUrl(issuer)
   } catch (error) {
     console.error('ZADA trust registry lookup failed:', error)
     return untrusted // fail closed
   }
 
-  const org = result?.trusted ? result.org : null
   if (!org) return untrusted
 
   const trustedEntities: TrustedEntity[] = [
     {
-      entityId: org.id ?? issuer,
+      entityId: org.org_id ?? issuer,
       organizationName: org.name ?? 'Unknown',
-      logoUri: org.logo_uri || org.primary_logo_url || undefined,
-      uri: org.website || undefined,
+      logoUri: rewriteZadaAssetUrl(org.logo_url),
+      uri: org.credential_issuer_url ?? undefined,
       demo: org.demo ?? false,
     },
   ]
@@ -658,9 +666,9 @@ export const resolveZadaVerifierTrustFromX5c = async ({
   // No x5c → nothing to verify cryptographically (a self-asserted client_id proves nothing).
   if (!x5c?.length) return null
 
-  let issuers: Awaited<ReturnType<typeof getZadaTrustRegistryIssuers>>
+  let issuers: Awaited<ReturnType<typeof getZadaRegistryIssuers>>
   try {
-    issuers = await getZadaTrustRegistryIssuers()
+    issuers = await getZadaRegistryIssuers()
   } catch (error) {
     console.error('ZADA trust registry list lookup failed:', error)
     return null // fail closed
@@ -685,7 +693,7 @@ export const resolveZadaVerifierTrustFromX5c = async ({
       {
         entityId: org.org_id,
         organizationName: org.name ?? 'Unknown',
-        logoUri: org.logo_url || undefined,
+        logoUri: rewriteZadaAssetUrl(org.logo_url),
         uri: org.credential_issuer_url || undefined,
         demo: org.demo ?? false,
       },
@@ -693,6 +701,14 @@ export const resolveZadaVerifierTrustFromX5c = async ({
     if (walletTrustedEntity) trustedEntities.push(walletTrustedEntity)
 
     return { trustedEntities, trustMechanism: 'zada_x509' }
+  }
+
+  // Nothing matched. Two very different situations hide behind that, and they must not look the
+  // same to the user: either this party genuinely is not a ZADA member, or our copy of the
+  // registry is too old to say (the registry has been unreachable — in Myanmar it is blocked
+  // outright). Report the second honestly instead of asserting the first.
+  if (isZadaRegistryStale()) {
+    return { trustedEntities: [], trustMechanism: 'zada_unavailable' }
   }
 
   return null // no published certificate matched → not a recognised ZADA verifier
