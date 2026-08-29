@@ -1,0 +1,181 @@
+{
+	"generated_at": "2026-08-29T07:43:48.289Z",
+	"issuers": [
+		{
+			"org_id": "14a28ede-b3b7-4e7f-9cf5-2798f1d138e8",
+			"name": "Ar Yu International Hospital",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/14a28ede-b3b7-4e7f-9cf5-2798f1d138e8/primary-logo.jpg",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/5c242fe2-e4eb-45be-b5ae-02ea5890e616",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICLDCCAdKgAwIBAgIQRbxVPV1iRJg1y+frtMXErTAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzEzMTQxODI2WhcNMjgwNzEyMTQxODI2WjA+MSUw\nIwYDVQQDExxBciBZdSBJbnRlcm5hdGlvbmFsIEhvc3BpdGFsMRUwEwYDVQQKEwxa\nQURBIE5ldHdvcmswWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASiGRRR0U8PnA6A\nVeEuCPeB158JlMducJcAyjGED5y6IZYc9CiiaGfKA+gk14waWK3adjCPwMZ7nWML\ncxKzW/Bio4GxMIGuMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQDAgeAMBMGA1Ud\nJQQMMAoGCCsGAQUFBwMkMB0GA1UdDgQWBBT9tYBSEjZBGtRE3kJvvoggf7x6OTAf\nBgNVHSMEGDAWgBSa3DYc6tlNS/cxgGccQJmPRYbCDDA5BgNVHREEMjAwghJjb3Jl\nLWFnZW50LmhvdmkuaWSGGmh0dHBzOi8vY29yZS1hZ2VudC5ob3ZpLmlkMAoGCCqG\nSM49BAMCA0gAMEUCIQCuqGEkULO5n2zCP7NE4tW4KUiu55wPJBolPaFK4nxweQIg\nSfiPwYZ2/u9yX6ygB1J7lYtKEM7nUuizKt9TsWaFnuw=\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "45ae0b93-dc43-4eca-8989-8339323d1f93",
+			"name": "Centrum Yangon Clinic",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/45ae0b93-dc43-4eca-8989-8339323d1f93/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/f968128b-fbe1-4d46-aa30-f0ab9b5395e5",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICJDCCAcugAwIBAgIQB2BhuZTBHzWUInO8dgTbxzAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzEzMTY1NzA2WhcNMjgwNzEyMTY1NzA2WjA3MR4w\nHAYDVQQDExVDZW50cnVtIFlhbmdvbiBDbGluaWMxFTATBgNVBAoTDFpBREEgTmV0\nd29yazBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABNOk7f7AWhBcL17rlNm0kyg4\njo1dku/IkWLRrA37DwP0IGPslDNMlfVf9W443WzzabhDZ8pHWk9Ghj3YIZhN+Uij\ngbEwga4wDAYDVR0TAQH/BAIwADAOBgNVHQ8BAf8EBAMCB4AwEwYDVR0lBAwwCgYI\nKwYBBQUHAyQwHQYDVR0OBBYEFIp73JPHr5eynv8PZ4tzoIEoekSYMB8GA1UdIwQY\nMBaAFJrcNhzq2U1L9zGAZxxAmY9FhsIMMDkGA1UdEQQyMDCCEmNvcmUtYWdlbnQu\naG92aS5pZIYaaHR0cHM6Ly9jb3JlLWFnZW50LmhvdmkuaWQwCgYIKoZIzj0EAwID\nRwAwRAIgEMTSb4f033Vt5TUtHFwG7dyQM5P+u1tZyDNjdjVq9P8CIChz3x+abA+d\n7a1+R5kqx3EcsHYah8EuFB1hbgHU5MRq\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "2fb1269e-5d4f-4292-ad2b-71244004bfcd",
+			"name": "Dr. Vaccine Immunization Clinic",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/2fb1269e-5d4f-4292-ad2b-71244004bfcd/primary-logo.jpg",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/d78fa1c7-355d-4a40-ad27-b400efe3d16c",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICLzCCAdWgAwIBAgIQNTao6bWi8djzTFCEWTdI1TAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzA0MTkxNDQxWhcNMjgwNzAzMTkxNDQxWjBBMSgw\nJgYDVQQDEx9Eci4gVmFjY2luZSBJbW11bml6YXRpb24gQ2xpbmljMRUwEwYDVQQK\nEwxaQURBIE5ldHdvcmswWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAQh3lHDpSwd\n65wDBTEYk4B3GsiokpvFQNAOA4W2om4Mc1PGdyxgxgXNa9+9VW42ilX3IEpR8sku\naIn8V2aFbdXqo4GxMIGuMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQDAgeAMBMG\nA1UdJQQMMAoGCCsGAQUFBwMkMB0GA1UdDgQWBBSwJqG9hi9unsLt3pX55kRv5MwO\ncTAfBgNVHSMEGDAWgBSa3DYc6tlNS/cxgGccQJmPRYbCDDA5BgNVHREEMjAwghJj\nb3JlLWFnZW50LmhvdmkuaWSGGmh0dHBzOi8vY29yZS1hZ2VudC5ob3ZpLmlkMAoG\nCCqGSM49BAMCA0gAMEUCIQCSZ1/RuOR1irCB+itDyRxsHiHvVSa/3oVKr/CB2RM3\nfQIgSScqJITGzWnr4/XHV4qcr2HKiqBRxSrM6F4Vnt+JFSQ=\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "be29b352-5eab-444e-bf8c-b640c79f0cf5",
+			"name": "Flymya Tech Company Limited",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/be29b352-5eab-444e-bf8c-b640c79f0cf5/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/71e86fd6-f10e-498a-8dfc-3cbbee52246c",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICKjCCAdGgAwIBAgIQBVo6yLEcfktk0TfsiL1T0jAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzE0MTcwNzA4WhcNMjgwNzEzMTcwNzA4WjA9MSQw\nIgYDVQQDExtGbHlteWEgVGVjaCBDb21wYW55IExpbWl0ZWQxFTATBgNVBAoTDFpB\nREEgTmV0d29yazBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABInFjcppIwhYWSd1\nZdhWqCF9Kyt1oN6O2QU9mbdI22PXQ2WtMbuSiBvTNAWXHXq52bTFeP4WVfJNALTA\nZalqDKWjgbEwga4wDAYDVR0TAQH/BAIwADAOBgNVHQ8BAf8EBAMCB4AwEwYDVR0l\nBAwwCgYIKwYBBQUHAyQwHQYDVR0OBBYEFAgVDV1AyIGfYBgCOTRpZBzvk4pqMB8G\nA1UdIwQYMBaAFJrcNhzq2U1L9zGAZxxAmY9FhsIMMDkGA1UdEQQyMDCCEmNvcmUt\nYWdlbnQuaG92aS5pZIYaaHR0cHM6Ly9jb3JlLWFnZW50LmhvdmkuaWQwCgYIKoZI\nzj0EAwIDRwAwRAIgPppJEvdxYq24eBZR3ibVqw+NWRBIBS62MDPVXfaaJXMCIE/L\nMK9VrkyF4fPoVKyPEAM0Rq4Eo/tGTUgfxvu4ZLyC\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "cbe0fea3-371d-45fb-9665-f99bcc8cf171",
+			"name": "MMDoc",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/cbe0fea3-371d-45fb-9665-f99bcc8cf171/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/981b7ad5-eac8-4ad5-92a6-3e3ac05912a6",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICFTCCAbugAwIBAgIQXmicsljrTqqa3MbhVSFr5zAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzEzMTc0NDMyWhcNMjgwNzEyMTc0NDMyWjAnMQ4w\nDAYDVQQDEwVNTURvYzEVMBMGA1UEChMMWkFEQSBOZXR3b3JrMFkwEwYHKoZIzj0C\nAQYIKoZIzj0DAQcDQgAEHKSZrSlZvbB2xUJ6/kJ0d8lEC7c8ODd87CrLzr8nJDo5\nkGYK18FrHFUfCGx+pO+pgo09aL09ebXyUZnS+a/95qOBsTCBrjAMBgNVHRMBAf8E\nAjAAMA4GA1UdDwEB/wQEAwIHgDATBgNVHSUEDDAKBggrBgEFBQcDJDAdBgNVHQ4E\nFgQUMlJP153nIezL5At3AM6OhsD6WzMwHwYDVR0jBBgwFoAUmtw2HOrZTUv3MYBn\nHECZj0WGwgwwOQYDVR0RBDIwMIISY29yZS1hZ2VudC5ob3ZpLmlkhhpodHRwczov\nL2NvcmUtYWdlbnQuaG92aS5pZDAKBggqhkjOPQQDAgNIADBFAiAKqZEb0G5KhSk7\nLk445Cu1PDxRiZxENf4jerSHmYYvmQIhAM9WtPujhn/+gkFTd4P5/oB9Lt8kMIRR\nP14YYkTmo2t9\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "1ea66415-1d44-40d1-a72b-b8ab62b9c9ef",
+			"name": "MYANMORE",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/1ea66415-1d44-40d1-a72b-b8ab62b9c9ef/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/6b2eb17e-cd6a-4641-9c00-618979b9a0ca",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICFzCCAb6gAwIBAgIQN0b/Ul5EP1raCEkhzGje0TAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwODI4MDQ0NjMyWhcNMjgwODI3MDQ0NjMyWjAqMREw\nDwYDVQQDEwhNWUFOTU9SRTEVMBMGA1UEChMMWkFEQSBOZXR3b3JrMFkwEwYHKoZI\nzj0CAQYIKoZIzj0DAQcDQgAEvdVrvZE7dFodH7wZzlbkSE04srf6Euti8JyedFI3\nZ8Qwn40ofJ+MOO41qN+I8y+mZlRmh1Uj4+Uhe08diQVAPKOBsTCBrjAMBgNVHRMB\nAf8EAjAAMA4GA1UdDwEB/wQEAwIHgDATBgNVHSUEDDAKBggrBgEFBQcDJDAdBgNV\nHQ4EFgQU6+bHdaIbp5IkPdgX0WDGJRMTveEwHwYDVR0jBBgwFoAUmtw2HOrZTUv3\nMYBnHECZj0WGwgwwOQYDVR0RBDIwMIISY29yZS1hZ2VudC5ob3ZpLmlkhhpodHRw\nczovL2NvcmUtYWdlbnQuaG92aS5pZDAKBggqhkjOPQQDAgNHADBEAiBxyMAr3dsR\nTUWhxZ85hRYeichKv7vLCW4KxQNUYgnu1AIgaxqPqpEdrr2Row7xIgipGc7gilKo\nlln/IYAMRI/lnUk=\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "5ad14cad-eb02-44d1-986d-b24ebcbe43e0",
+			"name": "MakerXSpace",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/5ad14cad-eb02-44d1-986d-b24ebcbe43e0/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/0c55c03e-3a9a-4f4b-a1fd-408f70a2aefd",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICGzCCAcGgAwIBAgIQN3GfSXi1ws5DwxFkBjchejAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwODI4MDY0ODUwWhcNMjgwODI3MDY0ODUwWjAtMRQw\nEgYDVQQDEwtNYWtlclhTcGFjZTEVMBMGA1UEChMMWkFEQSBOZXR3b3JrMFkwEwYH\nKoZIzj0CAQYIKoZIzj0DAQcDQgAETYhTfwSztiXJgZGSuezsBMcPHEHF205itBFP\nvaKbkV7ixQ3vAWiEQ/KteNcNoOmWwrzMzaVOfeuBsUst+1+V06OBsTCBrjAMBgNV\nHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIHgDATBgNVHSUEDDAKBggrBgEFBQcDJDAd\nBgNVHQ4EFgQUKv/0to9b7IFRXvgwHw0vzZb6+nYwHwYDVR0jBBgwFoAUmtw2HOrZ\nTUv3MYBnHECZj0WGwgwwOQYDVR0RBDIwMIISY29yZS1hZ2VudC5ob3ZpLmlkhhpo\ndHRwczovL2NvcmUtYWdlbnQuaG92aS5pZDAKBggqhkjOPQQDAgNIADBFAiAIFVUA\nJUy56rWKNYpccOMLwFgG2VFoPM5QF6CZNluKXQIhAIESckouuTeVdAdF05eGf0YH\nvJrpRaQb+zXZQw+VHXPL\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "7eb5d6d9-91a5-4d67-83e6-b0cebae8c8e8",
+			"name": "Myanmar Certified Training Centers",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/7eb5d6d9-91a5-4d67-83e6-b0cebae8c8e8/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/5df80ab8-fa4e-4ec9-9924-24622af2542e",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICMTCCAdigAwIBAgIQLeKDRSCYZjbP0ACn8ltg6zAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzE1MDgwMTE5WhcNMjgwNzE0MDgwMTE5WjBEMSsw\nKQYDVQQDEyJNeWFubWFyIENlcnRpZmllZCBUcmFpbmluZyBDZW50ZXJzMRUwEwYD\nVQQKEwxaQURBIE5ldHdvcmswWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAQTvofE\nZI9z6eTOl0wv4U9sp8ITGVCcMHxRwQLG+dQqk7Y6LtyXa80V4rw3Eml5V3KCZJZm\nHoujW+JZHgG9wTTXo4GxMIGuMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQDAgeA\nMBMGA1UdJQQMMAoGCCsGAQUFBwMkMB0GA1UdDgQWBBSjikTAYir8zKEaGdyb2ltN\ngzq8mTAfBgNVHSMEGDAWgBSa3DYc6tlNS/cxgGccQJmPRYbCDDA5BgNVHREEMjAw\nghJjb3JlLWFnZW50LmhvdmkuaWSGGmh0dHBzOi8vY29yZS1hZ2VudC5ob3ZpLmlk\nMAoGCCqGSM49BAMCA0cAMEQCIBYQEN0+JoSn9TgDGVCKp6Lxgt2t8EjacJD391Ue\n2N8IAiA0qr9zB/P1eRc2zC+rvp2rRwuPZVENiYPQ8KW4B4Sq+A==\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "7f005d32-8043-4866-bb52-c110a28f8694",
+			"name": "Myanmar Seafarers Federation",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/7f005d32-8043-4866-bb52-c110a28f8694/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/ed219eec-79f6-49a0-aebe-9a0ac3636b9c",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICLTCCAdKgAwIBAgIQKLJx7iC+kgQuY4vgq7WDWjAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzAyMTkyODMyWhcNMjgwNzAxMTkyODMyWjA+MSUw\nIwYDVQQDExxNeWFubWFyIFNlYWZhcmVycyBGZWRlcmF0aW9uMRUwEwYDVQQKEwxa\nQURBIE5ldHdvcmswWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASBMT+otZqLCKyY\n7gvR9aotKMAeYIFHcfQqIKysp3k5vBTANKYH6gQdEJD6DEY+2G8nl82dJWfBIDWM\nFOpqCOn8o4GxMIGuMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQDAgeAMBMGA1Ud\nJQQMMAoGCCsGAQUFBwMkMB0GA1UdDgQWBBQTCH5MEqPZuT4xU9RF8bwO55vd9jAf\nBgNVHSMEGDAWgBSa3DYc6tlNS/cxgGccQJmPRYbCDDA5BgNVHREEMjAwghJjb3Jl\nLWFnZW50LmhvdmkuaWSGGmh0dHBzOi8vY29yZS1hZ2VudC5ob3ZpLmlkMAoGCCqG\nSM49BAMCA0kAMEYCIQCsj2JVfykVA1cwLlUdozHtpB1jGiJADEYZqqJMNoex1QIh\nAIhiB0mdKjE3wIRsuszlbmjeH2JxlhGP7kVpY2t5ja4Z\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "b8fe9869-97ff-4b17-9522-6b1571f20b58",
+			"name": "Nan Da Wun Health Care Center",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/b8fe9869-97ff-4b17-9522-6b1571f20b58/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/4422812d-9562-4c35-b8de-760a6defa097",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICLTCCAdOgAwIBAgIQI5P41NMRRxKSRsDqeDBWPDAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzEzMTc0NTI1WhcNMjgwNzEyMTc0NTI1WjA/MSYw\nJAYDVQQDEx1OYW4gRGEgV3VuIEhlYWx0aCBDYXJlIENlbnRlcjEVMBMGA1UEChMM\nWkFEQSBOZXR3b3JrMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEtENoJW/TI/sk\nvN35gBgYxmMk68xamXaf7UZDRIoBI3z94loEKVQmTqyr+6a1+RXdyMgXXng3kUNS\nm9PH5jG45KOBsTCBrjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIHgDATBgNV\nHSUEDDAKBggrBgEFBQcDJDAdBgNVHQ4EFgQUWhvjdCxQxqz0ckOpSLxrz2zO7Agw\nHwYDVR0jBBgwFoAUmtw2HOrZTUv3MYBnHECZj0WGwgwwOQYDVR0RBDIwMIISY29y\nZS1hZ2VudC5ob3ZpLmlkhhpodHRwczovL2NvcmUtYWdlbnQuaG92aS5pZDAKBggq\nhkjOPQQDAgNIADBFAiB8BNYs7YB2oUtrIxCd/v4ZGM1ginHCs4Mk/T/Q3lGA7QIh\nAJ3dB8CeWReUKoDxTYymRL5L1DT7+uoxOPMB6FP3icTk\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "8a50232f-7ae4-418b-9a98-9447e4347f23",
+			"name": "Novel Heart Care",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/8a50232f-7ae4-418b-9a98-9447e4347f23/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/d635d232-e5bc-4af3-885b-04af067a40e6",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICITCCAcagAwIBAgIQaGK+1vtOevjcE4xMiJ3mTzAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzEzMTc0NTU1WhcNMjgwNzEyMTc0NTU1WjAyMRkw\nFwYDVQQDExBOb3ZlbCBIZWFydCBDYXJlMRUwEwYDVQQKEwxaQURBIE5ldHdvcmsw\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAR5Ee3v1fHgBp4Qox5POwFGJ6ORvzhX\nT8x35dJ+PmIxlILDD0X9/W/uze6evCszTCbYfc43amxjPIdO3l26WJZuo4GxMIGu\nMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUF\nBwMkMB0GA1UdDgQWBBRSCLuE8dJmkFIUsXkUE1MKl3OcXjAfBgNVHSMEGDAWgBSa\n3DYc6tlNS/cxgGccQJmPRYbCDDA5BgNVHREEMjAwghJjb3JlLWFnZW50Lmhvdmku\naWSGGmh0dHBzOi8vY29yZS1hZ2VudC5ob3ZpLmlkMAoGCCqGSM49BAMCA0kAMEYC\nIQDXgi1KzqOt5EFgb5aFJDa+M2aSuXBnNzOYzc8FD2969QIhAIMq71F7Peoeoi0s\nCFEOodLJCgrKlUYL7X49O6y+Wg+l\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "451c16f7-9133-4bb9-9916-010890cfb434",
+			"name": "Parami General Hospital",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/451c16f7-9133-4bb9-9916-010890cfb434/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/a181e20a-bde4-4cc7-a269-5cba8c22036e",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICJzCCAc2gAwIBAgIQPMyhXBoxZ0s7IOvAICPy4DAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzEzMTc0NjQ1WhcNMjgwNzEyMTc0NjQ1WjA5MSAw\nHgYDVQQDExdQYXJhbWkgR2VuZXJhbCBIb3NwaXRhbDEVMBMGA1UEChMMWkFEQSBO\nZXR3b3JrMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAERVShsS0iz65mHo5/jBwi\nsP5tHZ2lkvpw32vdTib9UfyfaLoJpC1jPUz+oGU/Q8rqhMC5T3ns3g3T2MLL6zR7\n9KOBsTCBrjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIHgDATBgNVHSUEDDAK\nBggrBgEFBQcDJDAdBgNVHQ4EFgQUNgSvEX492peKKIa4C8fV9FbmXdswHwYDVR0j\nBBgwFoAUmtw2HOrZTUv3MYBnHECZj0WGwgwwOQYDVR0RBDIwMIISY29yZS1hZ2Vu\ndC5ob3ZpLmlkhhpodHRwczovL2NvcmUtYWdlbnQuaG92aS5pZDAKBggqhkjOPQQD\nAgNIADBFAiBlChuBtZzliam5or0aXe81dxTwz28JHbJP/F9Anbo5wgIhAJ2wJB2J\nZNpo2O1D2UkbUvMEeI2mmHfy687SNS7lkZn3\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "6bb9779d-aaf3-4f7b-9ede-d9b6046aa326",
+			"name": "Pun Hlaing Hospitals",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/6bb9779d-aaf3-4f7b-9ede-d9b6046aa326/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/2671c115-2769-41f2-a866-88d6635dce89",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICIzCCAcqgAwIBAgIQDZoZAdZJRgyRMcQcRArQzTAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzA0MTI1NjA1WhcNMjgwNzAzMTI1NjA1WjA2MR0w\nGwYDVQQDExRQdW4gSGxhaW5nIEhvc3BpdGFsczEVMBMGA1UEChMMWkFEQSBOZXR3\nb3JrMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEa5x3gfNI52Av15RuV8Hw6y6h\nP14BNX7oVpftyM5ham5O43ylOdHpQ03DPDQf4DDj0AOPot/xt3/OL55eez6QZaOB\nsTCBrjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIHgDATBgNVHSUEDDAKBggr\nBgEFBQcDJDAdBgNVHQ4EFgQUHlhRrRaRaOHp3iXUi1vUQSvQ54QwHwYDVR0jBBgw\nFoAUmtw2HOrZTUv3MYBnHECZj0WGwgwwOQYDVR0RBDIwMIISY29yZS1hZ2VudC5o\nb3ZpLmlkhhpodHRwczovL2NvcmUtYWdlbnQuaG92aS5pZDAKBggqhkjOPQQDAgNH\nADBEAiBw47UOzM1+6JgY8SKVEmbxqSzAlkRrZkK2r24Gwcn4lQIgYS9DXaW+F/DD\n0PWZtEvOUg8MSSElWnJVsPMxohvz+C0=\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "04466227-3e44-4340-be96-b65c623a5166",
+			"name": "Rent 2 Own (Myanmar)",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/04466227-3e44-4340-be96-b65c623a5166/primary-logo.jpg",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/7165ed33-3be3-4329-9cbf-10f94cf63ebd",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICJDCCAcqgAwIBAgIQLKsIWrI9Nm365t7/kbSZWDAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzE1MTgwNzM5WhcNMjgwNzE0MTgwNzM5WjA2MR0w\nGwYDVQQDExRSZW50IDIgT3duIChNeWFubWFyKTEVMBMGA1UEChMMWkFEQSBOZXR3\nb3JrMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEDyZ29CMtH79mPqMAbOs4+CFY\nJiX518E5SAdhv2V14kemkkZim4bBVH+2+ILMmQdAoE9C+0Xzyf/fpZcDLCmxAqOB\nsTCBrjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIHgDATBgNVHSUEDDAKBggr\nBgEFBQcDJDAdBgNVHQ4EFgQU8QALILq1RTgtegXUzI1PdAK7snMwHwYDVR0jBBgw\nFoAUmtw2HOrZTUv3MYBnHECZj0WGwgwwOQYDVR0RBDIwMIISY29yZS1hZ2VudC5o\nb3ZpLmlkhhpodHRwczovL2NvcmUtYWdlbnQuaG92aS5pZDAKBggqhkjOPQQDAgNI\nADBFAiEAzEnn8ihgKHWkSq5pNbSh69IiVBT5OW2Jx7Nn4NghyFYCIGzRP9417Nbi\nMMGAQV27QZZo5pHTJ0Y6GdHP7RH/Kbib\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "a3d42304-ec16-4858-95f1-ef9596d56079",
+			"name": "Sun Community Health",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/a3d42304-ec16-4858-95f1-ef9596d56079/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/d82f7387-6f44-4497-aafb-03e959629fbc",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICJTCCAcqgAwIBAgIQaMMb9y4g+NhoSxGjElzxETAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzE0MTcwODUyWhcNMjgwNzEzMTcwODUyWjA2MR0w\nGwYDVQQDExRTdW4gQ29tbXVuaXR5IEhlYWx0aDEVMBMGA1UEChMMWkFEQSBOZXR3\nb3JrMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE0i5FCzP65WBvWDywcJ1LfTCh\n/yNwaLG1p9/nzKUaZuAYlJxchNYr/lhVhIp6U4cZufavF4vudFAWnSyK9KkTKqOB\nsTCBrjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIHgDATBgNVHSUEDDAKBggr\nBgEFBQcDJDAdBgNVHQ4EFgQUWDpKink5GuhtNQzDbE1/mS5LyBswHwYDVR0jBBgw\nFoAUmtw2HOrZTUv3MYBnHECZj0WGwgwwOQYDVR0RBDIwMIISY29yZS1hZ2VudC5o\nb3ZpLmlkhhpodHRwczovL2NvcmUtYWdlbnQuaG92aS5pZDAKBggqhkjOPQQDAgNJ\nADBGAiEAu0eR5tbjASfpKY3Lz6ZmoL6bsz+k31rN2uL3+L27S2QCIQDE6t+VALS8\nN9afy40XCxC5EzvGKkxQHM2BedZUHRsL9A==\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "861695fc-5393-4a42-857f-7e20504fc2cd",
+			"name": "Technological University (Thanlyin)",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/861695fc-5393-4a42-857f-7e20504fc2cd/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/c6c9a8a6-9085-4d4e-9f69-150a67e5fc15",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICMjCCAdmgAwIBAgIQA3OppQlIRXX4k1IU8tIU9jAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzE0MTcxNDMwWhcNMjgwNzEzMTcxNDMwWjBFMSww\nKgYDVQQDEyNUZWNobm9sb2dpY2FsIFVuaXZlcnNpdHkgKFRoYW5seWluKTEVMBMG\nA1UEChMMWkFEQSBOZXR3b3JrMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE9aTF\n2/Q8TJvwrDe/jV/QB47OqCtU53i5oPgzmIeM13pTeCfnWhU8naMFnjSQoN7FOAzl\nGMp1HKw0F9lRHuJeoaOBsTCBrjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIH\ngDATBgNVHSUEDDAKBggrBgEFBQcDJDAdBgNVHQ4EFgQU75GqTJ3c+ZMgxSKWoB9t\nYWa6QgwwHwYDVR0jBBgwFoAUmtw2HOrZTUv3MYBnHECZj0WGwgwwOQYDVR0RBDIw\nMIISY29yZS1hZ2VudC5ob3ZpLmlkhhpodHRwczovL2NvcmUtYWdlbnQuaG92aS5p\nZDAKBggqhkjOPQQDAgNHADBEAiAyLj4iD+u00TWgOvx9uZEsMPuQNEplefb1z/RU\nF9/d1AIgWqFgJtnalSoYekE8XNrbNn3hFcxdjs4TdcBPs5iQ4M0=\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "6751e392-0024-4474-9db5-fa135e24f2fc",
+			"name": "Thit Sar Aung Medical Clinic",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/6751e392-0024-4474-9db5-fa135e24f2fc/primary-logo.jpg",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/ab3fd0bd-edfe-48f2-9b9e-73d106f5c73f",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICLTCCAdKgAwIBAgIQGYO4YMMq+nEiKD6yrTxZgjAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzA0MjA1MTM1WhcNMjgwNzAzMjA1MTM1WjA+MSUw\nIwYDVQQDExxUaGl0IFNhciBBdW5nIE1lZGljYWwgQ2xpbmljMRUwEwYDVQQKEwxa\nQURBIE5ldHdvcmswWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARi1Ju5HQP8YCmW\nqoK0iV8a7WGwTDdUz+wf6UnESLe7vB4TTWB0katgiEfMcXWEX+mIp760UUOk6bV4\nsL6FGhcso4GxMIGuMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQDAgeAMBMGA1Ud\nJQQMMAoGCCsGAQUFBwMkMB0GA1UdDgQWBBR/IzHNHAOZX4dDjttloEi3JYLDHjAf\nBgNVHSMEGDAWgBSa3DYc6tlNS/cxgGccQJmPRYbCDDA5BgNVHREEMjAwghJjb3Jl\nLWFnZW50LmhvdmkuaWSGGmh0dHBzOi8vY29yZS1hZ2VudC5ob3ZpLmlkMAoGCCqG\nSM49BAMCA0kAMEYCIQCxZa2H9Q7pZmzpw/smpYXGXXaMztM6c38dG5MZUytyBAIh\nAJUsFR66w+pnz6I4fGxwYthH0+UMKoIU/2fWHDnGl2wc\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "349cd8e7-ff4c-4399-9477-1a74675c6735",
+			"name": "Thukha Mingalar Medical Center",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/349cd8e7-ff4c-4399-9477-1a74675c6735/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/eaf429b6-7eff-4043-b282-07a42510c0dc",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICLTCCAdSgAwIBAgIQauNtDHbBzp9j4Q+lqtmj3jAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzEzMTc0OTQ5WhcNMjgwNzEyMTc0OTQ5WjBAMScw\nJQYDVQQDEx5UaHVraGEgTWluZ2FsYXIgTWVkaWNhbCBDZW50ZXIxFTATBgNVBAoT\nDFpBREEgTmV0d29yazBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABKpWCEUyTb16\n3BVsOhwSr0l6k5LkOuclLlHR/rx2W6hULGvrIrf0JljcLBQGOsFAjb9DEVMnDyzS\nr+LbuGp3pkKjgbEwga4wDAYDVR0TAQH/BAIwADAOBgNVHQ8BAf8EBAMCB4AwEwYD\nVR0lBAwwCgYIKwYBBQUHAyQwHQYDVR0OBBYEFF5joXTLZdY8yCS33frTw/ej8yq0\nMB8GA1UdIwQYMBaAFJrcNhzq2U1L9zGAZxxAmY9FhsIMMDkGA1UdEQQyMDCCEmNv\ncmUtYWdlbnQuaG92aS5pZIYaaHR0cHM6Ly9jb3JlLWFnZW50LmhvdmkuaWQwCgYI\nKoZIzj0EAwIDRwAwRAIgVrmvnUfr9KRQdmQxV/n//aMCl5BZjVcnGmnA+EpfSCkC\nIDUExQUhHFKhF/SB1zZQSPmIAbW67QcH+9cCmUEdjNe5\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "86a822ae-6c52-4614-a7d2-760b8de66970",
+			"name": "West Yangon Technological University (WYTU)",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/86a822ae-6c52-4614-a7d2-760b8de66970/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/0e81fabf-186c-4169-815e-8507fdbdbece",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICOzCCAeGgAwIBAgIQBfC3sa4ED1wIdT9dE/d5wjAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzE1MDgwMzI3WhcNMjgwNzE0MDgwMzI3WjBNMTQw\nMgYDVQQDEytXZXN0IFlhbmdvbiBUZWNobm9sb2dpY2FsIFVuaXZlcnNpdHkgKFdZ\nVFUpMRUwEwYDVQQKEwxaQURBIE5ldHdvcmswWTATBgcqhkjOPQIBBggqhkjOPQMB\nBwNCAARa4WsofD35fnACSH6TdVY18EMUizKq/Ln1OoahfzmUHt6HFKs2ZhIFwJFp\nOoAELjsdrQ+1AsRbfh/ktarVAIzFo4GxMIGuMAwGA1UdEwEB/wQCMAAwDgYDVR0P\nAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMkMB0GA1UdDgQWBBTOBRN2sST1\nwM+Al/XtmTeZYiA0AzAfBgNVHSMEGDAWgBSa3DYc6tlNS/cxgGccQJmPRYbCDDA5\nBgNVHREEMjAwghJjb3JlLWFnZW50LmhvdmkuaWSGGmh0dHBzOi8vY29yZS1hZ2Vu\ndC5ob3ZpLmlkMAoGCCqGSM49BAMCA0gAMEUCIBb/04RxDrouKFRre3Hg4XWgq7jS\nEWD9tIakKrWDALC3AiEA0wf7GC1S93q+/8fAoTtliVcg+N6mzYhGzFDAH9LFP5M=\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "6d4fd78a-290a-414c-90fb-d012e9db6278",
+			"name": "Yangon Technological University (YTU)",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/6d4fd78a-290a-414c-90fb-d012e9db6278/primary-logo.jpeg",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/06cee858-8008-436e-82b2-07b7df749548",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICNjCCAdugAwIBAgIQTbplTOeMUbjc4W70f6i89DAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzE1MDgwMjQ3WhcNMjgwNzE0MDgwMjQ3WjBHMS4w\nLAYDVQQDEyVZYW5nb24gVGVjaG5vbG9naWNhbCBVbml2ZXJzaXR5IChZVFUpMRUw\nEwYDVQQKEwxaQURBIE5ldHdvcmswWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARW\n0O4OcdmV7Fxj5ArumDbZlZLeuQZEZSKpKFki3AZ30VGDwixVyVwnXwwawWMnR0vD\nCAb7z3/UBdPLLLrDn/dJo4GxMIGuMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQD\nAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMkMB0GA1UdDgQWBBQBhIazLI41wEWzmN5t\nKw5wHihKzTAfBgNVHSMEGDAWgBSa3DYc6tlNS/cxgGccQJmPRYbCDDA5BgNVHREE\nMjAwghJjb3JlLWFnZW50LmhvdmkuaWSGGmh0dHBzOi8vY29yZS1hZ2VudC5ob3Zp\nLmlkMAoGCCqGSM49BAMCA0kAMEYCIQCHXoLIhuf+G1+U/KDjY62R1hIdGeTzipjp\n/Xm4YNY2qQIhANsvqR+Ubj4N/6oNAvjh2Ql5Vu6lf8zoYPTcWRGxa82V\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "57e92439-167e-48b7-b551-4e2067748d7a",
+			"name": "ZADA Demo Company",
+			"demo": true,
+			"logo_url": "https://portal.zada.solutions/zada_icon.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/af92f011-8889-4ff6-b1e7-0e9b11404dee",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICITCCAcegAwIBAgIQcV2LQWZwPpaxH/jZ8BSKATAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwODE1MjA1NDE4WhcNMjgwODE0MjA1NDE4WjAzMRow\nGAYDVQQDExFaQURBIERlbW8gQ29tcGFueTEVMBMGA1UEChMMWkFEQSBOZXR3b3Jr\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEmsYqfsNrRDShZ1bYCrRbWwyp8sI4\nhh714IXgGpz4tiGG0iF/XEIiUK4Kq1mA2NDnVzRmUG3OJg+yCiwuvqYbjqOBsTCB\nrjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIHgDATBgNVHSUEDDAKBggrBgEF\nBQcDJDAdBgNVHQ4EFgQUANckJ3gCwk3aiAhhpYkElHoZU8MwHwYDVR0jBBgwFoAU\nmtw2HOrZTUv3MYBnHECZj0WGwgwwOQYDVR0RBDIwMIISY29yZS1hZ2VudC5ob3Zp\nLmlkhhpodHRwczovL2NvcmUtYWdlbnQuaG92aS5pZDAKBggqhkjOPQQDAgNIADBF\nAiEAh2/2Ste/Ijgrq3d8RWqQCOUJyrf4XafQeQjmB7+qaWMCIFKthx2frfXEdnAB\nxzukcOtb6UdmPSR8ai4NQkEFBQ8t\n-----END CERTIFICATE-----"
+		},
+		{
+			"org_id": "dfb8aaea-99f9-4553-9988-c95da2bb4ccd",
+			"name": "ZADA Solutions",
+			"demo": false,
+			"logo_url": "https://kabjxgfdhszeninntlto.supabase.co/storage/v1/object/public/brand_assets/organizations/dfb8aaea-99f9-4553-9988-c95da2bb4ccd/primary-logo.png",
+			"credential_issuer_url": "https://core-agent.hovi.id/oid4vci/319269f5-ac5c-40b7-831a-e89c6364581f",
+			"x509_certificate": "-----BEGIN CERTIFICATE-----\nMIICHzCCAcSgAwIBAgIQBitMAKUqb3hHaO74VxCAuTAKBggqhkjOPQQDAjA+MRgw\nFgYDVQQDEw9aQURBIElzc3VpbmcgQ0ExFTATBgNVBAoTDFpBREEgTmV0d29yazEL\nMAkGA1UEBhMCU0cwHhcNMjYwNzAyMTkyODI3WhcNMjgwNzAxMTkyODI3WjAwMRcw\nFQYDVQQDEw5aQURBIFNvbHV0aW9uczEVMBMGA1UEChMMWkFEQSBOZXR3b3JrMFkw\nEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE+PN7IM9YKWVXvq6bUJTn5Ki+60s39oBZ\nso0WNGB3UerkLf57ip8d+pyvnjRbDkYpx9+BFmPfNb3ETreZjltBfqOBsTCBrjAM\nBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIHgDATBgNVHSUEDDAKBggrBgEFBQcD\nJDAdBgNVHQ4EFgQUts4ByKrmW9ppgmlQura+LiMjUqQwHwYDVR0jBBgwFoAUmtw2\nHOrZTUv3MYBnHECZj0WGwgwwOQYDVR0RBDIwMIISY29yZS1hZ2VudC5ob3ZpLmlk\nhhpodHRwczovL2NvcmUtYWdlbnQuaG92aS5pZDAKBggqhkjOPQQDAgNJADBGAiEA\n3WIAc38vYb296rYdbXGL5DVD1thRVao2shULz2K3LVsCIQC3tUZEUIdLcHhwUWQz\nM+fWjNbaHLBcfvB7CHJVlq09uw==\n-----END CERTIFICATE-----"
+		}
+	]
+}

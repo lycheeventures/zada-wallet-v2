@@ -10,8 +10,14 @@ import { Platform } from 'react-native'
 import { SystemBars } from 'react-native-edge-to-edge'
 import tamaguiConfig from '../../tamagui.config'
 import { useStoredLocale } from '../hooks/useStoredLocale'
+import { refreshZadaRegistryInBackground } from '../services/zadaRegistry'
 
 void SplashScreen.preventAutoHideAsync()
+
+// Warm the ZADA trust registry at launch so a verify/receive flow never has to wait on the network
+// to decide whether it recognises the other party. Fire-and-forget: it fails silently where the
+// registry is unreachable, and the cached/bundled copy carries the flow.
+refreshZadaRegistryInBackground()
 
 export const unstable_settings = {
   // Ensure any route can link back to `/`

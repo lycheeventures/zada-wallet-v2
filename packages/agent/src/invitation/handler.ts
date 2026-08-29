@@ -602,6 +602,10 @@ export const getCredentialsForProofRequest = async ({
           organizationName: relyingParty.organizationName ?? zadaVerifier.trustedEntities[0].organizationName,
           logoUri: relyingParty.logoUri ?? zadaVerifier.trustedEntities[0].logoUri,
         }
+      } else if (zadaVerifier?.trustMechanism === 'zada_unavailable') {
+        // No match, but our registry copy is stale — say "couldn't check", don't claim "not
+        // verified". trustedEntities stays empty: nothing here is trusted, we simply don't know.
+        trustMechanism = 'zada_unavailable'
       }
     } catch (error) {
       agent.config.logger.warn('ZADA verifier trust check failed', { error })
