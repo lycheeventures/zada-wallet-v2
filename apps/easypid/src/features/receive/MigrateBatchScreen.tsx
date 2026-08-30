@@ -24,7 +24,11 @@ type Query = { offers?: string; batch?: string }
 // stored server-side and fetched here by a short token, so the deep link stays tiny. The
 // anon key is a publishable key; the `get_migration_batch` RPC only returns the (public,
 // single-use) OID4VCI offer URIs for that batch — no secrets.
-const USHER_SUPABASE_URL = 'https://sdztukqgwhiwrfekzbya.supabase.co'
+// Reached through ZADA's proxy first. Myanmar blocks the Cloudflare anycast ranges that every
+// *.supabase.co host resolves into (TCP refused in ~105 ms), and migration is the very first
+// flow a Myanmar user hits — so with only the direct host, batch import simply died there. The
+// direct URL stays as a fallback in case the proxy is down; outside Myanmar either works.
+const USHER_ENDPOINTS = ['https://api.zada.solutions/usher', 'https://sdztukqgwhiwrfekzbya.supabase.co']
 const USHER_SUPABASE_ANON =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNkenR1a3Fnd2hpd3JmZWt6YnlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4NDM3MDAsImV4cCI6MjA5MjQxOTcwMH0.odLo1JGMMDgG7ugjck99VzNf2Vz3ZtKY9u1-EwowXuE'
 
@@ -60,15 +64,30 @@ function decodeOffers(raw: string | undefined): string[] {
 }
 
 async function fetchBatchOffers(batchId: string): Promise<string[]> {
-  const res = await fetch(`${USHER_SUPABASE_URL}/rest/v1/rpc/get_migration_batch`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      apikey: USHER_SUPABASE_ANON,
-      Authorization: `Bearer ${USHER_SUPABASE_ANON}`,
-    },
-    body: JSON.stringify({ p_id: batchId }),
-  })
+  let res: Response | undefined
+  let lastError: unknown
+  for (const base of USHER_ENDPOINTS) {
+    try {
+      res = await fetch(`${base}/rest/v1/rpc/get_migration_batch`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: USHER_SUPABASE_ANON,
+          Authorization: `Bearer ${USHER_SUPABASE_ANON}`,
+        },
+        body: JSON.stringify({ p_id: batchId }),
+      })
+      // A reachable endpoint that answers 4xx/5xx is a real answer, not a routing problem — do
+      // not silently retry it against the other host and mask it.
+      break
+    } catch (error) {
+      // Only a transport failure (blocked, offline, DNS) is worth trying the next endpoint for.
+      lastError = error
+      res = undefined
+    }
+  }
+  if (!res)
+    throw new Error(`Batch lookup unreachable: ${lastError instanceof Error ? lastError.message : 'network error'}`)
   if (!res.ok) throw new Error(`Batch lookup failed (${res.status})`)
   // The RPC returns the stored jsonb array directly (or null for an unknown/expired token).
   const data = (await res.json()) as unknown
