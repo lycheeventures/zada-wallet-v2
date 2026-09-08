@@ -26,7 +26,7 @@ import { FadeIn } from 'react-native-reanimated'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { mmkv } from '../../storage/mmkv'
 import { onPendingDeeplink, peekPendingDeeplink } from '../../utils/pendingDeeplink'
-import { HAS_ZADA_ID_ONBOARDED_KEY, useCredentialMigration } from '../migration/useCredentialMigration'
+import { HAS_ZADA_ID_ONBOARDED_KEY, ZADA_ID_SETUP_PENDING_KEY } from '../migration/useCredentialMigration'
 import { AllCardsCard } from './components/AllCardsCard'
 import { InboxIcon } from './components/InboxIcon'
 import { LatestActivityCard } from './components/LatestActivityCard'
@@ -115,7 +115,6 @@ export function FunkeWalletScreen() {
   const { push } = useRouter()
   const { withHaptics } = useHaptics()
   const { t } = useLingui()
-  const { startMigration } = useCredentialMigration()
   const insets = useSafeAreaInsets()
 
   // Safety net for the Android deeplink race where the router never navigates at all: the
@@ -156,9 +155,18 @@ export function FunkeWalletScreen() {
     mmkv.set(HAS_ADDED_DOCUMENT_KEY, true)
     push('/documents')
   })
-  // Both "Create ZADA ID" (new users) and "Migrate" (existing users) run the same flow;
-  // startMigration persists HAS_ZADA_ID_ONBOARDED_KEY, which hides both buttons.
-  const onZadaIdOnboard = withHaptics(() => startMigration())
+  // Both "Create ZADA ID" (new users) and "Migrate" (existing users) run the same native flow;
+  // it persists HAS_ZADA_ID_ONBOARDED_KEY once the ZADA ID is in the wallet, hiding both buttons.
+  const onZadaIdOnboard = withHaptics(() => push('/zada-id'))
+
+  // The final onboarding step asked for ZADA ID setup: open the flow now that the wallet is
+  // unlocked and this dashboard is mounted. One-shot.
+  useEffect(() => {
+    if (!mmkv.getBoolean(ZADA_ID_SETUP_PENDING_KEY)) return
+    mmkv.remove(ZADA_ID_SETUP_PENDING_KEY)
+    const timer = setTimeout(() => push('/zada-id'), 300)
+    return () => clearTimeout(timer)
+  }, [push])
 
   const showAddDocument = !hasAddedDocument
   const showZadaId = !hasZadaIdOnboarded

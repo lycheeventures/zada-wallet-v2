@@ -39,6 +39,15 @@
 		"origin": [["src/features/wallet/FunkeTrustDetailScreen.tsx", 127]],
 		"translation": "{0} on listattu ZADA Trust Registry -rekisteriin. Sen identiteettiä ei ole vahvistettu kryptografisesti."
 	},
+	"zadaId.review.blockedTitle": {
+		"translation": "",
+		"message": "{0} more can't be added yet",
+		"placeholders": {
+			"0": ["state.blocked.length"]
+		},
+		"comments": [],
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 135]]
+	},
 	"activity.sharedSummaryPlural": {
 		"message": "{amountShared} credentials were shared.",
 		"placeholders": {
@@ -78,6 +87,15 @@
 			["src/features/share/FunkeRequestedAttributesDetailScreen.tsx", 146]
 		],
 		"translation": "{disclosedAttributeLength} kortista {0}"
+	},
+	"zadaId.done.summary": {
+		"translation": "",
+		"message": "{done} added to your wallet.",
+		"placeholders": {
+			"done": ["done"]
+		},
+		"comments": [],
+		"origin": [["src/features/zada-id/AddingStep.tsx", 55]]
 	},
 	"credentialCardSlide.subtitle.default": {
 		"message": "{issuerName} wants to issue you the following Credential:",
@@ -126,6 +144,16 @@
 		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 153]],
 		"translation": "{name} pyytää sinulta tietoja."
 	},
+	"zadaId.adding.progress": {
+		"translation": "",
+		"message": "{processed} of {0} added. Keep the app open.",
+		"placeholders": {
+			"0": ["results.length"],
+			"processed": ["processed"]
+		},
+		"comments": [],
+		"origin": [["src/features/zada-id/AddingStep.tsx", 35]]
+	},
 	"credentials.totalLabel": {
 		"message": "1 card total",
 		"placeholders": {},
@@ -171,14 +199,14 @@
 		"message": "A PDF copy of this credential.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 92]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 94]],
 		"translation": "PDF-kopio tästä todisteesta."
 	},
 	"credentials.cold.qrHint": {
 		"message": "A verifier can scan this QR to check it — even offline. Or share it as a PDF.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 84]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 86]],
 		"translation": "Vastaanottaja voi skannata tämän QR-koodin tarkistaakseen sen — myös offline-tilassa. Tai voit jakaa sen PDF-tiedostona."
 	},
 	"offlineQr.instruction": {
@@ -217,7 +245,7 @@
 		"message": "About this wallet",
 		"placeholders": {},
 		"comments": ["Label for about screen menu item"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 196]],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 194]],
 		"translation": "Tietoja lompakosta"
 	},
 	"common.acceptButton": {
@@ -245,7 +273,7 @@
 		"message": "Activity",
 		"placeholders": {},
 		"comments": ["Label for activity log"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 127]],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 125]],
 		"translation": "Toiminta"
 	},
 	"activity.title": {
@@ -266,13 +294,6 @@
 		"origin": [["src/features/activity/FunkeActivityScreen.tsx", 32]],
 		"translation": "Toiminta näkyy täällä kun jaat tai vastaanotat todisteita."
 	},
-	"menu.item.addDocument": {
-		"message": "Add a document",
-		"placeholders": {},
-		"comments": ["Label for the official-document catalog menu item"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 109]],
-		"translation": "Lisää asiakirja"
-	},
 	"documentCatalog.title": {
 		"message": "Add a document",
 		"placeholders": {},
@@ -280,11 +301,18 @@
 		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 76]],
 		"translation": "Lisää asiakirja"
 	},
+	"menu.item.addDocument": {
+		"message": "Add a document",
+		"placeholders": {},
+		"comments": ["Label for the official-document catalog menu item"],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 107]],
+		"translation": "Lisää asiakirja"
+	},
 	"home.addDocument": {
 		"message": "Add an official document",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 218]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 226]],
 		"translation": "Lisää virallinen asiakirja"
 	},
 	"onboardingWalletExplanation.slide1.subtitle": {
@@ -302,12 +330,26 @@
 		"translation": "Lisää passi",
 		"obsolete": true
 	},
+	"zadaId.review.addAll": {
+		"translation": "",
+		"message": "Add to wallet",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 162]]
+	},
 	"onboardingWalletExplanation.slide3.subtitle": {
 		"message": "Add your cards and documents by scanning QR codes. When organizations request your data, you can review and share with a tap in the app. Your information is always secure with your PIN or fingerprint.",
 		"placeholders": {},
 		"comments": ["Subtitle for third slide of wallet onboarding"],
 		"origin": [["src/features/onboarding/screens/wallet-explanation.tsx", 62]],
 		"translation": "Lisää korttisi ja asiakirjasi skannaamalla QR-koodeja. Kun organisaatiot pyytävät tietojasi, voit tarkistaa ja jakaa ne yhdellä napautuksella sovelluksessa. Tietosi ovat aina turvassa PIN-koodisi tai sormenjälkesi avulla."
+	},
+	"zadaId.review.addOne": {
+		"translation": "",
+		"message": "Add ZADA ID to wallet",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 161]]
 	},
 	"activity.latest.addedCard": {
 		"message": "Added {name}",
@@ -317,6 +359,13 @@
 		"comments": ["Shown when a new card has been added"],
 		"origin": [["src/features/wallet/components/LatestActivityCard.tsx", 114]],
 		"translation": "Lisättiin {name}"
+	},
+	"zadaId.adding.title": {
+		"translation": "",
+		"message": "Adding to your wallet…",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/AddingStep.tsx", 32]]
 	},
 	"mdlFlow.heading": {
 		"message": "Adding your driver license",
@@ -368,6 +417,20 @@
 		"comments": ["Title for the all cards summary box"],
 		"origin": [["src/features/wallet/components/AllCardsCard.tsx", 15]],
 		"translation": "Kaikki kortit"
+	},
+	"zadaId.done.allSet": {
+		"translation": "",
+		"message": "All set",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/AddingStep.tsx", 49]]
+	},
+	"zadaId.done.almost": {
+		"translation": "",
+		"message": "Almost there",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/AddingStep.tsx", 51]]
 	},
 	"trust.warning": {
 		"message": "Always consider whether sharing with an organization is wise.",
@@ -467,7 +530,7 @@
 		"message": "APP",
 		"placeholders": {},
 		"comments": ["Heading above the app section"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 138]],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 136]],
 		"translation": "SOVELLUS"
 	},
 	"verifyPartySlide.approvedByMultipleOrganizations": {
@@ -524,6 +587,13 @@
 		"origin": [["../../packages/app/src/components/ConfirmationSheet.tsx", 7]],
 		"translation": "Oletko varma, että haluat lopettaa?"
 	},
+	"zadaId.name.placeholder": {
+		"translation": "",
+		"message": "As written on your ID",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/NameStep.tsx", 28]]
+	},
 	"authCodeFlowSlide.authenticate": {
 		"message": "Authenticate",
 		"placeholders": {},
@@ -562,6 +632,13 @@
 		"comments": [],
 		"origin": [["../../packages/translations/src/commonMessages.ts", 356]],
 		"translation": "Valtuutus epäonnistui"
+	},
+	"zadaId.back": {
+		"translation": "",
+		"message": "Back",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/FlowShell.tsx", 49]]
 	},
 	"passportNfc.back": {
 		"message": "Back",
@@ -683,7 +760,7 @@
 		"message": "Bring over credentials from the old app",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 207]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 215]],
 		"translation": "Tuo todisteet vanhasta sovelluksesta"
 	},
 	"common.deleteDeferredCredentialDescription": {
@@ -857,7 +934,7 @@
 		"message": "Cards",
 		"placeholders": {},
 		"comments": ["Label for the credentials menu item"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 100]],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 98]],
 		"translation": "Kortit"
 	},
 	"activity.cardsHeading": {
@@ -891,6 +968,16 @@
 		"comments": ["The city where someone lives"],
 		"origin": [["../../packages/translations/src/commonMessages.ts", 394]],
 		"translation": "Kaupunki"
+	},
+	"zadaId.close": {
+		"translation": "",
+		"message": "Close",
+		"placeholders": {},
+		"comments": [],
+		"origin": [
+			["src/features/zada-id/CountryPicker.tsx", 73],
+			["src/features/zada-id/FlowShell.tsx", 58]
+		]
 	},
 	"common.close": {
 		"message": "Close",
@@ -937,6 +1024,13 @@
 		"origin": [["src/features/didcomm/ConnectionSlides.tsx", 65]],
 		"translation": "Yhteys muodostettu"
 	},
+	"zadaId.name.continue": {
+		"translation": "",
+		"message": "Continue",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/NameStep.tsx", 35]]
+	},
 	"common.continue": {
 		"message": "Continue",
 		"placeholders": {},
@@ -965,6 +1059,20 @@
 		"origin": [["src/features/documents/MdlFlow.tsx", 64]],
 		"translation": "Ajokorttia ei voitu lisätä. Yritä uudelleen."
 	},
+	"zadaId.done.failedGeneric": {
+		"translation": "",
+		"message": "could not be added",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/AddingStep.tsx", 61]]
+	},
+	"verifyPartySlide.zadaUnavailableTitle": {
+		"translation": "",
+		"message": "Could not check with ZADA",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 228]]
+	},
 	"onboarding.biometricsNotEnabled": {
 		"message": "Could not enable biometrics",
 		"placeholders": {},
@@ -983,7 +1091,7 @@
 		"message": "Could not open credential migration. Please try again.",
 		"placeholders": {},
 		"comments": ["Shown when the in-app browser for migration fails to open."],
-		"origin": [["src/features/migration/useCredentialMigration.tsx", 50]],
+		"origin": [["src/features/migration/useCredentialMigration.tsx", 58]],
 		"translation": "Todisteiden siirtoa ei voitu avata. Yritä uudelleen."
 	},
 	"passportScan.notFound": {
@@ -1011,6 +1119,13 @@
 		],
 		"translation": "Offline-kopion luonti epäonnistui. Yritä uudelleen."
 	},
+	"zadaId.phone.countryTitle": {
+		"translation": "",
+		"message": "Country",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/CountryPicker.tsx", 71]]
+	},
 	"common.fields.country": {
 		"message": "Country",
 		"placeholders": {},
@@ -1022,14 +1137,14 @@
 		"message": "Create ZADA ID",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 197]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 205]],
 		"translation": "Luo ZADA ID"
 	},
 	"menu.item.createZadaId": {
 		"message": "Create ZADA ID",
 		"placeholders": {},
 		"comments": ["Label for the menu item that opens ZADA ID onboarding"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 148]],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 146]],
 		"translation": ""
 	},
 	"passportIssue.inProgress": {
@@ -1098,7 +1213,7 @@
 		"comments": [
 			"Shown when the migration URL is not configured for the current build."
 		],
-		"origin": [["src/features/migration/useCredentialMigration.tsx", 31]],
+		"origin": [["src/features/migration/useCredentialMigration.tsx", 39]],
 		"translation": "Todisteiden siirto ei ole käytettävissä tässä koontiversiossa."
 	},
 	"credentials.notFound": {
@@ -1205,6 +1320,15 @@
 		"origin": [["src/features/activity/FunkeActivityDetailScreen.tsx", 79]],
 		"translation": "Todiste poistettu"
 	},
+	"zadaId.code.devCode": {
+		"translation": "",
+		"message": "Demo mode — your code is {devCode}.",
+		"placeholders": {
+			"devCode": ["devCode"]
+		},
+		"comments": [],
+		"origin": [["src/features/zada-id/CodeStep.tsx", 74]]
+	},
 	"trust.demoOrg": {
 		"message": "Demo organization",
 		"placeholders": {},
@@ -1218,7 +1342,7 @@
 		"message": "Demo organization",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 236]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 252]],
 		"translation": "Demo-organisaatio"
 	},
 	"settings.developmentMode": {
@@ -1228,6 +1352,15 @@
 		"origin": [["src/features/menu/FunkeSettingsScreen.tsx", 192]],
 		"translation": "Kehitystila",
 		"obsolete": true
+	},
+	"zadaId.code.resendIn": {
+		"translation": "",
+		"message": "Didn't get it? You can request another code in {waitSeconds}s.",
+		"placeholders": {
+			"waitSeconds": ["waitSeconds"]
+		},
+		"comments": [],
+		"origin": [["src/features/zada-id/CodeStep.tsx", 93]]
 	},
 	"nfcScanner.scanning.title": {
 		"message": "Do not move the eID card",
@@ -1242,7 +1375,7 @@
 		"message": "Do not share real data",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 240]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 256]],
 		"translation": "Älä jaa oikeita tietoja"
 	},
 	"verifyPartySlide.interactWithHeading": {
@@ -1293,6 +1426,13 @@
 		"origin": [["../../packages/translations/src/commonMessages.ts", 264]],
 		"translation": "Asiakirja allekirjoitettu"
 	},
+	"zadaId.done.button": {
+		"translation": "",
+		"message": "Done",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/AddingStep.tsx", 77]]
+	},
 	"common.credentials.mdl.title": {
 		"message": "Driving License",
 		"placeholders": {},
@@ -1332,6 +1472,13 @@
 		],
 		"translation": "Henkilökortti"
 	},
+	"zadaId.email.label": {
+		"translation": "",
+		"message": "Email address",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/EmailStep.tsx", 21]]
+	},
 	"language.en": {
 		"message": "English",
 		"placeholders": {},
@@ -1363,6 +1510,23 @@
 		"origin": [["../../packages/translations/src/commonMessages.ts", 91]],
 		"translation": "Syötä PIN-koodi jakaaksesi tietoja"
 	},
+	"zadaId.code.title": {
+		"translation": "",
+		"message": "Enter the code",
+		"placeholders": {},
+		"comments": [],
+		"origin": [
+			["src/features/zada-id/ZadaIdFlow.tsx", 346],
+			["src/features/zada-id/ZadaIdFlow.tsx", 354]
+		]
+	},
+	"zadaId.phone.hint": {
+		"translation": "",
+		"message": "Enter the number without the leading 0.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/PhoneStep.tsx", 44]]
+	},
 	"txCodeSlide.title": {
 		"message": "Enter transaction code",
 		"placeholders": {},
@@ -1383,6 +1547,13 @@
 		"comments": [],
 		"origin": [["src/utils/sharedPidSetup.ts", 39]],
 		"translation": "Syötä henkilökortin PIN-koodi"
+	},
+	"zadaId.name.subtitle": {
+		"translation": "",
+		"message": "Enter your full name for your ZADA ID. It isn't stored anywhere else — it only goes on the credential.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 357]]
 	},
 	"common.toastCardDeleteError": {
 		"message": "Error deleting card",
@@ -1438,6 +1609,13 @@
 		],
 		"origin": [["../../packages/translations/src/commonMessages.ts", 110]],
 		"translation": "Virhe todisteiden hakemisessa"
+	},
+	"zadaId.review.existing": {
+		"translation": "",
+		"message": "Existing credentials",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 104]]
 	},
 	"common.expired": {
 		"message": "Expired",
@@ -1523,7 +1701,7 @@
 		"message": "Feedback",
 		"placeholders": {},
 		"comments": ["Label for feedback menu item"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 186]],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 184]],
 		"translation": "Palaute"
 	},
 	"loadingRequestSlide.description": {
@@ -1558,7 +1736,7 @@
 		"message": "First time interaction",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 254]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 270]],
 		"translation": "Ensimmäinen yhteys"
 	},
 	"funkeAboutScreen.contactIntro": {
@@ -1576,6 +1754,13 @@
 		],
 		"origin": [["src/features/onboarding/screens/intro.tsx", 77]],
 		"translation": "Digitaalisesta seinällesi"
+	},
+	"zadaId.name.label": {
+		"translation": "",
+		"message": "Full name",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/NameStep.tsx", 21]]
 	},
 	"language.de": {
 		"message": "German",
@@ -1612,6 +1797,13 @@
 		"comments": [],
 		"origin": [["src/utils/sharedPidSetup.ts", 33]],
 		"translation": "Hae henkilökorttisi"
+	},
+	"zadaId.phone.title": {
+		"translation": "",
+		"message": "Get your ZADA ID",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 340]]
 	},
 	"pidSetup.idCardFetch.title": {
 		"message": "Getting eID information",
@@ -1704,7 +1896,7 @@
 		"message": "Help & support",
 		"placeholders": {},
 		"comments": ["Label for the help and support menu item"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 177]],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 175]],
 		"translation": "Ohje ja tuki"
 	},
 	"optionSheet.hideMetadata": {
@@ -2006,7 +2198,7 @@
 			"0": ["formatRelativeDate(new Date(lastInteractionDate))"]
 		},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 261]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 277]],
 		"translation": "Viimeisin yhteys: {0}"
 	},
 	"predicate.lessThan": {
@@ -2057,6 +2249,13 @@
 		"origin": [["../../packages/translations/src/commonMessages.ts", 479]],
 		"translation": "Paikkakunta"
 	},
+	"zadaId.review.searching": {
+		"translation": "",
+		"message": "Looking for credentials issued to you before…",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 111]]
+	},
 	"inbox.menuLabel": {
 		"message": "Menu",
 		"placeholders": {},
@@ -2068,7 +2267,7 @@
 		"message": "Menu",
 		"placeholders": {},
 		"comments": ["Title of the menu screen"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 79]],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 77]],
 		"translation": "Valikko"
 	},
 	"requestedAttributes.metadataTitle": {
@@ -2094,14 +2293,14 @@
 		"message": "Migrate credentials",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 206]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 214]],
 		"translation": "Siirrä todisteet"
 	},
 	"menu.item.migrateCredentials": {
 		"message": "Migrate credentials",
 		"placeholders": {},
 		"comments": ["Label for the menu item that opens credential migration"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 158]],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 156]],
 		"translation": ""
 	},
 	"settings.migrateCredentials": {
@@ -2113,6 +2312,13 @@
 		"origin": [["src/features/menu/FunkeSettingsScreen.tsx", 189]],
 		"translation": "Siirrä todisteet",
 		"obsolete": true
+	},
+	"zadaId.phone.placeholder": {
+		"translation": "",
+		"message": "Mobile number",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/PhoneStep.tsx", 36]]
 	},
 	"documentCatalog.moreSoon": {
 		"message": "More documents coming soon",
@@ -2170,7 +2376,7 @@
 		"message": "New to ZADA? Set up your ZADA ID",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 198]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 206]],
 		"translation": "Uusi ZADA-käyttäjä? Luo ZADA ID"
 	},
 	"common.no": {
@@ -2230,6 +2436,13 @@
 		"origin": [["src/features/wallet/components/AllCardsCard.tsx", 34]],
 		"translation": "Ei kortteja vielä"
 	},
+	"verifyPartySlide.zadaUnavailableDescription": {
+		"translation": "",
+		"message": "No connection to the ZADA Trust Registry, so this organisation could not be confirmed",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 232]]
+	},
 	"search.noResults": {
 		"message": "No credentials found",
 		"placeholders": {},
@@ -2255,6 +2468,13 @@
 		"comments": ["Shown when sharing failed and no credentials were shared"],
 		"origin": [["src/features/activity/FunkeActivityDetailScreen.tsx", 229]],
 		"translation": "Todisteita ei jaettu."
+	},
+	"zadaId.review.none": {
+		"translation": "",
+		"message": "No earlier credentials were found for this phone or email.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 112]]
 	},
 	"submission.fallbackPurpose": {
 		"message": "No information was provided on the purpose of the data request. Be cautious",
@@ -2303,8 +2523,15 @@
 		"message": "No previous interactions found",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 265]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 281]],
 		"translation": "Aiempia yhteyksiä ei löytynyt"
+	},
+	"zadaId.review.notifyMe": {
+		"translation": "",
+		"message": "Notify me when ready",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 153]]
 	},
 	"onboardingDataProtection.toast.secureDevice": {
 		"message": "Now using {0} for PID cryptographic keys.",
@@ -2358,6 +2585,13 @@
 		],
 		"translation": "Verkkoyhteys toimii taas."
 	},
+	"zadaId.openInBrowser": {
+		"translation": "",
+		"message": "Open in browser instead",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 332]]
+	},
 	"common.openSettingsButton": {
 		"message": "Open settings",
 		"placeholders": {},
@@ -2376,7 +2610,7 @@
 		"message": "Organization is not verified",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 226]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 242]],
 		"translation": "Organisaatiota ei ole vahvistettu"
 	},
 	"verifyPartySlide.organizationNotVerifiedHeading": {
@@ -2420,7 +2654,7 @@
 		"message": "Passport, driver license and more",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 219]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 227]],
 		"translation": "Passi, ajokortti ja muita"
 	},
 	"inbox.notificationType.pending": {
@@ -2456,6 +2690,13 @@
 		],
 		"origin": [["../../packages/translations/src/commonMessages.ts", 336]],
 		"translation": "Odottava kortti poistettu"
+	},
+	"zadaId.phone.label": {
+		"translation": "",
+		"message": "Phone number",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/PhoneStep.tsx", 26]]
 	},
 	"presentation.pinAuthFailed": {
 		"message": "PIN authentication failed",
@@ -2552,6 +2793,13 @@
 		],
 		"translation": "Yritä uudelleen."
 	},
+	"zadaId.review.incomplete": {
+		"translation": "",
+		"message": "Please verify your phone and email first.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 258]]
+	},
 	"loadingRequestSlide.title": {
 		"message": "Please wait",
 		"placeholders": {},
@@ -2586,7 +2834,7 @@
 		"message": "Present in-person",
 		"placeholders": {},
 		"comments": ["Label for the in-person (offline) presentation menu item"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 118]],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 116]],
 		"translation": "Esitä paikan päällä"
 	},
 	"home.presentInPersonButton": {
@@ -2619,7 +2867,7 @@
 		"message": "Previous interactions",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 250]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 266]],
 		"translation": "Aiemmat yhteydet"
 	},
 	"funkeAboutScreen.privacyPolicyTitle": {
@@ -2684,6 +2932,13 @@
 		"comments": ["Button label to open the privacy policy"],
 		"origin": [["src/features/onboarding/screens/data-protection.tsx", 36]],
 		"translation": "Lue tietosuojakäytäntö"
+	},
+	"zadaId.review.title": {
+		"translation": "",
+		"message": "Ready to add",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 364]]
 	},
 	"nfcScanner.readyToScan.title": {
 		"message": "Ready to scan",
@@ -2754,7 +3009,7 @@
 		"message": "Regenerate",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 99]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 103]],
 		"translation": "Luo uudelleen"
 	},
 	"common.fields.region": {
@@ -2804,6 +3059,20 @@
 		],
 		"origin": [["src/features/activity/FunkeActivityDetailScreen.tsx", 105]],
 		"translation": "Pyydetyt tiedot"
+	},
+	"zadaId.code.resendEmail": {
+		"translation": "",
+		"message": "Resend email",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/CodeStep.tsx", 83]]
+	},
+	"zadaId.code.resendSms": {
+		"translation": "",
+		"message": "Resend SMS",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/CodeStep.tsx", 82]]
 	},
 	"onboarding.resetAlert.title": {
 		"message": "Reset Onboarding",
@@ -2898,7 +3167,7 @@
 		"message": "Scan QR-code",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 244]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 252]],
 		"translation": "Skannaa QR-koodi"
 	},
 	"nfcScanner.complete.title": {
@@ -2975,6 +3244,13 @@
 		"origin": [["src/features/wallet/FunkeCredentialsScreen.tsx", 117]],
 		"translation": "Hae kortteja"
 	},
+	"zadaId.phone.searchCountry": {
+		"translation": "",
+		"message": "Search country or code",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/CountryPicker.tsx", 82]]
+	},
 	"onboardingIntroduction.step1.title": {
 		"message": "Secure the wallet",
 		"placeholders": {},
@@ -2984,6 +3260,34 @@
 		"origin": [["src/features/onboarding/screens/introduction-steps.tsx", 24]],
 		"translation": "Suojaa lompakko"
 	},
+	"zadaId.phone.selectCountry": {
+		"translation": "",
+		"message": "Select country",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/CountryPicker.tsx", 59]]
+	},
+	"zadaId.email.sendCode": {
+		"translation": "",
+		"message": "Send code",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/EmailStep.tsx", 37]]
+	},
+	"zadaId.phone.sendCode": {
+		"translation": "",
+		"message": "Send code by SMS",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/PhoneStep.tsx", 49]]
+	},
+	"zadaId.phone.sendWhatsapp": {
+		"translation": "",
+		"message": "Send code via WhatsApp",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/PhoneStep.tsx", 56]]
+	},
 	"pinSlide.title": {
 		"message": "Send data with your PIN code",
 		"placeholders": {},
@@ -2992,6 +3296,13 @@
 		],
 		"origin": [["src/features/share/slides/PinSlide.tsx", 39]],
 		"translation": "Lähetä tiedot PIN-koodillasi"
+	},
+	"zadaId.code.sendWhatsapp": {
+		"translation": "",
+		"message": "Send it via WhatsApp instead",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/CodeStep.tsx", 87]]
 	},
 	"onboarding.biometrics.title": {
 		"message": "Set up biometrics",
@@ -3018,7 +3329,7 @@
 		"message": "Set up your wallet",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 190]],
+		"origin": [["src/features/wallet/FunkeWalletScreen.tsx", 198]],
 		"translation": "Valmistele lompakkosi"
 	},
 	"onboarding.setupZadaId.title": {
@@ -3039,7 +3350,7 @@
 		"message": "Settings",
 		"placeholders": {},
 		"comments": ["Label for settings menu item"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 168]],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 166]],
 		"translation": "Asetukset"
 	},
 	"submission.share": {
@@ -3060,7 +3371,7 @@
 		"message": "Share PDF",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 97]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 100]],
 		"translation": "Jaa PDF"
 	},
 	"offlineQr.heading": {
@@ -3416,6 +3727,15 @@
 		"origin": [["../../packages/translations/src/commonMessages.ts", 560]],
 		"translation": "Ruotsi"
 	},
+	"onboardingSetupZadaId.microcopyNative": {
+		"translation": "",
+		"message": "Takes about a minute. You will need your phone and email to receive two short codes.",
+		"placeholders": {},
+		"comments": [
+			"Small text under the verify button explaining what the ZADA ID setup involves"
+		],
+		"origin": [["src/features/onboarding/screens/setup-zada-id.tsx", 35]]
+	},
 	"common.tapToView": {
 		"message": "Tap to view",
 		"placeholders": {},
@@ -3600,6 +3920,13 @@
 			["../../packages/app/src/components/CardInfoLifecycle.tsx", 179]
 		],
 		"translation": "Tämä kortti on voimassa {0} - {1}."
+	},
+	"zadaId.review.blockedBody": {
+		"translation": "",
+		"message": "Their issuer has not finished setting up on the new network. We can tell you when they are ready.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 141]]
 	},
 	"trust.noApprovalsWithoutOrganizationName": {
 		"message": "There are no organizations that have approved this unknown organization.",
@@ -3895,7 +4222,14 @@
 		"message": "Try again",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 74]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 75]],
+		"translation": "Yritä uudelleen"
+	},
+	"passportIssue.retry": {
+		"message": "Try again",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/passport/PassportFlow.tsx", 80]],
 		"translation": "Yritä uudelleen"
 	},
 	"passportNfc.retry": {
@@ -3905,12 +4239,12 @@
 		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 99]],
 		"translation": "Yritä uudelleen"
 	},
-	"passportIssue.retry": {
-		"message": "Try again",
+	"zadaId.done.retryFailed": {
+		"translation": "",
+		"message": "Try the failed ones again",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/passport/PassportFlow.tsx", 80]],
-		"translation": "Yritä uudelleen"
+		"origin": [["src/features/zada-id/AddingStep.tsx", 74]]
 	},
 	"documentCatalog.subtitle": {
 		"message": "Turn a physical document into a verified credential in your wallet.",
@@ -4078,7 +4412,7 @@
 		"comments": [
 			"Primary button to verify phone and email and set up the ZADA ID"
 		],
-		"origin": [["src/features/onboarding/screens/setup-zada-id.tsx", 37]],
+		"origin": [["src/features/onboarding/screens/setup-zada-id.tsx", 29]],
 		"translation": "Vahvista puhelin ja sähköposti"
 	},
 	"migrationWelcome.verify": {
@@ -4097,12 +4431,26 @@
 		"origin": [["src/features/receive/slides/AuthCodeFlowSlide.tsx", 131]],
 		"translation": "Vahvista tilisi"
 	},
+	"zadaId.email.title": {
+		"translation": "",
+		"message": "Verify your email",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 348]]
+	},
 	"onboarding.setupZadaId.subtitle": {
 		"message": "Verify your phone number and email to unlock your foundational digital identity. If you have used ZADA before, this will also safely transfer your existing credentials to your new wallet.",
 		"placeholders": {},
 		"comments": ["Subtitle explaining what setting up the ZADA ID does"],
 		"origin": [["src/features/onboarding/steps.ts", 48]],
 		"translation": "Vahvista puhelinnumerosi ja sähköpostisi ottaaksesi käyttöön digitaalisen perusidentiteettisi. Jos olet käyttänyt ZADAa aiemmin, tämä myös siirtää olemassa olevat todisteesi turvallisesti uuteen lompakkoosi."
+	},
+	"zadaId.phone.subtitle": {
+		"translation": "",
+		"message": "Verify your phone to create your ZADA ID and bring any existing credentials into your wallet.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 341]]
 	},
 	"mdlFlow.inProgress": {
 		"message": "Verifying your license with the road transport department…",
@@ -4124,8 +4472,15 @@
 		"message": "WALLET",
 		"placeholders": {},
 		"comments": ["Heading above the wallet section"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 90]],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 88]],
 		"translation": "LOMPAKKO"
+	},
+	"zadaId.review.discoveryFailed": {
+		"translation": "",
+		"message": "We couldn't check for earlier credentials right now. You can migrate them later from the menu.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 142]]
 	},
 	"pidSetup.idCardVerify.Subtitle": {
 		"message": "We need your biometrics to verify your identity.",
@@ -4133,6 +4488,22 @@
 		"comments": [],
 		"origin": [["src/utils/sharedPidSetup.ts", 64]],
 		"translation": "Biometrisiä tietoja tarvitaan henkilöllisyytesi vahvistamiseen."
+	},
+	"zadaId.code.sentTo": {
+		"translation": "",
+		"message": "We sent a 6-digit code to {destination}.",
+		"placeholders": {
+			"destination": ["destination"]
+		},
+		"comments": [],
+		"origin": [["src/features/zada-id/CodeStep.tsx", 56]]
+	},
+	"zadaId.review.notifyDone": {
+		"translation": "",
+		"message": "We'll let you know.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 149]]
 	},
 	"welcome.titleToYourWallet": {
 		"message": "Welcome to your wallet",
@@ -4407,7 +4778,8 @@
 		"placeholders": {},
 		"comments": ["Small text explaining the browser redirect for verification"],
 		"origin": [["src/features/onboarding/screens/setup-zada-id.tsx", 43]],
-		"translation": "Sinut ohjataan turvallisesti selaimeesi viimeistelemään vahvistus."
+		"translation": "Sinut ohjataan turvallisesti selaimeesi viimeistelemään vahvistus.",
+		"obsolete": true
 	},
 	"onboardingIntroduction.reminder": {
 		"message": "You'll need your eID card to setup the wallet",
@@ -4493,6 +4865,13 @@
 		"origin": [["src/features/share/slides/PresentationSuccessSlide.tsx", 86]],
 		"translation": "Tietosi on jaettu."
 	},
+	"zadaId.name.title": {
+		"translation": "",
+		"message": "Your name",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 356]]
+	},
 	"onboardingIntro.slide1.title": {
 		"message": "Your official IDs, in your pocket",
 		"placeholders": {},
@@ -4508,11 +4887,46 @@
 		"translation": "PIN-koodisi tarvitaan sovelluksen avaamiseen"
 	},
 	"onboarding.biometricsNotEnabledDescription": {
-		"translation": "",
 		"message": "Your wallet is still protected by your PIN. You can try again in Settings.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/onboarding/onboardingContext.tsx", 261]]
+		"origin": [["src/features/onboarding/onboardingContext.tsx", 261]],
+		"translation": ""
+	},
+	"zadaId.review.yourId": {
+		"translation": "",
+		"message": "Your ZADA ID",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 91]]
+	},
+	"zadaId.done.idFailed": {
+		"translation": "",
+		"message": "Your ZADA ID could not be created",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/AddingStep.tsx", 52]]
+	},
+	"zadaId.email.subtitle": {
+		"translation": "",
+		"message": "Your ZADA ID includes a verified email. We also use it to find credentials registered to it.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 349]]
+	},
+	"zadaId.review.subtitle": {
+		"translation": "",
+		"message": "Your ZADA ID is ready. Choose which existing credentials to bring into this wallet.",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 365]]
+	},
+	"zadaId.itemZadaId": {
+		"translation": "",
+		"message": "ZADA ID",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 264]]
 	},
 	"paradymWallet.about.description": {
 		"message": "ZADA is a digital identity technology company focused on enabling secure and privacy-preserving access to digital services. Our goal is to help individuals and organizations interact digitally with greater trust, while minimizing fraud and unnecessary data exposure.\n\nWith ZADA, users remain in control of their personal data and can choose what information to share, with whom, and for what purpose.\n\nThis application is based on open-source software and includes components developed by Animo Solutions and other contributors, licensed under the Apache License, Version 2.0. ZADA Network has modified and extended this software as part of its implementation.\n\nUnless otherwise stated, the software is provided “as is,” without warranties or conditions of any kind.\n\nZADA supports an ecosystem approach to digital identity, enabling trusted and reusable interactions across services.\n",

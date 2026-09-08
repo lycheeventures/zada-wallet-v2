@@ -1,22 +1,11 @@
 import { useAppAgent } from '@easypid/agent'
-import {
-  trustedDidEntities,
-  trustedOpenId4VciIssuerEntities,
-  trustedX509Entities,
-  walletClient,
-} from '@easypid/constants'
-import {
-  acquirePreAuthorizedAccessToken,
-  receiveCredentialFromOpenId4VciOffer,
-  resolveOpenId4VciOffer,
-  storeCredential,
-} from '@package/agent'
 import { usePushToWallet } from '@package/app'
 import { Button, FlexPage, Heading, HeroIcons, Paragraph, ProgressBar, Spinner, YStack } from '@package/ui'
 import { useLocalSearchParams } from 'expo-router'
 import * as WebBrowser from 'expo-web-browser'
 import { useEffect, useRef, useState } from 'react'
 import { Platform } from 'react-native'
+import { acceptPreAuthorizedOffer } from './acceptPreAuthorizedOffer'
 
 type Query = { offers?: string; batch?: string }
 
@@ -123,42 +112,6 @@ export function MigrateBatchScreen() {
       WebBrowser.dismissBrowser().catch(() => {})
     }
 
-    const acceptOne = async (uri: string) => {
-      const { resolvedCredentialOffer } = await resolveOpenId4VciOffer({
-        agent,
-        offer: { uri },
-        authorization: walletClient,
-        trustedX509Entities,
-        trustedDidEntities,
-        trustedOpenId4VciIssuerEntities,
-      })
-
-      const preAuthGrant =
-        resolvedCredentialOffer.credentialOfferPayload.grants?.['urn:ietf:params:oauth:grant-type:pre-authorized_code']
-      if (!preAuthGrant) throw new Error('Offer is not a pre-authorized credential offer')
-      if (preAuthGrant.tx_code) throw new Error('Offer requires a transaction code; cannot batch-accept')
-
-      const configurationId = Object.keys(resolvedCredentialOffer.offeredCredentialConfigurations)[0]
-      if (!configurationId) throw new Error('Offer has no credential configuration')
-
-      const tokenResponse = await acquirePreAuthorizedAccessToken({
-        agent,
-        resolvedCredentialOffer,
-        txCode: undefined,
-      })
-
-      const { credentials } = await receiveCredentialFromOpenId4VciOffer({
-        agent,
-        resolvedCredentialOffer,
-        credentialConfigurationIdsToRequest: [configurationId],
-        accessToken: tokenResponse,
-        requestBatch: true,
-      })
-      if (!credentials.length) throw new Error('Issuer returned no credential')
-
-      await storeCredential(agent, credentials[0].credential)
-    }
-
     void (async () => {
       // Resolve the offer list: a short `batch` token (fetched server-side) or, for
       // back-compat, an inline `offers` JSON array.
@@ -181,7 +134,7 @@ export function MigrateBatchScreen() {
 
       for (const uri of offers) {
         try {
-          await acceptOne(uri)
+          await acceptPreAuthorizedOffer(agent, uri)
           setDone((n) => n + 1)
         } catch (error) {
           agent.config.logger.error('Batch credential accept failed for one offer', { error })

@@ -150,6 +150,15 @@ export default function AppLayout() {
             }}
             name="(home)/passport"
           />
+          <Stack.Screen
+            options={{
+              presentation: 'modal',
+              // The flow has its own close button; an accidental swipe-down mid-OTP would drop
+              // the user back to the dashboard.
+              gestureEnabled: false,
+            }}
+            name="(home)/zada-id"
+          />
           <Stack.Screen name="(home)/documents/index" options={headerNormalOptions} />
           <Stack.Screen
             options={{

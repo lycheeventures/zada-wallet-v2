@@ -13,13 +13,21 @@ import { mmkv } from '../../storage/mmkv'
 export const HAS_ZADA_ID_ONBOARDED_KEY = 'hasZadaIdOnboarded'
 
 /**
- * Migrate legacy ZADA credentials via the credential-key-usher web flow.
+ * MMKV flag set by the final onboarding step ("Set up your ZADA ID"). Onboarding finishes by
+ * replacing the route with the dashboard, so the step can't push the flow itself; the dashboard
+ * reads this flag on mount, clears it, and opens `/zada-id`.
+ */
+export const ZADA_ID_SETUP_PENDING_KEY = 'zadaIdSetupPending'
+
+/**
+ * FALLBACK: run the ZADA ID / credential-migration flow in the credential-key-usher web app
+ * (in-app browser).
  *
- * We hand off to the (already built and audited) web flow rather than re-implementing phone
- * verification + legacy lookup in the wallet. The user verifies their phone and picks which
- * credentials to claim there; each claim produces an `openid-credential-offer://` deep link
- * that re-opens the wallet, where the existing invitation router receives the credential.
- * See ADR-0002 / credential-key-usher.
+ * The primary path is now the native flow in `features/zada-id` (route `/zada-id`), which runs the
+ * same steps in-app against the usher's `/api/v1`. This hook remains for when that API can't be
+ * reached: the web flow verifies phone/email there, and the batch deep link
+ * (`/wallet/credential-offer-batch?batch=…`) re-opens the wallet, where `MigrateBatchScreen`
+ * receives the credentials. See ADR-0002 / credential-key-usher.
  */
 export function useCredentialMigration() {
   const { t } = useLingui()
