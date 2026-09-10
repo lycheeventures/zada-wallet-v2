@@ -82,6 +82,10 @@ export function ReviewStep({
 }: ReviewStepProps) {
   const { t } = useLingui()
   const selectedCount = state.credentials.filter((c) => !state.deselected.includes(c.id)).length
+  // Legacy schemas without a display name only have a schema URL — useless to a holder, so list
+  // the named ones (deduped) and fold the rest into a count.
+  const blockedNames = [...new Set(state.blocked.map((b) => b.name).filter((n): n is string => !!n))]
+  const unnamedBlocked = state.blocked.filter((b) => !b.name).length
   const total = selectedCount + 1
 
   return (
@@ -134,9 +138,12 @@ export function ReviewStep({
           <Paragraph fontWeight="$semiBold">
             <Trans id="zadaId.review.blockedTitle">{state.blocked.length} more can't be added yet</Trans>
           </Paragraph>
-          <Paragraph variant="sub" color="$grey-600">
-            {state.blocked.map((b) => b.name ?? b.legacy_schema_id).join(', ')}
-          </Paragraph>
+          {blockedNames.length > 0 ? (
+            <Paragraph variant="sub" color="$grey-600">
+              {blockedNames.join(', ')}
+              {unnamedBlocked > 0 ? ` (+${unnamedBlocked})` : ''}
+            </Paragraph>
+          ) : null}
           <Paragraph variant="sub" color="$grey-600">
             {t({
               id: 'zadaId.review.blockedBody',
