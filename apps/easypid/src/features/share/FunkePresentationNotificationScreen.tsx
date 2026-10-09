@@ -10,7 +10,7 @@ import { type SlideStep, SlideWizard } from '@package/app'
 import { InteractionErrorSlide } from '../receive/slides/InteractionErrorSlide'
 import { LoadingRequestSlide } from '../receive/slides/LoadingRequestSlide'
 import { VerifyPartySlide } from '../receive/slides/VerifyPartySlide'
-import { PinSlide } from './slides/PinSlide'
+import { type onPinSubmitProps, PinSlide } from './slides/PinSlide'
 import { PresentationSuccessSlide } from './slides/PresentationSuccessSlide'
 import { ReviewAndShareSlide } from './slides/ReviewAndShareSlide'
 import { SignAndShareSlide } from './slides/SignAndShareSlide'
@@ -25,9 +25,14 @@ interface FunkePresentationNotificationScreenProps {
   trustMechanism?: TrustMechanism
   submission?: FormattedSubmission
   usePin: boolean
+  /**
+   * With a PIN required and biometric unlock enabled, Share authenticates with biometrics from the
+   * review screen and only falls back to the PIN slide when that fails or is cancelled.
+   */
+  useBiometricsInsteadOfPin?: boolean
   isAccepting: boolean
   transaction?: FormattedTransactionData
-  onAccept: () => Promise<void>
+  onAccept: (props?: onPinSubmitProps) => Promise<undefined | 'pin-required'>
   onDecline: () => void
   onCancel: () => void
   onComplete: () => void
@@ -39,6 +44,7 @@ export function FunkePresentationNotificationScreen({
   verifierName,
   logo,
   usePin,
+  useBiometricsInsteadOfPin = false,
   onAccept,
   onCancel,
   onDecline,
@@ -121,7 +127,7 @@ export function FunkePresentationNotificationScreen({
                         submission={submission}
                         overAskingResponse={overAskingResponse}
                         isAccepting={isAccepting}
-                        onAccept={usePin ? undefined : onAccept}
+                        onAccept={usePin && !useBiometricsInsteadOfPin ? undefined : onAccept}
                         onDecline={onDecline}
                       />
                     ),

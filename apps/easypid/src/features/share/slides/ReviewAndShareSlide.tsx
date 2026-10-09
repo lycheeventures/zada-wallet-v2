@@ -20,10 +20,11 @@ interface ReviewAndShareSlideProps {
   overAskingResponse?: OverAskingResponse
   isAccepting: boolean
   /**
-   * When set, sharing happens from this slide. When undefined (a PIN is required), pressing
-   * Share advances to the PIN slide, which performs the share.
+   * When set, sharing happens from this slide. When undefined (a PIN is required and biometrics
+   * cannot stand in for it), pressing Share advances to the PIN slide, which performs the share.
+   * Resolving `'pin-required'` means biometrics did not go through: advance to the PIN slide.
    */
-  onAccept?: () => Promise<void>
+  onAccept?: () => Promise<undefined | 'pin-required'>
   onDecline: () => void
 }
 
@@ -56,8 +57,13 @@ export const ReviewAndShareSlide = ({
     // Manually set to instantly show the loading state
     setIsProcessing(true)
 
-    await onAccept?.()
-    onNext()
+    const result = await onAccept?.()
+    if (result === 'pin-required') {
+      setIsProcessing(false)
+      onNext('pin-enter')
+      return
+    }
+    onNext(onAccept ? 'success' : undefined)
   }
 
   const fallbackPurpose = t({

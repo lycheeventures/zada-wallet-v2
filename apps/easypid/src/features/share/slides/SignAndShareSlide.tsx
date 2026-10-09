@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { RequestedAttributesSection } from '../components/RequestedAttributesSection'
 
 interface SignAndShareSlideProps {
-  onAccept?: () => Promise<void>
+  onAccept?: () => Promise<unknown>
   onDecline?: () => void
   isAccepting: boolean
   qtsp: QtspInfo
