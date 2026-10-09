@@ -63,7 +63,7 @@
 			"distribution": "internal",
 			"android": {
 				"buildType": "apk",
-				"resourceClass": "medium"
+				"resourceClass": "large"
 			},
 			"env": {
 				"APP_VARIANT": "preview",
