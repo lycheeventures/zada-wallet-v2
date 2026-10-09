@@ -40,13 +40,13 @@
 		"translation": "{0} imeorodheshwa katika ZADA Trust Registry. Utambulisho wake haujathibitishwa kwa njia ya kriptografia."
 	},
 	"zadaId.review.blockedTitle": {
-		"translation": "",
 		"message": "{0} more can't be added yet",
 		"placeholders": {
 			"0": ["state.blocked.length"]
 		},
 		"comments": [],
-		"origin": [["src/features/zada-id/ReviewStep.tsx", 135]]
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 139]],
+		"translation": ""
 	},
 	"activity.sharedSummaryPlural": {
 		"message": "{amountShared} credentials were shared.",
@@ -89,13 +89,13 @@
 		"translation": "{disclosedAttributeLength} från {0}"
 	},
 	"zadaId.done.summary": {
-		"translation": "",
 		"message": "{done} added to your wallet.",
 		"placeholders": {
 			"done": ["done"]
 		},
 		"comments": [],
-		"origin": [["src/features/zada-id/AddingStep.tsx", 55]]
+		"origin": [["src/features/zada-id/AddingStep.tsx", 55]],
+		"translation": ""
 	},
 	"credentialCardSlide.subtitle.default": {
 		"message": "{issuerName} wants to issue you the following Credential:",
@@ -114,7 +114,7 @@
 			"name": ["name"]
 		},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 163]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 118]],
 		"translation": "{name} vill ansluta med dig."
 	},
 	"verifyPartySlide.signingSubtitle": {
@@ -123,7 +123,7 @@
 			"name": ["name"]
 		},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 141]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 96]],
 		"translation": "{name} vill interagera för att skapa en digital signatur för ett dokument."
 	},
 	"verifyPartySlide.offerCardSubtitle": {
@@ -132,7 +132,7 @@
 			"name": ["name"]
 		},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 131]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 86]],
 		"translation": "{name} vill erbjuda dig ett kort."
 	},
 	"verifyPartySlide.requestSubtitle": {
@@ -141,18 +141,18 @@
 			"name": ["name"]
 		},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 153]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 108]],
 		"translation": "{name} vill begära information från dig."
 	},
 	"zadaId.adding.progress": {
-		"translation": "",
 		"message": "{processed} of {0} added. Keep the app open.",
 		"placeholders": {
 			"0": ["results.length"],
 			"processed": ["processed"]
 		},
 		"comments": [],
-		"origin": [["src/features/zada-id/AddingStep.tsx", 35]]
+		"origin": [["src/features/zada-id/AddingStep.tsx", 35]],
+		"translation": ""
 	},
 	"credentials.totalLabel": {
 		"message": "1 card total",
@@ -199,14 +199,14 @@
 		"message": "A PDF copy of this credential.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 94]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 92]],
 		"translation": "Nakala ya PDF ya kadi hii."
 	},
 	"credentials.cold.qrHint": {
 		"message": "A verifier can scan this QR to check it — even offline. Or share it as a PDF.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 86]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 84]],
 		"translation": "Mthibitishaji anaweza kuskani QR-code hii ili kuikagua — hata bila mtandao. Au ishiriki kama PDF."
 	},
 	"offlineQr.instruction": {
@@ -294,18 +294,18 @@
 		"origin": [["src/features/activity/FunkeActivityScreen.tsx", 32]],
 		"translation": "Aktivitet visas här när du delar eller tar emot kort."
 	},
-	"documentCatalog.title": {
-		"message": "Add a document",
-		"placeholders": {},
-		"comments": ["Title of the official-document catalog screen"],
-		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 76]],
-		"translation": "Lägg till dokument"
-	},
 	"menu.item.addDocument": {
 		"message": "Add a document",
 		"placeholders": {},
 		"comments": ["Label for the official-document catalog menu item"],
 		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 107]],
+		"translation": "Lägg till dokument"
+	},
+	"documentCatalog.title": {
+		"message": "Add a document",
+		"placeholders": {},
+		"comments": ["Title of the official-document catalog screen"],
+		"origin": [["src/features/documents/DocumentCatalogScreen.tsx", 76]],
 		"translation": "Lägg till dokument"
 	},
 	"home.addDocument": {
@@ -331,11 +331,11 @@
 		"obsolete": true
 	},
 	"zadaId.review.addAll": {
-		"translation": "",
 		"message": "Add to wallet",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ReviewStep.tsx", 162]]
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 169]],
+		"translation": ""
 	},
 	"onboardingWalletExplanation.slide3.subtitle": {
 		"message": "Add your cards and documents by scanning QR codes. When organizations request your data, you can review and share with a tap in the app. Your information is always secure with your PIN or fingerprint.",
@@ -345,11 +345,11 @@
 		"translation": "Lägg till dina kort och dokument genom att skanna QR-koder. När organisationer begär dina uppgifter kan du granska och dela med ett knapptryck i appen. Din information är alltid säker med din PIN-kod eller fingeravtryck."
 	},
 	"zadaId.review.addOne": {
-		"translation": "",
 		"message": "Add ZADA ID to wallet",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ReviewStep.tsx", 161]]
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 168]],
+		"translation": ""
 	},
 	"activity.latest.addedCard": {
 		"message": "Added {name}",
@@ -361,11 +361,11 @@
 		"translation": "Lade till {name}"
 	},
 	"zadaId.adding.title": {
-		"translation": "",
 		"message": "Adding to your wallet…",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/AddingStep.tsx", 32]]
+		"origin": [["src/features/zada-id/AddingStep.tsx", 32]],
+		"translation": ""
 	},
 	"mdlFlow.heading": {
 		"message": "Adding your driver license",
@@ -419,18 +419,18 @@
 		"translation": "Alla kort"
 	},
 	"zadaId.done.allSet": {
-		"translation": "",
 		"message": "All set",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/AddingStep.tsx", 49]]
+		"origin": [["src/features/zada-id/AddingStep.tsx", 49]],
+		"translation": ""
 	},
 	"zadaId.done.almost": {
-		"translation": "",
 		"message": "Almost there",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/AddingStep.tsx", 51]]
+		"origin": [["src/features/zada-id/AddingStep.tsx", 51]],
+		"translation": ""
 	},
 	"trust.warning": {
 		"message": "Always consider whether sharing with an organization is wise.",
@@ -502,28 +502,28 @@
 		"message": "An unknown organization wants to connect with you.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 165]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 120]],
 		"translation": "En okänd organisation vill ansluta med dig."
 	},
 	"verifyPartySlide.signingSubtitleUnknownOrganization": {
 		"message": "An unknown organization wants to interact to create a digital signature for a document.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 145]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 100]],
 		"translation": "En okänd organisation vill interagera för att skapa en digital signatur för ett dokument."
 	},
 	"verifyPartySlide.offerCardSubtitleUnknownOrganization": {
 		"message": "An unknown organization wants to offer you a Credential.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 133]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 88]],
 		"translation": "En okänd organisation vill erbjuda dig ett kort."
 	},
 	"verifyPartySlide.requestSubtitleUnknownOrganization": {
 		"message": "An unknown organization wants to request information from you.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 155]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 110]],
 		"translation": "En okänd organisation vill begära information från dig."
 	},
 	"menu.section.app": {
@@ -539,7 +539,7 @@
 			"0": ["trustedEntitiesWithoutSelf[0].organizationName"]
 		},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 216]],
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 105]],
 		"translation": "Betrodd av {0} organisationer"
 	},
 	"verifyPartySlide.approvedByOneOrganization": {
@@ -588,11 +588,11 @@
 		"translation": "Är du säker på att du vill stoppa?"
 	},
 	"zadaId.name.placeholder": {
-		"translation": "",
 		"message": "As written on your ID",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/NameStep.tsx", 28]]
+		"origin": [["src/features/zada-id/NameStep.tsx", 28]],
+		"translation": ""
 	},
 	"authCodeFlowSlide.authenticate": {
 		"message": "Authenticate",
@@ -634,11 +634,11 @@
 		"translation": "Auktorisering misslyckades"
 	},
 	"zadaId.back": {
-		"translation": "",
 		"message": "Back",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/FlowShell.tsx", 49]]
+		"origin": [["src/features/zada-id/FlowShell.tsx", 49]],
+		"translation": ""
 	},
 	"passportNfc.back": {
 		"message": "Back",
@@ -946,6 +946,13 @@
 		"origin": [["src/features/activity/FunkeActivityDetailScreen.tsx", 164]],
 		"translation": "Kort"
 	},
+	"reviewAndShare.subtitle": {
+		"message": "Check who is asking, why, and what will be shared.",
+		"placeholders": {},
+		"comments": ["Subtitle under the heading of the single-screen share flow"],
+		"origin": [["src/features/share/slides/ReviewAndShareSlide.tsx", 106]],
+		"translation": "Kontrollera vem som frågar, varför och vad som delas."
+	},
 	"onboarding.pin.title": {
 		"message": "Choose a 6-digit PIN",
 		"placeholders": {},
@@ -970,14 +977,14 @@
 		"translation": "Stad"
 	},
 	"zadaId.close": {
-		"translation": "",
 		"message": "Close",
 		"placeholders": {},
 		"comments": [],
 		"origin": [
 			["src/features/zada-id/CountryPicker.tsx", 73],
 			["src/features/zada-id/FlowShell.tsx", 58]
-		]
+		],
+		"translation": ""
 	},
 	"common.close": {
 		"message": "Close",
@@ -1025,11 +1032,11 @@
 		"translation": "Anslutning upprättad"
 	},
 	"zadaId.name.continue": {
-		"translation": "",
 		"message": "Continue",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/NameStep.tsx", 35]]
+		"origin": [["src/features/zada-id/NameStep.tsx", 35]],
+		"translation": ""
 	},
 	"common.continue": {
 		"message": "Continue",
@@ -1060,18 +1067,18 @@
 		"translation": "Det gick inte att lägga till ditt körkort. Försök igen."
 	},
 	"zadaId.done.failedGeneric": {
-		"translation": "",
 		"message": "could not be added",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/AddingStep.tsx", 61]]
+		"origin": [["src/features/zada-id/AddingStep.tsx", 61]],
+		"translation": ""
 	},
 	"verifyPartySlide.zadaUnavailableTitle": {
-		"translation": "",
 		"message": "Could not check with ZADA",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 228]]
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 117]],
+		"translation": ""
 	},
 	"onboarding.biometricsNotEnabled": {
 		"message": "Could not enable biometrics",
@@ -1120,11 +1127,11 @@
 		"translation": "Tulishindwa kutengeneza nakala ya nje ya mtandao. Tafadhali jaribu tena."
 	},
 	"zadaId.phone.countryTitle": {
-		"translation": "",
 		"message": "Country",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/CountryPicker.tsx", 71]]
+		"origin": [["src/features/zada-id/CountryPicker.tsx", 71]],
+		"translation": ""
 	},
 	"common.fields.country": {
 		"message": "Country",
@@ -1321,13 +1328,13 @@
 		"translation": "Borttaget kort"
 	},
 	"zadaId.code.devCode": {
-		"translation": "",
 		"message": "Demo mode — your code is {devCode}.",
 		"placeholders": {
 			"devCode": ["devCode"]
 		},
 		"comments": [],
-		"origin": [["src/features/zada-id/CodeStep.tsx", 74]]
+		"origin": [["src/features/zada-id/CodeStep.tsx", 72]],
+		"translation": ""
 	},
 	"trust.demoOrg": {
 		"message": "Demo organization",
@@ -1342,7 +1349,7 @@
 		"message": "Demo organization",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 252]],
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 141]],
 		"translation": "Demoorganisation"
 	},
 	"settings.developmentMode": {
@@ -1354,13 +1361,13 @@
 		"obsolete": true
 	},
 	"zadaId.code.resendIn": {
-		"translation": "",
 		"message": "Didn't get it? You can request another code in {waitSeconds}s.",
 		"placeholders": {
 			"waitSeconds": ["waitSeconds"]
 		},
 		"comments": [],
-		"origin": [["src/features/zada-id/CodeStep.tsx", 93]]
+		"origin": [["src/features/zada-id/CodeStep.tsx", 91]],
+		"translation": ""
 	},
 	"nfcScanner.scanning.title": {
 		"message": "Do not move the eID card",
@@ -1375,7 +1382,7 @@
 		"message": "Do not share real data",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 256]],
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 145]],
 		"translation": "Dela inte riktig data"
 	},
 	"verifyPartySlide.interactWithHeading": {
@@ -1384,7 +1391,7 @@
 			"name": ["name"]
 		},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 123]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 78]],
 		"translation": "Litar du på {name}?"
 	},
 	"receiveCredential.checkInformationHeader": {
@@ -1427,11 +1434,11 @@
 		"translation": "Dokument signerat"
 	},
 	"zadaId.done.button": {
-		"translation": "",
 		"message": "Done",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/AddingStep.tsx", 77]]
+		"origin": [["src/features/zada-id/AddingStep.tsx", 77]],
+		"translation": ""
 	},
 	"common.credentials.mdl.title": {
 		"message": "Driving License",
@@ -1473,11 +1480,11 @@
 		"translation": "eID-kort"
 	},
 	"zadaId.email.label": {
-		"translation": "",
 		"message": "Email address",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/EmailStep.tsx", 21]]
+		"origin": [["src/features/zada-id/EmailStep.tsx", 21]],
+		"translation": ""
 	},
 	"language.en": {
 		"message": "English",
@@ -1511,21 +1518,21 @@
 		"translation": "Ange PIN-kod för att dela data"
 	},
 	"zadaId.code.title": {
-		"translation": "",
 		"message": "Enter the code",
 		"placeholders": {},
 		"comments": [],
 		"origin": [
 			["src/features/zada-id/ZadaIdFlow.tsx", 346],
 			["src/features/zada-id/ZadaIdFlow.tsx", 354]
-		]
+		],
+		"translation": ""
 	},
 	"zadaId.phone.hint": {
-		"translation": "",
 		"message": "Enter the number without the leading 0.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/PhoneStep.tsx", 44]]
+		"origin": [["src/features/zada-id/PhoneStep.tsx", 44]],
+		"translation": ""
 	},
 	"txCodeSlide.title": {
 		"message": "Enter transaction code",
@@ -1549,11 +1556,11 @@
 		"translation": "Ange din eID-korts PIN-kod"
 	},
 	"zadaId.name.subtitle": {
-		"translation": "",
 		"message": "Enter your full name for your ZADA ID. It isn't stored anywhere else — it only goes on the credential.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 357]]
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 357]],
+		"translation": ""
 	},
 	"common.toastCardDeleteError": {
 		"message": "Error deleting card",
@@ -1611,11 +1618,11 @@
 		"translation": "Fel vid hämtning av kort"
 	},
 	"zadaId.review.existing": {
-		"translation": "",
 		"message": "Existing credentials",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ReviewStep.tsx", 104]]
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 108]],
+		"translation": ""
 	},
 	"common.expired": {
 		"message": "Expired",
@@ -1736,7 +1743,7 @@
 		"message": "First time interaction",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 270]],
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 159]],
 		"translation": "Första interaktionen"
 	},
 	"funkeAboutScreen.contactIntro": {
@@ -1756,11 +1763,11 @@
 		"translation": "Kutoka kidijitali hadi ukutani kwako"
 	},
 	"zadaId.name.label": {
-		"translation": "",
 		"message": "Full name",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/NameStep.tsx", 21]]
+		"origin": [["src/features/zada-id/NameStep.tsx", 21]],
+		"translation": ""
 	},
 	"language.de": {
 		"message": "German",
@@ -1799,11 +1806,11 @@
 		"translation": "Skaffa ditt nationella identitetskort"
 	},
 	"zadaId.phone.title": {
-		"translation": "",
 		"message": "Get your ZADA ID",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 340]]
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 340]],
+		"translation": ""
 	},
 	"pidSetup.idCardFetch.title": {
 		"message": "Getting eID information",
@@ -1957,7 +1964,7 @@
 		"message": "Identity cryptographically verified against the ZADA Trust Registry",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 185]],
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 76]],
 		"translation": "Identiteten kryptografiskt verifierad mot ZADA Trust Registry"
 	},
 	"didcommCancelFlow.issuance.description": {
@@ -2005,7 +2012,7 @@
 		"message": "In ZADA Trust Registry",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 199]],
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 88]],
 		"translation": "Katika ZADA Trust Registry"
 	},
 	"inbox.header": {
@@ -2198,7 +2205,7 @@
 			"0": ["formatRelativeDate(new Date(lastInteractionDate))"]
 		},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 277]],
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 166]],
 		"translation": "Senaste interaktion: {0}"
 	},
 	"predicate.lessThan": {
@@ -2232,7 +2239,7 @@
 		"message": "Listed in the registry, identity not cryptographically verified",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 203]],
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 92]],
 		"translation": "Imeorodheshwa kwenye rejista, utambulisho haujathibitishwa kwa njia ya kriptografia"
 	},
 	"qrScanScreen.loadingInvitation": {
@@ -2250,11 +2257,11 @@
 		"translation": "Ort"
 	},
 	"zadaId.review.searching": {
-		"translation": "",
 		"message": "Looking for credentials issued to you before…",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ReviewStep.tsx", 111]]
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 115]],
+		"translation": ""
 	},
 	"inbox.menuLabel": {
 		"message": "Menu",
@@ -2314,11 +2321,11 @@
 		"obsolete": true
 	},
 	"zadaId.phone.placeholder": {
-		"translation": "",
 		"message": "Mobile number",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/PhoneStep.tsx", 36]]
+		"origin": [["src/features/zada-id/PhoneStep.tsx", 36]],
+		"translation": ""
 	},
 	"documentCatalog.moreSoon": {
 		"message": "More documents coming soon",
@@ -2437,11 +2444,11 @@
 		"translation": "Inga kort ännu"
 	},
 	"verifyPartySlide.zadaUnavailableDescription": {
-		"translation": "",
 		"message": "No connection to the ZADA Trust Registry, so this organisation could not be confirmed",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 232]]
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 121]],
+		"translation": ""
 	},
 	"search.noResults": {
 		"message": "No credentials found",
@@ -2470,17 +2477,23 @@
 		"translation": "Inga kort delades."
 	},
 	"zadaId.review.none": {
-		"translation": "",
 		"message": "No earlier credentials were found for this phone or email.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ReviewStep.tsx", 112]]
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 116]],
+		"translation": ""
 	},
 	"submission.fallbackPurpose": {
 		"message": "No information was provided on the purpose of the data request. Be cautious",
 		"placeholders": {},
-		"comments": ["Shown when a submission has no stated purpose"],
-		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 45]],
+		"comments": [
+			"Shown when a submission has no stated purpose",
+			"Shown when a submission has no stated purpose"
+		],
+		"origin": [
+			["src/features/share/slides/ReviewAndShareSlide.tsx", 63],
+			["src/features/share/slides/ShareCredentialsSlide.tsx", 45]
+		],
 		"translation": "Ingen information gavs om syftet med dataförfrågan. Var försiktig"
 	},
 	"activity.noPurposeGiven": {
@@ -2523,15 +2536,15 @@
 		"message": "No previous interactions found",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 281]],
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 170]],
 		"translation": "Inga tidigare interaktioner hittades"
 	},
 	"zadaId.review.notifyMe": {
-		"translation": "",
 		"message": "Notify me when ready",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ReviewStep.tsx", 153]]
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 160]],
+		"translation": ""
 	},
 	"onboardingDataProtection.toast.secureDevice": {
 		"message": "Now using {0} for PID cryptographic keys.",
@@ -2586,11 +2599,11 @@
 		"translation": "Online igen."
 	},
 	"zadaId.openInBrowser": {
-		"translation": "",
 		"message": "Open in browser instead",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 332]]
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 332]],
+		"translation": ""
 	},
 	"common.openSettingsButton": {
 		"message": "Open settings",
@@ -2610,14 +2623,14 @@
 		"message": "Organization is not verified",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 242]],
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 131]],
 		"translation": "Organisationen är inte verifierad"
 	},
 	"verifyPartySlide.organizationNotVerifiedHeading": {
 		"message": "Organization not verified",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 125]],
+		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 80]],
 		"translation": "Organisation ej verifierad"
 	},
 	"credentialCategory.other": {
@@ -2692,11 +2705,11 @@
 		"translation": "Väntande kort borttaget"
 	},
 	"zadaId.phone.label": {
-		"translation": "",
 		"message": "Phone number",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/PhoneStep.tsx", 26]]
+		"origin": [["src/features/zada-id/PhoneStep.tsx", 26]],
+		"translation": ""
 	},
 	"presentation.pinAuthFailed": {
 		"message": "PIN authentication failed",
@@ -2794,11 +2807,11 @@
 		"translation": "Försök igen."
 	},
 	"zadaId.review.incomplete": {
-		"translation": "",
 		"message": "Please verify your phone and email first.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 258]]
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 258]],
+		"translation": ""
 	},
 	"loadingRequestSlide.title": {
 		"message": "Please wait",
@@ -2867,7 +2880,7 @@
 		"message": "Previous interactions",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 266]],
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 155]],
 		"translation": "Tidigare interaktioner"
 	},
 	"funkeAboutScreen.privacyPolicyTitle": {
@@ -2934,11 +2947,11 @@
 		"translation": "Läs integritetspolicyn"
 	},
 	"zadaId.review.title": {
-		"translation": "",
 		"message": "Ready to add",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 364]]
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 364]],
+		"translation": ""
 	},
 	"nfcScanner.readyToScan.title": {
 		"message": "Ready to scan",
@@ -2995,7 +3008,7 @@
 		"message": "Recognized organization",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 212]],
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 101]],
 		"translation": "Betrodd organisation"
 	},
 	"cardLifecycle.refreshCardButton": {
@@ -3009,7 +3022,7 @@
 		"message": "Regenerate",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 103]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 99]],
 		"translation": "Tengeneza upya"
 	},
 	"common.fields.region": {
@@ -3061,18 +3074,18 @@
 		"translation": "Begärd information"
 	},
 	"zadaId.code.resendEmail": {
-		"translation": "",
 		"message": "Resend email",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/CodeStep.tsx", 83]]
+		"origin": [["src/features/zada-id/CodeStep.tsx", 81]],
+		"translation": ""
 	},
 	"zadaId.code.resendSms": {
-		"translation": "",
 		"message": "Resend SMS",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/CodeStep.tsx", 82]]
+		"origin": [["src/features/zada-id/CodeStep.tsx", 80]],
+		"translation": ""
 	},
 	"onboarding.resetAlert.title": {
 		"message": "Reset Onboarding",
@@ -3088,18 +3101,18 @@
 		"origin": [["../../packages/translations/src/commonMessages.ts", 61]],
 		"translation": "Återställ plånbok"
 	},
-	"submission.reviewTitle": {
-		"message": "Review the request",
-		"placeholders": {},
-		"comments": ["Heading shown at the top of the share credentials screen"],
-		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 61]],
-		"translation": "Granska förfrågan"
-	},
 	"signShare.title": {
 		"message": "Review the request",
 		"placeholders": {},
 		"comments": ["Main heading in the sign & share screen"],
 		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 72]],
+		"translation": "Granska förfrågan"
+	},
+	"submission.reviewTitle": {
+		"message": "Review the request",
+		"placeholders": {},
+		"comments": ["Heading shown at the top of the share credentials screen"],
+		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 61]],
 		"translation": "Granska förfrågan"
 	},
 	"common.revoked": {
@@ -3245,11 +3258,11 @@
 		"translation": "Sök kort"
 	},
 	"zadaId.phone.searchCountry": {
-		"translation": "",
 		"message": "Search country or code",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/CountryPicker.tsx", 82]]
+		"origin": [["src/features/zada-id/CountryPicker.tsx", 82]],
+		"translation": ""
 	},
 	"onboardingIntroduction.step1.title": {
 		"message": "Secure the wallet",
@@ -3261,32 +3274,32 @@
 		"translation": "Säkra plånboken"
 	},
 	"zadaId.phone.selectCountry": {
-		"translation": "",
 		"message": "Select country",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/CountryPicker.tsx", 59]]
+		"origin": [["src/features/zada-id/CountryPicker.tsx", 59]],
+		"translation": ""
 	},
 	"zadaId.email.sendCode": {
-		"translation": "",
 		"message": "Send code",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/EmailStep.tsx", 37]]
+		"origin": [["src/features/zada-id/EmailStep.tsx", 36]],
+		"translation": ""
 	},
 	"zadaId.phone.sendCode": {
-		"translation": "",
 		"message": "Send code by SMS",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/PhoneStep.tsx", 49]]
+		"origin": [["src/features/zada-id/PhoneStep.tsx", 49]],
+		"translation": ""
 	},
 	"zadaId.phone.sendWhatsapp": {
-		"translation": "",
 		"message": "Send code via WhatsApp",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/PhoneStep.tsx", 56]]
+		"origin": [["src/features/zada-id/PhoneStep.tsx", 56]],
+		"translation": ""
 	},
 	"pinSlide.title": {
 		"message": "Send data with your PIN code",
@@ -3298,11 +3311,11 @@
 		"translation": "Skicka data med din PIN-kod"
 	},
 	"zadaId.code.sendWhatsapp": {
-		"translation": "",
 		"message": "Send it via WhatsApp instead",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/CodeStep.tsx", 87]]
+		"origin": [["src/features/zada-id/CodeStep.tsx", 85]],
+		"translation": ""
 	},
 	"onboarding.biometrics.title": {
 		"message": "Set up biometrics",
@@ -3339,13 +3352,6 @@
 		"origin": [["src/features/onboarding/steps.ts", 42]],
 		"translation": "Sanidi ZADA ID yako"
 	},
-	"settings.title": {
-		"message": "Settings",
-		"placeholders": {},
-		"comments": ["Header title for the settings screen"],
-		"origin": [["src/features/menu/FunkeSettingsScreen.tsx", 147]],
-		"translation": "Inställningar"
-	},
 	"menu.item.settings": {
 		"message": "Settings",
 		"placeholders": {},
@@ -3353,11 +3359,24 @@
 		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 166]],
 		"translation": "Inställningar"
 	},
+	"settings.title": {
+		"message": "Settings",
+		"placeholders": {},
+		"comments": ["Header title for the settings screen"],
+		"origin": [["src/features/menu/FunkeSettingsScreen.tsx", 147]],
+		"translation": "Inställningar"
+	},
 	"submission.share": {
 		"message": "Share",
 		"placeholders": {},
-		"comments": ["Button label to accept and share credentials"],
-		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 51]],
+		"comments": [
+			"Button label to accept and share credentials",
+			"Button label to accept and share credentials"
+		],
+		"origin": [
+			["src/features/share/slides/ReviewAndShareSlide.tsx", 69],
+			["src/features/share/slides/ShareCredentialsSlide.tsx", 51]
+		],
 		"translation": "Dela"
 	},
 	"onboardingIntro.slide3.title": {
@@ -3371,8 +3390,24 @@
 		"message": "Share PDF",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 100]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 97]],
 		"translation": "Shiriki PDF"
+	},
+	"reviewAndShare.heading": {
+		"message": "Share with {verifierName}?",
+		"placeholders": {
+			"verifierName": ["verifierName"]
+		},
+		"comments": ["Heading of the single-screen share flow"],
+		"origin": [["src/features/share/slides/ReviewAndShareSlide.tsx", 98]],
+		"translation": "Dela med {verifierName}?"
+	},
+	"reviewAndShare.headingUnknownOrganization": {
+		"message": "Share with an unknown organization?",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/share/slides/ReviewAndShareSlide.tsx", 102]],
+		"translation": "Dela med en okänd organisation?"
 	},
 	"offlineQr.heading": {
 		"message": "Share with QR code",
@@ -3728,13 +3763,13 @@
 		"translation": "Svenska"
 	},
 	"onboardingSetupZadaId.microcopyNative": {
-		"translation": "",
 		"message": "Takes about a minute. You will need your phone and email to receive two short codes.",
 		"placeholders": {},
 		"comments": [
 			"Small text under the verify button explaining what the ZADA ID setup involves"
 		],
-		"origin": [["src/features/onboarding/screens/setup-zada-id.tsx", 35]]
+		"origin": [["src/features/onboarding/screens/setup-zada-id.tsx", 35]],
+		"translation": ""
 	},
 	"common.tapToView": {
 		"message": "Tap to view",
@@ -3922,11 +3957,11 @@
 		"translation": "Detta korts giltighetsperiod är från {0} till {1}."
 	},
 	"zadaId.review.blockedBody": {
-		"translation": "",
 		"message": "Their issuer has not finished setting up on the new network. We can tell you when they are ready.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ReviewStep.tsx", 141]]
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 148]],
+		"translation": ""
 	},
 	"trust.noApprovalsWithoutOrganizationName": {
 		"message": "There are no organizations that have approved this unknown organization.",
@@ -4222,7 +4257,7 @@
 		"message": "Try again",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 75]],
+		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 74]],
 		"translation": "Jaribu tena"
 	},
 	"passportIssue.retry": {
@@ -4240,11 +4275,11 @@
 		"translation": "Jaribu tena"
 	},
 	"zadaId.done.retryFailed": {
-		"translation": "",
 		"message": "Try the failed ones again",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/AddingStep.tsx", 74]]
+		"origin": [["src/features/zada-id/AddingStep.tsx", 74]],
+		"translation": ""
 	},
 	"documentCatalog.subtitle": {
 		"message": "Turn a physical document into a verified credential in your wallet.",
@@ -4394,7 +4429,7 @@
 		"message": "Verified by ZADA Network",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/receive/slides/VerifyPartySlide.tsx", 181]],
+		"origin": [["src/features/receive/components/PartyTrustSection.tsx", 72]],
 		"translation": "Verifierad av ZADA Network"
 	},
 	"trust.trustedBy": {
@@ -4432,11 +4467,11 @@
 		"translation": "Verifiera ditt konto"
 	},
 	"zadaId.email.title": {
-		"translation": "",
 		"message": "Verify your email",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 348]]
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 348]],
+		"translation": ""
 	},
 	"onboarding.setupZadaId.subtitle": {
 		"message": "Verify your phone number and email to unlock your foundational digital identity. If you have used ZADA before, this will also safely transfer your existing credentials to your new wallet.",
@@ -4446,11 +4481,11 @@
 		"translation": "Thibitisha nambari yako ya simu na barua pepe ili kufungua utambulisho wako wa kidijitali wa msingi. Ikiwa umewahi kutumia ZADA hapo awali, hii pia itahamisha kwa usalama kadi zako zilizopo kwenye pochi yako mpya."
 	},
 	"zadaId.phone.subtitle": {
-		"translation": "",
 		"message": "Verify your phone to create your ZADA ID and bring any existing credentials into your wallet.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 341]]
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 341]],
+		"translation": ""
 	},
 	"mdlFlow.inProgress": {
 		"message": "Verifying your license with the road transport department…",
@@ -4476,11 +4511,11 @@
 		"translation": "PLÅNBOK"
 	},
 	"zadaId.review.discoveryFailed": {
-		"translation": "",
 		"message": "We couldn't check for earlier credentials right now. You can migrate them later from the menu.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 142]]
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 142]],
+		"translation": ""
 	},
 	"pidSetup.idCardVerify.Subtitle": {
 		"message": "We need your biometrics to verify your identity.",
@@ -4490,20 +4525,20 @@
 		"translation": "Vi behöver din biometri för att verifiera din identitet."
 	},
 	"zadaId.code.sentTo": {
-		"translation": "",
 		"message": "We sent a 6-digit code to {destination}.",
 		"placeholders": {
 			"destination": ["destination"]
 		},
 		"comments": [],
-		"origin": [["src/features/zada-id/CodeStep.tsx", 56]]
+		"origin": [["src/features/zada-id/CodeStep.tsx", 56]],
+		"translation": ""
 	},
 	"zadaId.review.notifyDone": {
-		"translation": "",
 		"message": "We'll let you know.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ReviewStep.tsx", 149]]
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 156]],
+		"translation": ""
 	},
 	"welcome.titleToYourWallet": {
 		"message": "Welcome to your wallet",
@@ -4721,18 +4756,24 @@
 		],
 		"translation": "Du har inte de begärda korten."
 	},
-	"submission.missingCardsWarning": {
-		"message": "You don't have the required cards",
-		"placeholders": {},
-		"comments": ["Shown when user lacks required credentials"],
-		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 130]],
-		"translation": "Du har inte de kort som krävs"
-	},
 	"signShare.missingCards": {
 		"message": "You don't have the required cards",
 		"placeholders": {},
 		"comments": ["Shown when the user lacks the required credentials"],
 		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 180]],
+		"translation": "Du har inte de kort som krävs"
+	},
+	"submission.missingCardsWarning": {
+		"message": "You don't have the required cards",
+		"placeholders": {},
+		"comments": [
+			"Shown when user lacks required credentials",
+			"Shown when user lacks required credentials"
+		],
+		"origin": [
+			["src/features/share/slides/ReviewAndShareSlide.tsx", 166],
+			["src/features/share/slides/ShareCredentialsSlide.tsx", 130]
+		],
 		"translation": "Du har inte de kort som krävs"
 	},
 	"pinLocked.description": {
@@ -4866,11 +4907,11 @@
 		"translation": "Din information har delats."
 	},
 	"zadaId.name.title": {
-		"translation": "",
 		"message": "Your name",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 356]]
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 356]],
+		"translation": ""
 	},
 	"onboardingIntro.slide1.title": {
 		"message": "Your official IDs, in your pocket",
@@ -4894,39 +4935,39 @@
 		"translation": ""
 	},
 	"zadaId.review.yourId": {
-		"translation": "",
 		"message": "Your ZADA ID",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ReviewStep.tsx", 91]]
+		"origin": [["src/features/zada-id/ReviewStep.tsx", 95]],
+		"translation": ""
 	},
 	"zadaId.done.idFailed": {
-		"translation": "",
 		"message": "Your ZADA ID could not be created",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/AddingStep.tsx", 52]]
+		"origin": [["src/features/zada-id/AddingStep.tsx", 52]],
+		"translation": ""
 	},
 	"zadaId.email.subtitle": {
-		"translation": "",
 		"message": "Your ZADA ID includes a verified email. We also use it to find credentials registered to it.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 349]]
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 349]],
+		"translation": ""
 	},
 	"zadaId.review.subtitle": {
-		"translation": "",
 		"message": "Your ZADA ID is ready. Choose which existing credentials to bring into this wallet.",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 365]]
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 365]],
+		"translation": ""
 	},
 	"zadaId.itemZadaId": {
-		"translation": "",
 		"message": "ZADA ID",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 264]]
+		"origin": [["src/features/zada-id/ZadaIdFlow.tsx", 264]],
+		"translation": ""
 	},
 	"paradymWallet.about.description": {
 		"message": "ZADA is a digital identity technology company focused on enabling secure and privacy-preserving access to digital services. Our goal is to help individuals and organizations interact digitally with greater trust, while minimizing fraud and unnecessary data exposure.\n\nWith ZADA, users remain in control of their personal data and can choose what information to share, with whom, and for what purpose.\n\nThis application is based on open-source software and includes components developed by Animo Solutions and other contributors, licensed under the Apache License, Version 2.0. ZADA Network has modified and extended this software as part of its implementation.\n\nUnless otherwise stated, the software is provided “as is,” without warranties or conditions of any kind.\n\nZADA supports an ecosystem approach to digital identity, enabling trusted and reusable interactions across services.\n",
