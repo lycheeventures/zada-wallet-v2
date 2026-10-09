@@ -40,10 +40,6 @@ tags:
 - tapOn: "Yes, continue"
 - waitForAnimationToEnd:
     timeout: 5000
-- assertVisible: "Card offered"
-- tapOn: "Continue"
-- waitForAnimationToEnd:
-    timeout: 5000
 - assertVisible: Review the request
 - takeScreenshot: ReviewRequestScreen
 - tapOn: Share

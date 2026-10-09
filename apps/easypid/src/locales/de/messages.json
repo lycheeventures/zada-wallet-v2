@@ -106,7 +106,8 @@
 			"Subtitle shown when the issuer wants to give the user a card with no auth required"
 		],
 		"origin": [["src/features/receive/slides/CredentialCardSlide.tsx", 44]],
-		"translation": "{issuerName} möchte dir die folgende Karte ausstellen:"
+		"translation": "{issuerName} möchte dir die folgende Karte ausstellen:",
+		"obsolete": true
 	},
 	"verifyPartySlide.connectSubtitle": {
 		"message": "{name} wants to connect with you.",
@@ -615,7 +616,7 @@
 		"placeholders": {},
 		"comments": ["Shown when authentication with PIN fails for other reasons"],
 		"origin": [
-			["src/features/share/FunkeOpenIdPresentationNotificationScreen.tsx", 61]
+			["src/features/share/FunkeOpenIdPresentationNotificationScreen.tsx", 70]
 		],
 		"translation": "Authentifizierung fehlgeschlagen"
 	},
@@ -950,7 +951,7 @@
 		"message": "Check who is asking, why, and what will be shared.",
 		"placeholders": {},
 		"comments": ["Subtitle under the heading of the single-screen share flow"],
-		"origin": [["src/features/share/slides/ReviewAndShareSlide.tsx", 106]],
+		"origin": [["src/features/share/slides/ReviewAndShareSlide.tsx", 112]],
 		"translation": "Prüfe, wer anfragt, warum, und was geteilt wird."
 	},
 	"onboarding.pin.title": {
@@ -1244,7 +1245,8 @@
 		"placeholders": {},
 		"comments": ["Title shown when a credential card is offered to the user"],
 		"origin": [["src/features/receive/slides/CredentialCardSlide.tsx", 13]],
-		"translation": "Karte angeboten"
+		"translation": "Karte angeboten",
+		"obsolete": true
 	},
 	"retrieveCredential.cardSuccessfully added": {
 		"message": "Credential successfully added to your wallet!",
@@ -2004,7 +2006,7 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [
-			["src/features/receive/FunkeOpenIdCredentialNotificationScreen.tsx", 568]
+			["src/features/receive/FunkeOpenIdCredentialNotificationScreen.tsx", 560]
 		],
 		"translation": "Wenn du aufhörst, wird das Kartenangebot abgebrochen."
 	},
@@ -2465,7 +2467,7 @@
 			"Shown when the user tries to accept a proof but no credentials are loaded"
 		],
 		"origin": [
-			["src/features/share/FunkeOpenIdPresentationNotificationScreen.tsx", 49]
+			["src/features/share/FunkeOpenIdPresentationNotificationScreen.tsx", 58]
 		],
 		"translation": "Keine Nachweise ausgewählt"
 	},
@@ -2491,7 +2493,7 @@
 			"Shown when a submission has no stated purpose"
 		],
 		"origin": [
-			["src/features/share/slides/ReviewAndShareSlide.tsx", 63],
+			["src/features/share/slides/ReviewAndShareSlide.tsx", 69],
 			["src/features/share/slides/ShareCredentialsSlide.tsx", 45]
 		],
 		"translation": "Zum Zweck der Datenanfrage wurden keine Informationen bereitgestellt. Sei vorsichtig"
@@ -2716,7 +2718,7 @@
 		"placeholders": {},
 		"comments": ["Shown when PIN is required but not provided"],
 		"origin": [
-			["src/features/share/FunkeOpenIdPresentationNotificationScreen.tsx", 55]
+			["src/features/share/FunkeOpenIdPresentationNotificationScreen.tsx", 64]
 		],
 		"translation": "PIN-Authentifizierung fehlgeschlagen"
 	},
@@ -3101,18 +3103,18 @@
 		"origin": [["../../packages/translations/src/commonMessages.ts", 61]],
 		"translation": "Wallet zurücksetzen"
 	},
-	"signShare.title": {
-		"message": "Review the request",
-		"placeholders": {},
-		"comments": ["Main heading in the sign & share screen"],
-		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 72]],
-		"translation": "Anfrage überprüfen"
-	},
 	"submission.reviewTitle": {
 		"message": "Review the request",
 		"placeholders": {},
 		"comments": ["Heading shown at the top of the share credentials screen"],
 		"origin": [["src/features/share/slides/ShareCredentialsSlide.tsx", 61]],
+		"translation": "Anfrage überprüfen"
+	},
+	"signShare.title": {
+		"message": "Review the request",
+		"placeholders": {},
+		"comments": ["Main heading in the sign & share screen"],
+		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 72]],
 		"translation": "Anfrage überprüfen"
 	},
 	"common.revoked": {
@@ -3352,18 +3354,18 @@
 		"origin": [["src/features/onboarding/steps.ts", 42]],
 		"translation": "Richte deine ZADA ID ein"
 	},
-	"menu.item.settings": {
-		"message": "Settings",
-		"placeholders": {},
-		"comments": ["Label for settings menu item"],
-		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 166]],
-		"translation": "Einstellungen"
-	},
 	"settings.title": {
 		"message": "Settings",
 		"placeholders": {},
 		"comments": ["Header title for the settings screen"],
 		"origin": [["src/features/menu/FunkeSettingsScreen.tsx", 147]],
+		"translation": "Einstellungen"
+	},
+	"menu.item.settings": {
+		"message": "Settings",
+		"placeholders": {},
+		"comments": ["Label for settings menu item"],
+		"origin": [["src/features/menu/FunkeMenuScreen.tsx", 166]],
 		"translation": "Einstellungen"
 	},
 	"submission.share": {
@@ -3374,7 +3376,7 @@
 			"Button label to accept and share credentials"
 		],
 		"origin": [
-			["src/features/share/slides/ReviewAndShareSlide.tsx", 69],
+			["src/features/share/slides/ReviewAndShareSlide.tsx", 75],
 			["src/features/share/slides/ShareCredentialsSlide.tsx", 51]
 		],
 		"translation": "Teilen"
@@ -3399,14 +3401,14 @@
 			"verifierName": ["verifierName"]
 		},
 		"comments": ["Heading of the single-screen share flow"],
-		"origin": [["src/features/share/slides/ReviewAndShareSlide.tsx", 98]],
+		"origin": [["src/features/share/slides/ReviewAndShareSlide.tsx", 104]],
 		"translation": "Mit {verifierName} teilen?"
 	},
 	"reviewAndShare.headingUnknownOrganization": {
 		"message": "Share with an unknown organization?",
 		"placeholders": {},
 		"comments": [],
-		"origin": [["src/features/share/slides/ReviewAndShareSlide.tsx", 102]],
+		"origin": [["src/features/share/slides/ReviewAndShareSlide.tsx", 108]],
 		"translation": "Mit einer unbekannten Organisation teilen?"
 	},
 	"offlineQr.heading": {
@@ -3698,7 +3700,7 @@
 		"placeholders": {},
 		"comments": [],
 		"origin": [
-			["src/features/receive/FunkeOpenIdCredentialNotificationScreen.tsx", 564]
+			["src/features/receive/FunkeOpenIdCredentialNotificationScreen.tsx", 556]
 		],
 		"translation": "Kartenangebot stoppen?"
 	},
@@ -4199,7 +4201,8 @@
 			"Subtitle shown when entering a PIN is required to receive the credential"
 		],
 		"origin": [["src/features/receive/slides/CredentialCardSlide.tsx", 35]],
-		"translation": "Um diese Karte von {issuerName} zu erhalten, musst du eine PIN eingeben."
+		"translation": "Um diese Karte von {issuerName} zu erhalten, musst du eine PIN eingeben.",
+		"obsolete": true
 	},
 	"credentialCardSlide.subtitle.presentation": {
 		"message": "To receive this credential from {issuerName}, you need to share credentials from your wallet.",
@@ -4210,7 +4213,8 @@
 			"Subtitle shown when presentation of other credentials is required"
 		],
 		"origin": [["src/features/receive/slides/CredentialCardSlide.tsx", 26]],
-		"translation": "Um diese Karte von {issuerName} zu erhalten, musst du Karten aus deiner Wallet teilen."
+		"translation": "Um diese Karte von {issuerName} zu erhalten, musst du Karten aus deiner Wallet teilen.",
+		"obsolete": true
 	},
 	"dateFormatting.today": {
 		"message": "Today",
@@ -4260,18 +4264,18 @@
 		"origin": [["src/features/wallet/ColdCredentialSheet.tsx", 74]],
 		"translation": "Erneut versuchen"
 	},
-	"passportIssue.retry": {
-		"message": "Try again",
-		"placeholders": {},
-		"comments": [],
-		"origin": [["src/features/passport/PassportFlow.tsx", 80]],
-		"translation": "Erneut versuchen"
-	},
 	"passportNfc.retry": {
 		"message": "Try again",
 		"placeholders": {},
 		"comments": [],
 		"origin": [["src/features/passport/PassportNfcReadScreen.tsx", 99]],
+		"translation": "Erneut versuchen"
+	},
+	"passportIssue.retry": {
+		"message": "Try again",
+		"placeholders": {},
+		"comments": [],
+		"origin": [["src/features/passport/PassportFlow.tsx", 80]],
 		"translation": "Erneut versuchen"
 	},
 	"zadaId.done.retryFailed": {
@@ -4756,13 +4760,6 @@
 		],
 		"translation": "Du hast die angeforderte(n) Karte(n) nicht."
 	},
-	"signShare.missingCards": {
-		"message": "You don't have the required cards",
-		"placeholders": {},
-		"comments": ["Shown when the user lacks the required credentials"],
-		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 180]],
-		"translation": "Du hast nicht die erforderlichen Karten"
-	},
 	"submission.missingCardsWarning": {
 		"message": "You don't have the required cards",
 		"placeholders": {},
@@ -4771,9 +4768,16 @@
 			"Shown when user lacks required credentials"
 		],
 		"origin": [
-			["src/features/share/slides/ReviewAndShareSlide.tsx", 166],
+			["src/features/share/slides/ReviewAndShareSlide.tsx", 172],
 			["src/features/share/slides/ShareCredentialsSlide.tsx", 130]
 		],
+		"translation": "Du hast nicht die erforderlichen Karten"
+	},
+	"signShare.missingCards": {
+		"message": "You don't have the required cards",
+		"placeholders": {},
+		"comments": ["Shown when the user lacks the required credentials"],
+		"origin": [["src/features/share/slides/SignAndShareSlide.tsx", 180]],
 		"translation": "Du hast nicht die erforderlichen Karten"
 	},
 	"pinLocked.description": {
