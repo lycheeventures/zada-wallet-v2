@@ -8,6 +8,7 @@ import {
 } from '@easypid/constants'
 import { InvalidPinError } from '@easypid/crypto/error'
 import { useDevelopmentMode } from '@easypid/hooks'
+import { isCredentialRecordRevoked } from '@easypid/services/credentialStatus'
 
 import { useLingui } from '@lingui/react/macro'
 import {
@@ -305,6 +306,7 @@ export function FunkeCredentialNotificationScreen() {
     (oid4vpRequestUrl: string) =>
       getCredentialsForProofRequest({
         agent,
+        isCredentialRevoked: isCredentialRecordRevoked,
         uri: oid4vpRequestUrl,
       })
         .then(setCredentialsForRequest)

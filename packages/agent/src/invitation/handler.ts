@@ -59,6 +59,7 @@ import {
   resolveZadaTrustFromX5c,
   resolveZadaVerifierTrustFromX5c,
 } from '../utils/trust'
+import { dropRevokedCredentials, type IsCredentialRevoked } from './dropRevokedCredentials'
 import { BiometricAuthenticationError } from './error'
 import { fetchInvitationDataUrl } from './fetchInvitation'
 
@@ -518,6 +519,11 @@ export type GetCredentialsForProofRequestOptions = {
   origin?: string
   trustedX509Entities?: TrustedX509Entity[]
   trustedDidEntities?: TrustedDidEntity[]
+  /**
+   * When provided, credentials the issuer has revoked are left out of the matches, so they are
+   * neither offered in the picker nor selected automatically. See dropRevokedCredentials.
+   */
+  isCredentialRevoked?: IsCredentialRevoked
 }
 
 export const getCredentialsForProofRequest = async ({
@@ -528,6 +534,7 @@ export const getCredentialsForProofRequest = async ({
   origin,
   trustedX509Entities = [],
   trustedDidEntities = [],
+  isCredentialRevoked,
 }: GetCredentialsForProofRequestOptions) => {
   const { data: fromFederationData = null } = allowUntrusted
     ? await extractEntityIdFromAuthorizationRequest({ uri, requestPayload, origin })
@@ -561,6 +568,16 @@ export const getCredentialsForProofRequest = async ({
     // NOTE: add back when enabling federation support
     // trustedFederationEntityIds: entityId ? [entityId] : undefined,
   })
+
+  if (resolved.dcql && isCredentialRevoked) {
+    try {
+      const { dropped } = await dropRevokedCredentials(resolved.dcql.queryResult, isCredentialRevoked)
+      if (dropped > 0) agent.config.logger.info(`Left ${dropped} revoked credential(s) out of the request matches`)
+    } catch (error) {
+      // Never let the status check stand between the holder and a presentation.
+      agent.config.logger.warn('Revoked-credential filter failed; continuing with all matches', { error })
+    }
+  }
 
   const authorizationRequestVerificationResult = await verifyOpenid4VpAuthorizationRequest(agent.context, {
     resolvedAuthorizationRequest: resolved,

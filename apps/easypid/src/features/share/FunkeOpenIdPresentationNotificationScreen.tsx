@@ -1,6 +1,7 @@
 import { useAppAgent } from '@easypid/agent'
 import { InvalidPinError } from '@easypid/crypto/error'
 import { useDevelopmentMode, useOverAskingAi } from '@easypid/hooks'
+import { isCredentialRecordRevoked } from '@easypid/services/credentialStatus'
 import { useLingui } from '@lingui/react/macro'
 import {
   BiometricAuthenticationCancelledError,
@@ -69,6 +70,7 @@ export function FunkeOpenIdPresentationNotificationScreen() {
 
     getCredentialsForProofRequest({
       agent,
+      isCredentialRevoked: isCredentialRecordRevoked,
       uri: params.uri,
       trustedX509Entities,
       trustedDidEntities,
