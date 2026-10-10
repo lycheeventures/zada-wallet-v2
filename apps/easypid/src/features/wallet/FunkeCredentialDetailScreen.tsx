@@ -1,3 +1,4 @@
+import { useCredentialForDisplayRevoked } from '@easypid/services/credentialStatus'
 import { Trans, useLingui } from '@lingui/react/macro'
 import { type CredentialForDisplayId, getZadaIssuerTrust, useCredentialForDisplayById } from '@package/agent'
 import { DeleteCredentialSheet, TextBackButton, useHaptics } from '@package/app'
@@ -31,6 +32,7 @@ export function FunkeCredentialDetailScreen() {
   const { t } = useLingui()
 
   const { credential } = useCredentialForDisplayById(id)
+  const isRevoked = useCredentialForDisplayRevoked(credential)
   const [isSheetOpen, setIsSheetOpen] = useState(false)
   const [isColdSheetOpen, setIsColdSheetOpen] = useState(false)
 
@@ -79,6 +81,7 @@ export function FunkeCredentialDetailScreen() {
           <YStack ai="center" gap="$6" p="$4" marginBottom={bottom}>
             <AnimatedStack width="100%" mt="$-3" mb="$-5" scale={0.75}>
               <FunkeCredentialCard
+                isRevoked={isRevoked}
                 issuerImage={{
                   url: credential.display.issuer.logo?.url,
                   altText: credential.display.issuer.logo?.altText,
@@ -125,6 +128,7 @@ export function FunkeCredentialDetailScreen() {
                 validFrom={credential.metadata.validFrom ? new Date(credential.metadata.validFrom) : undefined}
                 validUntil={credential.metadata.validUntil ? new Date(credential.metadata.validUntil) : undefined}
                 hasRefreshToken={credential.hasRefreshToken}
+                isRevoked={isRevoked}
               />
               <InfoButton
                 variant="view"

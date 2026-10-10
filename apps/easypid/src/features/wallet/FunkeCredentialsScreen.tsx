@@ -1,3 +1,4 @@
+import { useCredentialForDisplayRevoked } from '@easypid/services/credentialStatus'
 import { Trans, useLingui } from '@lingui/react/macro'
 import { type CredentialForDisplay, type DisplayImage, useCredentialsForDisplay } from '@package/agent'
 import { type CredentialCategoryTheme, getCredentialCategory, TextBackButton } from '@package/app'
@@ -196,9 +197,11 @@ function CredentialStackItem({
   index: number
   onPress: () => void
 }) {
+  const isRevoked = useCredentialForDisplayRevoked(credential)
   return (
     <YStack mt={index === 0 ? 0 : -120} zIndex={index}>
       <FunkeCredentialCard
+        isRevoked={isRevoked}
         name={credential.display.name}
         issuerName={credential.display.issuer.name}
         credentialType={credential.metadata.type}
