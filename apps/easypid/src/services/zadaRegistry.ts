@@ -55,6 +55,9 @@ const FRESH_MS = 6 * 60 * 60 * 1000 // 6h
 const STALE_MS = 7 * 24 * 60 * 60 * 1000 // 7d
 /** Bounded so a blocked or crawling network can never hold up the verify screen. */
 const FETCH_TIMEOUT_MS = 5000
+/** Minimum gap between registry refreshes triggered by a lookup miss (see getZadaRegistryIssuerByUrl). */
+const MISS_REFRESH_MS = 60 * 1000
+let lastMissRefreshAt = 0
 
 /**
  * Endpoints, in order. `api.zada.solutions` is ZADA's own proxy, on an IP that is reachable from
@@ -196,8 +199,24 @@ export const getZadaRegistryIssuerByUrl = async (issuer?: string): Promise<ZadaR
   if (!issuer) return undefined
   const normalise = (value: string) => value.replace(/\/+$/, '')
   const target = normalise(issuer)
-  const issuers = await getZadaRegistryIssuers()
-  return issuers.find((org) => org.credential_issuer_url && normalise(org.credential_issuer_url) === target)
+  const find = (issuers: ZadaRegistryIssuer[]) =>
+    issuers.find((org) => org.credential_issuer_url && normalise(org.credential_issuer_url) === target)
+
+  const hit = find(await getZadaRegistryIssuers())
+  if (hit) return hit
+
+  // A miss can mean "not in the registry" — or an organisation whose issuer URL changed since this
+  // device last fetched the feed. That happens whenever an organisation moves between issuing
+  // services (the Hovi exit, Oct 2026): the registry row is updated at once, but a device that
+  // fetched the feed less than FRESH_MS ago keeps answering from its copy and the signed issuer
+  // metadata then has no anchor, which makes adding the credential fail outright. So before
+  // answering "unknown", refresh once — rate-limited so a genuinely unknown issuer cannot turn
+  // every scan into a network round trip.
+  const now = Date.now()
+  if (now - lastMissRefreshAt < MISS_REFRESH_MS) return undefined
+  lastMissRefreshAt = now
+  const fresh = await refresh()
+  return fresh ? find(fresh.issuers) : undefined
 }
 
 /**
