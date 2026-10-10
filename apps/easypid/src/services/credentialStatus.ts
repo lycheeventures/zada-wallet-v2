@@ -173,3 +173,23 @@ export const useCredentialForDisplayRevoked = (credential?: CredentialForDisplay
     credential?.claimFormat === ClaimFormat.SdJwtDc ? (credential.record as { encoded?: string }).encoded : undefined
   return useCredentialRevoked(credential?.id, compact)
 }
+
+/**
+ * For the share flow: is this credential KNOWN to be revoked? Uses a recent answer when there is
+ * one, otherwise asks the issuer's list (bounded by FETCH_TIMEOUT_MS). If the list cannot be
+ * reached, falls back to the last answer this device has; with none, the answer is `false` — an
+ * unreachable status list must never keep a holder from presenting. Never throws.
+ */
+export const isCredentialRecordRevoked = async (record: { id: string; type: string }): Promise<boolean> => {
+  if (record.type !== 'SdJwtVcRecord') return false
+  const compact = (record as { encoded?: string }).encoded
+  if (!getStatusReference(compact)) return false
+
+  // Same key as the card hook (CredentialForDisplayId), so both share one remembered answer.
+  const credentialId = `sd-jwt-vc-${record.id}`
+  const cached = readCached(credentialId)
+  if (cached && Date.now() - cached.checkedAt < FRESH_MS) return cached.revoked
+
+  const fresh = await checkCredentialRevoked(credentialId, compact)
+  return fresh ?? cached?.revoked ?? false
+}
