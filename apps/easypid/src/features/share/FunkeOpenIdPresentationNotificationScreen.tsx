@@ -15,6 +15,7 @@ import {
 } from '@package/agent'
 import { shareProof } from '@package/agent/invitation/shareProof'
 import { usePushToWallet } from '@package/app/hooks/usePushToWallet'
+import { secureWalletKey, useIsBiometricsEnabled } from '@package/secure-store/secureUnlock'
 import { commonMessages } from '@package/translations'
 import { useToastController } from '@package/ui'
 import { useLocalSearchParams } from 'expo-router'
@@ -22,6 +23,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { trustedDidEntities, trustedX509Entities } from '../../constants'
 import { setWalletServiceProviderPin } from '../../crypto/WalletServiceProviderClient'
 import { useShouldUsePinForSubmission } from '../../hooks/useShouldUsePinForPresentation'
+import { useShouldUseCloudHsm } from '../onboarding/useShouldUseCloudHsm'
 import { FunkePresentationNotificationScreen } from './FunkePresentationNotificationScreen'
 import type { onPinSubmitProps } from './slides/PinSlide'
 
@@ -40,11 +42,18 @@ export function FunkeOpenIdPresentationNotificationScreen() {
   const [formattedTransactionData, setFormattedTransactionData] = useState<FormattedTransactionData>()
   const [isSharing, setIsSharing] = useState(false)
   const shouldUsePin = useShouldUsePinForSubmission(credentialsForRequest?.formattedSubmission)
+  const [isBiometricsEnabled] = useIsBiometricsEnabled()
+  const [shouldUseCloudHsm] = useShouldUseCloudHsm()
+  // The share-time PIN exists to prove possession of the wallet key (it re-derives the key and
+  // opens the store). When the user has enabled biometric unlock, the biometry-protected copy of
+  // that same key gives the same proof with one prompt instead of six digits. The cloud HSM is the
+  // exception: it needs the digits themselves to derive its request-signing key.
+  const canUseBiometricsInsteadOfPin = !!shouldUsePin && !!isBiometricsEnabled && !shouldUseCloudHsm
 
   const handleError = useCallback(({ reason, description }: { reason: string; description?: string }) => {
     setIsSharing(false)
     setErrorReason(description ? `${reason}\n${description}` : reason)
-    return
+    return undefined
   }, [])
 
   const reasonNoCredentials = t({
@@ -133,8 +142,25 @@ export function FunkeOpenIdPresentationNotificationScreen() {
     })
   }, [credentialsForRequest, checkForOverAsking, isProcessingOverAsking, overAskingResponse])
 
+  /**
+   * Proves the user holds the wallet key by fetching the biometry-protected copy of it.
+   * Resolves `false` (rather than throwing) when biometrics is cancelled, fails or is unavailable,
+   * so the caller can fall back to the PIN slide instead of ending the flow in an error.
+   */
+  const authenticateWithBiometrics = useCallback(async () => {
+    try {
+      const walletKey = await secureWalletKey.getWalletKeyUsingBiometrics(secureWalletKey.getWalletKeyVersion())
+      return walletKey !== null
+    } catch (error) {
+      agent.config.logger.debug('Biometric authentication for presentation failed, falling back to PIN', {
+        error,
+      })
+      return false
+    }
+  }, [agent])
+
   const onProofAccept = useCallback(
-    async ({ pin, onPinComplete, onPinError }: onPinSubmitProps = {}) => {
+    async ({ pin, onPinComplete, onPinError }: onPinSubmitProps = {}): Promise<undefined | 'pin-required'> => {
       stopOverAsking()
       if (!credentialsForRequest) return handleError({ reason: reasonNoCredentials })
 
@@ -142,29 +168,37 @@ export function FunkeOpenIdPresentationNotificationScreen() {
 
       if (shouldUsePin) {
         if (!pin) {
-          setIsSharing(false)
-          return handleError({ reason: reasonPinAuthFailed })
-        }
-
-        try {
-          await setWalletServiceProviderPin(pin.split('').map(Number))
-        } catch (e) {
-          setIsSharing(false)
-          if (e instanceof InvalidPinError) {
-            onPinError?.()
-            toast.show(t(commonMessages.invalidPinEntered), {
-              customData: {
-                preset: 'danger',
-              },
-            })
-            return
+          if (!canUseBiometricsInsteadOfPin) {
+            setIsSharing(false)
+            return handleError({ reason: reasonPinAuthFailed })
           }
 
-          return handleError({
-            reason: reasonAuthFailed,
-            description:
-              e instanceof Error && isDevelopmentModeEnabled ? `Development mode error: ${e.message}` : undefined,
-          })
+          const isAuthenticated = await authenticateWithBiometrics()
+          if (!isAuthenticated) {
+            setIsSharing(false)
+            return 'pin-required'
+          }
+        } else {
+          try {
+            await setWalletServiceProviderPin(pin.split('').map(Number))
+          } catch (e) {
+            setIsSharing(false)
+            if (e instanceof InvalidPinError) {
+              onPinError?.()
+              toast.show(t(commonMessages.invalidPinEntered), {
+                customData: {
+                  preset: 'danger',
+                },
+              })
+              return
+            }
+
+            return handleError({
+              reason: reasonAuthFailed,
+              description:
+                e instanceof Error && isDevelopmentModeEnabled ? `Development mode error: ${e.message}` : undefined,
+            })
+          }
         }
       }
 
@@ -226,6 +260,8 @@ export function FunkeOpenIdPresentationNotificationScreen() {
       credentialsForRequest,
       agent,
       shouldUsePin,
+      canUseBiometricsInsteadOfPin,
+      authenticateWithBiometrics,
       stopOverAsking,
       toast,
       isDevelopmentModeEnabled,
@@ -261,6 +297,7 @@ export function FunkeOpenIdPresentationNotificationScreen() {
     <FunkePresentationNotificationScreen
       key="presentation"
       usePin={shouldUsePin ?? false}
+      useBiometricsInsteadOfPin={canUseBiometricsInsteadOfPin}
       onAccept={onProofAccept}
       onDecline={onProofDecline}
       submission={credentialsForRequest?.formattedSubmission}

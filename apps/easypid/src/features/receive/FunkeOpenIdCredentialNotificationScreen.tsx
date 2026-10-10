@@ -51,7 +51,6 @@ import { useShouldUsePinForSubmission } from '../../hooks/useShouldUsePinForPres
 import { type onPinSubmitProps, PinSlide } from '../share/slides/PinSlide'
 import { ShareCredentialsSlide } from '../share/slides/ShareCredentialsSlide'
 import { AuthCodeFlowSlide } from './slides/AuthCodeFlowSlide'
-import { CredentialCardSlide } from './slides/CredentialCardSlide'
 import { CredentialRetrievalSlide } from './slides/CredentialRetrievalSlide'
 import { InteractionErrorSlide } from './slides/InteractionErrorSlide'
 import { LoadingRequestSlide } from './slides/LoadingRequestSlide'
@@ -474,6 +473,9 @@ export function FunkeCredentialNotificationScreen() {
             />
           ),
         },
+        // No "Credential offered" interstitial: the trust screen's "Yes, continue" already starts
+        // retrieval, and the next screen shows the full card with its attributes before anything is
+        // stored. A screen whose only action is Continue adds a tap, not a decision.
         isBrowserAuthFlow
           ? {
               step: 'auth-code-flow',
@@ -494,17 +496,7 @@ export function FunkeCredentialNotificationScreen() {
                 />
               ),
             }
-          : {
-              step: 'check-card',
-              progress: 49.5,
-              screen: (
-                <CredentialCardSlide
-                  key="credential-card"
-                  type={isAuthFlow ? 'presentation' : isPreAuthWithTxFlow ? 'pin' : 'noAuth'}
-                  display={credentialDisplay}
-                />
-              ),
-            },
+          : undefined,
         isAuthFlow
           ? {
               step: 'presentation-during-issuance',

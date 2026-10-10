@@ -10,7 +10,7 @@ export interface onPinSubmitProps {
 }
 
 export interface PinSlideProps {
-  onPinSubmit: ({ pin, onPinComplete, onPinError }: onPinSubmitProps) => Promise<void>
+  onPinSubmit: ({ pin, onPinComplete, onPinError }: onPinSubmitProps) => Promise<unknown>
   isLoading: boolean
 }
 

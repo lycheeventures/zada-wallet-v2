@@ -10,9 +10,9 @@ import { type SlideStep, SlideWizard } from '@package/app'
 import { InteractionErrorSlide } from '../receive/slides/InteractionErrorSlide'
 import { LoadingRequestSlide } from '../receive/slides/LoadingRequestSlide'
 import { VerifyPartySlide } from '../receive/slides/VerifyPartySlide'
-import { PinSlide } from './slides/PinSlide'
+import { type onPinSubmitProps, PinSlide } from './slides/PinSlide'
 import { PresentationSuccessSlide } from './slides/PresentationSuccessSlide'
-import { ShareCredentialsSlide } from './slides/ShareCredentialsSlide'
+import { ReviewAndShareSlide } from './slides/ReviewAndShareSlide'
 import { SignAndShareSlide } from './slides/SignAndShareSlide'
 import { SigningSlide } from './slides/SigningSlide'
 
@@ -25,9 +25,14 @@ interface FunkePresentationNotificationScreenProps {
   trustMechanism?: TrustMechanism
   submission?: FormattedSubmission
   usePin: boolean
+  /**
+   * With a PIN required and biometric unlock enabled, Share authenticates with biometrics from the
+   * review screen and only falls back to the PIN slide when that fails or is cancelled.
+   */
+  useBiometricsInsteadOfPin?: boolean
   isAccepting: boolean
   transaction?: FormattedTransactionData
-  onAccept: () => Promise<void>
+  onAccept: (props?: onPinSubmitProps) => Promise<undefined | 'pin-required'>
   onDecline: () => void
   onCancel: () => void
   onComplete: () => void
@@ -39,6 +44,7 @@ export function FunkePresentationNotificationScreen({
   verifierName,
   logo,
   usePin,
+  useBiometricsInsteadOfPin = false,
   onAccept,
   onCancel,
   onDecline,
@@ -57,28 +63,30 @@ export function FunkePresentationNotificationScreen({
         [
           {
             step: 'loading-request',
-            progress: 16.5,
+            progress: 20,
             screen: <LoadingRequestSlide key="loading-request" isLoading={!submission} isError={false} />,
-          },
-          {
-            step: 'verify-issuer',
-            progress: 33,
-            backIsCancel: true,
-            screen: (
-              <VerifyPartySlide
-                key="verify-issuer"
-                type={transaction?.type === 'qes_authorization' ? 'signing' : 'request'}
-                entityId={entityId}
-                name={verifierName}
-                logo={logo}
-                trustedEntities={trustedEntities}
-                trustMechanism={trustMechanism}
-              />
-            ),
           },
           ...(submission
             ? transaction?.type === 'qes_authorization'
               ? [
+                  // Signing keeps the stepped flow: the party check, the QTSP/document step and the
+                  // sign-and-share step each carry their own decision.
+                  {
+                    step: 'verify-issuer',
+                    progress: 33,
+                    backIsCancel: true,
+                    screen: (
+                      <VerifyPartySlide
+                        key="verify-issuer"
+                        type="signing"
+                        entityId={entityId}
+                        name={verifierName}
+                        logo={logo}
+                        trustedEntities={trustedEntities}
+                        trustMechanism={trustMechanism}
+                      />
+                    ),
+                  },
                   {
                     step: 'signing',
                     progress: 50,
@@ -102,18 +110,25 @@ export function FunkePresentationNotificationScreen({
                   },
                 ]
               : [
+                  // Plain presentation: one screen holds the party + trust facts, the purpose and
+                  // the requested cards, so the decision is a single screen and a single tap.
                   {
                     step: 'share-credentials',
                     progress: 66,
+                    backIsCancel: true,
                     screen: (
-                      <ShareCredentialsSlide
+                      <ReviewAndShareSlide
                         key="share-credentials"
-                        onAccept={usePin ? undefined : onAccept}
+                        entityId={entityId}
+                        verifierName={verifierName}
                         logo={logo}
+                        trustedEntities={trustedEntities}
+                        trustMechanism={trustMechanism}
                         submission={submission}
-                        onDecline={onDecline}
-                        isAccepting={isAccepting}
                         overAskingResponse={overAskingResponse}
+                        isAccepting={isAccepting}
+                        onAccept={usePin && !useBiometricsInsteadOfPin ? undefined : onAccept}
+                        onDecline={onDecline}
                       />
                     ),
                   },

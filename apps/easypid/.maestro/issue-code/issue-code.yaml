@@ -30,8 +30,6 @@ appId: id.paradym.wallet.preview
     visible: "Card offered"
     timeout: 10000
 
-# - assertVisible: "Card offered"
-- tapOn: "Continue"
 
 - waitForAnimationToEnd:
     timeout: 5000
