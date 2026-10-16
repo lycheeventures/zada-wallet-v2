@@ -7,7 +7,7 @@ export interface PassportReadRequest {
   dateOfExpiry: string
 }
 
-/** Result of a successful eMRTD chip read (DG1 + DG2 + passive-auth verdict). */
+/** Result of a successful eMRTD chip read (DG1 + DG2, the raw chip files, and the on-device check). */
 export interface PassportReadResult {
   documentCode: string
   documentNumber: string
@@ -22,8 +22,13 @@ export interface PassportReadResult {
   mrz: string
   faceImageBase64?: string
   faceImageMimeType?: string
+  /** On-device DG-hash check only. The hub decides chip_authenticated from `sod`/`dg1`/`dg2`. */
   chipAuthenticated: boolean
   passiveAuthDetail?: string
+  /** Raw chip files, base64: EF.SOD and DG1/DG2 exactly as read. The hub verifies these. */
+  sod?: string
+  dg1?: string
+  dg2?: string
 }
 
 export type PassportNfcStatus =

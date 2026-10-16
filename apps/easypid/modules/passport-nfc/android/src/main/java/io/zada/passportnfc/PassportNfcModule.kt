@@ -19,18 +19,20 @@ import org.jmrtd.lds.SODFile
 import org.jmrtd.lds.icao.DG1File
 import org.jmrtd.lds.icao.DG2File
 import org.jmrtd.lds.iso19794.FaceImageInfo
+import java.io.ByteArrayInputStream
 import java.io.DataInputStream
+import java.io.InputStream
 import java.security.MessageDigest
 import java.security.Security
 
 // Reads an ICAO 9303 eMRTD (passport) chip over NFC using jMRTD: PACE (fallback BAC) with the MRZ
 // key, then DG1 (MRZ) + DG2 (portrait), then MVP passive authentication.
 //
-// MVP passive auth = DG-hash integrity: recompute the DG1/DG2 hashes and compare to the hashes in
-// the signed EF.SOD. This proves the data matches the SOD. TODO(prod): also verify the SOD's CMS
-// signature against the Document Signer Cert AND chain the DSC to a trusted CSCA (masterlist) — only
-// then is `chipAuthenticated` true "State-signed". Today we trust the chip we just read (matches the
-// MVP server trust model in hovi-issue-passport).
+// On-device passive auth = DG-hash integrity only: recompute the DG1/DG2 hashes and compare to the
+// hashes in EF.SOD. It is a read-quality check, not proof. The raw EF.SOD, DG1 and DG2 bytes are
+// returned (base64) so the hub can do the real check: the SOD's CMS signature, the Document Signer
+// certificate chained to a CSCA in its trust list, and every claim derived from DG1/DG2 itself
+// (hub hovi-issue-passport). Only the hub decides `chip_authenticated`.
 class PassportNfcModule : Module() {
   private var pendingPromise: Promise? = null
   private var request: Triple<String, String, String>? = null
@@ -134,16 +136,21 @@ class PassportNfcModule : Module() {
         service.doBAC(BACKey(documentNumber, dateOfBirth, dateOfExpiry))
       }
 
+      // Keep the exact bytes read from the chip: the SOD hashes (and the hub) cover these, not a
+      // jMRTD re-encoding of them.
       emit("reading_dg1")
-      val dg1 = DG1File(service.getInputStream(PassportService.EF_DG1))
+      val dg1Raw = readAll(service.getInputStream(PassportService.EF_DG1))
+      val dg1 = DG1File(ByteArrayInputStream(dg1Raw))
       val mrz = dg1.mrzInfo
 
       emit("reading_dg2")
-      val dg2 = DG2File(service.getInputStream(PassportService.EF_DG2))
+      val dg2Raw = readAll(service.getInputStream(PassportService.EF_DG2))
+      val dg2 = DG2File(ByteArrayInputStream(dg2Raw))
       val (faceBase64, faceMime) = extractFace(dg2)
 
       emit("verifying")
-      val (chipAuthenticated, detail) = verifyIntegrity(service, dg1.encoded, dg2.encoded)
+      val sodRaw = readAll(service.getInputStream(PassportService.EF_SOD))
+      val (chipAuthenticated, detail) = verifyIntegrity(sodRaw, dg1Raw, dg2Raw)
 
       emit("done")
       promise.resolve(
@@ -162,7 +169,10 @@ class PassportNfcModule : Module() {
           "faceImageBase64" to faceBase64,
           "faceImageMimeType" to faceMime,
           "chipAuthenticated" to chipAuthenticated,
-          "passiveAuthDetail" to detail
+          "passiveAuthDetail" to detail,
+          "sod" to b64(sodRaw),
+          "dg1" to b64(dg1Raw),
+          "dg2" to b64(dg2Raw)
         )
       )
     } catch (e: Exception) {
@@ -213,10 +223,15 @@ class PassportNfcModule : Module() {
     }
   }
 
-  // MVP passive auth: DG1/DG2 hashes must match the hashes in the chip's signed EF.SOD.
-  private fun verifyIntegrity(service: PassportService, dg1Bytes: ByteArray, dg2Bytes: ByteArray): Pair<Boolean, String> {
+  private fun readAll(input: InputStream): ByteArray = input.use { it.readBytes() }
+
+  private fun b64(bytes: ByteArray): String = Base64.encodeToString(bytes, Base64.NO_WRAP)
+
+  // On-device check: DG1/DG2 hashes must match the hashes in EF.SOD. The hub repeats this and also
+  // checks the signature and the CSCA chain.
+  private fun verifyIntegrity(sodBytes: ByteArray, dg1Bytes: ByteArray, dg2Bytes: ByteArray): Pair<Boolean, String> {
     return try {
-      val sod = SODFile(service.getInputStream(PassportService.EF_SOD))
+      val sod = SODFile(ByteArrayInputStream(sodBytes))
       val stored = sod.dataGroupHashes
       val md = MessageDigest.getInstance(sod.digestAlgorithm)
       val dg1Ok = stored[1]?.contentEquals(md.digest(dg1Bytes)) == true

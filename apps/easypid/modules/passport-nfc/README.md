@@ -6,6 +6,7 @@ signed EF.SOD). Consumed by `apps/easypid/src/features/passport/*`.
 
 - **Native deps** (`android/build.gradle`): `org.jmrtd:jmrtd:0.7.42`, `net.sf.scuba:scuba-sc-android:0.0.23`,
   `com.madgag.spongycastle:prov:1.58.0.0` (the crypto provider jMRTD expects). All on Maven Central.
+- **Raw chip files:** the result carries `sod`, `dg1`, `dg2` (base64, exactly as read). `issuePassport.ts` sends them as `chip`; the hub (`hovi-issue-passport`) verifies the SOD signature up to a CSCA and derives every claim from DG1/DG2. The on-device `chipAuthenticated` is a DG-hash check only.
 - **JS API** (`index.ts`): `isNfcAvailable()`, `isPassportReaderAvailable()`, `readPassport({documentNumber,dateOfBirth,dateOfExpiry})`, `addPassportStatusListener()`, `cancelPassportRead()`.
 - **Android only.** `expo-module.config.json` declares `platforms: ["android"]` and the FQCN
   `io.zada.passportnfc.PassportNfcModule`.

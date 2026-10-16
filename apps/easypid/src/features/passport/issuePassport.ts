@@ -64,7 +64,7 @@ export function buildPassportCredentialValues(passport: PassportReadResult, mrz:
     personal_administrative_number: passport.personalNumber || undefined,
     mrz: passport.mrz || mrz.rawMrz || undefined,
     age_over_18: ageOver18(birthdate),
-    // Provenance: ZADA attests it cryptographically read+verified the chip (MVP: DG-hash integrity).
+    // The on-device DG-hash check. The hub sets the issued value itself (true only after it verified the chip).
     chip_authenticated: passport.chipAuthenticated,
   }
   if (passport.faceImageBase64 && passport.faceImageMimeType) {
@@ -104,9 +104,24 @@ export function buildCredentialValuesFromMrz(mrz: MrzData): Record<string, unkno
   return values
 }
 
-/** POST credentialValues to hovi-issue-passport and return the offer URI (or throw with a message). */
-async function requestOffer(credentialValues: Record<string, unknown>): Promise<string> {
-  const { data, error } = await supabase.functions.invoke('hovi-issue-passport', { body: { credentialValues } })
+/** The raw chip files the hub verifies (EF.SOD signature + CSCA chain, DG hashes) and derives the claims from. */
+export interface PassportChipData {
+  sod: string
+  dg1: string
+  dg2: string
+}
+
+/**
+ * POST to hovi-issue-passport and return the offer URI (or throw with a message).
+ *
+ * With `chip`, the hub ignores credentialValues: it verifies the chip files and builds every claim from
+ * DG1/DG2 itself, and only then marks the credential chip_authenticated. credentialValues still go
+ * along so a hub without that check (interim mode) keeps working.
+ */
+async function requestOffer(credentialValues: Record<string, unknown>, chip?: PassportChipData): Promise<string> {
+  const { data, error } = await supabase.functions.invoke('hovi-issue-passport', {
+    body: chip ? { credentialValues, chip } : { credentialValues },
+  })
   if (error) throw new Error(error.message ?? 'Issuance request failed')
   const uri = (data as { credentialOfferUri?: string })?.credentialOfferUri
   if (!uri) throw new Error((data as { error?: string })?.error ?? 'No credential offer returned')
@@ -115,10 +130,14 @@ async function requestOffer(credentialValues: Record<string, unknown>): Promise<
 
 /** Issue the passport credential from a full chip read and return the offer URI. */
 export async function issuePassportCredential(passport: PassportReadResult, mrz: MrzData): Promise<string> {
-  return requestOffer(buildPassportCredentialValues(passport, mrz))
+  const chip =
+    passport.sod && passport.dg1 && passport.dg2
+      ? { sod: passport.sod, dg1: passport.dg1, dg2: passport.dg2 }
+      : undefined
+  return requestOffer(buildPassportCredentialValues(passport, mrz), chip)
 }
 
-/** Issue from MRZ only (manual/OCR, no chip). chip_authenticated:false. */
+/** Issue from MRZ only (manual/OCR, no chip). chip_authenticated:false. The hub currently refuses this path. */
 export async function issuePassportFromMrz(mrz: MrzData): Promise<string> {
   return requestOffer(buildCredentialValuesFromMrz(mrz))
 }
