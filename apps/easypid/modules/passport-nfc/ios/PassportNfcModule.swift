@@ -106,10 +106,14 @@ public class PassportNfcModule: Module {
       faceBase64 = jpeg.base64EncodedString()
     }
 
-    // MVP passive auth parity with Android (DG-hash integrity): `passportDataNotTampered` = the DG
-    // hashes match the signed EF.SOD. Production must also AND `passportCorrectlySigned` and chain the
-    // DSC to a trusted CSCA masterlist (NFCPassportReader supports loading PEM masterlists).
+    // On-device check, parity with Android: `passportDataNotTampered` = the DG hashes match EF.SOD.
+    // The raw EF.SOD, DG1 and DG2 bytes (`DataGroup.data`, the bytes the SOD hashes cover) go to the
+    // hub, which checks the signature and the CSCA chain and derives every claim itself.
     let passed = p.passportDataNotTampered
+    let raw = { (id: DataGroupId) -> String? in
+      guard let dg = p.dataGroupsRead[id], !dg.data.isEmpty else { return nil }
+      return Data(dg.data).base64EncodedString()
+    }
     return [
       "documentCode": p.documentType,
       "documentNumber": p.documentNumber,
@@ -127,6 +131,9 @@ public class PassportNfcModule: Module {
       "chipAuthenticated": passed,
       "passiveAuthDetail": passed
         ? "Passive authentication passed" : "Passive authentication not verified",
+      "sod": raw(.SOD),
+      "dg1": raw(.DG1),
+      "dg2": raw(.DG2),
     ]
   }
 
