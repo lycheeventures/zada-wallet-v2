@@ -34,6 +34,18 @@ export function setSupportProfile(profile: { name?: string; email?: string }): v
   if (profile.email !== undefined) mmkv.set(K_EMAIL, profile.email.trim())
 }
 
+/**
+ * Reply email as the proxy should see it: undefined = never set (old behaviour), '' = the user
+ * removed it (proxy goes back to app-only replies), otherwise the address replies are emailed to.
+ */
+export function getSupportReplyEmail(): string | undefined {
+  return mmkv.getString(K_EMAIL)
+}
+
+export function isValidEmail(email: string): boolean {
+  return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())
+}
+
 export function hasProvidedProfile(): boolean {
   return Boolean(mmkv.getString(K_NAME) || mmkv.getString(K_EMAIL))
 }
