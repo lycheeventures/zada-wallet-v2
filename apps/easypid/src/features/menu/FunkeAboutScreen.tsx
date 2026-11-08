@@ -10,7 +10,7 @@ export function FunkeAboutScreen() {
   const { about } = useAppCopy()
 
   const openContact = () => {
-    Linking.openURL(`mailto:help@zada.io?subject=${about.emailHeader}`)
+    Linking.openURL(`mailto:support@zada.solutions?subject=${about.emailHeader}`)
   }
 
   const openPrivacyPolicy = () => {
@@ -37,7 +37,7 @@ export function FunkeAboutScreen() {
                   comment: 'Intro sentence before showing support email address',
                 })}{' '}
                 <Paragraph fontWeight="$semiBold" color="$primary-500" onPress={openContact}>
-                  help@zada.io
+                  support@zada.solutions
                 </Paragraph>
               </Paragraph>
             </YStack>

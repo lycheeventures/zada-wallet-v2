@@ -6,6 +6,7 @@ import {
   HeaderContainer,
   Heading,
   HeroIcons,
+  Input,
   Loader,
   Paragraph,
   ScrollView,
@@ -15,8 +16,9 @@ import {
   YStack,
 } from '@package/ui'
 import { router } from 'expo-router'
+import { useState } from 'react'
 import type { ConversationSummary } from './supportApi'
-import { isConversationUnread } from './supportIdentity'
+import { getSupportProfile, isConversationUnread, isValidEmail, setSupportProfile } from './supportIdentity'
 import { useConversations } from './useSupportChat'
 
 function ConversationRow({ conversation, onPress }: { conversation: ConversationSummary; onPress: () => void }) {
@@ -85,6 +87,46 @@ function GuidesEntry({ onPress }: { onPress: () => void }) {
   )
 }
 
+/**
+ * Optional address for replies. With one, the proxy opens new conversations as email tickets, so each
+ * reply is also emailed (from support@zada.solutions); the app shows replies either way.
+ */
+function ReplyEmailField() {
+  const [email, setEmail] = useState(getSupportProfile().email ?? '')
+  const trimmed = email.trim()
+  const invalid = trimmed.length > 0 && !isValidEmail(trimmed)
+
+  // Saved on blur, only when valid or empty (empty = stop emailing replies).
+  const save = () => {
+    if (!invalid) setSupportProfile({ email: trimmed })
+  }
+
+  return (
+    <YStack gap="$1">
+      <Paragraph variant="sub" color="$grey-700" fontWeight="$semiBold">
+        Email me replies (optional)
+      </Paragraph>
+      <Input
+        value={email}
+        onChangeText={setEmail}
+        onBlur={save}
+        onSubmitEditing={save}
+        placeholder="you@example.com"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        autoComplete="email"
+        textContentType="emailAddress"
+        returnKeyType="done"
+      />
+      <Paragraph variant="sub" color={invalid ? '$danger-500' : '$grey-600'}>
+        {invalid
+          ? 'That does not look like an email address.'
+          : 'We also send our replies to this address. Applies to new conversations.'}
+      </Paragraph>
+    </YStack>
+  )
+}
+
 export function FunkeSupportScreen() {
   const { data: conversations, isLoading } = useConversations()
   const hasConversations = !!conversations && conversations.length > 0
@@ -100,6 +142,7 @@ export function FunkeSupportScreen() {
             <Paragraph color="$grey-700">
               Ask us anything about your wallet. Our team will get back to you, usually within a day.
             </Paragraph>
+            <ReplyEmailField />
             <Button.Solid onPress={() => router.push('/support/new')}>New conversation</Button.Solid>
           </YStack>
 

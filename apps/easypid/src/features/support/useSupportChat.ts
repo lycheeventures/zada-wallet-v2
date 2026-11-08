@@ -6,7 +6,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { fetchGuides, getMessages, listConversations, sendMessage } from './supportApi'
 import { SUPPORT_POLL_INTERVAL_MS } from './supportConfig'
 import { getDeviceDiagnostics } from './supportDevice'
-import { getSupportProfile, getSupportUserId } from './supportIdentity'
+import { getSupportProfile, getSupportReplyEmail, getSupportUserId } from './supportIdentity'
 
 const keys = {
   conversations: (userId: string) => ['support', 'conversations', userId] as const,
@@ -58,7 +58,7 @@ export function useSendMessage() {
         text: vars.text,
         conversationId: vars.conversationId,
         name: profile.name,
-        email: profile.email,
+        email: getSupportReplyEmail(),
         device: isNew ? getDeviceDiagnostics() : undefined,
       })
     },
