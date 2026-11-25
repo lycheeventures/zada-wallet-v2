@@ -48,7 +48,7 @@ export function redirectSystemPath({ path, initial }: { path: string; initial: b
         // redirectAfterUnlock param — see pendingDeeplink.ts.
         setPendingDeeplink(redirectPath)
         if (!initial) {
-          const encodedRedirect = TypedArrayEncoder.toBase64URL(TypedArrayEncoder.fromString(redirectPath))
+          const encodedRedirect = TypedArrayEncoder.toBase64Url(TypedArrayEncoder.fromUtf8String(redirectPath))
           redirectPath = `/authenticate?redirectAfterUnlock=${encodedRedirect}`
         }
         logger.debug('Deeplink is a batch credential import. Routing to batch screen.')
@@ -142,7 +142,7 @@ export function redirectSystemPath({ path, initial }: { path: string; initial: b
       // Always make the user authenticate first when opening with a deeplink
       // On initial load this is already the case so we skip it
       if (!initial) {
-        const encodedRedirect = TypedArrayEncoder.toBase64URL(TypedArrayEncoder.fromString(redirectPath))
+        const encodedRedirect = TypedArrayEncoder.toBase64Url(TypedArrayEncoder.fromUtf8String(redirectPath))
         redirectPath = `/authenticate?redirectAfterUnlock=${encodedRedirect}`
       }
 

@@ -19,8 +19,8 @@ const derive = (pin: string, salt: string): string => {
       memCost: 64 * 1024,
       timeCost: 8,
     },
-    TypedArrayEncoder.fromString(pin),
-    TypedArrayEncoder.fromString(salt)
+    TypedArrayEncoder.fromUtf8String(pin),
+    TypedArrayEncoder.fromUtf8String(salt)
   )
 
   return TypedArrayEncoder.toHex(rawHash)
