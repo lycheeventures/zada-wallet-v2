@@ -1,0 +1,46 @@
+name: Claude security review
+
+# Reviews the changed files of every pull request for security flaws and
+# comments on the pull request. Needs the repository secret CLAUDE_API_KEY
+# (an Anthropic API key enabled for the Claude API and Claude Code).
+# Without the secret the job is skipped, so it never blocks a merge.
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: claude-security-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    # Dependabot and fork pull requests cannot read secrets.
+    if: >-
+      github.actor != 'dependabot[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      HAS_KEY: ${{ secrets.CLAUDE_API_KEY != '' }}
+    steps:
+      - name: Check for the API key
+        if: env.HAS_KEY != 'true'
+        run: echo "::notice::CLAUDE_API_KEY is not set, security review skipped."
+
+      - uses: actions/checkout@v4
+        if: env.HAS_KEY == 'true'
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 2
+
+      # Pinned to a commit (main as of 11 Feb 2026), not a moving branch.
+      - uses: anthropics/claude-code-security-review@0c6a49f1fa56a1d472575da86a94dbc1edb78eda
+        if: env.HAS_KEY == 'true'
+        with:
+          comment-pr: true
+          claude-api-key: ${{ secrets.CLAUDE_API_KEY }}
+          claude-model: claude-sonnet-5-5
