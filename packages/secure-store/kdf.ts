@@ -19,11 +19,13 @@ const derive = (pin: string, salt: string): string => {
       memCost: 64 * 1024,
       timeCost: 8,
     },
-    TypedArrayEncoder.fromString(pin),
-    TypedArrayEncoder.fromString(salt)
+    TypedArrayEncoder.fromUtf8String(pin),
+    TypedArrayEncoder.fromUtf8String(salt)
   )
 
-  return TypedArrayEncoder.toHex(rawHash)
+  // Credo 0.7 encodes hex with a strict check for a real Uint8Array. The native Argon2 binding returns a
+  // byte container that fails that check, so copy it first. The bytes, and so the derived key, are unchanged.
+  return TypedArrayEncoder.toHex(new Uint8Array(rawHash))
 }
 
 /**

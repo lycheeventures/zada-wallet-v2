@@ -140,7 +140,7 @@ export const shareDeviceResponse = async (
         })),
         mdocs: mdocs as [Mdoc, ...Mdoc[]],
         sessionTranscriptOptions: {
-          type: 'sesionTranscriptBytes',
+          type: 'sessionTranscriptBytes',
           sessionTranscriptBytes: options.sessionTranscript,
         },
       }
